@@ -67,7 +67,7 @@ module.exports = function(grunt) {
             },
             unminified: {
                 files: {
-                  'Minimal.css': ['src/css/license.css','src/css/main.css','src/css/plugin-compatibility.css','src/css/style-settings.css']
+                  'Oxygen.css': ['src/css/license.css','src/css/main.css','src/css/plugin-compatibility.css','src/css/style-settings.css']
                 }
             }
         },

@@ -1,17 +1,18 @@
 # Oxygen
 ![](/cover.png)
 
-A fork of [Minimal](https://github.com/kepano/obsidian-minimal) theme. Find detailed documentation at [minimal.guide](https://minimal.guide).
+A fork of [Minimal](https://github.com/kepano/obsidian-minimal) theme with enhanced customization features. Find detailed documentation at [minimal.guide](https://minimal.guide).
 
-Minimal is an [Obsidian](https://obsidian.md/) theme for desktop, mobile and tablet. Customize colors, fonts and more with the companion plugins [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) and [Hider](https://github.com/kepano/obsidian-hider). Winner of Obsidian's official [Best Theme award](https://forum.obsidian.md/t/best-of-2020-awards-results/11217) ✨ 
+Oxygen is an [Obsidian](https://obsidian.md/) theme for desktop, mobile and tablet. Customize colors, fonts and more with the companion plugins [Oxygen Theme Settings](https://github.com/david/obsidian-oxygen-settings) and [Hider](https://github.com/kepano/obsidian-hider). Based on the award-winning Minimal theme ✨ 
 
-## About Minimal
+## About Oxygen
 
 - [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Companion plugins](#companion-plugins)
 - [Settings](#settings)
 - [Color schemes](#color-schemes)
+- [Custom presets](#custom-presets)
 - [Plugin support](#plugin-support)
 - [Helper classes](#helper-filters-and-classes)
 - [Alternate checkboxes](#alternate-checkboxes)
@@ -50,19 +51,19 @@ To install the theme
 To install the companion plugin
 
 - Go to `Community plugins` and turn off `Restricted mode`
-- Under community plugins search for "Minimal Theme Settings" and click `Install`, then `Enable`
+- Under community plugins search for "Oxygen Theme Settings" and click `Install`, then `Enable`
 
 Have a question? Join the [Minimal channel](https://discord.com/channels/686053708261228577/931008597557649410) on the official [Obsidian Discord](https://discord.gg/veuWUTm).
 
 ## Companion plugins
 
-- [Minimal Theme Settings plugin](https://github.com/kepano/obsidian-minimal-settings) allows you to customize color schemes, fonts, [hotkeys](#hotkeys), and access the main feature toggles. This plugin is highly recommended for all users of Minimal.
+- [Oxygen Theme Settings plugin](https://github.com/david/obsidian-oxygen-settings) allows you to customize color schemes, fonts, [hotkeys](#hotkeys), and access the main feature toggles. This plugin is highly recommended for all users of Oxygen and includes advanced custom preset functionality.
 - [Hider plugin](https://github.com/kepano/obsidian-hider) is recommended to hide Obsidian UI elements such as window frame, scrollbars, tooltips, etc. When using Hider to turn off the main toolbar (AKA app ribbon), it can be accessed by hovering over the bottom left edge of the window.
 - [Style Settings plugin](https://github.com/mgmeyers/obsidian-style-settings) allows you to create a custom color scheme. This plugin is optional.
 
 ## Settings
 
-The following settings can be accessed using [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) plugin. Many of these settings below can be toggled with [hotkeys](#hotkeys).
+The following settings can be accessed using [Oxygen Theme Settings](https://github.com/david/obsidian-oxygen-settings) plugin. Many of these settings below can be toggled with [hotkeys](#hotkeys).
 
 ### Interface colors and fonts
 
@@ -92,19 +93,35 @@ Controls images, tables and iframes. These settings can also be enabled on a per
 
 ### Preset color schemes
 
-Minimal offers color schemes that can be separately selected for light and dark mode using the [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) plugin. Color schemes include Dracula, Everforest, Gruvbox, macOS, Nord, Notion, Solarized, and Things. 
+Oxygen offers color schemes that can be separately selected for light and dark mode using the [Oxygen Theme Settings](https://github.com/david/obsidian-oxygen-settings) plugin. Color schemes include:
 
-![Minimal Theme Settings](/docs/Images/minimal-color-schemes.gif)
+**Built-in schemes:** Oxygen (default), Minimal (original), Atom, Ayu, Catppuccin, Dracula, Eink, Everforest, Flexoki, Gruvbox, macOS, Nord, Rose Pine, Sky, Solarized, and Things.
 
-### Custom color schemes
+**Custom presets:** Create your own color schemes or import colors from any Obsidian theme.
 
-You can use the Style Settings plugin to customize your color scheme. To see your changes more easily, open Style Settings in a new pane by using the command palette (`CMD + P` by default). Using Style Settings you can customize Minimal's colors, font sizes, font styles, and many more details.
+![Oxygen Theme Settings](/docs/Images/minimal-color-schemes.gif)
+
+### Custom presets
+
+Oxygen includes advanced custom preset functionality that allows you to:
+
+- **Create custom color schemes** with an intuitive color picker interface
+- **Import any Obsidian theme** and extract its color palette automatically
+- **Export and share** your custom presets as JSON or CSS files
+- **Smart color mapping** that automatically detects light/dark mode colors
+- **Live preview** of your changes as you design
+
+Access custom presets through the "Custom Presets" tab in Oxygen Theme Settings.
+
+### Custom color schemes (Style Settings)
+
+You can also use the Style Settings plugin to customize your color scheme. To see your changes more easily, open Style Settings in a new pane by using the command palette (`CMD + P` by default). Using Style Settings you can customize Oxygen's colors, font sizes, font styles, and many more details.
 
 ![Style Settings](/docs/Images/minimal-style-settings.gif)
 
 ## Plugin support
 
-Most plugins work well with Minimal, but the following plugins have received special love and attention:
+Most plugins work well with Oxygen, but the following plugins have received special love and attention:
 
 - [Calendar](https://github.com/liamcain/obsidian-calendar-plugin)
 - [Charts](https://github.com/phibr0/obsidian-charts)
@@ -230,7 +247,7 @@ Minimal supports a wide number of checkbox styles. These allow you to call out t
 
 ## Hotkeys
 
-Hotkeys are only available when using the Minimal Theme Settings plugin.
+Hotkeys are only available when using the Oxygen Theme Settings plugin.
 
 ### Background and borders
 
@@ -258,7 +275,7 @@ If you would like add support for a plugin, or have found a bug you'd like to he
 
 ### Plugin support
 
-Plugin authors and developers can add support for Minimal theme by submitting a pull request. See the [src/scss/plugins](https://github.com/kepano/obsidian-minimal/tree/master/src/scss/plugins) folder with examples of snippets for plugins that are currently supported.
+Plugin authors and developers can add support for Oxygen theme by submitting a pull request. See the [src/scss/plugins](https://github.com/david/obsidian-oxygen/tree/master/src/scss/plugins) folder with examples of snippets for plugins that are currently supported.
 
 ## Developers
 
@@ -282,17 +299,17 @@ To build directly into your Obsidian vault rename `.env.example` to `.env` and u
 npx grunt
 ```
 
-This builds two files, the `obsidian.css` distribution file (for the community themes store) which is minified and also copied to your vault for live reload, and the `Minimal.css` file which is an unminified copy saved to the project root.
+This builds two files, the `obsidian.css` distribution file (for the community themes store) which is minified and also copied to your vault for live reload, and the `Oxygen.css` file which is an unminified copy saved to the project root.
 
 ## License
 
-### Minimal for Desktop and Mobile
+### Oxygen for Desktop and Mobile
 
-Minimal for Obsidian apps is licensed under the MIT License which allows you to modify and redistribute the code, however you must preserve the copyright and license notice in your CSS file. This includes any code you may extract as standalone snippets.
+Oxygen for Obsidian apps is licensed under the MIT License which allows you to modify and redistribute the code, however you must preserve the copyright and license notice in your CSS file. This includes any code you may extract as standalone snippets.
 
-**If you would like to distribute a fork of Minimal or part of its code, please keep my [Buy me a coffee](https://www.buymeacoffee.com/kepano) link present in your Readme.**
+**If you would like to distribute a fork of Oxygen or part of its code, please keep the original [Buy me a coffee](https://www.buymeacoffee.com/kepano) link present in your Readme.**
 
-Minimal is frequently updated to stay current with the latest version of Obsidian. To make it easy to stay current with the latest improvements, I recommend using [Github's fork feature](https://docs.github.com/en/get-started/quickstart/fork-a-repo) so that you can merge the latest changes into your fork. If you have any questions don't hesitate to reach me in the Obsidian Discord group. 
+Oxygen is based on the Minimal theme and is frequently updated to stay current with the latest version of Obsidian. To make it easy to stay current with the latest improvements, I recommend using [Github's fork feature](https://docs.github.com/en/get-started/quickstart/fork-a-repo) so that you can merge the latest changes into your fork. If you have any questions don't hesitate to reach me in the Obsidian Discord group. 
 
 ### Minimal for Obsidian Publish
 

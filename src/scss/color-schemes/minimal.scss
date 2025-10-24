@@ -1,0 +1,66 @@
+/*
+Minimal
+Original default color scheme preserved from the original Minimal theme
+*/
+
+.theme-light.minimal-minimal-light {
+	--base-h: 0;
+	--base-s: 0%;
+	--base-l: 96%;
+
+	--accent-h: 201;
+	--accent-s: 17%;
+	--accent-l: 50%;
+
+	--bg1: white;
+	--bg2: hsl(var(--base-h), var(--base-s), var(--base-l));
+	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) - 50%), 0.12);
+
+	--ui1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 6%));
+	--ui2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 12%));
+	--ui3: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 20%));
+
+	--tx1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 90%));
+	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) - 50%));
+	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 25%));
+	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 60%));
+
+	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));
+	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 6%));
+
+	--hl1: hsla(var(--accent-h), 50%, calc(var(--base-l) - 20%), 30%);
+	--hl2: rgba(255, 225, 0, 0.5);
+	--sp1: white;
+}
+
+.theme-dark.minimal-minimal-dark {
+	--base-h: 0;
+	--base-s: 0%;
+	--base-l: 15%;
+
+	--accent-h: 201;
+	--accent-s: 17%;
+	--accent-l: 60%;
+
+	--bg1: hsl(var(--base-h), var(--base-s), var(--base-l));
+	--bg2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 2%));
+	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) + 40%), 0.12);
+
+	--ui1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 6%));
+	--ui2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 12%));
+	--ui3: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 20%));
+
+	--tx1: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 67%));
+	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) + 45%));
+	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 20%));
+	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 50%));
+
+	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 8%));
+	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 5%));
+
+	--hl1: hsla(var(--accent-h), 50%, 40%, 30%);
+	--hl2: rgba(255, 177, 80, 0.3);
+	--sp1: white;
+}

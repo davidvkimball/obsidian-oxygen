@@ -16,13 +16,13 @@ The colors use HSL (hue, saturation, lightness)
 */
 
 body {
-	--base-h: 0;       /* Base hue */
-	--base-s: 0%;      /* Base saturation */
-	--base-l: 96%;     /* Base lightness - 100 is white */
+	--base-h: 214;     /* Base hue - Slate blue (Oxygen default) */
+	--base-s: 32%;     /* Base saturation */
+	--base-l: 95%;     /* Base lightness - 100 is white */
 
-	--accent-h: 201;   /* Accent hue */
-	--accent-s: 17%;   /* Accent saturation */
-	--accent-l: 50%;   /* Accent lightness */
+	--accent-h: 199;   /* Accent hue - Sky blue (Oxygen default) */
+	--accent-s: 89%;   /* Accent saturation */
+	--accent-l: 48%;   /* Accent lightness */
 }
 
 .theme-dark,
@@ -47,7 +47,7 @@ body {
 }
 
 .theme-light,
-.theme-light.minimal-default-light,
+.theme-light.minimal-oxygen-light,
 body .excalidraw {
 
 	--bg1:white;
@@ -154,7 +154,7 @@ body .excalidraw {
 .theme-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-light-contrast.minimal-status-off .status-bar,
 .theme-dark,
-.theme-dark.minimal-default-dark,
+.theme-dark.minimal-oxygen-dark,
 .excalidraw.theme--dark {
 
 	--accent-l:60%;
