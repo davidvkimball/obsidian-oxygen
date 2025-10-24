@@ -1,0 +1,55 @@
+/* Headings and fonts */
+
+h1,h2,h3,h4 {letter-spacing:-0.02em;} 
+
+body, input, button  {
+	font-family:var(--font-interface);
+}
+.cm-s-obsidian span.cm-error {
+	color:var(--color-red);
+}
+.markdown-preview-view,
+.popover,
+.workspace-leaf-content[data-type=markdown] {
+	font-family:var(--font-text)
+}
+
+body,
+.markdown-preview-view,
+.view-content > .markdown-source-view.mod-cm6.is-live-preview > .cm-scroller,
+.view-content > .cm-s-obsidian {
+	font-size: var(--font-adaptive-normal);
+	font-weight: var(--normal-weight);
+}
+
+.view-content > .markdown-source-view.mod-cm6 .cm-scroller,
+.view-content > .markdown-source-view,
+.view-content > .cm-s-obsidian {
+	font-family: var(--font-editor);
+}
+
+.cm-formatting:not(.cm-formatting-code-block):not(.cm-formatting-hashtag) {
+	color: var(--text-formatting);
+}
+
+.hide-markdown .is-live-preview {
+	.cm-formatting {
+		&.cm-formatting-code.cm-inline-code,
+		&.cm-formatting-em,
+		&.cm-formatting-link,
+		&.cm-formatting-strikethrough,
+		&.cm-formatting-strong,
+		&.cm-formatting-highlight {
+			display: none;
+		}
+	}
+	.cm-formatting-quote {
+		opacity: 0;
+	}
+	.cm-hmd-internal-link.cm-link-has-alias,
+	.cm-link-alias-pipe,
+	.cm-formatting-link,
+	.cm-formatting-header {
+		display: none;
+	}
+}

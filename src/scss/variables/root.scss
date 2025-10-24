@@ -1,0 +1,127 @@
+body {
+	--font-editor-theme:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Ubuntu,sans-serif;
+	--font-editor:var(--font-editor-override), var(--font-text-override), var(--font-editor-theme);
+
+	/* Bases */
+	--bases-table-column-border-width: 0px;
+    --bases-header-border-width: 0;
+
+
+	/* Blockquotes */
+	--blockquote-style:normal;
+	--blockquote-color: var(--text-muted);
+	--blockquote-border-thickness: 1px;
+	--blockquote-border-color: var(--quote-opening-modifier);
+
+	/* Embeds */
+	--embed-block-shadow-hover: none;
+
+	/* Font sizes */
+	--font-ui-smaller: 11px;
+
+	/* Font weights */
+	--normal-weight: 400;
+
+	/* Headings */
+	--inline-title-margin-bottom: 1rem;
+
+	--h1-size: 1.125em;
+	--h2-size: 1.05em;
+	--h3-size: 1em;
+	--h4-size: 0.90em;
+	--h5-size: 0.85em;
+	--h6-size: 0.85em;
+
+	--h1-weight: 600;
+	--h2-weight: 600;
+	--h3-weight: 500;
+	--h4-weight: 500;
+	--h5-weight: 500;
+	--h6-weight: 400;
+
+	--h1-variant: normal;
+	--h2-variant: normal;
+	--h3-variant: normal;
+	--h4-variant: normal;
+	--h5-variant: small-caps;
+	--h6-variant: small-caps;
+
+	--h1-style: normal;
+	--h2-style: normal;
+	--h3-style: normal;
+	--h4-style: normal;
+	--h5-style: normal;
+	--h6-style: normal;
+
+	/* Line widths */
+	--line-width: 40rem;
+	--line-height: 1.5;
+	--line-height-normal: var(--line-height);
+	--max-width: 88%;
+	--max-col-width: 18em;
+
+	/* Icons */
+	--icon-muted: 0.5;
+
+	/* Quotes and transclusions */
+	--nested-padding:1.1em;
+
+	/* Lists */
+	--folding-offset: 32px;
+	--list-edit-offset: 0.5em;
+	--list-indent: 2em;
+	--list-spacing: 0.075em;
+
+	--input-height: 32px;
+	--header-height: 40px;
+
+	/* Metadata */
+	--metadata-label-width-multiplier: 9;
+	--metadata-label-width: calc(var(--font-adaptive-small) * var(--metadata-label-width-multiplier));
+	--metadata-label-font-size: var(--font-adaptive-small);
+	--metadata-input-font-size: var(--font-adaptive-small);
+
+	/* Mobile sidebars */
+	--mobile-left-sidebar-width: 280pt;
+	--mobile-right-sidebar-width: 240pt;
+
+	--top-left-padding-y:0px;
+
+	/* Image opacity in dark mode */
+	--image-muted:0.7;
+	--image-radius: 4px;
+
+	/* Spacing */
+	--heading-spacing: 2em;
+	--p-spacing: 1.75rem;
+
+	--border-width: 1px;
+	--table-border-width: var(--border-width);
+
+	--table-selection: var(--text-selection);
+	--table-selection-border-color: var(--text-accent);
+	--table-selection-border-width: 0px;
+	--table-selection-border-radius: 0px;
+	--table-drag-handle-background-active: var(--text-selection);
+	--table-drag-handle-color-active: var(--text-accent);
+	--table-add-button-border-width: 0px;
+
+	/* Readable line length off */
+	--file-margins: var(--size-4-2) var(--size-4-12);
+}
+
+.mod-macos {
+	--top-left-padding-y:24px;
+}
+
+.is-phone {
+	/* Metadata */
+	--metadata-label-font-size: var(--font-adaptive-smaller);
+	--metadata-input-font-size: var(--font-adaptive-smaller);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+	.is-phone {
+		--border-width: 0.75px;
+	}
+}

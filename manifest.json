@@ -1,7 +1,8 @@
 {
-	"name": "Sample Theme",
-	"version": "1.0.0",
-	"minAppVersion": "1.0.0",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md"
+	"name": "Oxygen",
+	"version": "0.0.1",
+	"minAppVersion": "1.9.0",
+	"author": "David V. Kimball",
+	"authorUrl": "https://davidvkimball.com",
+	"fundingUrl": "https://patreon.com/davidvkimball"
 }
