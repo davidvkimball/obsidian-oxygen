@@ -43,13 +43,14 @@ Original default color scheme preserved from the original Minimal theme
 	--accent-s: 17%;
 	--accent-l: 60%;
 
-	--bg1: hsl(var(--base-h), var(--base-s), var(--base-l));
-	--bg2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 2%));
+	--bg1: hsl(var(--base-h), var(--base-s), var(--base-l));  /* #262626 - main content */
+	--bg2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 2%));  /* #212121 - left sidebar */
+	--bg-tab: hsl(var(--base-h), var(--base-s), var(--base-l));  /* #262626 - top bars */
 	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) + 40%), 0.12);
 
-	--ui1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 6%));
-	--ui2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 12%));
-	--ui3: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 20%));
+	--ui1: #363636;  /* Original Minimal theme UI1 - exact match */
+	--ui2: #404040;  /* Original Minimal theme UI2 - exact match */
+	--ui3: #4a4a4a;  /* Original Minimal theme UI3 - exact match */
 
 	--tx1: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 67%));
 	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) + 45%));
@@ -63,4 +64,35 @@ Original default color scheme preserved from the original Minimal theme
 	--hl1: hsla(var(--accent-h), 50%, 40%, 30%);
 	--hl2: rgba(255, 177, 80, 0.3);
 	--sp1: white;
+
+	/* Original Minimal theme border colors - exact match */
+	--divider-color: #363636;
+	--frame-divider-color: #363636;
+	--tab-outline-color: #363636;
+	--background-modifier-border: #363636;
+	--background-modifier-border-hover: #404040;
+	--background-modifier-border-focus: rgba(255, 255, 255, 0.15);
 }
+
+/* Force Minimal theme colors with maximum specificity */
+body.theme-dark.minimal-minimal-dark,
+body.theme-dark.minimal-minimal-dark *,
+body.theme-dark.minimal-minimal-dark .setting-item,
+body.theme-dark.minimal-minimal-dark .checkbox-container,
+body.theme-dark.minimal-minimal-dark .workspace-tab-header-container {
+	--ui1: #363636 !important;
+	--background-modifier-border: #363636 !important;
+	--background-modifier-border-hover: #404040 !important;
+	--interactive-hover: #363636 !important;
+	--scrollbar-thumb-bg: #363636 !important;
+	--divider-color: #363636 !important;
+	--frame-divider-color: #363636 !important;
+	--tab-outline-color: #363636 !important;
+}
+
+/* Fix right sidebar background to match main content */
+body.theme-dark.minimal-minimal-dark .mod-right-split {
+	--background-secondary: #262626 !important;
+}
+
+

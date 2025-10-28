@@ -151,142 +151,90 @@ body .excalidraw {
 
 }
 
-.theme-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-dark,
-.theme-dark.minimal-oxygen-dark,
-.excalidraw.theme--dark {
+.theme-dark {
+	/* Base dark theme variables - no hard-coded colors */
+	--accent-l: 60%;
+	--base-l: 15%;
 
-	--accent-l:60%;
-	--base-l:20%;
+	--bg1: hsl(var(--base-h), var(--base-s), var(--base-l));
+	--bg2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 2%));
+	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) + 40%), 0.12);
 
-	/* Oxygen theme colors as the DEFAULT */
+	--ui1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 6%));
+	--ui2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 12%));
+	--ui3: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 20%));
+
+	--tx1: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 67%));
+	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) + 45%));
+	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 20%));
+	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 50%));
+
+	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 8%));
+	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 5%));
+
+	--hl1: hsla(var(--accent-h), 50%, 40%, 30%);
+	--hl2: rgba(255, 177, 80, 0.3);
+
+	--sp1: white;
+}
+
+/* Oxygen theme as default - only when no specific color scheme is selected */
+.theme-dark:not(.minimal-minimal-dark):not(.minimal-atom-dark):not(.minimal-things-dark):not(.minimal-macos-dark):not(.minimal-nord-dark):not(.minimal-dracula-dark):not(.minimal-gruvbox-dark):not(.minimal-everforest-dark):not(.minimal-solarized-dark):not(.minimal-ayu-dark):not(.minimal-rose-pine-dark):not(.minimal-catppuccin-dark):not(.minimal-flexoki-dark):not(.minimal-notion-dark) {
+	/* Oxygen theme colors as DEFAULT for base theme-dark class */
+	--accent-l: 60%;
+	--base-l: 20%;
+
 	--bg1: #1f2228;  /* Main content - darker */
 	--bg2: #2a2d35;  /* Sidebars - lighter */
 	--bg-tab: #1a1d23;  /* Top bars - darkest */
 	
-	/* Explicit UI colors to prevent HSL generation differences */
+	/* Oxygen UI colors as fallback for base theme */
 	--ui1: #3a3d41;  /* UI elements - consistent */
 	--ui2: #434f5b;  /* UI elements - consistent */
 	--ui3: #4a5568;  /* UI elements - consistent */
 
-	--bg3:
-	hsla(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) + 40%),
-		0.12
-		);
+	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) + 40%), 0.12);
 
-	--ui1:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) + 6%)
-		);
+	--tx1: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 67%));
+	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) + 45%));
+	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 20%));
+	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 50%));
 
-	--ui2:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) + 12%)
-		);
+	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 8%));
+	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 5%));
 
-	--ui3:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) + 20%)
-		);
-
-	--tx1:
-	hsl(
-		var(--base-h),
-		calc(var(--base-s) - 10%),
-		calc(var(--base-l) + 67%)
-		);
-
-	--tx2:
-	hsl(
-		var(--base-h),
-		calc(var(--base-s) - 20%),
-		calc(var(--base-l) + 45%)
-		);
-
-	--tx3:
-	hsl(
-		var(--base-h),
-		calc(var(--base-s) - 10%),
-		calc(var(--base-l) + 20%)
-		);
-
-	--tx4:
-	hsl(
-		var(--base-h),
-		calc(var(--base-s) - 10%),
-		calc(var(--base-l) + 50%)
-		);
-
-	--ax1:
-	hsl(
-		var(--accent-h),
-		var(--accent-s),
-		var(--accent-l)
-		);
-
-	--ax2:
-	hsl(
-		var(--accent-h),
-		var(--accent-s),
-		calc(var(--accent-l) + 8%)
-		);
-
-	--ax3:
-	hsl(
-		var(--accent-h),
-		var(--accent-s),
-		calc(var(--accent-l) - 5%)
-		);
-
-	--hl1:
-	hsla(
-		var(--accent-h),
-		50%,
-		40%, 
-		30%
-		);
-
-	--hl2:rgba(255, 177, 80, 0.3);
+	--hl1: hsla(var(--accent-h), 50%, 40%, 30%);
+	--hl2: rgba(255, 177, 80, 0.3);
 
 	--sp1: white;
 
-	/* Oxygen theme overrides as DEFAULT */
+	/* Oxygen theme overrides */
 	--titlebar-background: var(--bg-tab);
 	--titlebar-background-focused: var(--bg-tab);
 	--ribbon-background: var(--bg-tab);
 	
 	/* Soften aggressive outlines and borders */
-	--divider-color: rgba(255, 255, 255, 0.08);
-	--frame-divider-color: rgba(255, 255, 255, 0.08);
-	--tab-outline-color: rgba(255, 255, 255, 0.08);
-	--background-modifier-border: rgba(255, 255, 255, 0.08);
-	--background-modifier-border-hover: rgba(255, 255, 255, 0.12);
+	--divider-color: #313339;
+	--frame-divider-color: #313339;
+	--tab-outline-color: #313339;
+	--background-modifier-border: #313339 !important;
+	--background-modifier-border-hover: #313339 !important;
 	--background-modifier-border-focus: rgba(255, 255, 255, 0.15);
-
 }
 
-/* Tab container backgrounds for Oxygen theme as DEFAULT */
-.theme-dark .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark .mod-right-split .mod-top .workspace-tab-header-container,
-.theme-dark .mod-root .mod-top .workspace-tab-header-container {
-	--tab-container-background: var(--bg-tab);
+.theme-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-light-contrast.minimal-status-off .status-bar,
+
+/* Tab container backgrounds for Oxygen theme only */
+.theme-dark.minimal-oxygen-dark .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark .mod-root .mod-top .workspace-tab-header-container {
+  --tab-container-background: var(--bg-tab);
 }
 
-/* Make right sidebar match left sidebar for Oxygen theme as DEFAULT */
-.theme-dark .mod-right-split {
-	--background-secondary: var(--bg2);
-}
 
 .theme-light.minimal-light-white {
 	--background-primary:         white;
