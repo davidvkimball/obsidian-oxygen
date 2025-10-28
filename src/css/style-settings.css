@@ -1,6 +1,6 @@
 /* @settings
 
-name: Minimal
+name: Oxygen
 id: minimal-style
 settings:
 	-
@@ -9,7 +9,7 @@ settings:
 		type: heading
 		level: 2
 		collapsed: true
-		description: Use the Minimal Theme Settings plugin to set hotkeys, adjust features, select fonts, and choose from preset color schemes. Use the settings below for more granular customization. Go to https://minimal.guide for documentation.
+		description: Use the Oxygen Theme Settings plugin to set hotkeys, adjust features, select fonts, and choose from preset color schemes. Use the settings below for more granular customization. Go to https://minimal.guide for documentation.
 	-
 		id: interface
 		title: Interface colors
@@ -2047,7 +2047,7 @@ settings:
 */
 
 /* @settings
-name: Minimal Cards
+name: Oxygen Cards
 id: minimal-cards-style
 settings:
 	-
@@ -2099,7 +2099,7 @@ settings:
 */
 
 /* @settings
-name: Minimal Advanced Settings
+name: Oxygen Advanced Settings
 id: minimal-advanced
 settings:
 	-

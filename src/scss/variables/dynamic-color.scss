@@ -16,13 +16,13 @@ The colors use HSL (hue, saturation, lightness)
 */
 
 body {
-	--base-h: 214;     /* Base hue - Slate blue (Oxygen default) */
-	--base-s: 32%;     /* Base saturation */
-	--base-l: 95%;     /* Base lightness - 100 is white */
+	--base-h: 210;     /* Base hue - Oxygen default */
+	--base-s: 15%;     /* Base saturation */
+	--base-l: 98%;     /* Base lightness - 100 is white */
 
-	--accent-h: 199;   /* Accent hue - Sky blue (Oxygen default) */
-	--accent-s: 89%;   /* Accent saturation */
-	--accent-l: 48%;   /* Accent lightness */
+	--accent-h: 200;   /* Accent hue - Oxygen default */
+	--accent-s: 60%;   /* Accent saturation */
+	--accent-l: 50%;   /* Accent lightness */
 }
 
 .theme-dark,
@@ -158,21 +158,17 @@ body .excalidraw {
 .excalidraw.theme--dark {
 
 	--accent-l:60%;
-	--base-l:15%;
+	--base-l:20%;
 
-	--bg1:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		var(--base-l)
-		);
-
-	--bg2:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) - 2%)
-		);
+	/* Oxygen theme colors as the DEFAULT */
+	--bg1: #1f2228;  /* Main content - darker */
+	--bg2: #2a2d35;  /* Sidebars - lighter */
+	--bg-tab: #1a1d23;  /* Top bars - darkest */
+	
+	/* Explicit UI colors to prevent HSL generation differences */
+	--ui1: #3a3d41;  /* UI elements - consistent */
+	--ui2: #434f5b;  /* UI elements - consistent */
+	--ui3: #4a5568;  /* UI elements - consistent */
 
 	--bg3:
 	hsla(
@@ -264,6 +260,32 @@ body .excalidraw {
 
 	--sp1: white;
 
+	/* Oxygen theme overrides as DEFAULT */
+	--titlebar-background: var(--bg-tab);
+	--titlebar-background-focused: var(--bg-tab);
+	--ribbon-background: var(--bg-tab);
+	
+	/* Soften aggressive outlines and borders */
+	--divider-color: rgba(255, 255, 255, 0.08);
+	--frame-divider-color: rgba(255, 255, 255, 0.08);
+	--tab-outline-color: rgba(255, 255, 255, 0.08);
+	--background-modifier-border: rgba(255, 255, 255, 0.08);
+	--background-modifier-border-hover: rgba(255, 255, 255, 0.12);
+	--background-modifier-border-focus: rgba(255, 255, 255, 0.15);
+
+}
+
+/* Tab container backgrounds for Oxygen theme as DEFAULT */
+.theme-dark .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-dark .mod-root .mod-top .workspace-tab-header-container {
+	--tab-container-background: var(--bg-tab);
+}
+
+/* Make right sidebar match left sidebar for Oxygen theme as DEFAULT */
+.theme-dark .mod-right-split {
+	--background-secondary: var(--bg2);
 }
 
 .theme-light.minimal-light-white {

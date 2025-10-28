@@ -160,12 +160,12 @@ The colors use HSL (hue, saturation, lightness)
 
 */
 body {
-  --base-h: 214; /* Base hue - Slate blue (Oxygen default) */
-  --base-s: 32%; /* Base saturation */
-  --base-l: 95%; /* Base lightness - 100 is white */
-  --accent-h: 199; /* Accent hue - Sky blue (Oxygen default) */
-  --accent-s: 89%; /* Accent saturation */
-  --accent-l: 48%; /* Accent lightness */
+  --base-h: 210; /* Base hue - Oxygen default */
+  --base-s: 15%; /* Base saturation */
+  --base-l: 98%; /* Base lightness - 100 is white */
+  --accent-h: 200; /* Accent hue - Oxygen default */
+  --accent-s: 60%; /* Accent saturation */
+  --accent-l: 50%; /* Accent lightness */
 }
 
 .theme-dark,
@@ -282,19 +282,15 @@ body .excalidraw {
 .theme-dark.minimal-oxygen-dark,
 .excalidraw.theme--dark {
   --accent-l:60%;
-  --base-l:15%;
-  --bg1:
-  hsl(
-  	var(--base-h),
-  	var(--base-s),
-  	var(--base-l)
-  	);
-  --bg2:
-  hsl(
-  	var(--base-h),
-  	var(--base-s),
-  	calc(var(--base-l) - 2%)
-  	);
+  --base-l:20%;
+  /* Oxygen theme colors as the DEFAULT */
+  --bg1: #1f2228; /* Main content - darker */
+  --bg2: #2a2d35; /* Sidebars - lighter */
+  --bg-tab: #1a1d23; /* Top bars - darkest */
+  /* Explicit UI colors to prevent HSL generation differences */
+  --ui1: #3a3d41; /* UI elements - consistent */
+  --ui2: #434f5b; /* UI elements - consistent */
+  --ui3: #4a5568; /* UI elements - consistent */
   --bg3:
   hsla(
   	var(--base-h),
@@ -371,6 +367,30 @@ body .excalidraw {
   	);
   --hl2:rgba(255, 177, 80, 0.3);
   --sp1: white;
+  /* Oxygen theme overrides as DEFAULT */
+  --titlebar-background: var(--bg-tab);
+  --titlebar-background-focused: var(--bg-tab);
+  --ribbon-background: var(--bg-tab);
+  /* Soften aggressive outlines and borders */
+  --divider-color: rgba(255, 255, 255, 0.08);
+  --frame-divider-color: rgba(255, 255, 255, 0.08);
+  --tab-outline-color: rgba(255, 255, 255, 0.08);
+  --background-modifier-border: rgba(255, 255, 255, 0.08);
+  --background-modifier-border-hover: rgba(255, 255, 255, 0.12);
+  --background-modifier-border-focus: rgba(255, 255, 255, 0.15);
+}
+
+/* Tab container backgrounds for Oxygen theme as DEFAULT */
+.theme-dark .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-dark .mod-root .mod-top .workspace-tab-header-container {
+  --tab-container-background: var(--bg-tab);
+}
+
+/* Make right sidebar match left sidebar for Oxygen theme as DEFAULT */
+.theme-dark .mod-right-split {
+  --background-secondary: var(--bg2);
 }
 
 .theme-light.minimal-light-white {
@@ -777,6 +797,28 @@ body {
   border: 0;
 }
 
+/* Title Fix Test */
+.markdown-source-view.mod-cm6 {
+  margin: 0 auto;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer {
+  box-sizing: border-box; /* Ensure padding doesn’t add to width */
+  width: 100%; /* Allow full width within the parent */
+}
+
+.markdown-source-view.mod-cm6 .cm-scroller {
+  box-sizing: border-box; /* Ensure padding doesn't add to width */
+  width: 100%; /* Allow full width within the parent */
+  overflow-x: auto; /* Handle overflow with a controlled scrollbar if needed */
+}
+
+/* Iconic Plugin Compatibility */
+.show-inline-title .iconic-title-wrapper {
+  display: flex;
+  margin-inline-start: var(--content-margin-start);
+}
+
 .metadata-container {
   --input-height: calc(var(--font-adaptive-small) * 2.2);
 }
@@ -1073,23 +1115,6 @@ body:not(.minimal-status-off) .status-bar {
   display: none;
 }
 
-.view-header-title-container {
-  padding-left: 0;
-  padding-right: 0px;
-  position: absolute;
-  width: var(--line-width-adaptive);
-  max-width: var(--max-width);
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  transition: opacity 0.1s ease-in-out;
-}
-
-body:not(.title-align-center):not(.title-align-left):not(.plugin-sliding-panes-rotate-header) .view-header-title {
-  padding-left: var(--folding-offset);
-}
-
 /* Alignment */
 body:not(.is-mobile) .view-actions .view-action:last-child {
   margin-left: -1px;
@@ -1102,6 +1127,11 @@ body:not(.minimal-focus-mode) .workspace-ribbon:not(.is-collapsed) ~ .mod-root .
 .view-action.is-active:hover {
   opacity: 1;
   transition: opacity 0.25s ease-in-out;
+}
+
+.view-header-title-container {
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
 }
 
 .view-header-title-container:focus-within {
@@ -1155,7 +1185,7 @@ body.window-title-off .titlebar-text {
 }
 .is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame):not(.minimal-dark-tonal):not(.minimal-light-white) .workspace-ribbon.mod-left:not(.is-collapsed),
 .is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white):not(.minimal-dark-tonal):not(.minimal-light-white) .workspace-ribbon.mod-left:not(.is-collapsed) {
-  --titlebar-background: var(--bg2);
+  --titlebar-background: var(--bg1);
 }
 
 /* Trying for a smoother animation */
@@ -3964,12 +3994,13 @@ body:not(.links-ext-on) {
 }
 
 body:not(.sidebar-color) .mod-right-split {
-  --background-secondary: var(--background-primary);
+  --background-secondary: var(--bg2);
 }
-body:not(.sidebar-color) .mod-right-split :not(.mod-top) .workspace-tab-header-container {
+body:not(.sidebar-color) :not(.mod-top) .workspace-tab-header-container {
   --tab-container-background: var(--background-primary);
 }
 
+/* No Oxygen-specific overrides needed - default theme already handles this */
 /* Sidebar documents
 
 .mod-left-split .markdown-preview-sizer>div,
@@ -6707,72 +6738,12 @@ https://github.com/nordtheme/nord
 
 /*
 Oxygen
-Custom color scheme inspired by Slate palette
+Sleek, minimal theme inspired by Things app aesthetic
+Clean backgrounds, subtle warmth, refined accents
+
+NOTE: All Oxygen styling is now in the default theme.
+This file is kept for compatibility but contains no overrides.
 */
-.theme-light.minimal-oxygen-light {
-  --base-h: 214;
-  --base-s: 32%;
-  --base-l: 95%;
-  --accent-h: 199;
-  --accent-s: 89%;
-  --accent-l: 48%;
-  --color-red-rgb: 239,68,68;
-  --color-orange-rgb: 249,115,22;
-  --color-yellow-rgb: 245,158,11;
-  --color-green-rgb: 34,197,94;
-  --color-cyan-rgb: 6,182,212;
-  --color-blue-rgb: 14,165,233;
-  --color-purple-rgb: 139,92,246;
-  --color-pink-rgb: 236,72,153;
-  --color-red: #ef4444;
-  --color-orange: #f97316;
-  --color-yellow: #f59e0b;
-  --color-green: #22c55e;
-  --color-cyan: #06b6d4;
-  --color-blue: #0ea5e9;
-  --color-purple: #8b5cf6;
-  --color-pink: #ec4899;
-}
-
-.theme-dark.minimal-oxygen-dark {
-  --base-h: 214;
-  --base-s: 32%;
-  --base-l: 15%;
-  --accent-h: 199;
-  --accent-s: 89%;
-  --accent-l: 62%;
-  --color-red-rgb: 248,113,113;
-  --color-orange-rgb: 251,146,60;
-  --color-yellow-rgb: 251,191,36;
-  --color-green-rgb: 74,222,128;
-  --color-cyan-rgb: 34,211,238;
-  --color-blue-rgb: 56,189,248;
-  --color-purple-rgb: 167,139,250;
-  --color-pink-rgb: 244,114,182;
-  --color-red: #f87171;
-  --color-orange: #fb923c;
-  --color-yellow: #fbbf24;
-  --color-green: #4ade80;
-  --color-cyan: #22d3ee;
-  --color-blue: #38bdf8;
-  --color-purple: #a78bfa;
-  --color-pink: #f472b6;
-}
-
-.theme-light.minimal-oxygen-light.minimal-light-tonal {
-  --bg2: #f1f5f9;
-}
-
-.theme-light.minimal-oxygen-light.minimal-light-white {
-  --bg3: #f8fafc;
-  --ui1: #f1f5f9;
-}
-
-.theme-dark.minimal-oxygen-dark.minimal-dark-black {
-  --ui1: #0f172a;
-  --hl2: rgba(56,189,248,.5);
-}
-
 /* Sky color scheme, inspired by Notion */
 .theme-light.minimal-notion-light {
   --base-h:39;
@@ -7133,7 +7104,7 @@ community:
 */
 /* @settings
 
-name: Minimal
+name: Oxygen
 id: minimal-style
 settings:
 	-
@@ -7142,7 +7113,7 @@ settings:
 		type: heading
 		level: 2
 		collapsed: true
-		description: Use the Minimal Theme Settings plugin to set hotkeys, adjust features, select fonts, and choose from preset color schemes. Use the settings below for more granular customization. Go to https://minimal.guide for documentation.
+		description: Use the Oxygen Theme Settings plugin to set hotkeys, adjust features, select fonts, and choose from preset color schemes. Use the settings below for more granular customization. Go to https://minimal.guide for documentation.
 	-
 		id: interface
 		title: Interface colors
@@ -9180,7 +9151,7 @@ settings:
 */
 
 /* @settings
-name: Minimal Cards
+name: Oxygen Cards
 id: minimal-cards-style
 settings:
 	-
@@ -9232,7 +9203,7 @@ settings:
 */
 
 /* @settings
-name: Minimal Advanced Settings
+name: Oxygen Advanced Settings
 id: minimal-advanced
 settings:
 	-

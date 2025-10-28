@@ -8,23 +8,6 @@
 	display:none;
 }
 
-.view-header-title-container {
-	padding-left: 0;
-	padding-right: 0px;
-	position: absolute;
-	width: var(--line-width-adaptive);
-	max-width: var(--max-width);
-	margin: 0 auto;
-	left: 0;
-	right: 0;
-	opacity: 0;
-	transition: opacity 0.1s ease-in-out;
-}
-
-body:not(.title-align-center):not(.title-align-left):not(.plugin-sliding-panes-rotate-header) .view-header-title {
-	padding-left: var(--folding-offset);
-}
-
 /* Alignment */
 
 body:not(.is-mobile) .view-actions .view-action:last-child  {
@@ -40,6 +23,10 @@ body:not(.minimal-focus-mode) .workspace-ribbon:not(.is-collapsed) ~ .mod-root .
 }
 
 
+.view-header-title-container {
+	opacity: 0;
+	transition: opacity 0.1s ease-in-out;
+}
 .view-header-title-container:focus-within {
 	opacity: 1;
 	transition: opacity 0.1s ease-in-out;
