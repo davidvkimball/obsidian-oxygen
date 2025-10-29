@@ -3396,12 +3396,14 @@ body {
 
 /* Colorful headings */
 body.colorful-headings {
-  --h1-color: var(--color-red);
-  --h2-color:var(--color-orange);
-  --h3-color:var(--color-yellow);
-  --h4-color:var(--color-green);
-  --h5-color:var(--color-blue);
-  --h6-color:var(--color-purple);
+  /* Generate rainbow of heading colors from accent hue for preset compatibility */
+  /* Each heading is offset by 45 degrees on the color wheel */
+  --h1-color: hsl(calc(var(--accent-h) + 0), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h2-color: hsl(calc(var(--accent-h) + 30), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h3-color: hsl(calc(var(--accent-h) + 60), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h4-color: hsl(calc(var(--accent-h) + 120), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h5-color: hsl(calc(var(--accent-h) + 180), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h6-color: hsl(calc(var(--accent-h) + 240), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
 }
 body.colorful-headings .modal {
   --h1-color: var(--text-normal);
@@ -7646,5 +7648,124 @@ settings:
 		format: hex
 		default-light: '#0d6efd'
 		default-dark: '#0d6efd'
+
+*/
+
+/* @settings
+name: Oxygen Cards
+id: oxygen-cards-style
+settings:
+	-
+		id: cards-min-width
+		title: Card minimum width
+		type: variable-text
+		default: 180px
+	-
+		id: cards-max-width
+		title: Card maximum width
+		description: Default fills the available width, accepts valid CSS units
+		type: variable-text
+		default: 1fr
+	-
+		id: cards-mobile-width
+		title: Card minimum width on mobile
+		type: variable-text
+		default: 120px
+	-
+		id: cards-padding
+		title: Card padding
+		type: variable-text
+		default: 1.2em
+	-
+		id: cards-image-height
+		title: Card maximum image height
+		type: variable-text
+		default: 400px
+	-
+		id: cards-border-width
+		title: Card border width
+		type: variable-text
+		default: 1px
+	-
+		id: cards-background
+		title: Card background color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: cards-background-hover
+		title: Card background color (hover)
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+
+*/
+
+/* @settings
+name: Oxygen Advanced Settings
+id: oxygen-advanced
+settings:
+	-
+		id: hide-markdown
+		title: Hide Markdown syntax
+		description: WARNING — This may be confusing because the characters still exist they are just hidden.
+		type: class-toggle
+	-
+		id: hide-settings-desc
+		title: Hide setting descriptions
+		description: Press and hold setting names to see their description.
+		type: class-toggle
+	-
+		id: animations
+		title: Animation speed
+		type: class-select
+		default: default
+		options:
+			-
+				label: Normal
+				value: default
+			-
+				label: Disabled
+				value: disable-animations
+			-
+				label: Fast
+				value: fast-animations
+	-
+		id: cursor
+		title: Cursor style
+		description: The cursor style for UI elements
+		type: variable-select
+		default: default
+		options:
+			-
+				label: Default
+				value: default
+			-
+				label: Pointer
+				value: pointer
+			-
+				label: Crosshair
+				value: crosshair
+	-
+		id: font-ui-small
+		title: Small font size
+		description: Font size in px of smaller text
+		type: variable-number
+		default: 13
+		format: px
+	-
+		id: font-ui-smaller
+		title: Smaller font size
+		description: Font size in px of smallest text
+		type: variable-number
+		default: 11
+		format: px
+	-
+		id: mobile-toolbar-off
+		title: Disable mobile toolbar
+		description: Turns off toolbar in editor on mobile
+		type: class-toggle
 
 */

@@ -1,6 +1,6 @@
 {
-    "name": "minimal",
-    "version": "1.0.0",
+    "name": "oxygen",
+    "version": "0.0.2",
     "dependencies": {
         "dotenv": "^10.0.0",
         "sass": "^1.83.0"
