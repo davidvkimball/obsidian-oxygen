@@ -3356,12 +3356,14 @@ body {
 
 /* Colorful headings */
 body.colorful-headings {
-  --h1-color: var(--color-red);
-  --h2-color:var(--color-orange);
-  --h3-color:var(--color-yellow);
-  --h4-color:var(--color-green);
-  --h5-color:var(--color-blue);
-  --h6-color:var(--color-purple);
+  /* Generate rainbow of heading colors from accent hue for preset compatibility */
+  /* Each heading is offset by 45 degrees on the color wheel */
+  --h1-color: hsl(calc(var(--accent-h) + 0), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h2-color: hsl(calc(var(--accent-h) + 30), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h3-color: hsl(calc(var(--accent-h) + 60), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h4-color: hsl(calc(var(--accent-h) + 120), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h5-color: hsl(calc(var(--accent-h) + 180), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
+  --h6-color: hsl(calc(var(--accent-h) + 240), calc(var(--accent-s) + 10%), calc(var(--accent-l) + 5%));
 }
 body.colorful-headings .modal {
   --h1-color: var(--text-normal);
