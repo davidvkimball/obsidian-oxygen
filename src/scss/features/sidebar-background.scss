@@ -1,11 +1,9 @@
 body:not(.sidebar-color) {
 	.mod-right-split {
-		--background-secondary: var(--bg2);
-	}
+		--background-secondary: var(--background-primary);
 
-	:not(.mod-top) .workspace-tab-header-container {
-		--tab-container-background: var(--background-primary);
+		:not(.mod-top) .workspace-tab-header-container {
+			--tab-container-background: var(--background-primary);
+		}
 	}
 }
-
-/* No Oxygen-specific overrides needed - default theme already handles this */

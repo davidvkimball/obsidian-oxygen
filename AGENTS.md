@@ -21,11 +21,14 @@ Base .theme-light = Oxygen light colors (default)
 ### Key Files
 
 - **`src/scss/variables/dynamic-color.scss`**: Contains the base Oxygen theme colors for both light and dark modes
-  - **Dark mode**: Lines 159-201 (`.theme-dark` class)
-  - **Light mode**: Lines 54-98 (`.theme-light` class)
-- **`src/scss/color-schemes/oxygen.scss`**: Contains only Oxygen-specific overrides
+  - **Light mode base**: Lines 54-98 (`.theme-light` class)
+  - **Dark mode base**: Lines 224-266 (`.theme-dark` class)
+  - **Oxygen variants**: Lines 158-203 (`.minimal-oxygen-dark.minimal-dark-black`, `.minimal-oxygen-dark.minimal-dark-tonal`, etc.)
+  - **Variable mapping layer**: Lines 412-490 (maps Oxygen vars → Obsidian native vars)
+- **`src/scss/color-schemes/oxygen.scss`**: Intentionally empty - Oxygen is the base theme, not an override
 - **`src/scss/color-schemes/minimal.scss`**: Contains complete Minimal color scheme for both light and dark modes
 - **`src/scss/color-schemes/[other].scss`**: Contains other color schemes (Atom, Things, etc.)
+- **`src/css/style-settings.css`**: Style Settings plugin configuration and UI definitions
 
 ## Differences from Original Minimal Theme
 
@@ -131,23 +134,198 @@ The theme exposes these Obsidian native variables for customization:
 - **Border colors**: `--background-modifier-border`, `--divider-color`, etc.
 - **Scrollbar colors**: `--scrollbar-bg`, `--scrollbar-thumb-bg`, etc.
 
+## Why We Don't Modify `oxygen.scss`
+
+### Understanding Oxygen's Architecture
+
+**The base Oxygen colors live in `dynamic-color.scss`, NOT in `oxygen.scss`.**
+
+Here's why this architecture exists:
+
+### 1. Oxygen is the Default Theme
+- When you install the Oxygen Theme, it's the **default** theme
+- The base `.theme-light` and `.theme-dark` classes (in `dynamic-color.scss`) define Oxygen's colors
+- This ensures Oxygen works perfectly **without any color scheme selected**
+- Other themes (Minimal, Atom, etc.) are **alternatives** that override the Oxygen base
+
+### 2. What `oxygen.scss` Actually Contains
+
+The `oxygen.scss` file is **intentionally empty** (contains only comments):
+
+```css
+/*
+Oxygen is the BASE theme, not an override.
+All Oxygen styling comes from the base .theme-light and .theme-dark classes.
+*/
+```
+
+This emphasizes that Oxygen doesn't override anything - it IS the foundation that other schemes override.
+
+### 3. Why `oxygen.scss` is Empty
+
+Oxygen is the **base theme**, not a color scheme override. This means:
+- ❌ NO color definitions needed (they're in the base `.theme-light`/`.theme-dark`)
+- ❌ NO UI overrides needed (global features handle everything)
+- ✅ Oxygen works automatically as the foundation
+- ✅ Other schemes override Oxygen by defining their own complete color sets
+
+### 4. The Correct Approach
+
+**To change Oxygen colors:**
+1. ✅ Modify `dynamic-color.scss` lines 54-98 (light) or 224-266 (dark)
+2. ✅ Colors automatically propagate through the mapping layer
+3. ✅ Works with or without Style Settings plugin
+4. ✅ No duplication, single source of truth
+
+**If you were to modify `oxygen.scss` with colors:**
+1. ❌ Creates duplicate color definitions
+2. ❌ Breaks the "Oxygen is the base" principle
+3. ❌ Colors may not work without explicitly selecting "Oxygen" scheme
+4. ❌ Violates single source of truth principle
+
+### 5. Should You Ever Modify `oxygen.scss`?
+
+**Short answer: No.** 
+
+Oxygen is the base theme. If you need to change Oxygen's appearance:
+- ✅ **Colors**: Modify the base `.theme-light` or `.theme-dark` classes
+- ✅ **Layout/Features**: Add to global feature files (not color scheme files)
+- ❌ **Never** add anything to `oxygen.scss` - it should remain empty
+
+The file exists only for organizational consistency with other color schemes.
+
 ## Maintenance Guidelines
 
 ### For Oxygen Color Changes
+
+**Understanding the Architecture:**
+- Base color VALUES are defined in `.theme-light` (lines 54-98) and `.theme-dark` (lines 224-266)
+- Additional CSS RULES may be needed to apply those colors to specific UI elements
+- Global feature files (in `src/scss/features/` and `src/scss/app/`) use CSS variables
+- Sometimes you need to override which variable is used in specific contexts
+
+**What to Modify:**
+1. **Color values** in the base theme classes (lines 54-98 for light, 224-266 for dark)
+2. **CSS rules** that apply those colors to specific elements (e.g., lines 100-105 for light tab containers, 278-283 for dark tab containers)
+3. **Build command**: Use `npx grunt sass:unminified sass:dist concat_css`
+
+### 🚨 CRITICAL: NEVER Hard-Code Accent Colors 🚨
+
+**THIS IS EXTREMELY IMPORTANT - READ CAREFULLY:**
+
+The Oxygen theme uses an HSL-based accent color system that:
+- ✅ Respects Obsidian's accent color settings
+- ✅ Allows theme features like "Colorful headings" to work
+- ✅ Enables users to customize accent colors
+- ✅ Properly calculates text-on-accent contrast
+
+**❌ NEVER DO THIS - WILL BREAK THE THEME:**
+```scss
+/* WRONG - Hard-coded hex values break Obsidian's accent system */
+--ax1: #2c7aaa;
+--ax2: #246290;
+--ax3: #3894c4;
+```
+
+**✅ ALWAYS DO THIS - HSL calculations:**
+```scss
+/* CORRECT - HSL calculations respect Obsidian's accent system */
+--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));
+--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 6%));
+```
+
+**To change the DEFAULT accent color:**
+1. ✅ Modify the BASE accent HSL values in the `body` selector (lines 24-27):
+   ```scss
+   --accent-h: 201;   /* Hue (0-360): 0=red, 120=green, 240=blue */
+   --accent-s: 59%;   /* Saturation (0-100%): 0=gray, 100=vibrant */
+   --accent-l: 42%;   /* Lightness (0-100%): 0=black, 50=pure, 100=white */
+   ```
+2. ✅ The HSL calculations in `.theme-light` and `.theme-dark` will automatically use these values
+3. ✅ All accent-based features (headings, buttons, links) will update automatically
+
+**Why this matters:**
+- Hard-coding hex values breaks Obsidian's accent color picker
+- It breaks theme features like colorful headings
+- It causes incorrect text contrast on buttons
+- Users lose the ability to customize accent colors
+- The theme becomes disconnected from Obsidian's native settings
+
+**If you accidentally hard-code accent colors:**
+1. Immediately revert to HSL calculations
+2. Update only the base `--accent-h`, `--accent-s`, `--accent-l` values
+3. Rebuild and verify all accent-based features work
+
 **ALWAYS use this prompt for DARK MODE:**
 ```
-I want to modify the base Oxygen color scheme. Please update the Oxygen colors in the base theme (src/scss/variables/dynamic-color.scss) in the .theme-dark class (lines 159-201). Do NOT modify any overrides in src/scss/color-schemes/oxygen.scss - I want the base Oxygen colors to work natively with Obsidian regardless of plugin state.
+I want to modify the base Oxygen color scheme in DARK MODE. Please:
+1. Update the Oxygen color values in src/scss/variables/dynamic-color.scss in the .theme-dark class (lines 224-269)
+2. Check if any additional CSS rules are needed to apply these colors to specific UI elements (like tab containers around lines 278-283)
+3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
+4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
+5. Build with: npx grunt sass:unminified sass:dist concat_css
+6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
+
+Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
 ```
 
 **ALWAYS use this prompt for LIGHT MODE:**
 ```
-I want to modify the base Oxygen color scheme. Please update the Oxygen colors in the base theme (src/scss/variables/dynamic-color.scss) in the .theme-light class (lines 54-98). Do NOT modify any overrides in src/scss/color-schemes/oxygen.scss - I want the base Oxygen colors to work natively with Obsidian regardless of plugin state.
+I want to modify the base Oxygen color scheme in LIGHT MODE. Please:
+1. Update the Oxygen color values in src/scss/variables/dynamic-color.scss in the .theme-light class (lines 54-98)
+2. Check if any additional CSS rules are needed to apply these colors to specific UI elements (like tab containers around lines 100-105)
+3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
+4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
+5. Build with: npx grunt sass:unminified sass:dist concat_css
+6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
+
+Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
 ```
 
 **For BOTH light and dark mode changes:**
 ```
-I want to modify the base Oxygen color scheme for both light and dark modes. Please update the Oxygen colors in the base theme (src/scss/variables/dynamic-color.scss) in both the .theme-light class (lines 54-98) and .theme-dark class (lines 159-201). Do NOT modify any overrides in src/scss/color-schemes/oxygen.scss - I want the base Oxygen colors to work natively with Obsidian regardless of plugin state.
+I want to modify the base Oxygen color scheme for BOTH light and dark modes. Please:
+1. Update the Oxygen color values in src/scss/variables/dynamic-color.scss:
+   - Light mode: .theme-light class (lines 54-98)
+   - Dark mode: .theme-dark class (lines 224-269)
+2. Check if any additional CSS rules are needed to apply these colors to specific UI elements:
+   - Light mode tab containers: around lines 100-105
+   - Dark mode tab containers: around lines 278-283
+3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
+4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
+5. Build with: npx grunt sass:unminified sass:dist concat_css
+6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
+
+Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
 ```
+
+### Example: Updating Accent Color in Dark Mode
+
+Here's a concrete example of how to update the cyan accent color in dark mode:
+
+**Prompt:**
+```
+I want to modify the base Oxygen color scheme in DARK MODE. Please:
+1. Update the accent color in src/scss/variables/dynamic-color.scss in the .theme-dark class:
+   - Change --ax1 from #3d9db5 to #4ac9e3 (brighter cyan)
+   - Change --ax2 from #2e7a8f to #38a3b8 (brighter hover state)
+   - Keep --ax3 as is
+2. Check if any additional CSS rules are needed (they shouldn't be for accent colors)
+3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
+4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
+5. Build with: npx grunt sass:unminified sass:dist concat_css
+6. Verify changes appear in Oxygen.css by checking for the new hex values
+
+Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes.
+```
+
+**What this will do:**
+- Updates the cyan accent used for links, active states, and interactive elements
+- Only affects dark mode
+- Leaves light mode untouched
+- Doesn't affect Minimal, Atom, or other color schemes
+- Properly builds and concatenates into final theme files
 
 ### For Style Settings Integration
 **When adding new Obsidian native variables:**
@@ -156,43 +334,51 @@ I want to modify the base Oxygen color scheme for both light and dark modes. Ple
 3. Ensure the mapping uses appropriate Oxygen custom variables as sources
 
 **When modifying existing variables:**
-- **Oxygen variables**: Modify in the base theme sections (lines 54-98 for light, 159-201 for dark)
+- **Oxygen variables**: Modify in the base theme sections (lines 54-98 for light, 224-266 for dark)
 - **Obsidian native variables**: The mapping layer will automatically update
 - **Style Settings defaults**: Update in `src/css/style-settings.css` if needed
 
 ### Single Source of Truth
-- **Oxygen dark colors**: Defined in `src/scss/variables/dynamic-color.scss` (lines 159-201)
 - **Oxygen light colors**: Defined in `src/scss/variables/dynamic-color.scss` (lines 54-98)
-- **Variable mapping**: Defined in `src/scss/variables/dynamic-color.scss` (lines 425-472)
+- **Oxygen dark colors**: Defined in `src/scss/variables/dynamic-color.scss` (lines 224-266)
+- **Oxygen style variants**: Defined in `src/scss/variables/dynamic-color.scss` (lines 158-203) - tonal, true black, contrast modes
+- **Variable mapping**: Defined in `src/scss/variables/dynamic-color.scss` (lines 412-490)
 - **Style Settings config**: Defined in `src/css/style-settings.css`
-- **Oxygen overrides**: Only in `src/scss/color-schemes/oxygen.scss` (minimal overrides)
+- **Oxygen scheme file**: `src/scss/color-schemes/oxygen.scss` (intentionally empty - Oxygen is base, not override)
 - **Other schemes**: Each has complete definitions in their respective files
 
 ### What NOT to Do
-- ❌ Don't modify Oxygen colors in `oxygen.scss` (only overrides go there)
-- ❌ Don't use Oxygen colors as a base for other schemes
-- ❌ Don't duplicate Oxygen colors in multiple places
-- ❌ Don't modify the base `.theme-dark` or `.theme-light` to use HSL calculations (breaks Oxygen default)
+- ❌ Don't modify `oxygen.scss` at all - it's intentionally empty (Oxygen is the base theme, not an override)
+- ❌ Don't duplicate Oxygen colors in multiple files (single source of truth: lines 54-98 light, 224-269 dark)
+- ❌ Don't use Oxygen colors as a base for other schemes (each scheme is self-contained)
+- ❌ **NEVER hard-code accent colors with hex values** - ALWAYS use HSL calculations (`hsl(var(--accent-h), var(--accent-s), var(--accent-l))`)
+- ❌ **NEVER replace `--ax1`, `--ax2`, `--ax3` with hex values** - this breaks Obsidian's accent system, colorful headings, and button text contrast
 - ❌ Don't use aggressive `!important` overrides - let CSS cascade work naturally
-- ❌ Don't modify the variable mapping layer unless you understand the full architecture
+- ❌ Don't modify the variable mapping layer (lines 412-490) unless adding new mappings
 - ❌ Don't break the CSS cascade hierarchy: User Customizations > Obsidian Native > Oxygen Custom > Base Colors
 - ❌ Don't modify `src/css/style-settings.css` unless adding new Style Settings options
+- ❌ Don't run build tasks separately - always use the full command: `npx grunt sass:unminified sass:dist concat_css`
+- ❌ Don't assume color changes in `src/css/main.css` mean they're in the final theme - always check `Oxygen.css`
+- ❌ Don't modify other color scheme files (minimal.scss, atom.scss, etc.) when updating Oxygen
 
 ## Build Process
 
 ```bash
-# Compile SCSS to CSS
-npx grunt sass
+# Complete build process (compiles SCSS, minifies, and concatenates)
+npx grunt sass:unminified sass:dist concat_css
 
-# Minify CSS
-npx grunt cssmin
+# Note: Use this single command instead of running tasks separately
+# - sass:unminified: Compiles SCSS to unminified CSS (src/css/main.css)
+# - sass:dist: Compiles SCSS to minified CSS (src/css/main.min.css)
+# - concat_css: Concatenates CSS files into final theme files (theme.css and Oxygen.css)
 ```
 
 ## Color Scheme Files
 
 | File | Purpose | Contains |
 |------|---------|----------|
-| `oxygen.scss` | Oxygen overrides only | Right sidebar overrides for both light and dark |
+| `dynamic-color.scss` | Base Oxygen theme | All Oxygen base colors (lines 54-98 light, 224-266 dark), variants (158-203), and mapping layer (412-490) |
+| `oxygen.scss` | Oxygen scheme file | Intentionally empty - Oxygen is the base theme, not an override |
 | `minimal.scss` | Complete Minimal scheme | All Minimal colors + overrides for both light and dark |
 | `atom.scss` | Complete Atom scheme | All Atom colors for both light and dark |
 | `things.scss` | Complete Things scheme | All Things colors for both light and dark |
@@ -214,7 +400,7 @@ npx grunt cssmin
 
 ### Colors change when toggling Style Settings plugin
 - **Cause**: Oxygen colors not properly defined in base theme
-- **Fix**: Ensure all Oxygen colors are in `src/scss/variables/dynamic-color.scss` (lines 54-98 for light, 159-201 for dark)
+- **Fix**: Ensure all Oxygen colors are in `src/scss/variables/dynamic-color.scss` (lines 54-98 for light, 224-266 for dark)
 
 ### Color schemes look different from original Minimal
 - **Cause**: Scheme not properly isolated from Oxygen base
@@ -235,3 +421,12 @@ npx grunt cssmin
 ### User customizations not persisting
 - **Cause**: Style Settings configuration issues or CSS conflicts
 - **Fix**: Check that `src/css/style-settings.css` is properly configured and not overridden by other CSS
+
+### Tab containers or UI elements not showing new colors
+- **Cause**: Global feature files use CSS variables, and you need to override which variable is used in specific contexts
+- **Fix**: Check if additional CSS rules are needed (e.g., `.theme-dark .mod-left-split .mod-top .workspace-tab-header-container { --background-secondary: var(--bg-tab); }`)
+- **Example**: If top bars aren't showing `--bg-tab`, you may need to tell the specific element to use that variable instead of `--background-secondary`
+
+### Changes appear in src/css/main.css but not in Oxygen.css
+- **Cause**: Forgot to run the concatenation step
+- **Fix**: Always use the complete build command: `npx grunt sass:unminified sass:dist concat_css`

@@ -4,10 +4,7 @@ Sleek, minimal theme inspired by Things app aesthetic
 Clean backgrounds, subtle warmth, refined accents
 
 NOTE: Oxygen colors are defined in the base theme (src/scss/variables/dynamic-color.scss)
-This file only contains Oxygen-specific overrides that differ from the base
+This file is intentionally left empty - Oxygen is the BASE theme, not an override.
+All Oxygen styling comes from the base .theme-light and .theme-dark classes.
+Other color schemes (Minimal, Atom, Things, etc.) override the Oxygen base.
 */
-
-/* Oxygen theme specific overrides */
-.theme-dark.minimal-oxygen-dark .mod-right-split {
-	--background-secondary: var(--bg2);
-}

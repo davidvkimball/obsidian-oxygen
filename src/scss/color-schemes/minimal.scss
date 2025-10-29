@@ -85,19 +85,19 @@ body.theme-dark.minimal-minimal-dark *,
 body.theme-dark.minimal-minimal-dark .setting-item,
 body.theme-dark.minimal-minimal-dark .checkbox-container,
 body.theme-dark.minimal-minimal-dark .workspace-tab-header-container {
-	--ui1: #363636 !important;
-	--background-modifier-border: #363636 !important;
-	--background-modifier-border-hover: #404040 !important;
-	--interactive-hover: #363636 !important;
-	--scrollbar-thumb-bg: #363636 !important;
-	--divider-color: #363636 !important;
-	--frame-divider-color: #363636 !important;
-	--tab-outline-color: #363636 !important;
+	--ui1: #363636;
+	--background-modifier-border: #363636;
+	--background-modifier-border-hover: #404040;
+	--interactive-hover: #363636;
+	--scrollbar-thumb-bg: #363636;
+	--divider-color: #363636;
+	--frame-divider-color: #363636;
+	--tab-outline-color: #363636;
 }
 
 /* Fix right sidebar background to match main content */
 body.theme-dark.minimal-minimal-dark .mod-right-split {
-	--background-secondary: #262626 !important;
+	--background-secondary: #262626;
 }
 
 

@@ -21,9 +21,10 @@ body {
 	--base-s: 15%;     /* Base saturation */
 	--base-l: 98%;     /* Base lightness - 100 is white */
 
-	--accent-h: 200;   /* Accent hue - Oxygen default */
-	--accent-s: 60%;   /* Accent saturation */
-	--accent-l: 50%;   /* Accent lightness */
+	/* Oxygen default accent - will be overridden by Obsidian's accent color setting */
+	--accent-h: 201;   /* Blue-cyan hue (more blue, less green) */
+	--accent-s: 59%;   /* Moderate saturation */
+	--accent-l: 38%;   /* Lower lightness to match #2c7aaa blue the user approved */
 }
 
 .theme-dark,
@@ -55,32 +56,32 @@ All other light color schemes override this base
 .theme-light.minimal-oxygen-light,
 body .excalidraw {
 	/* Oxygen light theme colors as the default base */
-	--accent-l: 50%;
 	--base-l: 98%;
 
-	--bg1: #ffffff;  /* Main content - white */
-	--bg2: #ffffff;  /* Sidebars - same as main */
-	--bg-tab: #ffffff;  /* Top bars - same as main */
+	--bg1: #ffffff;  /* Main content - pure white */
+	--bg2: #f7f8fa;  /* Sidebars - subtle cool gray for differentiation */
 	
-	/* Oxygen light UI colors as base */
-	--ui1: #e9ecef;  /* UI elements - light gray */
-	--ui2: #dee2e6;  /* UI elements - medium gray */
-	--ui3: #ced4da;  /* UI elements - darker gray */
+	/* Oxygen light UI colors with subtle blue tint */
+	--ui1: #e3e8ef;  /* Borders - light blue-gray */
+	--ui2: #d4dce6;  /* Hover - medium light blue-gray */
+	--ui3: #c4cdd8;  /* Active - darker blue-gray */
 
 	--bg3: rgba(0, 0, 0, 0.12);  /* Background 3 - black with opacity */
 
-	--tx1: #212529;  /* Primary text - dark */
-	--tx2: #6c757d;  /* Secondary text - medium gray */
-	--tx3: #adb5bd;  /* Tertiary text - light gray */
-	--tx4: #495057;  /* Quaternary text - dark gray */
+	--tx1: #1a1d23;  /* Primary text - slightly cooler dark */
+	--tx2: #5f6b7a;  /* Secondary text - blue-gray */
+	--tx3: #a0aab8;  /* Tertiary text - light blue-gray */
+	--tx4: #495663;  /* Quaternary text - cool medium gray */
 
-	--ax1: #0d6efd;  /* Primary accent - blue */
-	--ax2: #0b5ed7;  /* Darker accent - dark blue */
-	--ax3: #3d8bfd;  /* Lighter accent - light blue */
+	/* Accent colors use HSL to respect user's accent color setting */
+	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));
+	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 6%));
 
-	--hl1: rgba(13, 110, 253, 0.3);  /* Highlight 1 - blue with opacity */
-	--hl2: rgba(255, 225, 0, 0.5);  /* Highlight 2 - yellow with opacity */
+	--hl1: hsla(var(--accent-h), 50%, calc(var(--base-l) - 20%), 30%);
+	--hl2: rgba(255, 225, 0, 0.5);  /* Yellow highlight */
 
+	/* Text on accent - depends on accent lightness */
 	--sp1: white;
 
 	/* Oxygen light theme overrides */
@@ -88,12 +89,12 @@ body .excalidraw {
 	--titlebar-background-focused: var(--bg-tab);
 	--ribbon-background: var(--bg-tab);
 	
-	/* Light theme borders - clean like dark theme */
-	--divider-color: #dee2e6;
-	--frame-divider-color: #dee2e6;
-	--tab-outline-color: #dee2e6;
-	--background-modifier-border: #dee2e6;
-	--background-modifier-border-hover: #ced4da;
+	/* Light theme borders with blue tint */
+	--divider-color: #d4dce6;
+	--frame-divider-color: #d4dce6;
+	--tab-outline-color: #d4dce6;
+	--background-modifier-border: #d4dce6;
+	--background-modifier-border-hover: #c4cdd8;
 	--background-modifier-border-focus: rgba(0, 0, 0, 0.15);
 }
 
@@ -143,16 +144,17 @@ body .excalidraw {
 .theme-light.minimal-oxygen-light.minimal-light-white .dropdown,
 .theme-light.minimal-oxygen-light.minimal-light-white .menu-item,
 .theme-light.minimal-oxygen-light.minimal-light-white .dropdown-item {
-	background-color: white !important;
-	--background-secondary: white !important;
-	--background-primary: white !important;
-	--bg2: white !important;
+	background-color: white;
+	--background-secondary: white;
+	--background-primary: white;
+	--bg2: white;
 }
 
 .theme-light.minimal-oxygen-light.minimal-light-tonal {
 	--background-secondary: var(--bg1);
 	--background-primary-alt: var(--bg3);
 	--background-table-rows: var(--bg3);
+	--bg2: var(--bg1);  /* Unify sidebar */
 }
 
 .theme-light.minimal-oxygen-light.minimal-light-tonal.is-mobile {
@@ -164,6 +166,7 @@ body .excalidraw {
 	--ribbon-background: var(--bg1);
 	--background-secondary: var(--bg1);
 	--background-table-rows: var(--bg3);
+	--bg2: var(--bg1);  /* Unify sidebar */
 }
 
 .theme-dark.minimal-oxygen-dark.minimal-dark-black {
@@ -174,7 +177,7 @@ body .excalidraw {
 	--background-secondary-alt: black;
 	--ribbon-background: black;
 	--bg1: black;
-	--bg2: black;
+	--bg2: black;  /* Unify sidebar */
 	--background-modifier-hover: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 10%));
 	--tx1: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 75%));
 	--tx2: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 50%));
@@ -206,34 +209,24 @@ body .excalidraw {
 	--workspace-background-translucent: rgba(0,0,0,0.6);
 }
 
-/* Low contrast support - when Style Settings sets low contrast, use same background for all panels */
-.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) {
-	--bg2: var(--bg1);  /* Make sidebar same as main content */
-	--bg-tab: var(--bg1);  /* Make top bars same as main content */
-}
-
-.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) {
-	--bg2: var(--bg1);  /* Make sidebar same as main content */
-	--bg-tab: var(--bg1);  /* Make top bars same as main content */
-}
-
 /* 
 Oxygen theme as the default base - ensures consistency when Style Settings plugin is disabled
 All other color schemes override this base
 */
 .theme-dark {
 	/* Oxygen theme colors as the default base */
-	--accent-l: 60%;
+	--accent-l: 55%;  /* Slightly darker accent for dark mode */
+	--base-h: 220;  /* Slight blue tint for cool grays */
+	--base-s: 8%;  /* Subtle saturation */
 	--base-l: 20%;
 
-	--bg1: #1f2228;  /* Main content - darker */
-	--bg2: #1f2228;  /* Sidebars - same as main */
-	--bg-tab: #1f2228;  /* Top bars - same as main */
+	--bg1: #1c1d1e;  /* Main content - neutral dark gray */
+	--bg2: #17191b;  /* Sidebars - slightly darker for subtle differentiation */
 	
-	/* Oxygen UI colors as base */
-	--ui1: #3a3d41;  /* UI elements - consistent */
-	--ui2: #434f5b;  /* UI elements - consistent */
-	--ui3: #4a5568;  /* UI elements - consistent */
+	/* Oxygen UI colors with subtle cool undertones */
+	--ui1: #2d3139;  /* Borders/dividers - cooler dark gray */
+	--ui2: #3a404a;  /* Interactive hover - medium cool gray */
+	--ui3: #4a5058;  /* Active states - lighter cool gray */
 
 	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) + 40%), 0.12);
 
@@ -242,13 +235,15 @@ All other color schemes override this base
 	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 20%));
 	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 50%));
 
+	/* Accent colors use HSL to respect user's accent color setting */
 	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 8%));
-	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 5%));
+	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));
+	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 6%));
 
 	--hl1: hsla(var(--accent-h), 50%, 40%, 30%);
-	--hl2: rgba(255, 177, 80, 0.3);
+	--hl2: rgba(255, 177, 80, 0.3);  /* Yellow highlight */
 
+	/* Text on accent - white works for most dark mode accents (55% lightness) */
 	--sp1: white;
 
 	/* Oxygen theme overrides */
@@ -256,12 +251,12 @@ All other color schemes override this base
 	--titlebar-background-focused: var(--bg-tab);
 	--ribbon-background: var(--bg-tab);
 	
-	/* Soften aggressive outlines and borders */
-	--divider-color: #313339;
-	--frame-divider-color: #313339;
-	--tab-outline-color: #313339;
-	--background-modifier-border: #313339 !important;
-	--background-modifier-border-hover: #313339 !important;
+	/* Subtle blue-gray borders */
+	--divider-color: #282c34;
+	--frame-divider-color: #282c34;
+	--tab-outline-color: #282c34;
+	--background-modifier-border: #282c34;
+	--background-modifier-border-hover: #3a404a;
 	--background-modifier-border-focus: rgba(255, 255, 255, 0.15);
 }
 
@@ -288,53 +283,6 @@ All other color schemes override this base
 .theme-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-light-contrast.minimal-status-off .status-bar,
 
-/* Tab container backgrounds for Oxygen theme only - respect contrast settings */
-.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) .mod-right-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) .mod-root .mod-top .workspace-tab-header-container {
-  --tab-container-background: var(--bg-tab);
-}
-
-/* True black - tab containers should use black background */
-.theme-dark.minimal-oxygen-dark.minimal-dark-black .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark.minimal-dark-black .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark.minimal-dark-black .mod-right-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark.minimal-dark-black .mod-root .mod-top .workspace-tab-header-container {
-  --tab-container-background: black;
-}
-
-/* Tonal - tab containers should use main background */
-.theme-dark.minimal-oxygen-dark.minimal-dark-tonal .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark.minimal-dark-tonal .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark.minimal-dark-tonal .mod-right-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark.minimal-dark-tonal .mod-root .mod-top .workspace-tab-header-container {
-  --tab-container-background: var(--bg1);
-}
-
-/* Light theme tab container backgrounds - respect contrast settings */
-.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) .mod-right-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) .mod-root .mod-top .workspace-tab-header-container {
-  --tab-container-background: var(--bg-tab);
-}
-
-/* All white - tab containers should use white background */
-.theme-light.minimal-oxygen-light.minimal-light-white .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light.minimal-light-white .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light.minimal-light-white .mod-right-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light.minimal-light-white .mod-root .mod-top .workspace-tab-header-container {
-  --tab-container-background: white;
-}
-
-/* Light tonal - tab containers should use main background */
-.theme-light.minimal-oxygen-light.minimal-light-tonal .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light.minimal-light-tonal .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light.minimal-light-tonal .mod-right-split .mod-top .workspace-tab-header-container,
-.theme-light.minimal-oxygen-light.minimal-light-tonal .mod-root .mod-top .workspace-tab-header-container {
-  --tab-container-background: var(--bg1);
-}
 
 
 .theme-light.minimal-light-white {
