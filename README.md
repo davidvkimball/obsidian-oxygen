@@ -83,10 +83,6 @@ npx grunt
 
 This creates `obsidian.css` (minified, for distribution) and `Oxygen.css` (unminified, for development).
 
-**Plugin Support**
-
-Plugin developers can submit styling improvements via pull request. See [src/scss/plugins](https://github.com/david/obsidian-oxygen/tree/master/src/scss/plugins) for examples.
-
 ## License
 
 Oxygen is licensed under the MIT License. You may modify and redistribute the code, but must preserve the copyright and license notice in your CSS file.
