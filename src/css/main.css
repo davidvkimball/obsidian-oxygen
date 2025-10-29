@@ -3213,6 +3213,13 @@ body {
   --tab-outline-width: 0px;
 }
 
+.colorful-frame {
+  /* Ensure vault profile divider remains visible */
+}
+.colorful-frame .workspace-sidedock-vault-profile {
+  border-top: 1px solid var(--background-modifier-border) !important;
+}
+
 .colorful-frame.is-focused,
 .colorful-frame {
   --frame-divider-color: var(--frame-outline-color);
