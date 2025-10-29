@@ -15,6 +15,7 @@ The colors use HSL (hue, saturation, lightness)
 
 */
 
+
 body {
 	--base-h: 210;     /* Base hue - Oxygen default */
 	--base-s: 15%;     /* Base saturation */
@@ -46,150 +47,190 @@ body {
 	--color-pink: #b05279;
 }
 
+/* 
+Oxygen light theme as the default base - ensures consistency when Style Settings plugin is disabled
+All other light color schemes override this base
+*/
 .theme-light,
 .theme-light.minimal-oxygen-light,
 body .excalidraw {
+	/* Oxygen light theme colors as the default base */
+	--accent-l: 50%;
+	--base-l: 98%;
 
-	--bg1:white;
+	--bg1: #ffffff;  /* Main content - white */
+	--bg2: #ffffff;  /* Sidebars - same as main */
+	--bg-tab: #ffffff;  /* Top bars - same as main */
+	
+	/* Oxygen light UI colors as base */
+	--ui1: #e9ecef;  /* UI elements - light gray */
+	--ui2: #dee2e6;  /* UI elements - medium gray */
+	--ui3: #ced4da;  /* UI elements - darker gray */
 
-	--bg2:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		var(--base-l)
-		);
+	--bg3: rgba(0, 0, 0, 0.12);  /* Background 3 - black with opacity */
 
-	--bg3:
-	hsla(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) - 50%),
-		0.12
-		);
+	--tx1: #212529;  /* Primary text - dark */
+	--tx2: #6c757d;  /* Secondary text - medium gray */
+	--tx3: #adb5bd;  /* Tertiary text - light gray */
+	--tx4: #495057;  /* Quaternary text - dark gray */
 
-	--ui1:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) - 6%)
-		);
+	--ax1: #0d6efd;  /* Primary accent - blue */
+	--ax2: #0b5ed7;  /* Darker accent - dark blue */
+	--ax3: #3d8bfd;  /* Lighter accent - light blue */
 
-	--ui2:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) - 12%)
-		);
-
-	--ui3:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) - 20%)
-		);
-
-	--tx1:
-	hsl(
-		var(--base-h),
-		var(--base-s),
-		calc(var(--base-l) - 90%)
-		);
-
-	--tx2:
-	hsl(
-		var(--base-h),
-		calc(var(--base-s) - 20%),
-		calc(var(--base-l) - 50%)
-		);
-
-	--tx3:
-	hsl(
-		var(--base-h),
-		calc(var(--base-s) - 10%),
-		calc(var(--base-l) - 25%)
-		);
-
-	--tx4:
-	hsl(
-		var(--base-h),
-		calc(var(--base-s) - 10%),
-		calc(var(--base-l) - 60%)
-		);
-
-	--ax1:
-	hsl(
-		var(--accent-h),
-		var(--accent-s),
-		var(--accent-l)
-		);
-
-	--ax2:
-	hsl(
-		var(--accent-h),
-		var(--accent-s),
-		calc(var(--accent-l) - 8%)
-		);
-
-	--ax3:
-	hsl(
-		var(--accent-h),
-		var(--accent-s),
-		calc(var(--accent-l) + 6%)
-		);
-
-	--hl1:
-	hsla(
-		var(--accent-h),
-		50%,
-		calc(var(--base-l) - 20%), 
-		30%
-		);
-
-	--hl2:rgba(255, 225, 0, 0.5);
+	--hl1: rgba(13, 110, 253, 0.3);  /* Highlight 1 - blue with opacity */
+	--hl2: rgba(255, 225, 0, 0.5);  /* Highlight 2 - yellow with opacity */
 
 	--sp1: white;
 
+	/* Oxygen light theme overrides */
+	--titlebar-background: var(--bg-tab);
+	--titlebar-background-focused: var(--bg-tab);
+	--ribbon-background: var(--bg-tab);
+	
+	/* Light theme borders - clean like dark theme */
+	--divider-color: #dee2e6;
+	--frame-divider-color: #dee2e6;
+	--tab-outline-color: #dee2e6;
+	--background-modifier-border: #dee2e6;
+	--background-modifier-border-hover: #ced4da;
+	--background-modifier-border-focus: rgba(0, 0, 0, 0.15);
 }
 
+/* Commander plugin icon styling for light theme - apply same colorizing logic as other clickable icons */
+.theme-light .cmdr.clickable-icon {
+	color: var(--icon-color);
+	opacity: var(--icon-muted);
+	transition: opacity 0.1s ease-in-out;
+}
+
+.theme-light .cmdr.clickable-icon:hover {
+	color: var(--icon-color-hover);
+	opacity: 1;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.theme-light .cmdr.clickable-icon.is-active {
+	color: var(--icon-color-active);
+	opacity: 1;
+	transition: opacity 0.1s ease-in-out;
+}
+
+/* Oxygen theme contrast support - ensure Style Settings plugin contrast adjustments work */
+.theme-light.minimal-oxygen-light.minimal-light-white {
+	--background-primary: white;
+	--background-secondary: white;
+	--background-secondary-alt: white;
+	--ribbon-background: white;
+	--titlebar-background: white;
+	--mobile-sidebar-background: white;
+	--bg1: white;
+	--bg2: white;  /* Essential for dropdowns and menus */
+	--bg3: rgba(0, 0, 0, 0.05);  /* Light background for interactive elements */
+	--background-table-rows: var(--bg2);  /* Table rows use bg2 */
+	--interactive-normal: var(--bg3);  /* Interactive elements use bg3 */
+	--background-modifier-hover: rgba(0, 0, 0, 0.05);  /* Light hover for white backgrounds */
+	--background-modifier-form-field: rgba(0, 0, 0, 0.05);  /* Light form field background */
+}
+
+/* Override mobile menu styling for Oxygen all white */
+.is-mobile.theme-light.minimal-oxygen-light.minimal-light-white .menu {
+	--interactive-normal: var(--bg3);  /* Use our bg3 instead of background-modifier-hover */
+}
+
+/* Force white backgrounds for all dropdowns and menus in Oxygen all white */
+.theme-light.minimal-oxygen-light.minimal-light-white .menu,
+.theme-light.minimal-oxygen-light.minimal-light-white .dropdown,
+.theme-light.minimal-oxygen-light.minimal-light-white .menu-item,
+.theme-light.minimal-oxygen-light.minimal-light-white .dropdown-item {
+	background-color: white !important;
+	--background-secondary: white !important;
+	--background-primary: white !important;
+	--bg2: white !important;
+}
+
+.theme-light.minimal-oxygen-light.minimal-light-tonal {
+	--background-secondary: var(--bg1);
+	--background-primary-alt: var(--bg3);
+	--background-table-rows: var(--bg3);
+}
+
+.theme-light.minimal-oxygen-light.minimal-light-tonal.is-mobile {
+	--background-modifier-form-field: var(--bg3);
+	--interactive-normal: var(--bg3);
+}
+
+.theme-dark.minimal-oxygen-dark.minimal-dark-tonal {
+	--ribbon-background: var(--bg1);
+	--background-secondary: var(--bg1);
+	--background-table-rows: var(--bg3);
+}
+
+.theme-dark.minimal-oxygen-dark.minimal-dark-black {
+	--base-d: 0%;
+	--titlebar-background: black;
+	--background-primary: black;
+	--background-secondary: black;
+	--background-secondary-alt: black;
+	--ribbon-background: black;
+	--bg1: black;
+	--bg2: black;
+	--background-modifier-hover: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 10%));
+	--tx1: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 75%));
+	--tx2: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 50%));
+	--tx3: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 25%));
+	--ui1: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 12%));
+	--ui2: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 20%));
+	--ui3: hsl(var(--base-h), var(--base-s), calc(var(--base-d) + 30%));
+	--background-primary-alt: var(--bg3);
+	--background-table-rows: var(--bg3);
+	--modal-border: var(--ui2);
+	--active-line-bg: rgba(255,255,255,0.085);
+	--background-modifier-form-field: var(--bg3);
+	--background-modifier-cover: hsla(var(--base-h), var(--base-s), calc(var(--base-d) + 8%), 0.9);
+	--background-modifier-box-shadow: rgba(0, 0, 0, 1);
+}
+
+/* High contrast support for light theme */
+.theme-light.minimal-oxygen-light.minimal-light-contrast .titlebar,
+.theme-light.minimal-oxygen-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-oxygen-light.minimal-light-contrast.is-mobile .workspace-drawer.mod-left,
+.theme-light.minimal-oxygen-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-oxygen-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.minimal-oxygen-light.minimal-light-contrast .theme-dark {
+	--tab-container-background: var(--bg2);
+	--ribbon-background-collapsed: var(--bg2);
+}
+
+.theme-light.minimal-oxygen-light.minimal-light-contrast {
+	--workspace-background-translucent: rgba(0,0,0,0.6);
+}
+
+/* Low contrast support - when Style Settings sets low contrast, use same background for all panels */
+.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) {
+	--bg2: var(--bg1);  /* Make sidebar same as main content */
+	--bg-tab: var(--bg1);  /* Make top bars same as main content */
+}
+
+.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) {
+	--bg2: var(--bg1);  /* Make sidebar same as main content */
+	--bg-tab: var(--bg1);  /* Make top bars same as main content */
+}
+
+/* 
+Oxygen theme as the default base - ensures consistency when Style Settings plugin is disabled
+All other color schemes override this base
+*/
 .theme-dark {
-	/* Base dark theme variables - no hard-coded colors */
-	--accent-l: 60%;
-	--base-l: 15%;
-
-	--bg1: hsl(var(--base-h), var(--base-s), var(--base-l));
-	--bg2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 2%));
-	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) + 40%), 0.12);
-
-	--ui1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 6%));
-	--ui2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 12%));
-	--ui3: hsl(var(--base-h), var(--base-s), calc(var(--base-l) + 20%));
-
-	--tx1: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 67%));
-	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) + 45%));
-	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 20%));
-	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 50%));
-
-	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 8%));
-	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 5%));
-
-	--hl1: hsla(var(--accent-h), 50%, 40%, 30%);
-	--hl2: rgba(255, 177, 80, 0.3);
-
-	--sp1: white;
-}
-
-/* Oxygen theme as default - only when no specific color scheme is selected */
-.theme-dark:not(.minimal-minimal-dark):not(.minimal-atom-dark):not(.minimal-things-dark):not(.minimal-macos-dark):not(.minimal-nord-dark):not(.minimal-dracula-dark):not(.minimal-gruvbox-dark):not(.minimal-everforest-dark):not(.minimal-solarized-dark):not(.minimal-ayu-dark):not(.minimal-rose-pine-dark):not(.minimal-catppuccin-dark):not(.minimal-flexoki-dark):not(.minimal-notion-dark) {
-	/* Oxygen theme colors as DEFAULT for base theme-dark class */
+	/* Oxygen theme colors as the default base */
 	--accent-l: 60%;
 	--base-l: 20%;
 
 	--bg1: #1f2228;  /* Main content - darker */
-	--bg2: #2a2d35;  /* Sidebars - lighter */
-	--bg-tab: #1a1d23;  /* Top bars - darkest */
+	--bg2: #1f2228;  /* Sidebars - same as main */
+	--bg-tab: #1f2228;  /* Top bars - same as main */
 	
-	/* Oxygen UI colors as fallback for base theme */
+	/* Oxygen UI colors as base */
 	--ui1: #3a3d41;  /* UI elements - consistent */
 	--ui2: #434f5b;  /* UI elements - consistent */
 	--ui3: #4a5568;  /* UI elements - consistent */
@@ -224,15 +265,75 @@ body .excalidraw {
 	--background-modifier-border-focus: rgba(255, 255, 255, 0.15);
 }
 
+/* Commander plugin icon styling - apply same colorizing logic as other clickable icons */
+.cmdr.clickable-icon {
+	color: var(--icon-color);
+	opacity: var(--icon-muted);
+	transition: opacity 0.1s ease-in-out;
+}
+
+.cmdr.clickable-icon:hover {
+	color: var(--icon-color-hover);
+	opacity: 1;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.cmdr.clickable-icon.is-active {
+	color: var(--icon-color-active);
+	opacity: 1;
+	transition: opacity 0.1s ease-in-out;
+}
+
+
 .theme-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-light-contrast.minimal-status-off .status-bar,
 
-/* Tab container backgrounds for Oxygen theme only */
-.theme-dark.minimal-oxygen-dark .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark .mod-left-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark .mod-right-split .mod-top .workspace-tab-header-container,
-.theme-dark.minimal-oxygen-dark .mod-root .mod-top .workspace-tab-header-container {
+/* Tab container backgrounds for Oxygen theme only - respect contrast settings */
+.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark:not(.minimal-dark-black):not(.minimal-dark-tonal) .mod-root .mod-top .workspace-tab-header-container {
   --tab-container-background: var(--bg-tab);
+}
+
+/* True black - tab containers should use black background */
+.theme-dark.minimal-oxygen-dark.minimal-dark-black .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark.minimal-dark-black .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark.minimal-dark-black .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark.minimal-dark-black .mod-root .mod-top .workspace-tab-header-container {
+  --tab-container-background: black;
+}
+
+/* Tonal - tab containers should use main background */
+.theme-dark.minimal-oxygen-dark.minimal-dark-tonal .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark.minimal-dark-tonal .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark.minimal-dark-tonal .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-dark.minimal-oxygen-dark.minimal-dark-tonal .mod-root .mod-top .workspace-tab-header-container {
+  --tab-container-background: var(--bg1);
+}
+
+/* Light theme tab container backgrounds - respect contrast settings */
+.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light:not(.minimal-light-white):not(.minimal-light-tonal):not(.minimal-light-contrast) .mod-root .mod-top .workspace-tab-header-container {
+  --tab-container-background: var(--bg-tab);
+}
+
+/* All white - tab containers should use white background */
+.theme-light.minimal-oxygen-light.minimal-light-white .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light.minimal-light-white .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light.minimal-light-white .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light.minimal-light-white .mod-root .mod-top .workspace-tab-header-container {
+  --tab-container-background: white;
+}
+
+/* Light tonal - tab containers should use main background */
+.theme-light.minimal-oxygen-light.minimal-light-tonal .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light.minimal-light-tonal .mod-left-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light.minimal-light-tonal .mod-right-split .mod-top .workspace-tab-header-container,
+.theme-light.minimal-oxygen-light.minimal-light-tonal .mod-root .mod-top .workspace-tab-header-container {
+  --tab-container-background: var(--bg1);
 }
 
 
@@ -244,6 +345,12 @@ body .excalidraw {
 	--titlebar-background:        white;
 	--mobile-sidebar-background:  white;
 	--bg1: white;
+	--bg2: white;  /* Essential for dropdowns and menus */
+	--bg3: rgba(0, 0, 0, 0.05);  /* Light background for interactive elements */
+	--background-table-rows:      var(--bg2);  /* Table rows use bg2 */
+	--interactive-normal:         var(--bg3);  /* Interactive elements use bg3 */
+	--background-modifier-hover:  rgba(0, 0, 0, 0.05);  /* Light hover for white backgrounds */
+	--background-modifier-form-field: rgba(0, 0, 0, 0.05);  /* Light form field background */
 }
 
 .theme-dark.minimal-dark-black {
@@ -297,8 +404,87 @@ body .excalidraw {
 		var(--base-h),
 		var(--base-s),
 		calc(var(--base-d) + 30%)
-		);
+	);
 
 
 }
+
+/* 
+OBSIDIAN NATIVE VARIABLE MAPPING
+================================
+
+This section maps our custom Oxygen variables to Obsidian's native CSS variables
+to ensure compatibility with the Style Settings plugin and other Obsidian plugins.
+
+The mapping follows this hierarchy:
+1. Style Settings user customizations (highest priority)
+2. Obsidian native variables (mapped from Oxygen variables)
+3. Oxygen custom variables (fallback)
+*/
+
+.theme-light,
+.theme-dark {
+	/* Background Colors - Map Oxygen variables to Obsidian native */
+	--background-primary: var(--bg1);
+	--background-primary-alt: var(--bg2);
+	--background-secondary: var(--bg2);
+	--background-secondary-alt: var(--bg3);
+	--background-modifier-border: var(--ui1);
+	--background-modifier-form-field: var(--bg1);
+	--background-modifier-form-field-highlighted: var(--bg1);
+	--background-modifier-box-shadow: var(--ui3);
+	--background-modifier-success: var(--color-green);
+	--background-modifier-error: var(--color-red);
+	--background-modifier-error-hover: var(--color-red);
+	--background-modifier-cover: var(--ui3);
+
+	/* Text Colors - Map Oxygen variables to Obsidian native */
+	--text-accent: var(--ax1);
+	--text-accent-hover: var(--ax2);
+	--text-normal: var(--tx1);
+	--text-muted: var(--tx2);
+	--text-faint: var(--tx3);
+	--text-error: var(--color-red);
+	--text-error-hover: var(--color-red);
+	--text-highlight-bg: var(--hl1);
+	--text-highlight-bg-active: var(--hl2);
+	--text-selection: var(--hl1);
+	--text-on-accent: var(--sp1);
+
+	/* Interactive Colors - Map Oxygen variables to Obsidian native */
+	--interactive-normal: var(--ui1);
+	--interactive-hover: var(--ui2);
+	--interactive-accent: var(--ax1);
+	--interactive-accent-hover: var(--ax2);
+	--interactive-success: var(--color-green);
+
+	/* Scrollbar Colors - Map Oxygen variables to Obsidian native */
+	--scrollbar-bg: var(--ui1);
+	--scrollbar-thumb-bg: var(--ui2);
+	--scrollbar-active-thumb-bg: var(--ui3);
+
+	/* Additional Obsidian variables that don't have direct Oxygen equivalents */
+	--divider-color: var(--ui1);
+	--frame-divider-color: var(--ui1);
+	--tab-outline-color: var(--ui1);
+	--background-modifier-border-hover: var(--ui2);
+	--background-modifier-border-focus: var(--ax1);
+}
+
+/* 
+STYLE SETTINGS COMPATIBILITY LAYER
+==================================
+
+This section ensures that when Style Settings plugin is active,
+user customizations take precedence over our mapped values.
+
+The CSS cascade ensures this works correctly:
+1. User customizations (via Style Settings) are applied last
+2. Our mappings provide sensible defaults
+3. Oxygen variables remain as the source of truth for internal theme logic
+*/
+
+/* When Style Settings is active, it will override the above mappings */
+/* The .css-settings-manager class is added by the Style Settings plugin */
+/* and will contain user customizations that override our mappings */
 

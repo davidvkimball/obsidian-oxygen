@@ -13,25 +13,30 @@ Original default color scheme preserved from the original Minimal theme
 	--accent-l: 50%;
 
 	--bg1: white;
-	--bg2: hsl(var(--base-h), var(--base-s), var(--base-l));
+	--bg2: hsl(var(--base-h), var(--base-s), var(--base-l));  /* #f5f5f5 - left sidebar */
 	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) - 50%), 0.12);
 
-	--ui1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 6%));
-	--ui2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 12%));
-	--ui3: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 20%));
+	--ui1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 6%));  /* #f0f0f0 */
+	--ui2: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 12%));  /* #e6e6e6 */
+	--ui3: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 20%));  /* #d9d9d9 */
 
-	--tx1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 90%));
-	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) - 50%));
-	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 25%));
-	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 60%));
+	--tx1: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 90%));  /* #0a0a0a */
+	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) - 50%));  /* #4a4a4a */
+	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 25%));  /* #6a6a6a */
+	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 60%));  /* #3a3a3a */
 
-	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));
-	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 6%));
+	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));  /* #4a9eff */
+	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));  /* #3d8bcc */
+	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 6%));  /* #5cb3ff */
 
-	--hl1: hsla(var(--accent-h), 50%, calc(var(--base-l) - 20%), 30%);
-	--hl2: rgba(255, 225, 0, 0.5);
+	--hl1: hsla(var(--accent-h), 50%, calc(var(--base-l) - 20%), 30%);  /* Blue highlight */
+	--hl2: rgba(255, 225, 0, 0.5);  /* Yellow highlight */
 	--sp1: white;
+}
+
+/* Fix right sidebar background for Minimal light theme */
+.theme-light.minimal-minimal-light .mod-right-split {
+	--background-secondary: white;
 }
 
 .theme-dark.minimal-minimal-dark {

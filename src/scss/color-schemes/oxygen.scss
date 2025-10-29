@@ -2,51 +2,10 @@
 Oxygen
 Sleek, minimal theme inspired by Things app aesthetic
 Clean backgrounds, subtle warmth, refined accents
+
+NOTE: Oxygen colors are defined in the base theme (src/scss/variables/dynamic-color.scss)
+This file only contains Oxygen-specific overrides that differ from the base
 */
-
-.theme-dark.minimal-oxygen-dark {
-	--accent-l: 60%;
-	--base-l: 20%;
-
-	/* Oxygen theme colors */
-	--bg1: #1f2228;  /* Main content - darker */
-	--bg2: #2a2d35;  /* Sidebars - lighter */
-	--bg-tab: #1a1d23;  /* Top bars - darkest */
-	
-	/* Explicit UI colors to prevent HSL generation differences */
-	--ui1: #3a3d41;  /* UI elements - consistent */
-	--ui2: #434f5b;  /* UI elements - consistent */
-	--ui3: #4a5568;  /* UI elements - consistent */
-
-	--bg3: hsla(var(--base-h), var(--base-s), calc(var(--base-l) + 40%), 0.12);
-
-	--tx1: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 67%));
-	--tx2: hsl(var(--base-h), calc(var(--base-s) - 20%), calc(var(--base-l) + 45%));
-	--tx3: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 20%));
-	--tx4: hsl(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) + 50%));
-
-	--ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-	--ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 8%));
-	--ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 5%));
-
-	--hl1: hsla(var(--accent-h), 50%, 40%, 30%);
-	--hl2: rgba(255, 177, 80, 0.3);
-
-	--sp1: white;
-
-	/* Oxygen theme overrides */
-	--titlebar-background: var(--bg-tab);
-	--titlebar-background-focused: var(--bg-tab);
-	--ribbon-background: var(--bg-tab);
-	
-	/* Soften aggressive outlines and borders */
-	--divider-color: #313339;
-	--frame-divider-color: #313339;
-	--tab-outline-color: #313339;
-	--background-modifier-border: #313339 !important;
-	--background-modifier-border-hover: #313339 !important;
-	--background-modifier-border-focus: rgba(255, 255, 255, 0.15);
-}
 
 /* Oxygen theme specific overrides */
 .theme-dark.minimal-oxygen-dark .mod-right-split {

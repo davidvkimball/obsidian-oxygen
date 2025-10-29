@@ -163,8 +163,19 @@
 }
 
 .theme-light.minimal-light-white {
-	--background-table-rows:     var(--bg2);
-	--interactive-normal:        var(--bg3);
+	--background-primary:         white;
+	--background-secondary:       white;
+	--background-secondary-alt:   white;
+	--ribbon-background:          white;
+	--titlebar-background:        white;
+	--mobile-sidebar-background:  white;
+	--bg1: white;
+	--bg2: white;  /* Essential for dropdowns and menus */
+	--bg3: rgba(0, 0, 0, 0.05);  /* Light background for interactive elements */
+	--background-table-rows:      var(--bg2);  /* Table rows use bg2 */
+	--interactive-normal:         var(--bg3);  /* Interactive elements use bg3 */
+	--background-modifier-hover:  rgba(0, 0, 0, 0.05);  /* Light hover for white backgrounds */
+	--background-modifier-form-field: rgba(0, 0, 0, 0.05);  /* Light form field background */
 }
 
 .theme-light.minimal-light-tonal {

@@ -1,0 +1,15 @@
+/* @settings
+
+name: Oxygen Theme Test
+id: oxygen-theme-test
+settings:
+	-
+		id: test-background
+		title: Test Background
+		description: Test setting to verify Style Settings works
+		type: variable-themed-color
+		format: hex
+		default-light: '#ffffff'
+		default-dark: '#1a1a1a'
+
+*/
