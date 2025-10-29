@@ -89,7 +89,7 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['src/**/*.scss','src/**/*.css'],
-                tasks: ['env','sass:unminified','sass:dist','cssmin','concat_css','copy',]
+                tasks: ['env','sass:unminified','concat_css:unminified','copy']
             }
         }
     });
@@ -102,5 +102,10 @@ module.exports = function(grunt) {
     grunt.registerTask('loadconst', 'Load constants', function() {
         grunt.config('OBSIDIAN_PATH', process.env.OBSIDIAN_PATH);
     });
+    
+    // Fast development watch (unminified only)
     grunt.registerTask('default',['env:local','loadconst','watch']);
+    
+    // Full production build (minified + unminified)
+    grunt.registerTask('build',['sass:unminified','sass:dist','cssmin','concat_css']);
 }

@@ -78,10 +78,14 @@ npm install
 Rename `.env.example` to `.env` and update `OBSIDIAN_PATH` to your vault's theme folder for live reload.
 
 ```bash
+# Fast development watch (recommended)
 npx grunt
+
+# Full production build
+npx grunt build
 ```
 
-This creates `obsidian.css` (minified, for distribution) and `Oxygen.css` (unminified, for development).
+Development watch creates `Oxygen.css` (unminified) and auto-copies to your vault. Production build creates both `theme.css` (minified) and `Oxygen.css` (unminified).
 
 ## License
 

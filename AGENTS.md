@@ -207,7 +207,7 @@ The file exists only for organizational consistency with other color schemes.
 **What to Modify:**
 1. **Color values** in the base theme classes (lines 54-98 for light, 224-266 for dark)
 2. **CSS rules** that apply those colors to specific elements (e.g., lines 100-105 for light tab containers, 278-283 for dark tab containers)
-3. **Build command**: Use `npx grunt sass:unminified sass:dist concat_css`
+3. **Build command**: Use `npx grunt build` (for production) or `npx grunt` (for fast dev watch)
 
 ### 🚨 CRITICAL: NEVER Hard-Code Accent Colors 🚨
 
@@ -264,7 +264,7 @@ I want to modify the base Oxygen color scheme in DARK MODE. Please:
 2. Check if any additional CSS rules are needed to apply these colors to specific UI elements (like tab containers around lines 278-283)
 3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
 4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
-5. Build with: npx grunt sass:unminified sass:dist concat_css
+5. Build with: npx grunt build
 6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
 
 Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
@@ -277,7 +277,7 @@ I want to modify the base Oxygen color scheme in LIGHT MODE. Please:
 2. Check if any additional CSS rules are needed to apply these colors to specific UI elements (like tab containers around lines 100-105)
 3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
 4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
-5. Build with: npx grunt sass:unminified sass:dist concat_css
+5. Build with: npx grunt build
 6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
 
 Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
@@ -294,7 +294,7 @@ I want to modify the base Oxygen color scheme for BOTH light and dark modes. Ple
    - Dark mode tab containers: around lines 278-283
 3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
 4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
-5. Build with: npx grunt sass:unminified sass:dist concat_css
+5. Build with: npx grunt build
 6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
 
 Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
@@ -314,7 +314,7 @@ I want to modify the base Oxygen color scheme in DARK MODE. Please:
 2. Check if any additional CSS rules are needed (they shouldn't be for accent colors)
 3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
 4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
-5. Build with: npx grunt sass:unminified sass:dist concat_css
+5. Build with: npx grunt build
 6. Verify changes appear in Oxygen.css by checking for the new hex values
 
 Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes.
@@ -357,20 +357,30 @@ Make sure the changes ONLY affect the base Oxygen theme and do not interfere wit
 - ❌ Don't modify the variable mapping layer (lines 412-490) unless adding new mappings
 - ❌ Don't break the CSS cascade hierarchy: User Customizations > Obsidian Native > Oxygen Custom > Base Colors
 - ❌ Don't modify `src/css/style-settings.css` unless adding new Style Settings options
-- ❌ Don't run build tasks separately - always use the full command: `npx grunt sass:unminified sass:dist concat_css`
+- ❌ Don't run build tasks separately - always use: `npx grunt build` (production) or `npx grunt` (dev watch)
 - ❌ Don't assume color changes in `src/css/main.css` mean they're in the final theme - always check `Oxygen.css`
 - ❌ Don't modify other color scheme files (minimal.scss, atom.scss, etc.) when updating Oxygen
 
 ## Build Process
 
 ```bash
-# Complete build process (compiles SCSS, minifies, and concatenates)
-npx grunt sass:unminified sass:dist concat_css
+# Fast development watch (unminified only, auto-reloads in vault)
+npx grunt
 
-# Note: Use this single command instead of running tasks separately
+# Full production build (compiles SCSS, minifies, and concatenates)
+npx grunt build
+
+# Note: Development watch is optimized for speed:
+# - Only compiles unminified CSS (src/css/main.css)
+# - Only concatenates Oxygen.css (unminified dev version)
+# - Skips minification and theme.css generation
+# - ~50% faster on each file save
+
+# Production build creates both versions:
 # - sass:unminified: Compiles SCSS to unminified CSS (src/css/main.css)
 # - sass:dist: Compiles SCSS to minified CSS (src/css/main.min.css)
-# - concat_css: Concatenates CSS files into final theme files (theme.css and Oxygen.css)
+# - cssmin: Further minifies the output
+# - concat_css: Concatenates into theme.css (minified) and Oxygen.css (unminified)
 ```
 
 ## Color Scheme Files
@@ -429,4 +439,4 @@ npx grunt sass:unminified sass:dist concat_css
 
 ### Changes appear in src/css/main.css but not in Oxygen.css
 - **Cause**: Forgot to run the concatenation step
-- **Fix**: Always use the complete build command: `npx grunt sass:unminified sass:dist concat_css`
+- **Fix**: Always use the complete build command: `npx grunt build` (or `npx grunt` for dev watch)
