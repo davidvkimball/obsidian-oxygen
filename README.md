@@ -33,7 +33,7 @@ The Oxygen Theme Settings plugin is also not yet in Community Plugins. Install v
 
 ## Companion Plugins
 
-- [Oxygen Theme Settings](https://github.com/david/obsidian-oxygen-settings) - Recommended for accessing color schemes, custom presets, and theme features. Includes advanced color management functionality.
+- [Oxygen Theme Settings](https://github.com/davidvkimball/obsidian-oxygen-settings) - Recommended for accessing color schemes, custom presets, and theme features. Includes advanced color management functionality.
 - [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) - Optional. Create custom color schemes through a visual interface with full variable customization.
 - [Hider](https://github.com/kepano/obsidian-hider) - Optional. Hide UI elements like window frame, scrollbars, and tooltips.
 
