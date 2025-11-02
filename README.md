@@ -1,5 +1,7 @@
 # Oxygen Theme for Obsidian
 
+![Alt](theme-cover.png "Oxygen theme preview")
+
 A fork of [Minimal](https://github.com/kepano/obsidian-minimal) with a custom Oxygen color scheme as the default. Oxygen extends Minimal's excellent foundation with enhanced color scheme management and custom preset functionality.
 
 ## What Makes Oxygen Different
