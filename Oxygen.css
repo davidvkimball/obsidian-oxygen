@@ -230,23 +230,21 @@ body .excalidraw {
   --background-modifier-border-focus: rgba(0, 0, 0, 0.15);
 }
 
-/* Commander plugin icon styling for light theme - apply same colorizing logic as other clickable icons */
+/* Commander plugin icon styling for light theme - match default Obsidian icon treatment */
 .theme-light .cmdr.clickable-icon {
-  color: var(--icon-color);
+  color: var(--icon-color) !important;
+}
+
+/* In File Explorer context, use muted opacity like other File Explorer icons */
+.theme-light .nav-files-container .cmdr.clickable-icon,
+.theme-light .nav-action .cmdr.clickable-icon {
   opacity: var(--icon-muted);
-  transition: opacity 0.1s ease-in-out;
 }
 
-.theme-light .cmdr.clickable-icon:hover {
-  color: var(--icon-color-hover);
-  opacity: 1;
-  transition: opacity 0.1s ease-in-out;
-}
-
-.theme-light .cmdr.clickable-icon.is-active {
-  color: var(--icon-color-active);
-  opacity: 1;
-  transition: opacity 0.1s ease-in-out;
+/* Keep muted opacity on hover to match default File Explorer icon behavior */
+.theme-light .nav-files-container .cmdr.clickable-icon:hover,
+.theme-light .nav-action .cmdr.clickable-icon:hover {
+  opacity: var(--icon-muted);
 }
 
 /* Oxygen theme contrast support - ensure Style Settings plugin contrast adjustments work */
@@ -383,23 +381,21 @@ All other color schemes override this base
   --background-modifier-border-focus: rgba(255, 255, 255, 0.15);
 }
 
-/* Commander plugin icon styling - apply same colorizing logic as other clickable icons */
+/* Commander plugin icon styling - match default Obsidian icon treatment */
 .cmdr.clickable-icon {
-  color: var(--icon-color);
+  color: var(--icon-color) !important;
+}
+
+/* In File Explorer context, use muted opacity like other File Explorer icons */
+.nav-files-container .cmdr.clickable-icon,
+.nav-action .cmdr.clickable-icon {
   opacity: var(--icon-muted);
-  transition: opacity 0.1s ease-in-out;
 }
 
-.cmdr.clickable-icon:hover {
-  color: var(--icon-color-hover);
-  opacity: 1;
-  transition: opacity 0.1s ease-in-out;
-}
-
-.cmdr.clickable-icon.is-active {
-  color: var(--icon-color-active);
-  opacity: 1;
-  transition: opacity 0.1s ease-in-out;
+/* Keep muted opacity on hover to match default File Explorer icon behavior */
+.nav-files-container .cmdr.clickable-icon:hover,
+.nav-action .cmdr.clickable-icon:hover {
+  opacity: var(--icon-muted);
 }
 
 .theme-light.minimal-light-contrast .titlebar,
@@ -1230,17 +1226,6 @@ body:not(.minimal-focus-mode) .workspace-ribbon:not(.is-collapsed) ~ .mod-root .
 }
 
 .view-header-title-container {
-  opacity: 0;
-  transition: opacity 0.1s ease-in-out;
-}
-
-.view-header-title-container:focus-within {
-  opacity: 1;
-  transition: opacity 0.1s ease-in-out;
-}
-
-.workspace-tab-header-container:hover + .workspace-tab-container .view-header-title-container,
-.view-header:hover .view-header-title-container {
   opacity: 1;
   transition: opacity 0.1s ease-in-out;
 }
