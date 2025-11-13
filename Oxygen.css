@@ -3238,13 +3238,6 @@ body {
   --tab-outline-width: 0px;
 }
 
-.colorful-frame {
-  /* Ensure vault profile divider remains visible */
-}
-.colorful-frame .workspace-sidedock-vault-profile {
-  border-top: 1px solid var(--background-modifier-border) !important;
-}
-
 .colorful-frame.is-focused,
 .colorful-frame {
   --frame-divider-color: var(--frame-outline-color);
@@ -3310,28 +3303,6 @@ body {
   -webkit-app-region: no-drag;
   border: 0;
   z-index: 15;
-}
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:after {
-  content: "";
-  height: 100%;
-  width: 1px;
-  background: linear-gradient(180deg, var(--frame-outline-color) var(--header-height), var(--divider-color) var(--header-height));
-  top: 0;
-  position: absolute;
-}
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:hover:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:hover:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:hover:after {
-  background: var(--divider-color-hover);
-}
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:after {
-  left: 0;
-}
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:after {
-  right: 0;
 }
 
 /* Colorful headings */

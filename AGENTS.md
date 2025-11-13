@@ -4,6 +4,139 @@
 
 The Oxygen Theme is a fork of the Minimal Theme with a custom Oxygen color scheme as the default. This document explains the architecture and how it differs from the original Minimal Theme to help AI agents understand the codebase structure.
 
+## Oxygen Theme vs. Oxygen Theme Settings Plugin
+
+### Understanding the Relationship
+
+**The Oxygen Theme** and **the Oxygen Theme Settings Plugin** are two separate but complementary components:
+
+#### Oxygen Theme (This Repository)
+- **What it is**: The CSS theme file itself (`Oxygen.css`, `theme.css`)
+- **What it contains**: 
+  - Base Oxygen color definitions (hard-coded in SCSS)
+  - All built-in color scheme definitions (Minimal, Atom, Ayu, etc.)
+  - All feature styles (focus mode, colorful headings, etc.)
+  - Layout and typography styles
+  - Style Settings plugin integration
+- **How it works**: Compiled from SCSS source files into CSS that Obsidian loads as a theme
+- **Location**: This repository (`obsidian-oxygen`)
+
+#### Oxygen Theme Settings Plugin (Separate Repository)
+- **What it is**: A companion Obsidian plugin that manages theme settings
+- **What it does**:
+  - Applies color scheme classes to the `body` element (e.g., `minimal-oxygen-dark`, `minimal-minimal-light`)
+  - Manages custom color presets (injects CSS custom properties)
+  - Controls theme features (fonts, widths, focus mode, etc.)
+  - Provides hotkeys for quick theme adjustments
+  - Syncs settings between light/dark modes
+- **How it works**: 
+  - Adds/removes CSS classes on `body` to activate color schemes
+  - Injects CSS custom properties for custom presets
+  - Modifies existing CSS variables for features
+- **Location**: Separate repository (`.oxygen-settings-reference/` folder contains a reference copy)
+
+### How They Work Together
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Obsidian Application                      │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  ┌──────────────────────┐    ┌──────────────────────────┐ │
+│  │  Oxygen Theme        │    │  Oxygen Theme Settings   │ │
+│  │  (CSS File)          │    │  Plugin                   │ │
+│  │                      │    │                           │ │
+│  │  • Base colors       │◄───┤  • Applies scheme classes │ │
+│  │  • Color schemes     │    │  • Manages custom presets │ │
+│  │  • Feature styles    │    │  • Controls features      │ │
+│  │  • Layout styles     │    │  • Provides hotkeys       │ │
+│  └──────────────────────┘    └──────────────────────────┘ │
+│           │                              │                  │
+│           └──────────────┬───────────────┘                  │
+│                          │                                   │
+│                          ▼                                   │
+│              ┌─────────────────────┐                         │
+│              │   <body> element    │                         │
+│              │                     │                         │
+│              │ Classes:            │                         │
+│              │ • theme-dark        │                         │
+│              │ • minimal-oxygen-*  │                         │
+│              │                     │                         │
+│              │ CSS Variables:      │                         │
+│              │ • --bg1, --tx1, etc.│                         │
+│              └─────────────────────┘                         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Key Distinctions
+
+1. **Color Schemes**: 
+   - **Defined in Theme**: All built-in color schemes (Oxygen, Minimal, Atom, etc.) are defined in `src/scss/color-schemes/*.scss`
+   - **Activated by Plugin**: The plugin adds classes like `minimal-oxygen-dark` or `minimal-minimal-light` to activate schemes
+
+2. **Custom Presets**:
+   - **Created in Plugin**: Users create custom presets through the plugin's UI
+   - **Injected by Plugin**: The plugin injects CSS custom properties directly onto the `body` element
+   - **Not in Theme Files**: Custom presets are NOT stored in the theme's SCSS files
+
+3. **Base Theme Colors**:
+   - **Defined in Theme**: Base Oxygen colors are in `src/scss/variables/dynamic-color.scss`
+   - **Modified in Theme**: To change base colors, edit the SCSS source files and rebuild
+   - **Not Modified by Plugin**: The plugin doesn't change base theme colors (only applies schemes/presets)
+
+4. **Features**:
+   - **Styles in Theme**: Feature CSS (focus mode, colorful headings, workspace borders, etc.) is in `src/scss/features/*.scss`
+   - **Implemented in Theme**: The theme provides the actual CSS implementation for all features
+   - **Toggled by Plugin**: The plugin adds/removes classes to enable/disable features
+   - **Plugin Overrides**: The plugin may provide additional CSS overrides in its own `styles.css` for advanced features
+   - **Theme Provides Defaults**: The theme implements features for the base Oxygen theme (and potentially other color schemes)
+   - **Plugin Handles Settings**: The plugin manages user settings, toggles classes, and provides UI controls
+
+### Division of Responsibilities: Theme vs. Plugin
+
+**CRITICAL**: Understanding what belongs in the theme vs. the plugin is essential:
+
+#### Theme Responsibilities (CSS Implementation)
+- ✅ **Implement all feature CSS** in `src/scss/features/*.scss`
+- ✅ **Provide base implementations** for the default Oxygen theme
+- ✅ **May provide implementations** for other color schemes if needed
+- ✅ **Define default CSS variables** (e.g., `--nav-indentation-guide-width: 1px`)
+- ✅ **Style Settings integration** - Only for features that are part of the original Minimal theme
+
+#### Plugin Responsibilities (Settings & Control)
+- ✅ **Manage user settings** (store, load, save)
+- ✅ **Provide UI controls** (settings panels, toggles, dropdowns)
+- ✅ **Toggle CSS classes** on `body` element (e.g., `borders-none`, `workspace-borders-enhanced`)
+- ✅ **Set CSS variables** when user changes settings (e.g., `--nav-indentation-guide-width`)
+- ✅ **Provide advanced overrides** in plugin's `styles.css` for complex features
+- ✅ **Handle feature interactions** (e.g., enhanced borders requiring keep-tab-borders)
+
+#### What NOT to Do
+- ❌ **Don't add new features to Style Settings** - Only Minimal theme features belong there
+- ❌ **Don't implement features only in plugin** - Theme must provide base implementation
+- ❌ **Don't remove feature CSS from theme** - Plugin toggles classes, theme provides styles
+- ❌ **Don't duplicate implementations** - Theme provides base, plugin may enhance/override
+
+#### Example: Workspace Borders Feature
+- **Theme**: Implements `borders-none` class behavior, `keep-tab-borders` styling, `workspace-borders-enhanced` styling in `src/scss/features/borders.scss`
+- **Plugin**: Toggles `borders-none`, `keep-tab-borders`, `workspace-borders-enhanced` classes based on user settings
+- **Plugin**: May provide additional CSS overrides in `styles.css` for advanced behavior
+- **Style Settings**: NOT added here (not part of original Minimal theme)
+
+### When to Modify What
+
+| What to Change | Where to Modify | How |
+|----------------|-----------------|-----|
+| **Base Oxygen colors** | `src/scss/variables/dynamic-color.scss` | Edit SCSS, rebuild with `npx grunt build` |
+| **Base fonts/sizes** | `src/scss/variables/root.scss` or `theme.scss` | Edit SCSS, rebuild |
+| **Feature styles** | `src/scss/features/*.scss` | Edit SCSS, rebuild - **Theme implements features, plugin toggles them** |
+| **Layout styles** | `src/scss/app/*.scss` | Edit SCSS, rebuild |
+| **Built-in color schemes** | `src/scss/color-schemes/*.scss` | Edit SCSS, rebuild - **May need feature implementations for each scheme** |
+| **Custom presets** | Plugin UI (not in theme files) | Use plugin settings |
+| **Which scheme is active** | Plugin settings | User selects in plugin UI |
+| **Feature toggles** | Plugin settings | User toggles in plugin UI |
+| **New feature settings** | Plugin code + Theme CSS | Add CSS in theme, add settings in plugin |
+
 ## Architecture
 
 ### Base Theme Structure
@@ -56,9 +189,18 @@ All color schemes (Atom, Things, Minimal, etc.) are completely self-contained:
 - **No cross-contamination** with the Oxygen base theme
 
 ### Plugin Independence
+
+**Note**: This section refers to the **Style Settings plugin** (a different plugin from Oxygen Theme Settings).
+
 - **Style Settings plugin disabled**: Uses base Oxygen colors
 - **Style Settings plugin enabled**: Uses base Oxygen colors (same result)
 - **Color scheme selected**: Overrides base with scheme-specific colors
+
+**Oxygen Theme Settings plugin** is required for:
+- Selecting and switching between color schemes
+- Managing custom color presets
+- Controlling theme features (fonts, widths, focus mode, etc.)
+- Providing hotkeys for theme adjustments
 
 ## Style Settings Plugin Integration
 
@@ -193,6 +335,143 @@ Oxygen is the base theme. If you need to change Oxygen's appearance:
 - ❌ **Never** add anything to `oxygen.scss` - it should remain empty
 
 The file exists only for organizational consistency with other color schemes.
+
+## Modifying the Base Theme
+
+### Understanding Base Theme vs. Color Schemes
+
+**CRITICAL DISTINCTION**: The "base theme" refers to the default Oxygen colors that appear when no color scheme is selected. Color schemes (Minimal, Atom, etc.) are **overrides** that replace the base colors.
+
+### What is the Base Theme?
+
+The base theme consists of:
+- **Base Oxygen colors** (defined in `src/scss/variables/dynamic-color.scss`)
+- **Default fonts and typography** (defined in `src/scss/variables/root.scss` and `theme.scss`)
+- **Feature styles** (defined in `src/scss/features/*.scss`)
+- **Layout styles** (defined in `src/scss/app/*.scss`)
+
+### How to Modify Base Theme Colors
+
+**To change the base Oxygen color scheme** (the default colors users see):
+
+1. **Edit the base color definitions** in `src/scss/variables/dynamic-color.scss`:
+   - **Light mode**: Lines 54-98 (`.theme-light` class)
+   - **Dark mode**: Lines 224-266 (`.theme-dark` class)
+
+2. **Check for additional CSS rules** that may need updates:
+   - Light mode tab containers: around lines 100-105
+   - Dark mode tab containers: around lines 278-283
+   - These may need to reference specific variables for certain UI elements
+
+3. **Rebuild the theme**:
+   ```bash
+   npx grunt build
+   ```
+
+4. **Verify changes** appear in `Oxygen.css` (not just `src/css/main.css`)
+
+**Important Notes**:
+- ❌ **DO NOT** modify `src/scss/color-schemes/oxygen.scss` - it's intentionally empty
+- ❌ **DO NOT** modify other color scheme files (minimal.scss, atom.scss, etc.) when updating base colors
+- ✅ Changes to base colors affect the default appearance when no scheme is selected
+- ✅ Color schemes will continue to override base colors when selected
+
+### How to Modify Base Fonts and Typography
+
+**To change default fonts, sizes, or typography**:
+
+1. **Edit font variables** in `src/scss/variables/root.scss`:
+   - Font families: `--font-editor`, `--font-text`, `--font-ui`
+   - Font sizes: `--font-text-size`, `--font-ui-small`, etc.
+
+2. **Edit typography settings** in `src/scss/variables/theme.scss`:
+   - Heading sizes: `--h1-size`, `--h2-size`, etc.
+   - Line height: `--line-height`
+   - Spacing: `--p-spacing`, `--heading-spacing`
+
+3. **Rebuild the theme**:
+   ```bash
+   npx grunt build
+   ```
+
+**Note**: The Oxygen Theme Settings plugin can override these with user settings, but the base values come from the theme files.
+
+### How to Modify Feature Styles
+
+**To change how features look** (focus mode, colorful headings, workspace borders, etc.):
+
+1. **Edit feature files** in `src/scss/features/*.scss`:
+   - Focus mode: `src/scss/features/focus-mode.scss`
+   - Colorful headings: `src/scss/features/colorful-headings.scss`
+   - Active line: `src/scss/features/active-line.scss`
+   - Workspace borders: `src/scss/features/borders.scss`
+   - etc.
+
+2. **Rebuild the theme**:
+   ```bash
+   npx grunt build
+   ```
+
+**Important Notes**:
+- **Theme Implements Features**: The theme provides the actual CSS implementation for all features
+- **Plugin Toggles Features**: The plugin adds/removes CSS classes to enable/disable features
+- **Plugin May Override**: The plugin's `styles.css` may provide additional overrides for advanced features
+- **Base Theme First**: Implement features in the base Oxygen theme (and potentially other color schemes if needed)
+- **Plugin Handles Settings**: The plugin manages user settings, UI controls, and class toggling
+- **Style Settings**: Only add features to `style-settings.css` if they're part of the original Minimal theme
+
+### How to Modify Layout Styles
+
+**To change layout, spacing, or UI structure**:
+
+1. **Edit app files** in `src/scss/app/*.scss`:
+   - Workspace: `src/scss/app/workspace.scss`
+   - Editor: `src/scss/app/editor.scss`
+   - Tabs: `src/scss/app/tab-stacks.scss`
+   - etc.
+
+2. **Rebuild the theme**:
+   ```bash
+   npx grunt build
+   ```
+
+### Summary: Base Theme Modification Workflow
+
+```
+1. Identify what to change:
+   ├─ Colors → src/scss/variables/dynamic-color.scss
+   ├─ Fonts → src/scss/variables/root.scss
+   ├─ Typography → src/scss/variables/theme.scss
+   ├─ Features → src/scss/features/*.scss
+   └─ Layout → src/scss/app/*.scss
+
+2. Edit the appropriate SCSS file(s)
+
+3. Rebuild:
+   npx grunt build
+
+4. Verify:
+   - Check Oxygen.css for changes
+   - Test in Obsidian with no color scheme selected
+   - Ensure color schemes still work correctly
+```
+
+### Common Pitfalls
+
+❌ **Don't confuse base theme with color schemes**:
+- Base theme = default Oxygen colors (in `dynamic-color.scss`)
+- Color schemes = overrides (in `color-schemes/*.scss`)
+
+❌ **Don't modify `oxygen.scss`**:
+- It's intentionally empty - Oxygen is the base, not an override
+
+❌ **Don't assume changes in `src/css/main.css` are final**:
+- Always check `Oxygen.css` after building
+- The build process concatenates multiple files
+
+❌ **Don't forget to rebuild**:
+- SCSS changes require `npx grunt build` to take effect
+- Development watch (`npx grunt`) only updates `src/css/main.css`, not final theme files
 
 ## Maintenance Guidelines
 
@@ -405,6 +684,8 @@ npx grunt build
 6. **Clean architecture**: No aggressive overrides or `!important` spam
 7. **User customization support**: Style Settings integration enables easy custom color schemes
 8. **CSS cascade respect**: User customizations > Color schemes > Base colors
+9. **Theme Implements, Plugin Controls**: The theme provides CSS implementations for features; the plugin toggles classes and manages settings
+10. **Style Settings for Minimal Only**: Only add features to `style-settings.css` if they're part of the original Minimal theme; new features should only be in the plugin
 
 ## Troubleshooting
 
