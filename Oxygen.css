@@ -98,6 +98,8 @@ body {
   --list-edit-offset: 0.5em;
   --list-indent: 2em;
   --list-spacing: 0.075em;
+  /* Indentation guides */
+  --indentation-guide-width: 0px;
   --input-height: 32px;
   --header-height: 40px;
   /* Metadata */
