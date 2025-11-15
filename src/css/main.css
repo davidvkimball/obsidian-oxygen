@@ -2505,7 +2505,7 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
   border-left: 1px solid var(--background-modifier-border) !important;
   border-right: 1px solid var(--background-modifier-border) !important;
   border-bottom: none !important;
-  border-radius: var(--radius-m) var(--radius-m) 0 0 !important; /* Top-left and top-right rounded */
+  border-radius: var(--radius-m) var(--radius-m) var(--radius-m) var(--radius-m) !important; /* All corners rounded */
   margin: 0;
   overflow: hidden;
   position: relative;
