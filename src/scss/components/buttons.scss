@@ -1,4 +1,31 @@
 /* Buttons */
+button,
+.clickable-icon,
+select,
+.dropdown {
+	transition: var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-fast);
+}
+
+.workspace {
+	svg.svg-icon {
+		transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+	}
+
+	.clickable-icon:not(.workspace-ribbon > .sidebar-toggle-button > .clickable-icon) svg.svg-icon {
+		@starting-style {
+			filter: blur(4px);
+			scale: 0.75;
+			opacity: 0;
+		}
+	}
+
+	.clickable-icon:not([aria-disabled="true"]):active svg.svg-icon,
+	.mod-sidedock .workspace-tab-header.tappable:active svg.svg-icon {
+		scale: 0.75;
+		opacity: 0.75;
+	}
+}
+
 .modal.mod-settings button:not(.mod-cta):not(.mod-warning),
 .modal button:not(.mod-warning),
 .modal.mod-settings button:not(.mod-warning) {

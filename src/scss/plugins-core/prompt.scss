@@ -1,3 +1,12 @@
+/* Prompt animations */
+body:not(.is-mobile) .prompt {
+	animation: modalIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+}
+
+body.is-phone .prompt {
+	animation: none;
+}
+
 input.prompt-input,
 input.prompt-input:hover,
 input.prompt-input:focus,

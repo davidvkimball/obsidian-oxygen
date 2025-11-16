@@ -111,6 +111,15 @@ body {
 
 	/* Readable line length off */
 	--file-margins: var(--size-4-2) var(--size-4-12);
+
+	/* Animation variables */
+	--anim-speed-modifier: 1;
+	--anim-motion-baseline: cubic-bezier(0.32, 0.72, 0, 1); /* Refined (default) */
+	--anim-motion-playful: cubic-bezier(0.1, 0, 0.1, 1.25); /* Playful option */
+	--anim-duration-superfast: calc(80ms * var(--anim-speed-modifier));
+	--anim-duration-fast: calc(160ms * var(--anim-speed-modifier));
+	--anim-duration-moderate: calc(320ms * var(--anim-speed-modifier));
+	--anim-duration-slow: calc(640ms * var(--anim-speed-modifier));
 }
 
 .mod-macos {
@@ -127,4 +136,25 @@ body {
 	.is-phone {
 		--border-width: 0.75px;
 	}
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+	body {
+		--anim-speed-modifier: 0;
+	}
+}
+
+/* Plugin integration: Animation control classes */
+body.animations-default {
+	/* Default uses Refined curve (already set as --anim-motion-baseline default) */
+	/* No changes needed - this class is for explicit control */
+}
+
+body.animations-off {
+	--anim-speed-modifier: 0;
+}
+
+body.animations-playful {
+	--anim-motion-baseline: var(--anim-motion-playful);
 }

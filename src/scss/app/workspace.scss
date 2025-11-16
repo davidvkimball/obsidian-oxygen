@@ -77,3 +77,19 @@ body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-spl
 	--labeled-nav-top-margin: 84px;
 }
 
+/* Workspace animations */
+body:not(.is-mobile) {
+	.workspace,
+	.app-container {
+		transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+	}
+
+	.workspace-split {
+		transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+	}
+
+	.mod-sidedock .workspace-leaf:not([style*="display: none"]) {
+		animation: workspaceLeafIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+	}
+}
+

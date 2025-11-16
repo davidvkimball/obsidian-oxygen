@@ -19,3 +19,16 @@
 .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header-inner {
 	flex-direction: var(--tab-stacked-spine-order);
 }
+
+/* Tab animations */
+body:not(.is-phone) .workspace-tab-header-container {
+	transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+.workspace .mod-sidedock {
+	.workspace-tab-header-container,
+	.workspace-tab-header,
+	.workspace-tab-header div {
+		transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+	}
+}

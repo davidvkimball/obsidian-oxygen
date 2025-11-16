@@ -1,6 +1,33 @@
+/* Keyframe animations */
+@keyframes workspaceLeafIn {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+		filter: blur(4px);
+	}
+}
+
+@keyframes modalIn {
+	from {
+		opacity: 0;
+		filter: blur(4px);
+		transform: scale(0.95) rotateX(-1deg);
+	}
+}
+
+@keyframes menuIn {
+	from {
+		opacity: 0;
+		filter: blur(4px);
+		transform: translateY(-8px);
+	}
+}
+
+/* Legacy animation classes - updated to use new variables */
 .disable-animations {
 	--ribbon-animation-duration: 0ms;
 	--focus-animation-duration: 0ms;
+	--anim-speed-modifier: 0;
 	.mod-sidedock {
 		transition-duration: 0ms !important;
 	}
@@ -8,6 +35,7 @@
 .fast-animations {
 	--ribbon-animation-duration: 0.05s;
 	--focus-animation-duration: 0.05s;
+	--anim-speed-modifier: 0.5;
 	.mod-sidedock {
 		transition-duration: 70ms !important;
 	}

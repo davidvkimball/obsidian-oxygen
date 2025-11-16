@@ -88,6 +88,14 @@ body {
   --table-add-button-border-width: 0px;
   /* Readable line length off */
   --file-margins: var(--size-4-2) var(--size-4-12);
+  /* Animation variables */
+  --anim-speed-modifier: 1;
+  --anim-motion-baseline: cubic-bezier(0.32, 0.72, 0, 1); /* Refined (default) */
+  --anim-motion-playful: cubic-bezier(0.1, 0, 0.1, 1.25); /* Playful option */
+  --anim-duration-superfast: calc(80ms * var(--anim-speed-modifier));
+  --anim-duration-fast: calc(160ms * var(--anim-speed-modifier));
+  --anim-duration-moderate: calc(320ms * var(--anim-speed-modifier));
+  --anim-duration-slow: calc(640ms * var(--anim-speed-modifier));
 }
 
 .mod-macos {
@@ -105,6 +113,26 @@ body {
     --border-width: 0.75px;
   }
 }
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    --anim-speed-modifier: 0;
+  }
+}
+/* Plugin integration: Animation control classes */
+body.animations-default {
+  /* Default uses Refined curve (already set as --anim-motion-baseline default) */
+  /* No changes needed - this class is for explicit control */
+}
+
+body.animations-off {
+  --anim-speed-modifier: 0;
+}
+
+body.animations-playful {
+  --anim-motion-baseline: var(--anim-motion-playful);
+}
+
 /* Dynamic colors
 
 Most colors are driven from the following values, meaning that 
@@ -925,6 +953,20 @@ figure {
   border: none;
 }
 
+/* Sidebar toggle animations */
+.sidebar-toggle-icon-inner {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+.sidebar-toggle-button .clickable-icon:hover .sidebar-toggle-icon-inner {
+  width: 24%;
+}
+
+.workspace.is-left-sidedock-open .sidebar-toggle-button.mod-left .clickable-icon:hover .sidebar-toggle-icon-inner,
+.workspace.is-right-sidedock-open .sidebar-toggle-button.mod-right .clickable-icon:hover .sidebar-toggle-icon-inner {
+  width: revert-layer;
+}
+
 /* --------------- */
 /* App ribbon moved to the bottom edge */
 .is-tablet.hider-ribbon {
@@ -1113,7 +1155,7 @@ body:not(.minimal-status-off) .status-bar {
 }
 
 .status-bar {
-  transition: color 200ms linear;
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline), color var(--anim-duration-fast);
   color: var(--text-faint);
   font-size: var(--font-adaptive-smallest);
 }
@@ -1123,7 +1165,7 @@ body:not(.minimal-status-off) .status-bar {
 }
 .status-bar:hover .sync-status-icon.mod-working, .status-bar:hover .sync-status-icon.mod-success, .status-bar:hover {
   color: var(--text-muted);
-  transition: color 200ms linear;
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline), color var(--anim-duration-fast);
 }
 .status-bar .plugin-sync:hover .sync-status-icon.mod-working,
 .status-bar .plugin-sync:hover .sync-status-icon.mod-success {
@@ -1161,6 +1203,17 @@ body:not(.minimal-status-off) .status-bar {
 
 .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header-inner {
   flex-direction: var(--tab-stacked-spine-order);
+}
+
+/* Tab animations */
+body:not(.is-phone) .workspace-tab-header-container {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+.workspace .mod-sidedock .workspace-tab-header-container,
+.workspace .mod-sidedock .workspace-tab-header,
+.workspace .mod-sidedock .workspace-tab-header div {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
 }
 
 /* Title Bar */
@@ -1315,8 +1368,43 @@ body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-spl
   --labeled-nav-top-margin: 84px;
 }
 
+/* Workspace animations */
+body:not(.is-mobile) .workspace,
+body:not(.is-mobile) .app-container {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+body:not(.is-mobile) .workspace-split {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+body:not(.is-mobile) .mod-sidedock .workspace-leaf:not([style*="display: none"]) {
+  animation: workspaceLeafIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+}
+
 /* Components */
 /* Buttons */
+button,
+.clickable-icon,
+select,
+.dropdown {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-fast);
+}
+
+.workspace svg.svg-icon {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+@starting-style {
+  .workspace .clickable-icon:not(.workspace-ribbon > .sidebar-toggle-button > .clickable-icon) svg.svg-icon {
+    filter: blur(4px);
+    scale: 0.75;
+    opacity: 0;
+  }
+}
+.workspace .clickable-icon:not([aria-disabled=true]):active svg.svg-icon,
+.workspace .mod-sidedock .workspace-tab-header.tappable:active svg.svg-icon {
+  scale: 0.75;
+  opacity: 0.75;
+}
+
 .modal.mod-settings button:not(.mod-cta):not(.mod-warning),
 .modal button:not(.mod-warning),
 .modal.mod-settings button:not(.mod-warning) {
@@ -1354,6 +1442,30 @@ button.mod-warning:hover {
 }
 
 /* Modals */
+.modal-container {
+  perspective: 240px;
+}
+
+body:not(.is-mobile) .modal-bg {
+  opacity: 0 !important;
+}
+body:not(.is-mobile) .modal {
+  animation: modalIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+}
+
+.modal-title {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+body:not(.is-phone) .menu,
+body:not(.is-phone) .suggestion-container {
+  animation: menuIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+}
+
+body.is-phone .modal {
+  animation: none;
+}
+
 .modal-button-container .mod-checkbox {
   --checkbox-radius: 4px;
 }
@@ -1993,9 +2105,33 @@ body,
   box-shadow: -25vw 0px var(--active-line-bg), 25vw 0 var(--active-line-bg);
 }
 
+/* Keyframe animations */
+@keyframes workspaceLeafIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(4px);
+  }
+}
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(0.95) rotateX(-1deg);
+  }
+}
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(-8px);
+  }
+}
+/* Legacy animation classes - updated to use new variables */
 .disable-animations {
   --ribbon-animation-duration: 0ms;
   --focus-animation-duration: 0ms;
+  --anim-speed-modifier: 0;
 }
 .disable-animations .mod-sidedock {
   transition-duration: 0ms !important;
@@ -2004,6 +2140,7 @@ body,
 .fast-animations {
   --ribbon-animation-duration: 0.05s;
   --focus-animation-duration: 0.05s;
+  --anim-speed-modifier: 0.5;
 }
 .fast-animations .mod-sidedock {
   transition-duration: 70ms !important;
@@ -4771,6 +4908,15 @@ body:not(.is-mobile) .nav-folder.mod-root > .nav-folder-title .nav-folder-title-
 .nav-file:hover .nav-file-tag,
 .nav-file .is-active .nav-file-tag {
   color: var(--text-muted);
+}
+
+/* Prompt animations */
+body:not(.is-mobile) .prompt {
+  animation: modalIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+}
+
+body.is-phone .prompt {
+  animation: none;
 }
 
 input.prompt-input,

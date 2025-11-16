@@ -1,6 +1,6 @@
 {
     "name": "oxygen",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "dependencies": {
         "dotenv": "^10.0.0",
         "sass": "^1.83.0"

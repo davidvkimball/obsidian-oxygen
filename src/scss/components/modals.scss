@@ -1,5 +1,36 @@
 /* Modals */
 
+.modal-container {
+	perspective: 240px;
+}
+
+body:not(.is-mobile) {
+	.modal-bg {
+		opacity: 0 !important;
+	}
+
+	.modal {
+		animation: modalIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+	}
+}
+
+.modal-title {
+	transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+body:not(.is-phone) {
+	.menu,
+	.suggestion-container {
+		animation: menuIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+	}
+}
+
+body.is-phone {
+	.modal {
+		animation: none;
+	}
+}
+
 .modal-button-container .mod-checkbox {
 	--checkbox-radius: 4px;
 }
