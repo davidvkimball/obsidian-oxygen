@@ -37,7 +37,6 @@ The Oxygen Theme Settings plugin is also not yet in Community Plugins. Install v
 
 - [Oxygen Theme Settings](https://github.com/davidvkimball/obsidian-oxygen-settings) - Recommended for accessing color schemes, custom presets, and theme features. Includes advanced color management functionality.
 - [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) - Optional. Create custom color schemes through a visual interface with full variable customization.
-- [Hider](https://github.com/kepano/obsidian-hider) - Optional. Hide UI elements like window frame, scrollbars, and tooltips.
 
 For general features like focus mode, image grids, helper classes, alternate checkboxes, and more, see the [Minimal documentation](https://minimal.guide).
 
@@ -100,3 +99,8 @@ Oxygen is based on the Minimal theme and is regularly updated to stay current wi
 ## Disclaimer
 
 This theme is provided as-is. It modifies significant parts of the Obsidian interface and may break with future Obsidian updates or conflict with custom CSS snippets.
+
+## Credits
+
+[Minimal](https://github.com/kepano/obsidian-minimal), the theme upon which this is based.
+[Baseline](https://github.com/aaaaalexis/obsidian-baseline) theme for the animation effects and some feature ideas.
