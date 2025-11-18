@@ -6,11 +6,10 @@ A fork of [Minimal](https://github.com/kepano/obsidian-minimal) with a custom Ox
 
 ## What Makes Oxygen Different
 
-- **Custom default color scheme**: Oxygen's carefully crafted color palette replaces Minimal's default colors
-- **Advanced custom presets**: Create, import, and share custom color schemes with an intuitive interface
-- **Seamless Minimal access**: Switch to the original Minimal color scheme anytime via color scheme selector
-- **Enhanced theme management**: Import colors from any Obsidian theme automatically
-- **Full Style Settings integration**: Deep customization support for creating your own color schemes
+- **Calm color scheme**: Oxygen's carefully crafted color palette prioritizes focus.
+- **Polished animations**: Smooth transitions and subtle entrance effects for workspace panes, modals, and menus with customizable speed and motion styles.
+- **Advanced custom presets**: Create, import, and share custom color schemes with an intuitive interface using [Oxygen Theme Settings](https://github.com/davidvkimball/obsidian-oxygen-settings)
+- **Full Style Settings integration**: Supports anything from Minimal in the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin
 
 For general features and documentation, see [minimal.guide](https://minimal.guide).
 
@@ -25,7 +24,7 @@ Oxygen is not yet available in the Community Themes section. Install using [BRAT
 3. Click "Add Beta Theme" and enter: `https://github.com/david/obsidian-oxygen`
 4. Go to `Appearance` settings and select "Oxygen" from the theme dropdown
 
-**Install the Companion Plugin** (Recommended)
+**Install the Companion Plugin** (Highly Recommended)
 
 The Oxygen Theme Settings plugin is also not yet in Community Plugins. Install via BRAT:
 
@@ -46,11 +45,9 @@ Oxygen offers the same color schemes as Minimal, with Oxygen as the default inst
 
 **Built-in schemes:** Oxygen (default), Minimal (original), Atom, Ayu, Catppuccin, Dracula, Eink, Everforest, Flexoki, Gruvbox, macOS, Nord, Rose Pine, Sky, Solarized, and Things.
 
-All schemes can be separately selected for light and dark mode.
-
 ## Custom Presets
 
-Oxygen's custom preset functionality extends beyond Minimal's capabilities:
+Oxygen's custom preset (via Oxygen Theme Settings) functionality extends beyond Minimal's capabilities:
 
 - **Create custom color schemes** with an intuitive color picker interface
 - **Import any Obsidian theme** and extract its color palette automatically
@@ -59,6 +56,18 @@ Oxygen's custom preset functionality extends beyond Minimal's capabilities:
 - **Live preview** of changes as you design
 
 Access custom presets through the "Custom Presets" tab in Oxygen Theme Settings. See `CUSTOM_PRESET_GUIDE.md` for detailed documentation.
+
+## Animations
+
+Oxygen includes smooth, polished animations throughout the interface to enhance the user experience:
+
+- **Entrance effects**: Workspace panes, modals, and menus fade in with subtle scale and blur effects
+- **Smooth transitions**: Sidebars, tabs, ribbons, and focus mode elements transition smoothly between states
+- **Customizable speed**: Choose between normal, fast, or disabled animations via Style Settings
+- **Motion styles**: Two easing curves available—refined (default) for subtle elegance, or playful for a bouncier feel
+- **Accessibility**: Automatically respects your system's `prefers-reduced-motion` setting
+
+These are based off of the animations found in the [Baseline](https://github.com/aaaaalexis/obsidian-baseline) theme.
 
 ### Using Style Settings
 
