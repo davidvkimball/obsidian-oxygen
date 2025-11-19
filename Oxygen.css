@@ -2759,6 +2759,12 @@ body:not(.borders-on) .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) {
 }
 
 /* TAB BORDERS ONLY - Isolated to just tab treatment */
+/* Set --tab-curve on all tabs to control bottom corner curvature */
+/* Only apply when borders-on is NOT present */
+body:not(.borders-on) .workspace .mod-root .workspace-tab-header {
+  --tab-curve: 8px !important; /* Increase curve amount for more pronounced bottom corners */
+}
+
 /* Active tab: visible border on left/right, extend down to cover container's top border */
 /* Set tab outline variables ONLY for active tabs (for curved corners) */
 /* Only apply when borders-on is NOT present */
