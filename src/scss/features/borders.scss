@@ -98,12 +98,25 @@ body:not(.borders-on):not(.sidebar-color) .mod-right-split {
 	--background-secondary: var(--enhanced-border-right-sidebar-bg) !important;
 }
 
-/* Use container-inner with margin-bottom: -1px to overlap the container's top border */
+/* Use container-inner to overlap the container's top border */
 /* Only apply when borders-on is NOT present */
+/* The margin-bottom: -1px moves the container up to overlap the border */
+/* Add top: -1px to move the entire tab container up by 1px to compensate for border visual effect */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-header-container-inner {
 	margin-bottom: -1px;
 	position: relative;
 	z-index: 1;
+}
+
+/* Compensate for margin-bottom: -1px by adjusting padding-top */
+/* Must have higher specificity than tabs-modern rule to override its padding */
+body:not(.borders-on) .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-container-inner {
+	padding-top: 3px !important; /* Override tabs-modern's 2px padding-top */
+}
+
+/* Adjust tab height to match Minimal - reduce by 1px if tabs appear taller */
+body:not(.borders-on) .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) {
+	--tab-height: calc(var(--header-height) - 15px); /* Reduced from 14px to 15px to make tabs 1px shorter */
 }
 
 /* TAB BORDERS ONLY - Isolated to just tab treatment */
