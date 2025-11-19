@@ -98,7 +98,7 @@ body:not(.borders-on):not(.sidebar-color) .mod-right-split {
 	--background-secondary: var(--enhanced-border-right-sidebar-bg) !important;
 }
 
-/* Use container-inner with margin-bottom: -1px to overlap the container's top border (Baseline approach) */
+/* Use container-inner with margin-bottom: -1px to overlap the container's top border */
 /* Only apply when borders-on is NOT present */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-header-container-inner {
 	margin-bottom: -1px;
@@ -106,86 +106,54 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-header-container-inner
 	z-index: 1;
 }
 
-/* Reserve border space for ALL tabs to prevent shifting when active tab changes */
-/* Only the active tab will show the border */
-/* Only apply when borders-on is NOT present */
-/* Disable any default borders first */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header {
-	box-sizing: border-box;
-	border: 1px solid transparent !important;
-	border-top: 1px solid transparent !important;
-	border-left: 1px solid transparent !important;
-	border-right: 1px solid transparent !important;
-	border-bottom: none !important;
-}
-
-/* Make the active tab header connect seamlessly to the container below it */
+/* TAB BORDERS ONLY - Isolated to just tab treatment */
+/* Active tab: visible border on left/right, extend down to cover container's top border */
+/* Set tab outline variables ONLY for active tabs (for curved corners) */
 /* Only apply when borders-on is NOT present */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active {
-	border: 1px solid var(--background-modifier-border) !important;
-	border-top: 1px solid var(--background-modifier-border) !important;
-	border-left: 1px solid var(--background-modifier-border) !important;
-	border-right: 1px solid var(--background-modifier-border) !important;
-	border-bottom: none !important;
-	border-radius: var(--radius-m) var(--radius-m) 0 0 !important;
-	background-color: var(--background-primary);
-	position: relative;
-	/* Ensure the tab header itself doesn't change height or alignment */
-	height: auto;
-	min-height: inherit;
-	align-items: inherit;
+	border-left-color: var(--background-modifier-border);
+	border-right-color: var(--background-modifier-border);
 	margin-bottom: -1px;
+	position: relative;
+	--tab-outline-width: 1px;
+	--tab-outline-color: var(--background-modifier-border);
 }
 
-/* Prevent icons and close button from shifting when enhanced borders are enabled */
-/* Only apply to active tab to minimize changes */
-/* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button {
-	margin-top: -1px;
-}
-
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-icon.iconic-icon {
-	margin-top: -1px;
-}
-
-/* Hide the divider line only when it's adjacent to an active tab */
-/* The divider is on the right side of each tab (::after on workspace-tab-header-inner) */
-/* Hide divider on active tab itself */
-/* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner::after {
-	display: none !important;
-}
-/* Hide divider on inactive tab that comes immediately before an active tab */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header:not(.is-active):has(+ .workspace-tab-header.is-active) .workspace-tab-header-inner::after {
-	display: none !important;
-}
-
-/* Disable the theme's box-shadow on ::before and ::after that interferes with the connection */
+/* Enhance ::before/::after to extend the border down to cover container's top border */
+/* Obsidian's box-shadow already includes the border on the curve via --tab-outline-width */
+/* We just need to extend it down to cover the container border */
 /* Only apply when borders-on is NOT present */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active::before,
 body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active::after {
-	box-shadow: none !important;
+	/* Preserve Obsidian's existing box-shadow (includes border via --tab-outline-width) */
+	/* Then add extended border layers that continue down to cover container */
+	box-shadow: inset 0 0 0 var(--tab-outline-width) var(--tab-outline-color), 
+	            0 0 0 calc(var(--tab-curve) * 4) var(--tab-background-active),
+	            0 calc(var(--tab-curve) * 2) 0 var(--tab-outline-width) var(--tab-outline-color),
+	            0 calc(var(--tab-curve) * 2 + 1px) 0 var(--tab-outline-width) var(--tab-outline-color),
+	            0 calc(var(--tab-curve) * 2 + 2px) 0 var(--tab-outline-width) var(--tab-outline-color);
 }
 
-/* Use a pseudo-element to extend the tab's background down and cover the container's top border */
+/* Extend the active tab's background down to cover the container's top border */
+/* Use the inner element since tab's ::after is used by Obsidian for right curve */
 /* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active::after {
+body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner {
+	position: relative;
+}
+
+/* Create extension to cover container border - use inner's ::after */
+/* Hide Obsidian's divider first, then add our extension */
+body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner::after {
 	content: '';
 	position: absolute;
 	bottom: -2px;
 	left: -1px;
 	right: -1px;
-	height: 3px;
-	background-color: var(--background-primary);
-}
-
-/* Ensure the active tab header inner element also has the rounded top */
-/* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner {
-	border-top-left-radius: var(--radius-m);
-	border-top-right-radius: var(--radius-m);
-	background-color: var(--background-primary);
+	height: 2px;
+	background-color: var(--tab-background-active);
+	z-index: 1;
+	/* This extends below the curved corners to cover the container border */
+	/* Note: This replaces Obsidian's divider line on the active tab */
 }
 
 /* Make sure the tab header container doesn't interfere and allows proper positioning */
