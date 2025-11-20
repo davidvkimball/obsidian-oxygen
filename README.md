@@ -15,11 +15,11 @@ For general features and documentation, see [minimal.guide](https://minimal.guid
 
 ## Installation
 
-**Install using BRAT**
+Oxygen is not yet available in the Community Themes section. Install using [BRAT](https://github.com/TfTHacker/obsidian42-brat) or manually:
 
-Oxygen is not yet available in the Community Themes section. Install using [BRAT](https://github.com/TfTHacker/obsidian42-brat):
+### BRAT
 
-1. Install the BRAT plugin from Community Plugins
+1. Install the [BRAT](https://github.com/TfTHacker/obsidian42-brat) plugin from Community Plugins
 2. Open BRAT settings (Settings → BRAT)
 3. Click "Add Beta Theme" and enter: `https://github.com/davidvkimball/obsidian-oxygen`
 4. Go to `Appearance` settings and select "Oxygen" from the theme dropdown
@@ -31,6 +31,18 @@ The Oxygen Theme Settings plugin is also not yet in Community Plugins. Install v
 1. In BRAT settings, click "Add Beta plugin"
 2. Enter: `https://github.com/davidvkimball/obsidian-oxygen-settings`
 3. Enable the plugin in Settings → Community Plugins
+
+### Manual
+
+1. Download the latest release from the [Releases page](https://github.com/davidvkimball/obsidian-oxygen/releases) and navigate to your Obsidian vault's `.obsidian/themes/` directory.
+2. Create a new folder called "Oxygen" and ensure `manifest.json` and `theme.css` are in it.
+3. In Obsidian, go to **Settings > Appearance** and then enable "Oxygen."
+
+**Install the Companion Plugin** (Highly Recommended)
+
+1. Download the latest release from the Oxygen Theme Settings [Releases page](https://github.com/davidvkimball/obsidian-oxygen-settings) and navigate to your Obsidian vault's `.obsidian/plugins/` directory.
+2. Create a new folder `oxygen-settings` and ensure `manifest.json`, `main.js`, and `styles.css` are in there.
+3. In Obsidian, go to **Settings > Community Plugins**, enable "Community Plugins" if not already enabled, and then enable "Oxygen Theme Settings."
 
 ## Companion Plugins
 
