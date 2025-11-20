@@ -2783,10 +2783,6 @@ body.borders-on .workspace .mod-root .workspace-tab-container {
   border-radius: 0 !important;
 }
 
-body.borders-on .workspace .mod-root .workspace-tab-header-container-inner {
-  margin-bottom: 0 !important;
-}
-
 body.borders-on .workspace .mod-root .workspace-tab-header {
   border: none !important;
 }
