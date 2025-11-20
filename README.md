@@ -21,7 +21,7 @@ Oxygen is not yet available in the Community Themes section. Install using [BRAT
 
 1. Install the BRAT plugin from Community Plugins
 2. Open BRAT settings (Settings → BRAT)
-3. Click "Add Beta Theme" and enter: `https://github.com/david/obsidian-oxygen`
+3. Click "Add Beta Theme" and enter: `https://github.com/davidvkimball/obsidian-oxygen`
 4. Go to `Appearance` settings and select "Oxygen" from the theme dropdown
 
 **Install the Companion Plugin** (Highly Recommended)
@@ -29,7 +29,7 @@ Oxygen is not yet available in the Community Themes section. Install using [BRAT
 The Oxygen Theme Settings plugin is also not yet in Community Plugins. Install via BRAT:
 
 1. In BRAT settings, click "Add Beta plugin"
-2. Enter: `https://github.com/david/obsidian-oxygen-settings`
+2. Enter: `https://github.com/davidvkimball/obsidian-oxygen-settings`
 3. Enable the plugin in Settings → Community Plugins
 
 ## Companion Plugins
