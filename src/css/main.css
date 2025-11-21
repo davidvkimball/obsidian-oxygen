@@ -221,8 +221,23 @@ body .excalidraw {
 }
 
 /* Commander plugin icon styling for light theme - match default Obsidian icon treatment */
-.theme-light .cmdr.clickable-icon {
+.theme-light .cmdr.clickable-icon,
+.theme-light .cmdr-page-header.clickable-icon {
   color: var(--icon-color) !important;
+  opacity: var(--icon-opacity);
+}
+
+/* CMDR icons in status bar (light theme) - match status bar text color */
+.theme-light .status-bar .cmdr.clickable-icon,
+.theme-light .status-bar .cmdr.status-bar-item.clickable-icon {
+  color: var(--text-faint) !important;
+  opacity: 1;
+}
+
+/* Status bar hover state (light theme) */
+.theme-light .status-bar:hover .cmdr.clickable-icon,
+.theme-light .status-bar:hover .cmdr.status-bar-item.clickable-icon {
+  color: var(--text-muted) !important;
 }
 
 /* In File Explorer context, use muted opacity like other File Explorer icons */
@@ -372,8 +387,23 @@ All other color schemes override this base
 }
 
 /* Commander plugin icon styling - match default Obsidian icon treatment */
-.cmdr.clickable-icon {
+.cmdr.clickable-icon,
+.cmdr-page-header.clickable-icon {
   color: var(--icon-color) !important;
+  opacity: var(--icon-opacity);
+}
+
+/* CMDR icons in status bar - match status bar text color instead of icon color */
+.status-bar .cmdr.clickable-icon,
+.status-bar .cmdr.status-bar-item.clickable-icon {
+  color: var(--text-faint) !important;
+  opacity: 1;
+}
+
+/* Status bar hover state - match status bar hover color */
+.status-bar:hover .cmdr.clickable-icon,
+.status-bar:hover .cmdr.status-bar-item.clickable-icon {
+  color: var(--text-muted) !important;
 }
 
 /* In File Explorer context, use muted opacity like other File Explorer icons */
