@@ -23,6 +23,22 @@
 	}
 }
 
+/* Editing Toolbar animations - fade in/out like menus */
+@keyframes editingToolbarSubmenuIn {
+	from {
+		opacity: 0;
+		filter: blur(4px);
+	}
+}
+
+@keyframes editingToolbarFollowingIn {
+	from {
+		opacity: 0;
+		filter: blur(4px);
+		transform: scale(0.95);
+	}
+}
+
 /* Legacy animation classes - updated to use new variables */
 .disable-animations {
 	--ribbon-animation-duration: 0ms;

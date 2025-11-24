@@ -1412,18 +1412,88 @@ body:not(.is-mobile) .mod-sidedock .workspace-leaf:not([style*="display: none"])
 
 /* Components */
 /* Buttons */
-button,
-.clickable-icon,
+button:not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]),
+.clickable-icon:not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]),
 select,
 .dropdown {
   transition: var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-fast);
 }
 
+/* Editing Toolbar submenu items - no animations, but add delay before hiding */
+/* Disable animations/transitions for submenu content to prevent disorientation */
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) .subitem *,
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) .subitem button,
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) .subitem svg {
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+/* Add small delay before submenu hides - allows time to move mouse from button to submenu */
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) .subitem {
+  transition: visibility 0.15s linear 0.1s !important;
+}
+
+/* Keep submenu visible when hovering over parent button or submenu itself */
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:hover .subitem,
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem] .subitem:hover {
+  visibility: visible !important;
+  transition-delay: 0s !important;
+}
+
+/* Hide ALL other submenus immediately when any button is hovered (no delay) */
+/* This prevents multiple submenus from being open at once */
+/* Use both visibility and pointer-events to ensure they're truly hidden */
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar):has(button[class^=editingToolbarCommandsubItem]:hover) button[class^=editingToolbarCommandsubItem]:not(:hover) .subitem {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: visibility 0s linear 0s !important;
+  transition-delay: 0s !important;
+  opacity: 0 !important;
+}
+
+/* Editing Toolbar "following" bar mode - smooth fade in/out */
+/* Don't override plugin's position transition - let it handle left/top smoothly */
+/* Only add opacity/filter transitions that work with visibility changes */
+#editingToolbarModalBar.editingToolbarDefaultAesthetic,
+#editingToolbarModalBar.editingToolbarFlex {
+  /* Add opacity/filter transitions for fade effects, but don't override position transitions */
+  transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline), filter var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+/* Fade-out when hidden (if plugin ever hides it) */
+#editingToolbarModalBar.editingToolbarDefaultAesthetic[style*="visibility: hidden"],
+#editingToolbarModalBar.editingToolbarFlex[style*="visibility: hidden"] {
+  opacity: 0;
+  filter: blur(4px);
+}
+
+/* Ensure following bar children fade together */
+#editingToolbarModalBar.editingToolbarDefaultAesthetic *,
+#editingToolbarModalBar.editingToolbarFlex *,
+#editingToolbarModalBar.editingToolbarDefaultAesthetic button,
+#editingToolbarModalBar.editingToolbarFlex button,
+#editingToolbarModalBar.editingToolbarDefaultAesthetic svg,
+#editingToolbarModalBar.editingToolbarFlex svg {
+  transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline), filter var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+/* Editing Toolbar "top centered" mode - match content width */
+#editingToolbarModalBar.top.centered {
+  width: var(--line-width) !important;
+  max-width: var(--max-width) !important;
+  margin-inline: var(--content-margin) !important;
+  align-self: center;
+}
+
+.workspace {
+  /* Icon fade effects - exclude Editing Toolbar elements (they have their own animations) */
+}
 .workspace svg.svg-icon {
   transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
 }
 @starting-style {
-  .workspace .clickable-icon:not(.workspace-ribbon > .sidebar-toggle-button > .clickable-icon) svg.svg-icon {
+  .workspace .clickable-icon:not(.workspace-ribbon > .sidebar-toggle-button > .clickable-icon):not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]):not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) .subitem *):not(#editingToolbarModalBar.editingToolbarDefaultAesthetic *):not(#editingToolbarModalBar.editingToolbarFlex *) svg.svg-icon {
     filter: blur(4px);
     scale: 0.75;
     opacity: 0;
@@ -2155,6 +2225,20 @@ body,
     opacity: 0;
     filter: blur(4px);
     transform: translateY(-8px);
+  }
+}
+/* Editing Toolbar animations - fade in/out like menus */
+@keyframes editingToolbarSubmenuIn {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+@keyframes editingToolbarFollowingIn {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(0.95);
   }
 }
 /* Legacy animation classes - updated to use new variables */
