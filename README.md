@@ -4,6 +4,10 @@
 
 A fork of [Minimal](https://github.com/kepano/obsidian-minimal) with a custom Oxygen color scheme as the default. Oxygen extends Minimal's excellent foundation with enhanced color scheme management and custom preset functionality.
 
+## Made for Vault CMS
+
+Part of the [Vault CMS](https://github.com/davidvkimball/vault-cms) project.
+
 ## What Makes Oxygen Different
 
 - **Calm color scheme**: Oxygen's carefully crafted color palette prioritizes focus.
