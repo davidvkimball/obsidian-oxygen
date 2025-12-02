@@ -1399,15 +1399,15 @@ body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-spl
 }
 
 /* Workspace animations */
-body:not(.is-mobile) .workspace,
-body:not(.is-mobile) .app-container {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-}
-body:not(.is-mobile) .workspace-split {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-}
+/* NOTE: Transitions removed from workspace/app-container/workspace-split to prevent drag lag */
+/* These transitions were causing severe performance issues during file drag operations */
 body:not(.is-mobile) .mod-sidedock .workspace-leaf:not([style*="display: none"]) {
   animation: workspaceLeafIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+}
+
+/* Performance optimization: isolate file explorer to prevent repaints during drag */
+.nav-files-container {
+  contain: layout style paint;
 }
 
 /* Components */
@@ -4971,6 +4971,11 @@ body {
 }
 
 /* File browser */
+/* Performance optimization: isolate file explorer to prevent repaints during drag */
+.nav-files-container {
+  contain: layout style paint;
+}
+
 .hider-file-nav-header:not(.labeled-nav) .nav-files-container {
   padding-top: var(--size-4-3);
 }

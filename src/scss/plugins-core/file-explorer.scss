@@ -1,5 +1,9 @@
 /* File browser */
 
+/* Performance optimization: isolate file explorer to prevent repaints during drag */
+.nav-files-container {
+	contain: layout style paint;
+}
 
 .hider-file-nav-header:not(.labeled-nav) {
 	.nav-files-container {
