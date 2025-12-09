@@ -50,6 +50,17 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
 	box-sizing: border-box;
 }
 
+/* macOS-specific fixes: Remove top border but keep overflow hidden for proper border-radius rendering */
+/* On macOS frameless windows, the title bar is integrated into the tab area, so we can't have a top border */
+/* The title bar is absolutely positioned relative to workspace, not this container, so overflow: hidden is safe */
+/* Keep rounded corners on all sides for visual consistency */
+body:not(.borders-on).mod-macos .workspace .mod-root .workspace-tab-container {
+	overflow: hidden !important; /* Required for border-radius to render properly */
+	border-top: none !important; /* Remove top border to preserve title bar integration */
+	border-radius: var(--radius-m) var(--radius-m) var(--radius-m) var(--radius-m) !important; /* Round all corners */
+	position: relative !important; /* Keep relative for proper rendering, title bar is positioned relative to workspace */
+}
+
 /* Match the left sidebar background color behind the tabs */
 /* Set a CSS variable at workspace level to capture --background-secondary before any overrides */
 /* Only apply when borders-on is NOT present */
@@ -79,10 +90,49 @@ body:not(.borders-on):not(.colorful-frame) .workspace .mod-root .workspace-tab-h
 	border-top-right-radius: var(--radius-m);
 }
 
+/* macOS-specific: Apply background color but keep top corners flat to preserve title bar integration */
+/* The title bar is absolutely positioned within this area, so we must not interfere with positioning */
+body:not(.borders-on):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tabs.mod-top {
+	--tab-container-background: var(--enhanced-border-sidebar-bg) !important; /* Match sidebar background */
+}
+
+body:not(.borders-on):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tab-header-container {
+	background-color: var(--enhanced-border-sidebar-bg) !important; /* Match sidebar background */
+	border-top-left-radius: 0 !important; /* Keep top flat for title bar */
+	border-top-right-radius: 0 !important; /* Keep top flat for title bar */
+	position: static !important; /* Ensure title bar can position correctly */
+	z-index: auto !important; /* Don't interfere with title bar z-index */
+}
+
+/* Ensure title bar itself is never affected by enhanced borders on macOS */
+body:not(.borders-on).mod-macos.is-hidden-frameless .titlebar,
+body:not(.borders-on).mod-macos.is-hidden-frameless .titlebar-inner,
+body:not(.borders-on).mod-macos.is-hidden-frameless .titlebar-text {
+	position: absolute !important; /* Preserve title bar positioning */
+	z-index: 9999 !important; /* Ensure title bar is always on top */
+	pointer-events: none !important; /* Allow clicks to pass through to window controls */
+}
+
+body:not(.borders-on).mod-macos.is-hidden-frameless .titlebar-button-container {
+	pointer-events: auto !important; /* Re-enable clicks on window controls */
+	z-index: 10000 !important; /* Window controls above title text */
+}
+
+/* Fix right sidebar toggle button background color on macOS when enhanced borders are enabled */
+/* Override the tab-container-background that's incorrectly applied to the toggle button */
+body:not(.borders-on).mod-macos.is-hidden-frameless:not(.is-popout-window) .sidebar-toggle-button.mod-right {
+	background-color: var(--background-secondary) !important; /* Match sidebar background instead of tab container */
+}
+
 /* Override the workspace-split.mod-root background to match sidebar color */
 /* The theme sets it to --background-primary, but we want --background-secondary for seamless appearance */
 body:not(.borders-on):not(.colorful-frame) .workspace .workspace-split.mod-root {
 	background-color: var(--enhanced-border-sidebar-bg) !important;
+}
+
+/* macOS-specific: Match workspace split background to sidebar to prevent bleed-through at rounded corners */
+body:not(.borders-on):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .workspace-split.mod-root {
+	background-color: var(--enhanced-border-sidebar-bg) !important; /* Match sidebar to prevent corner bleed */
 }
 
 /* Override the theme rule that makes right sidebar use --background-primary */
@@ -106,6 +156,13 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-header-container-inner
 	margin-bottom: -1px;
 	position: relative;
 	z-index: 1;
+}
+
+/* macOS-specific: Adjust positioning to cover the border line but preserve title bar integration */
+body:not(.borders-on).mod-macos .workspace .mod-root .workspace-tab-header-container-inner {
+	margin-bottom: -1px !important; /* Move container up to cover border line */
+	position: relative !important; /* Need relative for z-index to work */
+	z-index: 1 !important; /* Ensure tabs are above border */
 }
 
 /* Compensate for margin-bottom: -1px by adjusting padding-top */
@@ -173,6 +230,12 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .work
 	z-index: 1;
 	/* This extends below the curved corners to cover the container border */
 	/* Note: This replaces Obsidian's divider line on the active tab */
+}
+
+/* macOS-specific: Ensure the extension properly covers the border line */
+body:not(.borders-on).mod-macos .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner::after {
+	height: 3px !important; /* Slightly taller to ensure full coverage */
+	bottom: -3px !important; /* Extend further down to cover border */
 }
 
 /* Make sure the tab header container doesn't interfere and allows proper positioning */
