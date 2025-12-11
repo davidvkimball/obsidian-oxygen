@@ -2934,6 +2934,7 @@ body:not(.borders-on) .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) {
 /* Only apply when borders-on is NOT present */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-header {
   --tab-curve: 8px !important; /* Increase curve amount for more pronounced bottom corners */
+  margin-bottom: -1px; /* Apply to ALL tabs for consistent vertical positioning */
 }
 
 /* Active tab: visible border on left/right, extend down to cover container's top border */
@@ -2942,7 +2943,7 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-header {
 body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active {
   border-left-color: var(--background-modifier-border);
   border-right-color: var(--background-modifier-border);
-  margin-bottom: -1px;
+  /* margin-bottom: -1px; removed - now inherited from parent rule for consistent positioning */
   position: relative;
   --tab-outline-width: 1px;
   --tab-outline-color: var(--background-modifier-border);
