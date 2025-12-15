@@ -638,6 +638,12 @@ The CSS cascade ensures this works correctly:
   --workspace-background-translucent: hsla(var(--base-h),var(--base-s), var(--base-l), 0.7);
 }
 
+.theme-light.minimal-light-contrast.is-mobile .workspace-drawer.mod-left {
+  --raised-background: var(--ui1);
+  --raised-shadow: none;
+  --raised-mask-border-width: 0px;
+}
+
 .theme-dark .view-actions,
 .theme-light .view-actions {
   --icon-color-active: var(--ax1);
@@ -694,6 +700,7 @@ The CSS cascade ensures this works correctly:
   --bg3: rgba(0, 0, 0, 0.05); /* Light background for interactive elements */
   --background-table-rows: var(--bg2); /* Table rows use bg2 */
   --interactive-normal: var(--bg3); /* Interactive elements use bg3 */
+  --setting-items-background: var(--bg3);
   --background-modifier-hover: rgba(0, 0, 0, 0.05); /* Light hover for white backgrounds */
   --background-modifier-form-field: rgba(0, 0, 0, 0.05); /* Light form field background */
 }
@@ -702,6 +709,7 @@ The CSS cascade ensures this works correctly:
   --background-secondary: var(--bg1);
   --background-primary-alt: var(--bg3);
   --background-table-rows: var(--bg3);
+  --setting-items-background: var(--bg3);
 }
 .theme-light.minimal-light-tonal.is-mobile {
   --background-modifier-form-field: var(--bg3);
@@ -712,15 +720,17 @@ The CSS cascade ensures this works correctly:
   --ribbon-background: var(--bg1);
   --background-secondary: var(--bg1);
   --background-table-rows: var(--bg3);
+  --setting-items-background: var(--bg3);
 }
 
 .theme-dark.minimal-dark-black {
   --background-primary-alt: var(--bg3);
   --background-table-rows: var(--bg3);
+  --setting-items-background: var(--bg3);
   --modal-border: var(--ui2);
   --active-line-bg: rgba(255,255,255,0.085);
   --background-modifier-form-field: var(--bg3);
-  --background-modifier-cover:hsla(var(--base-h),var(--base-s),calc(var(--base-d) + 8%),0.9);
+  --background-modifier-cover:hsla(var(--base-h),var(--base-s),calc(var(--base-d) + 8%),0.7);
   --background-modifier-box-shadow: rgba(0, 0, 0, 1);
 }
 
@@ -1547,7 +1557,8 @@ button.mod-warning:hover {
 }
 
 body:not(.is-mobile) .modal-bg {
-  opacity: 0 !important;
+  background-color: var(--background-modifier-cover) !important; /* Use the theme's cover color for dimming */
+  /* Opacity is set inline by Obsidian (0.85), we just need to ensure background color is applied */
 }
 body:not(.is-mobile) .modal {
   animation: modalIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
@@ -2712,12 +2723,14 @@ body {
   max-width: var(--iframe-max-width);
 }
 
-.borders-none {
-  --divider-width:0px;
+/* Set CSS variables for borders-none mode */
+/* These are applied when the plugin adds the borders-none class to body */
+body.borders-none {
+  --divider-width: 0px;
   --tab-outline-width: 0px;
 }
 
-body:is(.borders-none) .mod-root .workspace-tab-header-container:is(div, :hover) {
+body.borders-none .mod-root .workspace-tab-header-container:is(div, :hover) {
   --tab-outline-width: 0px;
 }
 
@@ -2729,8 +2742,9 @@ body:is(.borders-none) .mod-root .workspace-tab-header-container:is(div, :hover)
 /* Based on Baseline's approach: use container-inner with margin-bottom: -1px */
 /* CRITICAL: Disable default Obsidian borders by setting CSS variables to 0 */
 /* This is how borders-none works - it sets these variables which Obsidian uses for borders */
+/* NOTE: --divider-width might affect tab dividers - REMOVED to test if it's breaking divider logic */
 body:not(.borders-on) {
-  --divider-width: 0px;
+  /* --divider-width: 0px; REMOVED - might be breaking tab divider logic */
   --tab-outline-width: 0px;
 }
 
@@ -2751,7 +2765,6 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
 
 /* Now apply the enhanced border styling */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
-  border: 1px solid var(--background-modifier-border) !important;
   border-top: 1px solid var(--background-modifier-border) !important;
   border-left: 1px solid var(--background-modifier-border) !important;
   border-right: 1px solid var(--background-modifier-border) !important;
@@ -2761,6 +2774,72 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
+}
+
+/* Remove any borders from child elements and workspace-split that might create extra lines */
+/* CRITICAL: Remove borders from ALL elements inside the container AND sidebars to prevent double lines */
+body:not(.borders-on) .workspace .mod-root .workspace-split,
+body:not(.borders-on) .workspace .mod-root .workspace-split.mod-root,
+body:not(.borders-on) .workspace .mod-left-split,
+body:not(.borders-on) .workspace .mod-right-split,
+body:not(.borders-on) .workspace .mod-sidedock {
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Remove borders from workspace-leaf and workspace-leaf-content - these are likely causing the double line */
+body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf,
+body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf-content,
+body:not(.borders-on) .workspace .mod-root .workspace-leaf,
+body:not(.borders-on) .workspace .mod-root .workspace-leaf-content {
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  /* Also remove any inset box-shadows that might create border-like effects */
+  box-shadow: none !important;
+}
+
+/* Hide workspace-leaf-resize-handle by default, show on hover - only for Enhanced and None modes */
+/* This prevents visible lines while still allowing sidebar resizing */
+/* Mimic Default mode's behavior: invisible by default, accent color on hover */
+/* Target it in all possible locations */
+body:not(.borders-on) .workspace-leaf-resize-handle,
+body:not(.borders-on) .workspace .workspace-leaf-resize-handle,
+body:not(.borders-on) .workspace .mod-root .workspace-leaf-resize-handle,
+body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf-resize-handle,
+body:not(.borders-on) hr.workspace-leaf-resize-handle {
+  opacity: 0 !important;
+  border: none !important;
+  background: none !important;
+  transition: opacity 0.2s ease, background-color 0.2s ease !important;
+}
+
+/* Show resize handle on hover with accent color - matches Default mode behavior */
+body:not(.borders-on) .workspace-leaf-resize-handle:hover,
+body:not(.borders-on) .workspace .workspace-leaf-resize-handle:hover,
+body:not(.borders-on) .workspace .mod-root .workspace-leaf-resize-handle:hover,
+body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf-resize-handle:hover,
+body:not(.borders-on) hr.workspace-leaf-resize-handle:hover,
+body:not(.borders-on) .workspace-leaf:hover .workspace-leaf-resize-handle,
+body:not(.borders-on) .workspace .workspace-leaf:hover .workspace-leaf-resize-handle {
+  opacity: 1 !important;
+  background-color: var(--interactive-accent) !important;
+}
+
+/* Remove borders from ALL descendants of workspace-tab-container to prevent extra lines */
+/* Also target workspace-leaf and workspace-leaf-content more broadly */
+/* NOTE: Don't use universal selector on workspace-tab-header-inner - we need to control margin-top separately */
+body:not(.borders-on) .workspace .mod-root .workspace-tab-container *:not(.workspace-tab-header-inner),
+body:not(.borders-on) .workspace .mod-root .workspace-leaf,
+body:not(.borders-on) .workspace .mod-root .workspace-leaf-content {
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
 }
 
 /* macOS-specific fixes: Remove top border but keep overflow hidden for proper border-radius rendering */
@@ -2862,17 +2941,18 @@ body:not(.borders-on):not(.sidebar-color) .mod-right-split {
 }
 
 /* Use container-inner to overlap the container's top border */
-/* Only apply when borders-on is NOT present */
+/* Only apply when borders-on is NOT present AND borders-none is NOT present (Enhanced mode only) */
 /* The margin-bottom: -1px moves the container up to overlap the border */
 /* Add top: -1px to move the entire tab container up by 1px to compensate for border visual effect */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header-container-inner {
+/* NOTE: Also check for borders-none to match plugin's behavior and prevent shifts when plugin is toggled */
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header-container-inner {
   margin-bottom: -1px;
   position: relative;
   z-index: 1;
 }
 
 /* macOS-specific: Adjust positioning to cover the border line but preserve title bar integration */
-body:not(.borders-on).mod-macos .workspace .mod-root .workspace-tab-header-container-inner {
+body:not(.borders-on):not(.borders-none).mod-macos .workspace .mod-root .workspace-tab-header-container-inner {
   margin-bottom: -1px !important; /* Move container up to cover border line */
   position: relative !important; /* Need relative for z-index to work */
   z-index: 1 !important; /* Ensure tabs are above border */
@@ -2880,31 +2960,62 @@ body:not(.borders-on).mod-macos .workspace .mod-root .workspace-tab-header-conta
 
 /* Compensate for margin-bottom: -1px by adjusting padding-top */
 /* Must have higher specificity than tabs-modern rule to override its padding */
-body:not(.borders-on) .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-container-inner {
+/* NOTE: Also check for borders-none to match plugin's behavior and prevent shifts when plugin is toggled */
+body:not(.borders-on):not(.borders-none) .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-container-inner {
   padding-top: 3px !important; /* Override tabs-modern's 2px padding-top */
 }
 
 /* Adjust tab height to match Minimal - reduce by 1px if tabs appear taller */
-body:not(.borders-on) .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) {
+body:not(.borders-on):not(.borders-none) .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) {
   --tab-height: calc(var(--header-height) - 15px); /* Reduced from 14px to 15px to make tabs 1px shorter */
 }
 
 /* TAB BORDERS ONLY - Isolated to just tab treatment */
 /* Set --tab-curve on all tabs to control bottom corner curvature */
-/* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header {
+/* Only apply when borders-on is NOT present AND borders-none is NOT present (Enhanced mode only) */
+/* NOTE: Also check for borders-none to match plugin's behavior and prevent shifts when plugin is toggled */
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header {
   --tab-curve: 8px !important; /* Increase curve amount for more pronounced bottom corners */
   margin-bottom: -1px; /* Apply to ALL tabs for consistent vertical positioning */
 }
 
+/* Apply vertical positioning to ALL tabs (not just active) to prevent shifting when clicking */
+/* This ensures icons, titles, and close buttons are positioned consistently across all tabs */
+/* Use margin-top instead of transform to avoid interfering with Obsidian's divider logic */
+/* Transform creates a new stacking context that can break pseudo-element positioning */
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header .workspace-tab-header-inner {
+  margin-top: -1px; /* Shift icon, title, and close button up by 1px for consistent alignment */
+}
+
+/* Inactive tabs: ensure borders are transparent in Enhanced mode */
+/* Only the active tab should have visible left/right borders */
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header:not(.is-active) {
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-left-width: 0 !important;
+  border-right-width: 0 !important;
+  --tab-outline-width: 0px !important;
+  --tab-outline-color: transparent !important;
+}
+
+/* Disable box-shadow borders on inactive tabs' ::before and ::after pseudo-elements */
+/* BUT don't touch workspace-tab-header-inner::after - that's Obsidian's divider */
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header:not(.is-active)::before,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header:not(.is-active)::after {
+  box-shadow: none !important;
+}
+
+/* Note: We're NOT touching workspace-tab-header-inner::after - let Obsidian handle dividers */
 /* Active tab: visible border on left/right, extend down to cover container's top border */
 /* Set tab outline variables ONLY for active tabs (for curved corners) */
-/* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active {
+/* Only apply when borders-on is NOT present AND borders-none is NOT present (Enhanced mode only) */
+/* NOTE: Also check for borders-none to match plugin's behavior and prevent shifts when plugin is toggled */
+/* REMOVED position: relative - might be breaking Obsidian's adjacent tab detection */
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header.is-active {
   border-left-color: var(--background-modifier-border);
   border-right-color: var(--background-modifier-border);
   /* margin-bottom: -1px; removed - now inherited from parent rule for consistent positioning */
-  position: relative;
+  /* position: relative; REMOVED - might break Obsidian's divider hiding logic */
   --tab-outline-width: 1px;
   --tab-outline-color: var(--background-modifier-border);
 }
@@ -2912,46 +3023,24 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active {
 /* Enhance ::before/::after to extend the border down to cover container's top border */
 /* Obsidian's box-shadow already includes the border on the curve via --tab-outline-width */
 /* We just need to extend it down to cover the container border */
-/* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active::before,
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active::after {
+/* Only apply when borders-on is NOT present AND borders-none is NOT present (Enhanced mode only) */
+/* NOTE: Also check for borders-none to match plugin's behavior and prevent shifts when plugin is toggled */
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header.is-active::before,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header.is-active::after {
   /* Preserve Obsidian's existing box-shadow (includes border via --tab-outline-width) */
   /* Then add extended border layers that continue down to cover container */
   box-shadow: inset 0 0 0 var(--tab-outline-width) var(--tab-outline-color), 0 0 0 calc(var(--tab-curve) * 4) var(--tab-background-active), 0 calc(var(--tab-curve) * 2) 0 var(--tab-outline-width) var(--tab-outline-color), 0 calc(var(--tab-curve) * 2 + 1px) 0 var(--tab-outline-width) var(--tab-outline-color), 0 calc(var(--tab-curve) * 2 + 2px) 0 var(--tab-outline-width) var(--tab-outline-color);
 }
 
-/* Extend the active tab's background down to cover the container's top border */
-/* Use the inner element since tab's ::after is used by Obsidian for right curve */
-/* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner {
-  position: relative;
-}
-
-/* Create extension to cover container border - use inner's ::after */
-/* Hide Obsidian's divider first, then add our extension */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: -1px;
-  right: -1px;
-  height: 2px;
-  background-color: var(--tab-background-active);
-  z-index: 1;
-  /* This extends below the curved corners to cover the container border */
-  /* Note: This replaces Obsidian's divider line on the active tab */
-}
-
-/* macOS-specific: Ensure the extension properly covers the border line */
-body:not(.borders-on).mod-macos .workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner::after {
-  height: 3px !important; /* Slightly taller to ensure full coverage */
-  bottom: -3px !important; /* Extend further down to cover border */
-}
-
+/* REMOVED: Extension and position: relative - they were breaking Obsidian's divider logic */
+/* Obsidian's divider hiding logic depends on the structure of workspace-tab-header-inner */
+/* Setting position: relative or using ::before/::after on the inner element interferes with this */
+/* The box-shadow on the tab header itself should be sufficient to cover the border */
 /* Make sure the tab header container doesn't interfere and allows proper positioning */
 /* Note: background-color is set above to match left sidebar, so we only set margin here */
-/* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-header-container {
+/* Only apply when borders-on is NOT present AND borders-none is NOT present (Enhanced mode only) */
+/* NOTE: Also check for borders-none to match plugin's behavior and prevent shifts when plugin is toggled */
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-header-container {
   margin-bottom: 0;
 }
 
@@ -2965,6 +3054,127 @@ body.borders-on .workspace .mod-root .workspace-tab-header {
   border: none !important;
 }
 
+/* When borders-none is active (None mode) - remove all borders, backgrounds match Default (Obsidian defaults) */
+/* CSS variables are set above to remove borders */
+/* Remove all enhanced styling and reset backgrounds to match Default (Obsidian defaults) */
+body.borders-none .workspace .mod-root .workspace-tab-container {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* Reset container-inner positioning and padding */
+/* CRITICAL: Reset padding-top to match Default mode (2px from tabs-modern) */
+body.borders-none .workspace .mod-root .workspace-tab-header-container-inner {
+  margin-bottom: 0 !important;
+  padding-top: 2px !important; /* Reset to tabs-modern default */
+  position: unset !important;
+  z-index: unset !important;
+}
+
+/* Also reset tabs-modern padding for None mode */
+body.borders-none .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-container-inner {
+  padding-top: 2px !important; /* Reset to tabs-modern default */
+}
+
+/* Reset tab height */
+body.borders-none .tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) {
+  --tab-height: unset !important;
+}
+
+/* Reset tab curve and margin */
+body.borders-none .workspace .mod-root .workspace-tab-header {
+  --tab-curve: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Reset tab inner margin-top - None mode should match Default mode positioning */
+/* Default mode has natural positioning, but visually we need to shift up 1px to match */
+body.borders-none .workspace .mod-root .workspace-tab-header .workspace-tab-header-inner {
+  margin-top: -1px !important; /* Shift up 1px to match Default mode visual alignment */
+  margin-bottom: 0 !important;
+  transform: none !important;
+  position: static !important;
+}
+
+/* Also reset any positioning on title, icon, and close button in None mode */
+/* Ensure all elements align properly - no shifts */
+body.borders-none .workspace .mod-root .workspace-tab-header .workspace-tab-header-inner-title,
+body.borders-none .workspace .mod-root .workspace-tab-header .workspace-tab-header-inner-icon,
+body.borders-none .workspace .mod-root .workspace-tab-header .workspace-tab-header-inner-close-button {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  transform: none !important;
+  position: static !important;
+  line-height: normal !important;
+  vertical-align: baseline !important;
+}
+
+/* Reset active tab borders and outline */
+body.borders-none .workspace .mod-root .workspace-tab-header.is-active {
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  margin-bottom: 0 !important;
+  --tab-outline-width: 0 !important;
+}
+
+/* Reset active tab box-shadows */
+body.borders-none .workspace .mod-root .workspace-tab-header.is-active::before,
+body.borders-none .workspace .mod-root .workspace-tab-header.is-active::after {
+  box-shadow: none !important;
+}
+
+/* Reset inactive tab borders */
+body.borders-none .workspace .mod-root .workspace-tab-header:not(.is-active) {
+  border-left-color: unset !important;
+  border-right-color: unset !important;
+  border-left-width: unset !important;
+  border-right-width: unset !important;
+  --tab-outline-width: unset !important;
+  --tab-outline-color: unset !important;
+}
+
+/* Reset inactive tab box-shadows */
+body.borders-none .workspace .mod-root .workspace-tab-header:not(.is-active)::before,
+body.borders-none .workspace .mod-root .workspace-tab-header:not(.is-active)::after {
+  box-shadow: unset !important;
+}
+
+/* Reset ALL backgrounds to match Default (Obsidian defaults) - NOT Enhanced */
+body.borders-none .workspace {
+  --enhanced-border-sidebar-bg: unset !important;
+  --enhanced-border-right-sidebar-bg: unset !important;
+}
+
+body.borders-none .workspace .mod-root .workspace-tabs.mod-top,
+body.borders-none .workspace .mod-sidedock.mod-right-split .workspace-tabs.mod-top {
+  --tab-container-background: unset !important;
+}
+
+body.borders-none .workspace .mod-root .workspace-tab-header-container,
+body.borders-none .workspace .mod-sidedock.mod-right-split .workspace-tab-header-container {
+  background-color: unset !important;
+  border-top-left-radius: unset !important;
+  border-top-right-radius: unset !important;
+}
+
+body.borders-none .workspace .workspace-split.mod-root {
+  background-color: unset !important;
+}
+
+/* Reset right sidebar to match Default (Obsidian defaults) */
+body.borders-none .mod-right-split {
+  --background-secondary: unset !important;
+}
+
+/* Also reset the actual background color of the right sidebar container */
+body.borders-none .workspace .mod-sidedock.mod-right-split {
+  background-color: unset !important;
+}
+
+/* Default mode: No positioning adjustments needed */
+/* Enhanced mode has margin-bottom: -1px on container-inner which shifts baseline */
+/* Default mode doesn't have this, so natural position should match Enhanced visually */
+/* No transform rule needed - let it use natural positioning */
 /* MIT License | Copyright (c) Stephan Ango (@kepano) 
 
 Cards snippet for Obsidian
@@ -4982,7 +5192,6 @@ body:not(.full-file-names) .tree-item-inner {
 .is-mobile.theme-light .menu {
   --interactive-normal: var(--background-modifier-hover);
 }
-
 .is-mobile .workspace-drawer.mod-left.is-pinned {
   width: var(--mobile-left-sidebar-width);
   min-width: 150pt;
@@ -4990,6 +5199,11 @@ body:not(.full-file-names) .tree-item-inner {
 .is-mobile .workspace-drawer.mod-right.is-pinned {
   width: var(--mobile-right-sidebar-width);
   min-width: 150pt;
+}
+
+.is-phone {
+  --bases-embed-width: 100%;
+  --bases-embed-transform: none;
 }
 
 /* Core plugins */
@@ -5035,9 +5249,10 @@ body {
 }
 
 /* File browser */
-/* Performance optimization: isolate file explorer to prevent repaints during drag */
-.nav-files-container {
-  contain: layout style paint;
+/* Change file explorer tab icon from folder-closed to folder (hide the horizontal line) */
+.workspace-tab-header[data-type=file-explorer] .workspace-tab-header-inner-icon svg.lucide-folder-closed path:nth-child(2),
+.workspace-tab-header[data-type=file-explorer] .workspace-tab-header-inner-icon svg.lucide-folder-closed path[d="M2 10h20"] {
+  display: none !important;
 }
 
 .hider-file-nav-header:not(.labeled-nav) .nav-files-container {

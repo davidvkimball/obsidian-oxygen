@@ -1,8 +1,9 @@
 /* File browser */
 
-/* Performance optimization: isolate file explorer to prevent repaints during drag */
-.nav-files-container {
-	contain: layout style paint;
+/* Change file explorer tab icon from folder-closed to folder (hide the horizontal line) */
+.workspace-tab-header[data-type="file-explorer"] .workspace-tab-header-inner-icon svg.lucide-folder-closed path:nth-child(2),
+.workspace-tab-header[data-type="file-explorer"] .workspace-tab-header-inner-icon svg.lucide-folder-closed path[d="M2 10h20"] {
+	display: none !important;
 }
 
 .hider-file-nav-header:not(.labeled-nav) {

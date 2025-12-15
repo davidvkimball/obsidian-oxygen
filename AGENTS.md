@@ -1,723 +1,312 @@
-# Oxygen Theme - Architecture Guide for AI Agents
-
-## Overview
-
-The Oxygen Theme is a fork of the Minimal Theme with a custom Oxygen color scheme as the default. This document explains the architecture and how it differs from the original Minimal Theme to help AI agents understand the codebase structure.
-
-## Oxygen Theme vs. Oxygen Theme Settings Plugin
-
-### Understanding the Relationship
-
-**The Oxygen Theme** and **the Oxygen Theme Settings Plugin** are two separate but complementary components:
-
-#### Oxygen Theme (This Repository)
-- **What it is**: The CSS theme file itself (`Oxygen.css`, `theme.css`)
-- **What it contains**: 
-  - Base Oxygen color definitions (hard-coded in SCSS)
-  - All built-in color scheme definitions (Minimal, Atom, Ayu, etc.)
-  - All feature styles (focus mode, colorful headings, etc.)
-  - Layout and typography styles
-  - Style Settings plugin integration
-- **How it works**: Compiled from SCSS source files into CSS that Obsidian loads as a theme
-- **Location**: This repository (`obsidian-oxygen`)
-
-#### Oxygen Theme Settings Plugin (Separate Repository)
-- **What it is**: A companion Obsidian plugin that manages theme settings
-- **What it does**:
-  - Applies color scheme classes to the `body` element (e.g., `minimal-oxygen-dark`, `minimal-minimal-light`)
-  - Manages custom color presets (injects CSS custom properties)
-  - Controls theme features (fonts, widths, focus mode, etc.)
-  - Provides hotkeys for quick theme adjustments
-  - Syncs settings between light/dark modes
-- **How it works**: 
-  - Adds/removes CSS classes on `body` to activate color schemes
-  - Injects CSS custom properties for custom presets
-  - Modifies existing CSS variables for features
-- **Location**: Separate repository (`.oxygen-settings-reference/` folder contains a reference copy)
-
-### How They Work Together
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Obsidian Application                      │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌──────────────────────┐    ┌──────────────────────────┐ │
-│  │  Oxygen Theme        │    │  Oxygen Theme Settings   │ │
-│  │  (CSS File)          │    │  Plugin                   │ │
-│  │                      │    │                           │ │
-│  │  • Base colors       │◄───┤  • Applies scheme classes │ │
-│  │  • Color schemes     │    │  • Manages custom presets │ │
-│  │  • Feature styles    │    │  • Controls features      │ │
-│  │  • Layout styles     │    │  • Provides hotkeys       │ │
-│  └──────────────────────┘    └──────────────────────────┘ │
-│           │                              │                  │
-│           └──────────────┬───────────────┘                  │
-│                          │                                   │
-│                          ▼                                   │
-│              ┌─────────────────────┐                         │
-│              │   <body> element    │                         │
-│              │                     │                         │
-│              │ Classes:            │                         │
-│              │ • theme-dark        │                         │
-│              │ • minimal-oxygen-*  │                         │
-│              │                     │                         │
-│              │ CSS Variables:      │                         │
-│              │ • --bg1, --tx1, etc.│                         │
-│              └─────────────────────┘                         │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Key Distinctions
-
-1. **Color Schemes**: 
-   - **Defined in Theme**: All built-in color schemes (Oxygen, Minimal, Atom, etc.) are defined in `src/scss/color-schemes/*.scss`
-   - **Activated by Plugin**: The plugin adds classes like `minimal-oxygen-dark` or `minimal-minimal-light` to activate schemes
-
-2. **Custom Presets**:
-   - **Created in Plugin**: Users create custom presets through the plugin's UI
-   - **Injected by Plugin**: The plugin injects CSS custom properties directly onto the `body` element
-   - **Not in Theme Files**: Custom presets are NOT stored in the theme's SCSS files
-
-3. **Base Theme Colors**:
-   - **Defined in Theme**: Base Oxygen colors are in `src/scss/variables/dynamic-color.scss`
-   - **Modified in Theme**: To change base colors, edit the SCSS source files and rebuild
-   - **Not Modified by Plugin**: The plugin doesn't change base theme colors (only applies schemes/presets)
-
-4. **Features**:
-   - **Styles in Theme**: Feature CSS (focus mode, colorful headings, workspace borders, etc.) is in `src/scss/features/*.scss`
-   - **Implemented in Theme**: The theme provides the actual CSS implementation for all features
-   - **Toggled by Plugin**: The plugin adds/removes classes to enable/disable features
-   - **Plugin Overrides**: The plugin may provide additional CSS overrides in its own `styles.css` for advanced features
-   - **Theme Provides Defaults**: The theme implements features for the base Oxygen theme (and potentially other color schemes)
-   - **Plugin Handles Settings**: The plugin manages user settings, toggles classes, and provides UI controls
-
-### Division of Responsibilities: Theme vs. Plugin
-
-**CRITICAL**: Understanding what belongs in the theme vs. the plugin is essential:
-
-#### Theme Responsibilities (CSS Implementation)
-- ✅ **Implement all feature CSS** in `src/scss/features/*.scss`
-- ✅ **Provide base implementations** for the default Oxygen theme
-- ✅ **May provide implementations** for other color schemes if needed
-- ✅ **Define default CSS variables** (e.g., `--nav-indentation-guide-width: 1px`)
-- ✅ **Style Settings integration** - Only for features that are part of the original Minimal theme
-
-#### Plugin Responsibilities (Settings & Control)
-- ✅ **Manage user settings** (store, load, save)
-- ✅ **Provide UI controls** (settings panels, toggles, dropdowns)
-- ✅ **Toggle CSS classes** on `body` element (e.g., `borders-none`, `workspace-borders-enhanced`)
-- ✅ **Set CSS variables** when user changes settings (e.g., `--nav-indentation-guide-width`)
-- ✅ **Provide advanced overrides** in plugin's `styles.css` for complex features
-- ✅ **Handle feature interactions** (e.g., enhanced borders requiring keep-tab-borders)
-
-#### What NOT to Do
-- ❌ **Don't add new features to Style Settings** - Only Minimal theme features belong there
-- ❌ **Don't implement features only in plugin** - Theme must provide base implementation
-- ❌ **Don't remove feature CSS from theme** - Plugin toggles classes, theme provides styles
-- ❌ **Don't duplicate implementations** - Theme provides base, plugin may enhance/override
-
-#### Example: Workspace Borders Feature
-- **Theme**: Implements `borders-none` class behavior, `keep-tab-borders` styling, `workspace-borders-enhanced` styling in `src/scss/features/borders.scss`
-- **Plugin**: Toggles `borders-none`, `keep-tab-borders`, `workspace-borders-enhanced` classes based on user settings
-- **Plugin**: May provide additional CSS overrides in `styles.css` for advanced behavior
-- **Style Settings**: NOT added here (not part of original Minimal theme)
-
-### When to Modify What
-
-| What to Change | Where to Modify | How |
-|----------------|-----------------|-----|
-| **Base Oxygen colors** | `src/scss/variables/dynamic-color.scss` | Edit SCSS, rebuild with `npx grunt build` |
-| **Base fonts/sizes** | `src/scss/variables/root.scss` or `theme.scss` | Edit SCSS, rebuild |
-| **Feature styles** | `src/scss/features/*.scss` | Edit SCSS, rebuild - **Theme implements features, plugin toggles them** |
-| **Layout styles** | `src/scss/app/*.scss` | Edit SCSS, rebuild |
-| **Built-in color schemes** | `src/scss/color-schemes/*.scss` | Edit SCSS, rebuild - **May need feature implementations for each scheme** |
-| **Custom presets** | Plugin UI (not in theme files) | Use plugin settings |
-| **Which scheme is active** | Plugin settings | User selects in plugin UI |
-| **Feature toggles** | Plugin settings | User toggles in plugin UI |
-| **New feature settings** | Plugin code + Theme CSS | Add CSS in theme, add settings in plugin |
-
-## Architecture
-
-### Base Theme Structure
-
-```
-Base .theme-dark = Oxygen dark colors (default)
-Base .theme-light = Oxygen light colors (default)
-├── Default (no scheme) = Oxygen colors (same as base)
-├── Oxygen scheme = Oxygen colors (same as base) 
-├── Minimal scheme = Overrides with Minimal colors
-├── Atom scheme = Overrides with Atom colors
-└── All other schemes = Override with their colors
-```
-
-### Key Files
-
-- **`src/scss/variables/dynamic-color.scss`**: Contains the base Oxygen theme colors for both light and dark modes
-  - **Light mode base**: Lines 54-98 (`.theme-light` class)
-  - **Dark mode base**: Lines 224-266 (`.theme-dark` class)
-  - **Oxygen variants**: Lines 158-203 (`.minimal-oxygen-dark.minimal-dark-black`, `.minimal-oxygen-dark.minimal-dark-tonal`, etc.)
-  - **Variable mapping layer**: Lines 412-490 (maps Oxygen vars → Obsidian native vars)
-- **`src/scss/color-schemes/oxygen.scss`**: Intentionally empty - Oxygen is the base theme, not an override
-- **`src/scss/color-schemes/minimal.scss`**: Contains complete Minimal color scheme for both light and dark modes
-- **`src/scss/color-schemes/[other].scss`**: Contains other color schemes (Atom, Things, etc.)
-- **`src/css/style-settings.css`**: Style Settings plugin configuration and UI definitions
-
-## Differences from Original Minimal Theme
-
-### Original Minimal Theme
-- **Base `.theme-dark`**: Uses HSL calculations (generic, not hard-coded)
-- **Base `.theme-light`**: Uses HSL calculations (generic, not hard-coded)
-- **Default**: The base theme IS the "Minimal" theme (HSL-calculated)
-- **Color Schemes**: Each overrides the base with specific values
-- **No separate "minimal" color scheme file** - the default IS minimal
-
-### Oxygen Theme
-- **Base `.theme-dark`**: Uses Oxygen's hard-coded dark colors (not HSL calculations)
-- **Base `.theme-light`**: Uses Oxygen's hard-coded light colors (not HSL calculations)
-- **Default**: Uses Oxygen colors (not minimal)
-- **Color Schemes**: Each overrides the base with specific values
-- **Separate "minimal" color scheme file** - minimal is now a selectable scheme
-
-## Color Scheme Isolation
-
-### Self-Contained Color Schemes
-All color schemes (Atom, Things, Minimal, etc.) are completely self-contained:
-- They define their own `--base-h`, `--base-s`, `--base-l` values
-- They define their own complete color sets (`--bg1`, `--bg2`, `--ui1`, etc.)
-- They are **identical** to the original Minimal theme's color schemes
-- **No cross-contamination** with the Oxygen base theme
-
-### Plugin Independence
-
-**Note**: This section refers to the **Style Settings plugin** (a different plugin from Oxygen Theme Settings).
-
-- **Style Settings plugin disabled**: Uses base Oxygen colors
-- **Style Settings plugin enabled**: Uses base Oxygen colors (same result)
-- **Color scheme selected**: Overrides base with scheme-specific colors
-
-**Oxygen Theme Settings plugin** is required for:
-- Selecting and switching between color schemes
-- Managing custom color presets
-- Controlling theme features (fonts, widths, focus mode, etc.)
-- Providing hotkeys for theme adjustments
-
-## Style Settings Plugin Integration
-
-### Overview
-The Oxygen Theme now provides **full compatibility** with the Style Settings plugin through a hybrid architecture that maintains both custom Oxygen variables and Obsidian native variables.
-
-### Architecture Layers
-
-```
-1. Style Settings User Customizations (Highest Priority)
-   ↓
-2. Obsidian Native Variables (Mapped from Oxygen variables)
-   ↓  
-3. Oxygen Custom Variables (Internal theme logic)
-   ↓
-4. Base Oxygen Colors (Fallback)
-```
-
-### How It Works
-
-#### 1. Dual Variable System
-- **Oxygen Variables**: Internal theme logic uses `--bg1`, `--tx1`, `--ax1`, etc.
-- **Obsidian Native Variables**: Exposed to Style Settings via `--background-primary`, `--text-normal`, etc.
-- **Automatic Mapping**: Oxygen variables are automatically mapped to Obsidian native variables
-
-#### 2. Style Settings Integration
-- **`src/css/style-settings.css`**: Exposes Obsidian native variables to Style Settings
-- **`src/scss/variables/dynamic-color.scss`**: Contains the mapping layer (lines 412-490)
-- **User Customization**: Users modify Obsidian native variables through Style Settings UI
-- **Real-time Updates**: Changes are applied immediately and persist across sessions
-
-#### 3. CSS Cascade Priority
-1. **User Customizations**: Style Settings overrides (highest priority)
-2. **Obsidian Native Variables**: Mapped from Oxygen variables
-3. **Oxygen Custom Variables**: Internal theme logic
-4. **Base Oxygen Colors**: Fallback values
-
-### Variable Mapping
-
-The theme automatically maps between variable systems:
-
-| Obsidian Native | Oxygen Custom | Purpose |
-|----------------|---------------|---------|
-| `--background-primary` | `--bg1` | Main background |
-| `--background-secondary` | `--bg2` | Secondary background |
-| `--text-normal` | `--tx1` | Primary text |
-| `--text-muted` | `--tx2` | Secondary text |
-| `--text-accent` | `--ax1` | Links and accents |
-| `--background-modifier-border` | `--ui1` | Borders and dividers |
-
-### Benefits
-
-1. **Full Style Settings Compatibility**: Works with all Style Settings features
-2. **Plugin Compatibility**: Other plugins can use Obsidian native variables
-3. **Maintained Architecture**: Internal Oxygen logic remains unchanged
-4. **User-Friendly**: Users get familiar Style Settings interface
-5. **Future-Proof**: Compatible with Obsidian updates and new plugins
-
-### Creating Custom Color Schemes
-
-Users can now create custom color schemes using:
-
-1. **Style Settings UI**: Visual interface for all Obsidian native variables
-2. **CSS Snippets**: Override either Obsidian native or Oxygen custom variables
-3. **Export/Import**: Share color schemes via Style Settings functionality
-
-### Style Settings Configuration
-
-The theme exposes these Obsidian native variables for customization:
-- **Background colors**: `--background-primary`, `--background-secondary`, etc.
-- **Text colors**: `--text-normal`, `--text-muted`, `--text-accent`, etc.
-- **Interactive colors**: `--interactive-normal`, `--interactive-hover`, etc.
-- **Border colors**: `--background-modifier-border`, `--divider-color`, etc.
-- **Scrollbar colors**: `--scrollbar-bg`, `--scrollbar-thumb-bg`, etc.
-
-## Why We Don't Modify `oxygen.scss`
-
-### Understanding Oxygen's Architecture
-
-**The base Oxygen colors live in `dynamic-color.scss`, NOT in `oxygen.scss`.**
-
-Here's why this architecture exists:
-
-### 1. Oxygen is the Default Theme
-- When you install the Oxygen Theme, it's the **default** theme
-- The base `.theme-light` and `.theme-dark` classes (in `dynamic-color.scss`) define Oxygen's colors
-- This ensures Oxygen works perfectly **without any color scheme selected**
-- Other themes (Minimal, Atom, etc.) are **alternatives** that override the Oxygen base
-
-### 2. What `oxygen.scss` Actually Contains
-
-The `oxygen.scss` file is **intentionally empty** (contains only comments):
-
-```css
-/*
-Oxygen is the BASE theme, not an override.
-All Oxygen styling comes from the base .theme-light and .theme-dark classes.
-*/
-```
-
-This emphasizes that Oxygen doesn't override anything - it IS the foundation that other schemes override.
-
-### 3. Why `oxygen.scss` is Empty
-
-Oxygen is the **base theme**, not a color scheme override. This means:
-- ❌ NO color definitions needed (they're in the base `.theme-light`/`.theme-dark`)
-- ❌ NO UI overrides needed (global features handle everything)
-- ✅ Oxygen works automatically as the foundation
-- ✅ Other schemes override Oxygen by defining their own complete color sets
-
-### 4. The Correct Approach
-
-**To change Oxygen colors:**
-1. ✅ Modify `dynamic-color.scss` lines 54-98 (light) or 224-266 (dark)
-2. ✅ Colors automatically propagate through the mapping layer
-3. ✅ Works with or without Style Settings plugin
-4. ✅ No duplication, single source of truth
-
-**If you were to modify `oxygen.scss` with colors:**
-1. ❌ Creates duplicate color definitions
-2. ❌ Breaks the "Oxygen is the base" principle
-3. ❌ Colors may not work without explicitly selecting "Oxygen" scheme
-4. ❌ Violates single source of truth principle
-
-### 5. Should You Ever Modify `oxygen.scss`?
-
-**Short answer: No.** 
-
-Oxygen is the base theme. If you need to change Oxygen's appearance:
-- ✅ **Colors**: Modify the base `.theme-light` or `.theme-dark` classes
-- ✅ **Layout/Features**: Add to global feature files (not color scheme files)
-- ❌ **Never** add anything to `oxygen.scss` - it should remain empty
-
-The file exists only for organizational consistency with other color schemes.
-
-## Modifying the Base Theme
-
-### Understanding Base Theme vs. Color Schemes
-
-**CRITICAL DISTINCTION**: The "base theme" refers to the default Oxygen colors that appear when no color scheme is selected. Color schemes (Minimal, Atom, etc.) are **overrides** that replace the base colors.
-
-### What is the Base Theme?
-
-The base theme consists of:
-- **Base Oxygen colors** (defined in `src/scss/variables/dynamic-color.scss`)
-- **Default fonts and typography** (defined in `src/scss/variables/root.scss` and `theme.scss`)
-- **Feature styles** (defined in `src/scss/features/*.scss`)
-- **Layout styles** (defined in `src/scss/app/*.scss`)
-
-### How to Modify Base Theme Colors
-
-**To change the base Oxygen color scheme** (the default colors users see):
-
-1. **Edit the base color definitions** in `src/scss/variables/dynamic-color.scss`:
-   - **Light mode**: Lines 54-98 (`.theme-light` class)
-   - **Dark mode**: Lines 224-266 (`.theme-dark` class)
-
-2. **Check for additional CSS rules** that may need updates:
-   - Light mode tab containers: around lines 100-105
-   - Dark mode tab containers: around lines 278-283
-   - These may need to reference specific variables for certain UI elements
-
-3. **Rebuild the theme**:
+# AI Agent Instructions
+
+This file serves as the entry point for AI agents working on Obsidian plugin or theme development projects. The detailed instructions have been organized into a structured directory for better maintainability.
+
+**Applicability**: Each file in `.agents` is marked with its applicability:
+- **Plugin** - Only relevant for plugin development
+- **Theme** - Only relevant for theme development  
+- **Both** - Relevant for both plugins and themes
+
+## Quick Start
+
+**All agent instructions are located in the [`.agents`](.agents/) directory.**
+
+**New to this project?** Start here:
+0. **Set up reference materials**: Check if `.ref` folder exists and has symlinks. If not, run the setup script:
+   - **Windows**: `scripts\setup-ref-links.bat` or `.\scripts\setup-ref-links.ps1`
+   - **macOS/Linux**: `./scripts/setup-ref-links.sh`
+   - The script will automatically create `../.ref/` (if needed), clone the 6 core Obsidian projects, and create symlinks
+1. Read [project-context.md](.agents/project-context.md) for project-specific information and overrides
+2. Read [project-overview.md](.agents/project-overview.md) to understand the structure
+3. Check [environment.md](.agents/environment.md) for setup requirements
+4. Review [common-tasks.md](.agents/common-tasks.md) for quick code snippets
+5. See [code-patterns.md](.agents/code-patterns.md) for complete examples
+6. Bookmark [quick-reference.md](.agents/quick-reference.md) for common commands
+
+**Note**: For complex projects, see `.agents/.context/` directory (optional advanced feature).
+
+## When to Check .ref Folder Setup
+
+**AI Agents: Only check `.ref` folder setup when user explicitly asks about:**
+- "What does the Obsidian API say about X?"
+- "Check the latest Obsidian documentation"
+- "What's the latest API?"
+- "Look up [feature] in the Obsidian docs"
+- "What does the Obsidian documentation say?"
+- "Check obsidian-api for..."
+- Similar explicit requests about API or documentation
+
+**Do NOT check `.ref` automatically for regular coding tasks.** Most users may never need it, and it shouldn't be a barrier to getting work done.
+
+**When triggered:**
+1. Check if `.ref/obsidian-api` exists
+2. If missing, run setup script: `.\scripts\setup-ref-links.ps1` (Windows) or `./scripts/setup-ref-links.sh` (Unix)
+3. Then proceed with the API/documentation lookup
+
+**Quick check commands:**
+- Windows: `Test-Path .ref/obsidian-api`
+- Unix: `test -d .ref/obsidian-api`
+
+## Help: Interactive Guidance
+
+**When the user asks for "help"** or **"what's the latest"**, present these options and guide them based on their choice:
+
+---
+
+### Option 0: Check for Updates / "What's the Latest"
+
+**Present this option when**: User explicitly asks "what's the latest", "check for updates", "what does the Obsidian documentation say", or wants to see what's new in reference repos.
+
+**Important**: Updates are **optional**. The reference materials work fine with whatever version was cloned initially. Most users never need to update. This is only for users who want the latest documentation.
+
+**Instructions for AI agent**:
+1. **First, ensure `.ref` folder is set up**: Check if `.ref/obsidian-api` exists. If not, run the setup script first (see "When to Check .ref Folder Setup" above).
+2. **Check for updates** (read-only, safe):
+   - **For core Obsidian projects**: Check `.ref/` root (obsidian-api, obsidian-sample-plugin, obsidian-developer-docs, obsidian-plugin-docs, obsidian-sample-theme)
+   - **For project-specific repos**: Check `.ref/plugins/` or `.ref/themes/` (only if documented in `project-context.md`)
+3. **Use read-only git commands**:
    ```bash
-   npx grunt build
+   cd .ref/obsidian-api  # or other repo
+   git fetch
+   git log HEAD..origin/main --oneline  # Shows what's new
    ```
+4. **Report findings**: Show what's new and ask if they want to pull updates
+5. **Never automatically pull** - always ask first (see [agent-dos-donts.md](.agents/agent-dos-donts.md))
 
-4. **Verify changes** appear in `Oxygen.css` (not just `src/css/main.css`)
+**Key files**: [ref-instructions.md](.agents/ref-instructions.md#checking-for-updates-to-reference-repos), [quick-sync-guide.md](.agents/quick-sync-guide.md)
 
-**Important Notes**:
-- ❌ **DO NOT** modify `src/scss/color-schemes/oxygen.scss` - it's intentionally empty
-- ❌ **DO NOT** modify other color scheme files (minimal.scss, atom.scss, etc.) when updating base colors
-- ✅ Changes to base colors affect the default appearance when no scheme is selected
-- ✅ Color schemes will continue to override base colors when selected
+---
 
-### How to Modify Base Fonts and Typography
+### Option 1: Check for Updates to Reference Documentation
 
-**To change default fonts, sizes, or typography**:
+**Present this option when**: User wants to sync latest best practices from official Obsidian repositories, or asks about updates to any repo in `.ref`.
 
-1. **Edit font variables** in `src/scss/variables/root.scss`:
-   - Font families: `--font-editor`, `--font-text`, `--font-ui`
-   - Font sizes: `--font-text-size`, `--font-ui-small`, etc.
+**Instructions for AI agent**:
+1. **If user asks about a specific repo** (e.g., "are there any updates to the hider plugin repo?"):
+   - **For core Obsidian projects** (obsidian-api, obsidian-sample-plugin, etc.): Check `.ref/` root
+   - **For project-specific plugins/themes**: Check `.ref/plugins/` or `.ref/themes/` (only if documented in `project-context.md`)
+   - Use `git fetch` and `git log` to check for updates (read-only, safe)
+   - Report what's new and ask if they want to pull
+   - See [ref-instructions.md](.agents/ref-instructions.md#checking-for-updates-to-reference-repos) for detailed workflow
 
-2. **Edit typography settings** in `src/scss/variables/theme.scss`:
-   - Heading sizes: `--h1-size`, `--h2-size`, etc.
-   - Line height: `--line-height`
-   - Spacing: `--p-spacing`, `--heading-spacing`
+2. **If user wants to check all official repos**:
+   - Ask: "Would you like to check for updates to the core reference documentation (Sample Plugin, API, Developer Docs, etc.)?"
+   - If yes, guide them through:
+     - Pulling latest changes: See [quick-sync-guide.md](.agents/quick-sync-guide.md)
+     - Reviewing what changed: Check git logs in `.ref/` repos (the 6 core projects)
+     - Updating `.agents/` files if needed: See [sync-procedure.md](.agents/sync-procedure.md)
+   - **Note**: The 6 core Obsidian projects (obsidian-api, obsidian-sample-plugin, obsidian-developer-docs, obsidian-plugin-docs, obsidian-sample-theme, eslint-plugin) are always relevant. Project-specific plugins/themes are documented in `project-context.md`.
 
-3. **Rebuild the theme**:
-   ```bash
-   npx grunt build
-   ```
+**Key files**: [ref-instructions.md](.agents/ref-instructions.md), [quick-sync-guide.md](.agents/quick-sync-guide.md), [sync-procedure.md](.agents/sync-procedure.md)
 
-**Note**: The Oxygen Theme Settings plugin can override these with user settings, but the base values come from the theme files.
+---
 
-### How to Modify Feature Styles
+### Option 2: Add a Project to Your References
 
-**To change how features look** (focus mode, colorful headings, workspace borders, etc.):
+**Present this option when**: User wants to reference another project (concurrent development or external reference).
 
-1. **Edit feature files** in `src/scss/features/*.scss`:
-   - Focus mode: `src/scss/features/focus-mode.scss`
-   - Colorful headings: `src/scss/features/colorful-headings.scss`
-   - Active line: `src/scss/features/active-line.scss`
-   - Workspace borders: `src/scss/features/borders.scss`
-   - etc.
+**Instructions for AI agent**:
+1. Ask: "Is this an external repository (GitHub, GitLab, etc.) or a local project you're actively developing?"
+   
+2. **If external repository**:
+   - Check if it already exists in `../.ref/` (or `../.ref/plugins/` or `../.ref/themes/` as appropriate)
+   - If not, clone to the global location: `cd ../.ref/plugins && git clone <URL> <name>` (adjust path as needed)
+   - Create symlink in project's `.ref/` folder pointing to the global location
+   - Document in `project-context.md` if it's project-specific
+   
+3. **If local project**:
+   - Create symlink directly in project's `.ref/` folder pointing to the local project (e.g., `../my-other-plugin`)
+   - **Do NOT** clone to global `.ref/` - this is project-specific
+   - Document in `project-context.md` if relevant
 
-2. **Rebuild the theme**:
-   ```bash
-   npx grunt build
-   ```
+4. **Verify**: Check that the symlink was created and works
 
-**Important Notes**:
-- **Theme Implements Features**: The theme provides the actual CSS implementation for all features
-- **Plugin Toggles Features**: The plugin adds/removes CSS classes to enable/disable features
-- **Plugin May Override**: The plugin's `styles.css` may provide additional overrides for advanced features
-- **Base Theme First**: Implement features in the base Oxygen theme (and potentially other color schemes if needed)
-- **Plugin Handles Settings**: The plugin manages user settings, UI controls, and class toggling
-- **Style Settings**: Only add features to `style-settings.css` if they're part of the original Minimal theme
+**Key file**: [ref-instructions.md](.agents/ref-instructions.md) - See "Adding Additional References" section
 
-### How to Modify Layout Styles
+---
 
-**To change layout, spacing, or UI structure**:
+### Option 3: Start a New Plugin or Theme Project
 
-1. **Edit app files** in `src/scss/app/*.scss`:
-   - Workspace: `src/scss/app/workspace.scss`
-   - Editor: `src/scss/app/editor.scss`
-   - Tabs: `src/scss/app/tab-stacks.scss`
-   - etc.
+**Present this option when**: User wants to create a new Obsidian plugin or theme.
 
-2. **Rebuild the theme**:
-   ```bash
-   npx grunt build
-   ```
+**Instructions for AI agent** - Follow this funnel:
 
-### Summary: Base Theme Modification Workflow
+1. **Initial question**: "What kind of project are you wanting to make?"
+   - If **Plugin** → Go to Plugin Funnel
+   - If **Theme** → Go to Theme Funnel
 
-```
-1. Identify what to change:
-   ├─ Colors → src/scss/variables/dynamic-color.scss
-   ├─ Fonts → src/scss/variables/root.scss
-   ├─ Typography → src/scss/variables/theme.scss
-   ├─ Features → src/scss/features/*.scss
-   └─ Layout → src/scss/app/*.scss
+2. **Plugin Funnel** - Ask these questions in order:
+   - "What functionality do you want your plugin to provide?" (core purpose)
+   - "Will it need user settings or configuration?" → If yes, point to [commands-settings.md](.agents/commands-settings.md)
+   - "What will it interact with?" (vault files, editor, UI components, workspace)
+   - "Do you need any external API integrations?" → If yes, review [security-privacy.md](.agents/security-privacy.md) for guidelines
+   - "Will it work on mobile, or desktop-only?" → Point to [mobile.md](.agents/mobile.md) and `isDesktopOnly` in [manifest.md](.agents/manifest.md)
 
-2. Edit the appropriate SCSS file(s)
+3. **Theme Funnel** - Ask these questions in order:
+   - "What visual style are you aiming for?" (color scheme, typography, layout)
+   - "Will it support both light and dark modes?" → Point to CSS variable usage
+   - "Are there specific UI elements you want to customize?" (editor, sidebar, status bar, etc.)
+   - "Do you want to include theme snippets?" → Point to file structure in [file-conventions.md](.agents/file-conventions.md)
 
-3. Rebuild:
-   npx grunt build
+4. **After gathering answers**, guide them to:
+   - [project-overview.md](.agents/project-overview.md) - Project structure
+   - [environment.md](.agents/environment.md) - Setup and tooling
+   - [file-conventions.md](.agents/file-conventions.md) - File organization
+   - [common-tasks.md](.agents/common-tasks.md) - Code examples
+   - [references.md](.agents/references.md) - Official documentation links
+   - **Set up `.ref` folder**: Run the setup script (`scripts/setup-ref-links.bat`, `.ps1`, or `.sh`) to configure reference materials
 
-4. Verify:
-   - Check Oxygen.css for changes
-   - Test in Obsidian with no color scheme selected
-   - Ensure color schemes still work correctly
-```
+**Key files**: [project-overview.md](.agents/project-overview.md), [common-tasks.md](.agents/common-tasks.md), [references.md](.agents/references.md), [ref-instructions.md](.agents/ref-instructions.md)
 
-### Common Pitfalls
+## Static vs. Project-Specific Files
 
-❌ **Don't confuse base theme with color schemes**:
-- Base theme = default Oxygen colors (in `dynamic-color.scss`)
-- Color schemes = overrides (in `color-schemes/*.scss`)
+**General `.agents` files** (most files in this directory):
+- Are synced from reference repos (Sample Plugin, API, etc.)
+- Should remain static and not be edited directly
+- Provide general-purpose guidance for all Obsidian plugins/themes
+- Can be updated by syncing from reference repositories
 
-❌ **Don't modify `oxygen.scss`**:
-- It's intentionally empty - Oxygen is the base, not an override
+**Project-specific files**:
+- **[project-context.md](.agents/project-context.md)** - Simple, recommended approach for most projects
+  - Contains project overview, specific details, maintenance tasks, and conventions
+  - Can override general `.agents` guidance when project-specific needs differ
+  - Is preserved when syncing updates from reference repos
+- **`.agents/.context/` directory** - Optional advanced feature for complex projects
+  - Use when you need project-specific versions of multiple `.agents` files
+  - Only create files that differ from general guidance
+  - Structure mirrors `.agents/` directory (e.g., `.context/build-workflow.md`, `.context/code-patterns.md`)
+  - Entry point: `.agents/.context/AGENTS.md` (if it exists)
 
-❌ **Don't assume changes in `src/css/main.css` are final**:
-- Always check `Oxygen.css` after building
-- The build process concatenates multiple files
+**Precedence**: When conflicts exist, project-specific files take precedence over general guidance.
 
-❌ **Don't forget to rebuild**:
-- SCSS changes require `npx grunt build` to take effect
-- Development watch (`npx grunt`) only updates `src/css/main.css`, not final theme files
+## Navigation
 
-## Maintenance Guidelines
+**When to use each file**:
+- **Starting a new project** → See Quick Start above
+- **Need to understand project structure** → [project-overview.md](.agents/project-overview.md)
+- **Setting up development environment** → [environment.md](.agents/environment.md)
+- **Looking for code examples** → [common-tasks.md](.agents/common-tasks.md) (quick) or [code-patterns.md](.agents/code-patterns.md) (comprehensive)
+- **Troubleshooting issues** → [troubleshooting.md](.agents/troubleshooting.md) or [common-pitfalls.md](.agents/common-pitfalls.md)
+- **Need a quick command reference** → [quick-reference.md](.agents/quick-reference.md)
+- **Working with `.ref` folder** → [ref-instructions.md](.agents/ref-instructions.md)
 
-### For Oxygen Color Changes
+### Project-Specific
+- **[project-context.md](.agents/project-context.md)** - Project-specific information and overrides (simple, recommended)
+- **`.context/` directory** - Optional project-specific structure for complex projects (advanced)
 
-**Understanding the Architecture:**
-- Base color VALUES are defined in `.theme-light` (lines 54-98) and `.theme-dark` (lines 224-266)
-- Additional CSS RULES may be needed to apply those colors to specific UI elements
-- Global feature files (in `src/scss/features/` and `src/scss/app/`) use CSS variables
-- Sometimes you need to override which variable is used in specific contexts
+### Core Development
+- **[project-overview.md](.agents/project-overview.md)** - Project structure, entry points, and artifacts (Plugin/Theme)
+- **[environment.md](.agents/environment.md)** - Development environment and tooling (Plugin/Theme)
+- **[file-conventions.md](.agents/file-conventions.md)** - File organization and folder structure (Plugin/Theme)
+- **[coding-conventions.md](.agents/coding-conventions.md)** - Code standards and organization (Plugin)
 
-**What to Modify:**
-1. **Color values** in the base theme classes (lines 54-98 for light, 224-266 for dark)
-2. **CSS rules** that apply those colors to specific elements (e.g., lines 100-105 for light tab containers, 278-283 for dark tab containers)
-3. **Build command**: Use `npx grunt build` (for production) or `npx grunt` (for fast dev watch)
+### Configuration
+- **[manifest.md](.agents/manifest.md)** - `manifest.json` rules and requirements (Plugin/Theme)
+- **[commands-settings.md](.agents/commands-settings.md)** - Commands and settings patterns (Plugin)
+- **[versioning-releases.md](.agents/versioning-releases.md)** - Versioning and GitHub release workflow (Both)
 
-### 🚨 CRITICAL: NEVER Hard-Code Accent Colors 🚨
+### Best Practices
+- **[security-privacy.md](.agents/security-privacy.md)** - Security, privacy, and compliance guidelines (Both)
+- **[ux-copy.md](.agents/ux-copy.md)** - UX guidelines and UI text conventions (Both)
+- **[performance.md](.agents/performance.md)** - Performance optimization best practices (Both)
+- **[mobile.md](.agents/mobile.md)** - Mobile compatibility considerations (Both)
 
-**THIS IS EXTREMELY IMPORTANT - READ CAREFULLY:**
+### Development Workflow
+- **[build-workflow.md](.agents/build-workflow.md)** - **CRITICAL**: Build commands to run after changes (Plugin/Theme)
+- **[testing.md](.agents/testing.md)** - Testing and manual installation procedures (Plugin/Theme)
+- **[common-tasks.md](.agents/common-tasks.md)** - Code examples and common patterns - expanded with settings, modals, views, status bar, ribbon icons (Plugin/Theme)
+- **[code-patterns.md](.agents/code-patterns.md)** - Comprehensive code patterns for settings tabs, modals, views, file operations, workspace events (Plugin)
+- **[common-pitfalls.md](.agents/common-pitfalls.md)** - Common mistakes and gotchas to avoid (Plugin)
+- **[troubleshooting.md](.agents/troubleshooting.md)** - Common issues, error messages, and debugging techniques (Both)
+- **[quick-reference.md](.agents/quick-reference.md)** - One-page cheat sheet for common tasks and commands (Both)
+- **[agent-dos-donts.md](.agents/agent-dos-donts.md)** - Specific do's and don'ts for AI agents (Both)
+- **[summarize-commands.md](.agents/summarize-commands.md)** - How to generate commit messages and release notes
 
-The Oxygen theme uses an HSL-based accent color system that:
-- ✅ Respects Obsidian's accent color settings
-- ✅ Allows theme features like "Colorful headings" to work
-- ✅ Enables users to customize accent colors
-- ✅ Properly calculates text-on-accent contrast
+### Reference Materials
+- **[references.md](.agents/references.md)** - External links and resources
+- **[ref-instructions.md](.agents/ref-instructions.md)** - Instructions for using the `.ref` folder
+- **[sync-procedure.md](.agents/sync-procedure.md)** - Procedure for syncing content from Sample Plugin and API
+- **[sync-status.json](.agents/sync-status.json)** - Central tracking of sync dates and status
+- **[quick-sync-guide.md](.agents/quick-sync-guide.md)** - Quick reference for pulling updates from reference repos
 
-**❌ NEVER DO THIS - WILL BREAK THE THEME:**
-```scss
-/* WRONG - Hard-coded hex values break Obsidian's accent system */
---ax1: #2c7aaa;
---ax2: #246290;
---ax3: #3894c4;
-```
+## Important: .ref Folder
 
-**✅ ALWAYS DO THIS - HSL calculations:**
-```scss
-/* CORRECT - HSL calculations respect Obsidian's accent system */
---ax1: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
---ax2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));
---ax3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 6%));
-```
+The `.ref` folder contains **symlinks** to reference materials (not actual files). It's gitignored and acts as a "portal" to other locations on the computer.
 
-**To change the DEFAULT accent color:**
-1. ✅ Modify the BASE accent HSL values in the `body` selector (lines 24-27):
-   ```scss
-   --accent-h: 201;   /* Hue (0-360): 0=red, 120=green, 240=blue */
-   --accent-s: 59%;   /* Saturation (0-100%): 0=gray, 100=vibrant */
-   --accent-l: 42%;   /* Lightness (0-100%): 0=black, 50=pure, 100=white */
-   ```
-2. ✅ The HSL calculations in `.theme-light` and `.theme-dark` will automatically use these values
-3. ✅ All accent-based features (headings, buttons, links) will update automatically
+**For AI Agents**:
+- **Only when user explicitly asks about API/docs**: Check if `.ref/obsidian-api` exists. If not, run the setup script to create it (see "When to Check .ref Folder Setup" above)
+- **When asked to reference something**: Actively search for it using `list_dir`, `glob_file_search`, or `read_file`
+- **When adding references**: 
+  - External repos → Clone to `../.ref/` (global), then symlink in project's `.ref/`
+  - Local projects → Symlink directly in project's `.ref/` (don't clone to global)
+- **The `.ref` folder may be hidden** by default in file explorers, but it exists in the project root
 
-**Why this matters:**
-- Hard-coding hex values breaks Obsidian's accent color picker
-- It breaks theme features like colorful headings
-- It causes incorrect text contrast on buttons
-- Users lose the ability to customize accent colors
-- The theme becomes disconnected from Obsidian's native settings
+**Setup**: The setup scripts (`scripts/setup-ref-links.*`) automatically:
+1. Create `../.ref/` if it doesn't exist
+2. Clone the 6 core Obsidian projects if they don't exist
+3. Create `../.ref/plugins/` and `../.ref/themes/` folders
+4. Create symlinks in the project's `.ref/` folder
 
-**If you accidentally hard-code accent colors:**
-1. Immediately revert to HSL calculations
-2. Update only the base `--accent-h`, `--accent-s`, `--accent-l` values
-3. Rebuild and verify all accent-based features work
+**Philosophy**: It "just works" out of the box. The reference materials are cloned once and work indefinitely. Updates are optional and only needed if you want the latest documentation. Most users never update, and that's perfectly fine.
 
-**ALWAYS use this prompt for DARK MODE:**
-```
-I want to modify the base Oxygen color scheme in DARK MODE. Please:
-1. Update the Oxygen color values in src/scss/variables/dynamic-color.scss in the .theme-dark class (lines 224-269)
-2. Check if any additional CSS rules are needed to apply these colors to specific UI elements (like tab containers around lines 278-283)
-3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
-4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
-5. Build with: npx grunt build
-6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
+See [ref-instructions.md](.agents/ref-instructions.md) for complete details.
 
-Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
-```
+## Source Attribution
 
-**ALWAYS use this prompt for LIGHT MODE:**
-```
-I want to modify the base Oxygen color scheme in LIGHT MODE. Please:
-1. Update the Oxygen color values in src/scss/variables/dynamic-color.scss in the .theme-light class (lines 54-98)
-2. Check if any additional CSS rules are needed to apply these colors to specific UI elements (like tab containers around lines 100-105)
-3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
-4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
-5. Build with: npx grunt build
-6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
+Each file in `.agents` includes a header comment with:
+- Source(s) of the information
+- Last sync date (for reference; see [sync-status.json](.agents/sync-status.json) for authoritative dates)
+- Update frequency guidance
 
-Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
-```
+**Central Sync Tracking**: All sync dates are tracked centrally in [sync-status.json](.agents/sync-status.json). When syncing content, update this file with the actual current date (never use placeholder dates).
 
-**For BOTH light and dark mode changes:**
-```
-I want to modify the base Oxygen color scheme for BOTH light and dark modes. Please:
-1. Update the Oxygen color values in src/scss/variables/dynamic-color.scss:
-   - Light mode: .theme-light class (lines 54-98)
-   - Dark mode: .theme-dark class (lines 224-269)
-2. Check if any additional CSS rules are needed to apply these colors to specific UI elements:
-   - Light mode tab containers: around lines 100-105
-   - Dark mode tab containers: around lines 278-283
-3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
-4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
-5. Build with: npx grunt build
-6. Verify changes appear in Oxygen.css, NOT just in src/css/main.css
+## Updating Content
 
-Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes like Minimal, Atom, Things, etc.
-```
+Content in this directory is based on:
+- **Obsidian API** (`.ref/obsidian-api/obsidian.d.ts`) - **Authoritative source** for all API information
+- Obsidian Sample Plugin repository - Implementation patterns and best practices
+- Obsidian Sample Theme repository - Theme patterns
+- Obsidian Plugin Docs and Developer Docs - General guidance (may be outdated, always verify against API)
+- Community best practices
 
-### Example: Updating Accent Color in Dark Mode
+**Important**: The `obsidian-api` repository is the authoritative source. When information conflicts between API and documentation, the API takes precedence. Always check `.ref/obsidian-api/obsidian.d.ts` first, especially for new features (e.g., `SettingGroup` since 1.11.0).
 
-Here's a concrete example of how to update the cyan accent color in dark mode:
+Check the source attribution in each file header for update frequency guidance. When the Obsidian Sample Plugin, Sample Theme, or API documentation is updated, relevant files here should be reviewed and updated accordingly.
 
-**Prompt:**
-```
-I want to modify the base Oxygen color scheme in DARK MODE. Please:
-1. Update the accent color in src/scss/variables/dynamic-color.scss in the .theme-dark class:
-   - Change --ax1 from #3d9db5 to #4ac9e3 (brighter cyan)
-   - Change --ax2 from #2e7a8f to #38a3b8 (brighter hover state)
-   - Keep --ax3 as is
-2. Check if any additional CSS rules are needed (they shouldn't be for accent colors)
-3. Do NOT modify src/scss/color-schemes/oxygen.scss - it should remain empty
-4. Do NOT modify any other color scheme files (minimal.scss, atom.scss, etc.)
-5. Build with: npx grunt build
-6. Verify changes appear in Oxygen.css by checking for the new hex values
+**See [sync-procedure.md](.agents/sync-procedure.md) for the standard procedure to sync content from the latest Sample Plugin, Sample Theme, and API updates.**
 
-Make sure the changes ONLY affect the base Oxygen theme and do not interfere with other color schemes.
-```
+## General Purpose / Reusable
 
-**What this will do:**
-- Updates the cyan accent used for links, active states, and interactive elements
-- Only affects dark mode
-- Leaves light mode untouched
-- Doesn't affect Minimal, Atom, or other color schemes
-- Properly builds and concatenates into final theme files
+This `.agents` directory structure and content is designed to be **general-purpose and reusable** across Obsidian plugin and theme projects. The content is based on official Obsidian repositories and documentation, not project-specific code. You can:
 
-### For Style Settings Integration
-**When adding new Obsidian native variables:**
-1. Add the variable mapping in `src/scss/variables/dynamic-color.scss` (lines 425-472)
-2. Add the Style Settings configuration in `src/css/style-settings.css`
-3. Ensure the mapping uses appropriate Oxygen custom variables as sources
+- Copy this structure to other Obsidian projects
+- Use it as a template for new projects
+- Share it with other developers
+- Adapt it for your specific needs
 
-**When modifying existing variables:**
-- **Oxygen variables**: Modify in the base theme sections (lines 54-98 for light, 224-266 for dark)
-- **Obsidian native variables**: The mapping layer will automatically update
-- **Style Settings defaults**: Update in `src/css/style-settings.css` if needed
+The only project-specific content is in:
+- `project-context.md` - Project-specific information and overrides (maintained by developer)
+- `.context/` directory - Optional project-specific structure for complex projects (if it exists)
+- `ref-instructions.md` - OS-agnostic setup instructions that may need path adjustments
 
-### Single Source of Truth
-- **Oxygen light colors**: Defined in `src/scss/variables/dynamic-color.scss` (lines 54-98)
-- **Oxygen dark colors**: Defined in `src/scss/variables/dynamic-color.scss` (lines 224-266)
-- **Oxygen style variants**: Defined in `src/scss/variables/dynamic-color.scss` (lines 158-203) - tonal, true black, contrast modes
-- **Variable mapping**: Defined in `src/scss/variables/dynamic-color.scss` (lines 412-490)
-- **Style Settings config**: Defined in `src/css/style-settings.css`
-- **Oxygen scheme file**: `src/scss/color-schemes/oxygen.scss` (intentionally empty - Oxygen is base, not override)
-- **Other schemes**: Each has complete definitions in their respective files
-
-### What NOT to Do
-- ❌ Don't modify `oxygen.scss` at all - it's intentionally empty (Oxygen is the base theme, not an override)
-- ❌ Don't duplicate Oxygen colors in multiple files (single source of truth: lines 54-98 light, 224-269 dark)
-- ❌ Don't use Oxygen colors as a base for other schemes (each scheme is self-contained)
-- ❌ **NEVER hard-code accent colors with hex values** - ALWAYS use HSL calculations (`hsl(var(--accent-h), var(--accent-s), var(--accent-l))`)
-- ❌ **NEVER replace `--ax1`, `--ax2`, `--ax3` with hex values** - this breaks Obsidian's accent system, colorful headings, and button text contrast
-- ❌ Don't use aggressive `!important` overrides - let CSS cascade work naturally
-- ❌ Don't modify the variable mapping layer (lines 412-490) unless adding new mappings
-- ❌ Don't break the CSS cascade hierarchy: User Customizations > Obsidian Native > Oxygen Custom > Base Colors
-- ❌ Don't modify `src/css/style-settings.css` unless adding new Style Settings options
-- ❌ Don't run build tasks separately - always use: `npx grunt build` (production) or `npx grunt` (dev watch)
-- ❌ Don't assume color changes in `src/css/main.css` mean they're in the final theme - always check `Oxygen.css`
-- ❌ Don't modify other color scheme files (minimal.scss, atom.scss, etc.) when updating Oxygen
-
-## Build Process
-
-```bash
-# Fast development watch (unminified only, auto-reloads in vault)
-npx grunt
-
-# Full production build (compiles SCSS, minifies, and concatenates)
-npx grunt build
-
-# Note: Development watch is optimized for speed:
-# - Only compiles unminified CSS (src/css/main.css)
-# - Only concatenates Oxygen.css (unminified dev version)
-# - Skips minification and theme.css generation
-# - ~50% faster on each file save
-
-# Production build creates both versions:
-# - sass:unminified: Compiles SCSS to unminified CSS (src/css/main.css)
-# - sass:dist: Compiles SCSS to minified CSS (src/css/main.min.css)
-# - cssmin: Further minifies the output
-# - concat_css: Concatenates into theme.css (minified) and Oxygen.css (unminified)
-```
-
-## Color Scheme Files
-
-| File | Purpose | Contains |
-|------|---------|----------|
-| `dynamic-color.scss` | Base Oxygen theme | All Oxygen base colors (lines 54-98 light, 224-266 dark), variants (158-203), and mapping layer (412-490) |
-| `oxygen.scss` | Oxygen scheme file | Intentionally empty - Oxygen is the base theme, not an override |
-| `minimal.scss` | Complete Minimal scheme | All Minimal colors + overrides for both light and dark |
-| `atom.scss` | Complete Atom scheme | All Atom colors for both light and dark |
-| `things.scss` | Complete Things scheme | All Things colors for both light and dark |
-| `[other].scss` | Other schemes | Complete color definitions for both light and dark |
-| `style-settings.css` | Style Settings config | User customization interface configuration |
-
-## Key Principles
-
-1. **Oxygen is the default**: Base theme uses Oxygen colors for both light and dark modes
-2. **Other schemes are isolated**: Each scheme is self-contained
-3. **No cross-contamination**: Schemes don't inherit from each other
-4. **Plugin independence**: Colors work with or without Style Settings
-5. **Single source of truth**: Oxygen colors defined in one place only
-6. **Clean architecture**: No aggressive overrides or `!important` spam
-7. **User customization support**: Style Settings integration enables easy custom color schemes
-8. **CSS cascade respect**: User customizations > Color schemes > Base colors
-9. **Theme Implements, Plugin Controls**: The theme provides CSS implementations for features; the plugin toggles classes and manages settings
-10. **Style Settings for Minimal Only**: Only add features to `style-settings.css` if they're part of the original Minimal theme; new features should only be in the plugin
+Everything else syncs from official Obsidian sources.
 
 ## Troubleshooting
 
-### Colors change when toggling Style Settings plugin
-- **Cause**: Oxygen colors not properly defined in base theme
-- **Fix**: Ensure all Oxygen colors are in `src/scss/variables/dynamic-color.scss` (lines 54-98 for light, 224-266 for dark)
+**If `.ref` folder is missing or empty**:
+- Run the setup script: `scripts\setup-ref-links.bat` (Windows), `.\scripts\setup-ref-links.ps1` (PowerShell), or `./scripts/setup-ref-links.sh` (macOS/Linux)
+- The script will automatically set everything up
 
-### Color schemes look different from original Minimal
-- **Cause**: Scheme not properly isolated from Oxygen base
-- **Fix**: Ensure scheme has complete color definitions (not relying on base)
+**If symlinks are broken**:
+- Re-run the setup script - it will recreate the symlinks
 
-### Duplicate color definitions
-- **Cause**: Colors defined in multiple places
-- **Fix**: Use single source of truth - base theme for Oxygen, individual files for other schemes
+**If you can't find a reference**:
+- Check [ref-instructions.md](.agents/ref-instructions.md) for organization
+- Check `project-context.md` for project-specific references
+- Use `list_dir` or `glob_file_search` to search `.ref/` folder
 
-### Right sidebar background wrong in color schemes
-- **Cause**: Missing `--background-secondary` override
-- **Fix**: Add specific override like `.theme-light.minimal-minimal-light .mod-right-split { --background-secondary: white; }`
+**If build fails**:
+- See [build-workflow.md](.agents/build-workflow.md) for build commands
+- See [troubleshooting.md](.agents/troubleshooting.md) for common issues
+- See [common-pitfalls.md](.agents/common-pitfalls.md) for common mistakes
 
-### Custom color schemes not working
-- **Cause**: Style Settings plugin not installed or enabled
-- **Fix**: Install and enable the Style Settings plugin, then access via command palette
-
-### User customizations not persisting
-- **Cause**: Style Settings configuration issues or CSS conflicts
-- **Fix**: Check that `src/css/style-settings.css` is properly configured and not overridden by other CSS
-
-### Tab containers or UI elements not showing new colors
-- **Cause**: Global feature files use CSS variables, and you need to override which variable is used in specific contexts
-- **Fix**: Check if additional CSS rules are needed (e.g., `.theme-dark .mod-left-split .mod-top .workspace-tab-header-container { --background-secondary: var(--bg-tab); }`)
-- **Example**: If top bars aren't showing `--bg-tab`, you may need to tell the specific element to use that variable instead of `--background-secondary`
-
-### Changes appear in src/css/main.css but not in Oxygen.css
-- **Cause**: Forgot to run the concatenation step
-- **Fix**: Always use the complete build command: `npx grunt build` (or `npx grunt` for dev watch)

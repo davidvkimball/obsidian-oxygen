@@ -107,5 +107,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default',['env:local','loadconst','watch']);
     
     // Full production build (minified + unminified)
-    grunt.registerTask('build',['sass:unminified','sass:dist','cssmin','concat_css']);
+    grunt.registerTask('build',['sass:unminified','sass:dist','cssmin','concat_css:dist','concat_css:unminified']);
 }

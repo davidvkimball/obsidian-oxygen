@@ -6,7 +6,8 @@
 
 body:not(.is-mobile) {
 	.modal-bg {
-		opacity: 0 !important;
+		background-color: var(--background-modifier-cover) !important; /* Use the theme's cover color for dimming */
+		/* Opacity is set inline by Obsidian (0.85), we just need to ensure background color is applied */
 	}
 
 	.modal {
