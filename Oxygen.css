@@ -2829,6 +2829,13 @@ body:not(.borders-on) .workspace .mod-sidedock {
   border-bottom: none !important;
 }
 
+/* Hide workspace-ribbon border-right in Enhanced mode */
+/* Obsidian's base CSS uses border-right: var(--divider-width) solid var(--divider-color) */
+/* Enhanced mode should hide this border to match the clean appearance */
+body:not(.borders-on) .workspace-ribbon {
+  border-right: none !important;
+}
+
 /* Remove borders from workspace-leaf and workspace-leaf-content - these are likely causing the double line */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf,
 body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf-content,
