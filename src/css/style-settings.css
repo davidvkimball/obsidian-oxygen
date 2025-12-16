@@ -1193,7 +1193,7 @@ settings:
 		default-dark: '#'
 	-
 		id: active-line
-		title: Line numbers
+		title: Line  numbers
 		type: heading
 		level: 2
 		collapsed: true
@@ -2081,16 +2081,16 @@ settings:
 		title: Card border width
 		type: variable-text
 		default: 1px
-	-
+	- 
 		id: cards-background
 		title: Card background color
 		type: variable-themed-color
 		format: hex
 		default-light: '#'
 		default-dark: '#'
-	-
-		id: cards-background-hover
-		title: Card background color (hover)
+	- 
+		id: cards-background-hover (hover)
+		title: Card background color
 		type: variable-themed-color
 		format: hex
 		default-light: '#'
@@ -2105,7 +2105,7 @@ settings:
 	-
 		id: hide-markdown
 		title: Hide Markdown syntax
-		description: WARNING GÇö This may be confusing because the characters still exist they are just hidden.
+		description: WARNING â€” This may be confusing because the characters still exist they are just hidden.
 		type: class-toggle
 	-
 		id: hide-settings-desc
@@ -2157,7 +2157,7 @@ settings:
 		type: variable-number
 		default: 11
 		format: px
-	-
+	- 
 		id: mobile-toolbar-off
 		title: Disable mobile toolbar
 		description: Turns off toolbar in editor on mobile

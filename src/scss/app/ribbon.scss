@@ -3,20 +3,6 @@
 	border:none;
 }
 
-/* Sidebar toggle animations */
-.sidebar-toggle-icon-inner {
-	transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-}
-
-.sidebar-toggle-button .clickable-icon:hover .sidebar-toggle-icon-inner {
-	width: 24%;
-}
-
-.workspace.is-left-sidedock-open .sidebar-toggle-button.mod-left .clickable-icon:hover .sidebar-toggle-icon-inner,
-.workspace.is-right-sidedock-open .sidebar-toggle-button.mod-right .clickable-icon:hover .sidebar-toggle-icon-inner {
-	width: revert-layer;
-}
-
 /* --------------- */
 /* App ribbon moved to the bottom edge */
 

@@ -1,10 +1,5 @@
 /* File browser */
 
-/* Change file explorer tab icon from folder-closed to folder (hide the horizontal line) */
-.workspace-tab-header[data-type="file-explorer"] .workspace-tab-header-inner-icon svg.lucide-folder-closed path:nth-child(2),
-.workspace-tab-header[data-type="file-explorer"] .workspace-tab-header-inner-icon svg.lucide-folder-closed path[d="M2 10h20"] {
-	display: none !important;
-}
 
 .hider-file-nav-header:not(.labeled-nav) {
 	.nav-files-container {
@@ -24,8 +19,8 @@ body:not(.is-mobile) .nav-folder.mod-root>.nav-folder-title .nav-folder-title-co
 	font-size: var(--font-adaptive-smallest);
 }
 
-.nav-buttons-container {
-	justify-content:flex-start;
+body:not(.is-mobile) .nav-buttons-container {
+	justify-content: flex-start;
 }
 
 .nav-file-tag {

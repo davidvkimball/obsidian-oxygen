@@ -12,7 +12,7 @@ body:not(.minimal-status-off) .status-bar {
 	--status-bar-border-width: 0;
 }
 .status-bar {
-	transition: var(--anim-duration-moderate) var(--anim-motion-baseline), color var(--anim-duration-fast);
+	transition: color 200ms linear;
 	color: var(--text-faint);
 	font-size: var(--font-adaptive-smallest);
 
@@ -25,7 +25,7 @@ body:not(.minimal-status-off) .status-bar {
 	&:hover .sync-status-icon.mod-success,
 	&:hover {
 		color: var(--text-muted);
-		transition: var(--anim-duration-moderate) var(--anim-motion-baseline), color var(--anim-duration-fast);
+		transition: color 200ms linear;
 	}
 
 	.plugin-sync:hover {

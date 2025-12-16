@@ -1,5 +1,5 @@
 /* 
-Minimal Theme compiler for Obsidian
+Oxygen Theme compiler for Obsidian
 
 MIT License
 Copyright (c) 2020-2024 Steph Ango (@kepano)
