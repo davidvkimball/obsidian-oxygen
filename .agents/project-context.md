@@ -80,6 +80,77 @@ None currently. This project follows the general `.agents` guidance.
 - `versions.json` - Version compatibility mapping
 - `README.md` - Project documentation and usage instructions
 
+## Enhanced Borders Feature
+
+The Enhanced Borders feature (`src/scss/features/borders.scss`) provides a sophisticated border system for the workspace with three modes:
+
+### Border Modes
+
+1. **Enhanced (Default)**: `body:not(.borders-on)` - The default behavior when neither `borders-on` nor `borders-none` is present
+   - Rounded corners on main content area (`workspace-tab-container`)
+   - Top, left, and right borders (no bottom border)
+   - Background colors match sidebar for seamless appearance
+   - Resize handles hidden by default, show on hover
+
+2. **Default/On**: `body.borders-on` - Obsidian's default border behavior (not yet implemented in current version)
+
+3. **None**: `body.borders-none` - No borders at all (set via CSS variables)
+
+### Feature Organization
+
+The Enhanced Borders feature is organized into logical groups:
+
+#### Group 1: Foundation (Lines 1-30)
+- CSS variable setup for `borders-none` mode
+- CSS variable setup for `borders-on` detection
+- Foundation for all border modes
+
+#### Group 2: Core Container Borders (Lines 32-123)
+- **2A**: Border reset on `workspace-tab-container` (prevents double borders)
+- **2B**: Enhanced border styling (rounded corners, top/left/right borders)
+- **2C**: Remove borders from split elements (workspace-split, sidebars, ribbon)
+- **2D**: Remove borders from leaf elements (workspace-leaf, workspace-leaf-content)
+- **2E**: Resize handle styling (hidden by default, accent color on hover)
+
+**Critical Note**: Group 2F (universal selector removing borders from all descendants) was removed because it was too aggressive and broke checkboxes and tag pills. **Never use universal selectors like `*:not(...)` that remove box-shadows or borders from all descendants.**
+
+#### Group 3: macOS-Specific Fixes (Lines 125-155)
+- Remove top border on macOS (title bar integration)
+- Title bar positioning and z-index fixes
+- Right sidebar toggle button background fix
+
+#### Group 4: Background Color Matching (Lines 157-222)
+- CSS variable for sidebar background (`--enhanced-border-sidebar-bg`)
+- Tab header container background matching
+- Workspace-split background matching
+- Right sidebar background matching (to match left sidebar)
+- macOS-specific background adjustments
+
+#### Group 5: Tab Positioning and Styling (Not yet implemented)
+- Tab container positioning adjustments
+- Active/inactive tab border styling
+- Tab curve and margin adjustments
+- Borders-on and borders-none reset rules
+
+### Key Implementation Details
+
+1. **Border-radius inheritance**: Child elements inherit border-radius from `workspace-tab-container` to ensure rounded corners work properly
+
+2. **Overflow visible**: Changed from `overflow: hidden` to `overflow: visible` to prevent clipping of metadata elements (checkboxes, pills, etc.) while still allowing border-radius to work
+
+3. **Background color matching**: The feature uses CSS variables (`--enhanced-border-sidebar-bg`, `--enhanced-border-right-sidebar-bg`) to capture and restore background colors before theme overrides apply
+
+4. **macOS title bar integration**: Special handling for macOS frameless windows where the title bar is integrated into the tab area
+
+5. **Colorful frame compatibility**: All background color rules exclude `.colorful-frame` to let the theme handle it
+
+### Important Warnings
+
+- **Never use universal selectors** (`*:not(...)`) that remove box-shadows or borders from all descendants - this breaks checkboxes and tag pills
+- **Always test after adding border rules** - border rules can easily create double-border effects or break visual elements
+- **Respect overflow: visible** - Changing to `overflow: hidden` will clip metadata elements
+- **Test on macOS** - macOS has special title bar integration that requires specific handling
+
 ## Development Notes
 
 - This theme is a fork of Minimal, so when Minimal updates, consider syncing relevant improvements
