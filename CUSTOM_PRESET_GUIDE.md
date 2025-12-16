@@ -9,7 +9,7 @@ This guide explains how to structure custom preset CSS to ensure full compatibil
 ### Minimal Custom Preset (Dark Mode Example)
 
 ```css
-.theme-dark.minimal-custom-{preset-id} {
+.theme-dark.oxygen-custom-{preset-id} {
   /* === BASE HSL VALUES (Required for colorful-frame and colorful-headings) === */
   --base-h: 210;      /* Base hue (0-360) - overall theme temperature */
   --base-s: 15%;      /* Base saturation (0-100%) */
@@ -57,7 +57,7 @@ This guide explains how to structure custom preset CSS to ensure full compatibil
 ### Light Mode Example
 
 ```css
-.theme-light.minimal-custom-{preset-id} {
+.theme-light.oxygen-custom-{preset-id} {
   /* === BASE HSL VALUES === */
   --base-h: 210;
   --base-s: 15%;
@@ -183,7 +183,7 @@ function generatePresetCSS(presetId, colors) {
   // Estimate base color from bg1
   const baseHSL = hexToHSL(bg1);
   
-  return `.theme-dark.minimal-custom-${presetId} {
+  return `.theme-dark.oxygen-custom-${presetId} {
   /* Base HSL values */
   --base-h: ${baseHSL.h};
   --base-s: ${baseHSL.s}%;
@@ -287,7 +287,7 @@ When custom preset sets Oxygen variables, they automatically map to Obsidian nat
 ### ✅ DO:
 - Set Oxygen custom variables (`--bg1`, `--tx1`, `--ax1`, etc.)
 - Include HSL values (`--accent-h`, `--base-h`, etc.)
-- Use simple selector: `.theme-dark.minimal-custom-{id}`
+- Use simple selector: `.theme-dark.oxygen-custom-{id}`
 - Test with all colorful features enabled
 - Ensure sufficient contrast ratios for accessibility
 

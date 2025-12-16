@@ -5,8 +5,8 @@ Copyright (c) 2016-present Sven Greb <development@svengreb.de> (https://www.sven
 https://github.com/nordtheme/nord
 */
 
-.theme-dark.minimal-nord-dark,
-.theme-light.minimal-nord-light {
+.theme-dark.oxygen-nord-dark,
+.theme-light.oxygen-nord-light {
 	--color-red-rgb: 191,97,106;
 	--color-orange-rgb: 208,138,112;
 	--color-yellow-rgb: 235,203,139;
@@ -26,7 +26,7 @@ https://github.com/nordtheme/nord
 	--color-pink:#B48EAD;
 }
 
-.theme-light.minimal-nord-light {
+.theme-light.oxygen-nord-light {
 	--base-h:221;
 	--base-s:27%;
 	--base-l:94%;
@@ -50,13 +50,13 @@ https://github.com/nordtheme/nord
 	--hl2:rgba(208, 135, 112, 0.35);
 }
 
-.theme-light.minimal-nord-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-nord-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-nord-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-nord-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-nord-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-nord-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-nord-dark {
+.theme-light.oxygen-nord-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-nord-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-nord-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-nord-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-nord-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-nord-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-nord-dark {
 	--base-h:220;
 	--base-s:16%;
 	--base-l:22%;
@@ -80,6 +80,6 @@ https://github.com/nordtheme/nord
 	--hl1:rgba(129,142,180,0.3);
 	--hl2:rgba(208, 135, 112, 0.35);
 }
-.theme-dark.minimal-nord-dark.minimal-dark-black {
+.theme-dark.oxygen-nord-dark.oxygen-dark-black {
 	--ui1:#2e3440;
 }

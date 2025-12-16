@@ -224,7 +224,7 @@ Oxygen light theme as the default base - ensures consistency when Style Settings
 All other light color schemes override this base
 */
 .theme-light,
-.theme-light.minimal-oxygen-light,
+.theme-light.oxygen-oxygen-light,
 body .excalidraw {
   /* Oxygen light theme colors as the default base */
   --base-l: 98%;
@@ -293,7 +293,7 @@ body .excalidraw {
 }
 
 /* Oxygen theme contrast support - ensure Style Settings plugin contrast adjustments work */
-.theme-light.minimal-oxygen-light.minimal-light-white {
+.theme-light.oxygen-oxygen-light.oxygen-light-white {
   --background-primary: white;
   --background-secondary: white;
   --background-secondary-alt: white;
@@ -310,41 +310,41 @@ body .excalidraw {
 }
 
 /* Override mobile menu styling for Oxygen all white */
-.is-mobile.theme-light.minimal-oxygen-light.minimal-light-white .menu {
+.is-mobile.theme-light.oxygen-oxygen-light.oxygen-light-white .menu {
   --interactive-normal: var(--bg3); /* Use our bg3 instead of background-modifier-hover */
 }
 
 /* Force white backgrounds for all dropdowns and menus in Oxygen all white */
-.theme-light.minimal-oxygen-light.minimal-light-white .menu,
-.theme-light.minimal-oxygen-light.minimal-light-white .dropdown,
-.theme-light.minimal-oxygen-light.minimal-light-white .menu-item,
-.theme-light.minimal-oxygen-light.minimal-light-white .dropdown-item {
+.theme-light.oxygen-oxygen-light.oxygen-light-white .menu,
+.theme-light.oxygen-oxygen-light.oxygen-light-white .dropdown,
+.theme-light.oxygen-oxygen-light.oxygen-light-white .menu-item,
+.theme-light.oxygen-oxygen-light.oxygen-light-white .dropdown-item {
   background-color: white;
   --background-secondary: white;
   --background-primary: white;
   --bg2: white;
 }
 
-.theme-light.minimal-oxygen-light.minimal-light-tonal {
+.theme-light.oxygen-oxygen-light.oxygen-light-tonal {
   --background-secondary: var(--bg1);
   --background-primary-alt: var(--bg3);
   --background-table-rows: var(--bg3);
   --bg2: var(--bg1); /* Unify sidebar */
 }
 
-.theme-light.minimal-oxygen-light.minimal-light-tonal.is-mobile {
+.theme-light.oxygen-oxygen-light.oxygen-light-tonal.is-mobile {
   --background-modifier-form-field: var(--bg3);
   --interactive-normal: var(--bg3);
 }
 
-.theme-dark.minimal-oxygen-dark.minimal-dark-tonal {
+.theme-dark.oxygen-oxygen-dark.oxygen-dark-tonal {
   --ribbon-background: var(--bg1);
   --background-secondary: var(--bg1);
   --background-table-rows: var(--bg3);
   --bg2: var(--bg1); /* Unify sidebar */
 }
 
-.theme-dark.minimal-oxygen-dark.minimal-dark-black {
+.theme-dark.oxygen-oxygen-dark.oxygen-dark-black {
   --base-d: 0%;
   --titlebar-background: black;
   --background-primary: black;
@@ -370,17 +370,17 @@ body .excalidraw {
 }
 
 /* High contrast support for light theme */
-.theme-light.minimal-oxygen-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-oxygen-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-oxygen-light.minimal-light-contrast.is-mobile .workspace-drawer.mod-left,
-.theme-light.minimal-oxygen-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-oxygen-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-oxygen-light.minimal-light-contrast .theme-dark {
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast.is-mobile .workspace-drawer.mod-left,
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast .theme-dark {
   --tab-container-background: var(--bg2);
   --ribbon-background-collapsed: var(--bg2);
 }
 
-.theme-light.minimal-oxygen-light.minimal-light-contrast {
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast {
   --workspace-background-translucent: rgba(0,0,0,0.6);
 }
 
@@ -458,9 +458,9 @@ All other color schemes override this base
   opacity: var(--icon-muted);
 }
 
-.theme-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-light-white {
+.theme-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-light-white {
   --background-primary: white;
   --background-secondary: white;
   --background-secondary-alt: white;
@@ -476,7 +476,7 @@ All other color schemes override this base
   --background-modifier-form-field: rgba(0, 0, 0, 0.05); /* Light form field background */
 }
 
-.theme-dark.minimal-dark-black {
+.theme-dark.oxygen-dark-black {
   --base-d:0%;
   --titlebar-background: black;
   --background-primary: black;
@@ -603,9 +603,9 @@ The CSS cascade ensures this works correctly:
   --mono0: black;
 }
 
-.theme-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-light-contrast.is-mobile .workspace-drawer.mod-left,
+.theme-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-light-contrast.is-mobile .workspace-drawer.mod-left,
 .theme-dark,
 .theme-light {
   --background-modifier-accent: var(--ax3);
@@ -679,7 +679,7 @@ The CSS cascade ensures this works correctly:
   --workspace-background-translucent: hsla(var(--base-h),var(--base-s), var(--base-l), 0.7);
 }
 
-.theme-light.minimal-light-contrast.is-mobile .workspace-drawer.mod-left {
+.theme-light.oxygen-light-contrast.is-mobile .workspace-drawer.mod-left {
   --raised-background: var(--ui1);
   --raised-shadow: none;
   --raised-mask-border-width: 0px;
@@ -690,11 +690,11 @@ The CSS cascade ensures this works correctly:
   --icon-color-active: var(--ax1);
 }
 
-.theme-light.minimal-light-contrast {
+.theme-light.oxygen-light-contrast {
   --workspace-background-translucent: rgba(0,0,0,0.6);
 }
 
-.theme-light.minimal-light-contrast .theme-dark {
+.theme-light.oxygen-light-contrast .theme-dark {
   --tab-container-background: var(--bg2);
   --ribbon-background-collapsed: var(--bg2);
 }
@@ -729,31 +729,31 @@ The CSS cascade ensures this works correctly:
   --modal-border-color: var(--ui2);
 }
 
-.theme-light.minimal-light-white {
+.theme-light.oxygen-light-white {
   --background-table-rows: var(--bg2);
   --interactive-normal: var(--bg3);
   --setting-items-background: var(--bg3);
 }
 
-.theme-light.minimal-light-tonal {
+.theme-light.oxygen-light-tonal {
   --background-secondary: var(--bg1);
   --background-primary-alt: var(--bg3);
   --background-table-rows: var(--bg3);
   --setting-items-background: var(--bg3);
 }
-.theme-light.minimal-light-tonal.is-mobile {
+.theme-light.oxygen-light-tonal.is-mobile {
   --background-modifier-form-field: var(--bg3);
   --interactive-normal: var(--bg3);
 }
 
-.theme-dark.minimal-dark-tonal {
+.theme-dark.oxygen-dark-tonal {
   --ribbon-background: var(--bg1);
   --background-secondary: var(--bg1);
   --background-table-rows: var(--bg3);
   --setting-items-background: var(--bg3);
 }
 
-.theme-dark.minimal-dark-black {
+.theme-dark.oxygen-dark-black {
   --background-primary-alt: var(--bg3);
   --background-table-rows: var(--bg3);
   --setting-items-background: var(--bg3);
@@ -1171,7 +1171,7 @@ body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .
 }
 
 /* Status bar */
-.minimal-status-off .status-bar {
+.oxygen-status-off .status-bar {
   --status-bar-position: static;
   --status-bar-radius: 0;
   --status-bar-border-width: 1px 0 0 0;
@@ -1179,7 +1179,7 @@ body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .
   --status-bar-border-color: var(--ui1);
 }
 
-body:not(.minimal-status-off) .status-bar {
+body:not(.oxygen-status-off) .status-bar {
   background-color: var(--background-primary);
   --status-bar-border-width: 0;
 }
@@ -1261,8 +1261,8 @@ body:not(.is-mobile) .view-actions .view-action:last-child {
   margin-left: -1px;
 }
 
-body:not(.minimal-focus-mode) .workspace-ribbon:not(.is-collapsed) ~ .mod-root .view-actions,
-.minimal-focus-mode .workspace-ribbon:not(.is-collapsed) ~ .mod-root .view-header:hover .view-actions,
+body:not(.oxygen-focus-mode) .workspace-ribbon:not(.is-collapsed) ~ .mod-root .view-actions,
+.oxygen-focus-mode .workspace-ribbon:not(.is-collapsed) ~ .mod-root .view-header:hover .view-actions,
 .workspace-ribbon.mod-left.is-collapsed ~ .mod-root .view-header:hover .view-actions,
 .mod-right.is-collapsed ~ .mod-root .view-header:hover .view-actions,
 .view-action.is-active:hover {
@@ -1287,19 +1287,19 @@ body:not(.minimal-focus-mode) .workspace-ribbon:not(.is-collapsed) ~ .mod-root .
 }
 
 .is-phone .view-header-title-container,
-.minimal-tab-title-visible .view-header-title-container {
+.oxygen-tab-title-visible .view-header-title-container {
   opacity: 1;
 }
 
-.minimal-tab-title-hidden .view-header-title-container {
+.oxygen-tab-title-hidden .view-header-title-container {
   opacity: 0;
 }
-.minimal-tab-title-hidden .view-header-title-container:focus-within {
+.oxygen-tab-title-hidden .view-header-title-container:focus-within {
   opacity: 1;
   transition: opacity 0.1s ease-in-out;
 }
-.minimal-tab-title-hidden .workspace-tab-header-container:hover + .workspace-tab-container .view-header-title-container,
-.minimal-tab-title-hidden .view-header:hover .view-header-title-container {
+.oxygen-tab-title-hidden .workspace-tab-header-container:hover + .workspace-tab-container .view-header-title-container,
+.oxygen-tab-title-hidden .view-header:hover .view-header-title-container {
   opacity: 0;
 }
 
@@ -1312,20 +1312,20 @@ body.window-title-off .titlebar-text {
   background-color: transparent !important;
 }
 
-.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame),
-.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white) {
+.is-hidden-frameless.theme-dark:not(.oxygen-dark-black):not(.colorful-frame),
+.is-hidden-frameless.theme-light:not(.oxygen-light-tonal):not(.colorful-frame):not(.oxygen-light-white) {
   --titlebar-background: var(--bg1);
 }
-.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame).is-focused .sidebar-toggle-button.mod-right,
-.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame).is-focused .workspace-ribbon.mod-left.is-collapsed,
-.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame).is-focused .workspace-tabs.mod-top,
-.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white).is-focused .sidebar-toggle-button.mod-right,
-.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white).is-focused .workspace-ribbon.mod-left.is-collapsed,
-.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white).is-focused .workspace-tabs.mod-top {
+.is-hidden-frameless.theme-dark:not(.oxygen-dark-black):not(.colorful-frame).is-focused .sidebar-toggle-button.mod-right,
+.is-hidden-frameless.theme-dark:not(.oxygen-dark-black):not(.colorful-frame).is-focused .workspace-ribbon.mod-left.is-collapsed,
+.is-hidden-frameless.theme-dark:not(.oxygen-dark-black):not(.colorful-frame).is-focused .workspace-tabs.mod-top,
+.is-hidden-frameless.theme-light:not(.oxygen-light-tonal):not(.colorful-frame):not(.oxygen-light-white).is-focused .sidebar-toggle-button.mod-right,
+.is-hidden-frameless.theme-light:not(.oxygen-light-tonal):not(.colorful-frame):not(.oxygen-light-white).is-focused .workspace-ribbon.mod-left.is-collapsed,
+.is-hidden-frameless.theme-light:not(.oxygen-light-tonal):not(.colorful-frame):not(.oxygen-light-white).is-focused .workspace-tabs.mod-top {
   --titlebar-background-focused: var(--bg1);
 }
-.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame):not(.minimal-dark-tonal):not(.minimal-light-white) .workspace-ribbon.mod-left:not(.is-collapsed),
-.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white):not(.minimal-dark-tonal):not(.minimal-light-white) .workspace-ribbon.mod-left:not(.is-collapsed) {
+.is-hidden-frameless.theme-dark:not(.oxygen-dark-black):not(.colorful-frame):not(.oxygen-dark-tonal):not(.oxygen-light-white) .workspace-ribbon.mod-left:not(.is-collapsed),
+.is-hidden-frameless.theme-light:not(.oxygen-light-tonal):not(.colorful-frame):not(.oxygen-light-white):not(.oxygen-dark-tonal):not(.oxygen-light-white) .workspace-ribbon.mod-left:not(.is-collapsed) {
   --titlebar-background: var(--bg2);
 }
 
@@ -1616,10 +1616,10 @@ body.is-phone .modal {
   --file-margins: var(--size-4-6) var(--size-4-6) var(--size-4-6);
 }
 
-.minimal-line-nums .popover .markdown-source-view {
+.oxygen-line-nums .popover .markdown-source-view {
   --file-margins: var(--size-4-4) var(--size-4-6) var(--size-4-6) var(--size-4-12);
 }
-.minimal-line-nums .popover .markdown-source-view.is-rtl {
+.oxygen-line-nums .popover .markdown-source-view.is-rtl {
   --file-margins: var(--size-4-4) var(--size-4-12) var(--size-4-6) var(--size-4-6);
 }
 
@@ -1776,11 +1776,11 @@ body {
   --checkbox-margin: 0px 8px 0px -2em;
 }
 
-body.minimal-strike-lists {
+body.oxygen-strike-lists {
   --checklist-done-decoration: line-through;
 }
 
-body:not(.minimal-strike-lists) {
+body:not(.oxygen-strike-lists) {
   --checklist-done-decoration: none;
   --checklist-done-color: var(--text-normal);
 }
@@ -1803,14 +1803,14 @@ body:not(.minimal-strike-lists) {
   text-indent: 0;
 }
 
-.minimal-code-scroll {
+.oxygen-code-scroll {
   --code-white-space: pre;
 }
-.minimal-code-scroll .HyperMD-codeblock.HyperMD-codeblock-bg {
+.oxygen-code-scroll .HyperMD-codeblock.HyperMD-codeblock-bg {
   overflow-y: scroll;
   white-space: pre;
 }
-.minimal-code-scroll .cm-hmd-codeblock {
+.oxygen-code-scroll .cm-hmd-codeblock {
   white-space: pre !important;
 }
 
@@ -2130,7 +2130,7 @@ body {
 }
 
 /* Tags */
-body.minimal-unstyled-tags {
+body.oxygen-unstyled-tags {
   --tag-background: transparent;
   --tag-background-hover: transparent;
   --tag-border-width: 0px;
@@ -2139,11 +2139,11 @@ body.minimal-unstyled-tags {
   --tag-size: inherit;
   --tag-color-hover: var(--text-accent-hover);
 }
-body.minimal-unstyled-tags.is-mobile.theme-dark {
+body.oxygen-unstyled-tags.is-mobile.theme-dark {
   --tag-background: transparent;
 }
 
-body:not(.minimal-unstyled-tags) {
+body:not(.oxygen-unstyled-tags) {
   --tag-size: 0.8em;
   --tag-padding-y: 0.2em;
   --tag-background: transparent;
@@ -2325,23 +2325,23 @@ body {
 }
 
 /* With line numbers */
-.minimal-line-nums .workspace-leaf-content[data-type=markdown] {
+.oxygen-line-nums .workspace-leaf-content[data-type=markdown] {
   --file-margins: var(--size-4-8) var(--size-4-8) var(--size-4-8) 48px;
 }
-.minimal-line-nums .workspace-leaf-content[data-type=markdown].is-rtl {
+.oxygen-line-nums .workspace-leaf-content[data-type=markdown].is-rtl {
   --file-margins: var(--size-4-8) 48px var(--size-4-8) var(--size-4-8);
 }
-.minimal-line-nums .workspace-leaf-content[data-type=markdown] .is-readable-line-width {
+.oxygen-line-nums .workspace-leaf-content[data-type=markdown] .is-readable-line-width {
   --file-margins: 1rem 0 0 var(--folding-offset);
 }
-.minimal-line-nums .workspace-leaf-content[data-type=markdown] .is-readable-line-width.is-rtl {
+.oxygen-line-nums .workspace-leaf-content[data-type=markdown] .is-readable-line-width.is-rtl {
   --file-margins: 1rem var(--folding-offset) 0 0;
 }
 
-.minimal-line-nums .mod-right-split .markdown-preview-view,
-.minimal-line-nums .mod-right-split .markdown-source-view.mod-cm6 .cm-scroller,
-.minimal-line-nums .mod-left-split .markdown-preview-view,
-.minimal-line-nums .mod-left-split .markdown-source-view.mod-cm6 .cm-scroller {
+.oxygen-line-nums .mod-right-split .markdown-preview-view,
+.oxygen-line-nums .mod-right-split .markdown-source-view.mod-cm6 .cm-scroller,
+.oxygen-line-nums .mod-left-split .markdown-preview-view,
+.oxygen-line-nums .mod-left-split .markdown-source-view.mod-cm6 .cm-scroller {
   --file-margins: var(--size-4-5) var(--size-4-5) var(--size-4-5) 48px;
 }
 
@@ -3799,12 +3799,12 @@ body {
   --titlebar-background: var(--frame-background);
   --titlebar-background-focused: var(--frame-background);
   --titlebar-text-color: var(--frame-muted-color);
-  --minimal-tab-text-color: var(--frame-muted-color);
+  --oxygen-tab-text-color: var(--frame-muted-color);
 }
 .colorful-frame.is-focused .workspace-tabs:not(.mod-stacked),
 .colorful-frame .workspace-tabs:not(.mod-stacked) {
-  --tab-text-color: var(--minimal-tab-text-color);
-  --tab-text-color-focused: var(--minimal-tab-text-color);
+  --tab-text-color: var(--oxygen-tab-text-color);
+  --tab-text-color-focused: var(--oxygen-tab-text-color);
 }
 .colorful-frame.is-focused .titlebar,
 .colorful-frame.is-focused .workspace-ribbon.mod-left:before,
@@ -3817,10 +3817,10 @@ body {
 }
 .colorful-frame.is-focused .mod-root .workspace-tab-header .workspace-tab-header-inner-icon,
 .colorful-frame .mod-root .workspace-tab-header .workspace-tab-header-inner-icon {
-  --icon-color: var(--minimal-tab-text-color-active);
-  --icon-color-hover: var(--minimal-tab-text-color-active);
-  --icon-color-active: var(--minimal-tab-text-color-active);
-  --icon-color-focused: var(--minimal-tab-text-color-active);
+  --icon-color: var(--oxygen-tab-text-color-active);
+  --icon-color-hover: var(--oxygen-tab-text-color-active);
+  --icon-color-active: var(--oxygen-tab-text-color-active);
+  --icon-color-focused: var(--oxygen-tab-text-color-active);
 }
 .colorful-frame.is-focused .sidebar-toggle-button,
 .colorful-frame.is-focused .workspace-tab-header:not(.is-active),
@@ -3852,16 +3852,16 @@ body {
   transition: none;
 }
 
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle {
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle {
   -webkit-app-region: no-drag;
   border: 0;
   z-index: 15;
 }
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:after {
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:after,
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:after,
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:after {
   content: "";
   height: 100%;
   width: 1px;
@@ -3869,16 +3869,16 @@ body {
   top: 0;
   position: absolute;
 }
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:hover:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:hover:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:hover:after {
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:hover:after,
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:hover:after,
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:hover:after {
   background: var(--divider-color-hover);
 }
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:after {
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-right-split > .workspace-leaf-resize-handle:after {
   left: 0;
 }
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:after,
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:after {
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:after,
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) .workspace-split.mod-left-split > .workspace-leaf-resize-handle:after {
   right: 0;
 }
 
@@ -3912,68 +3912,68 @@ body.colorful-headings .modal {
   --focus-animation-duration: 0.1s;
 }
 
-.minimal-focus-mode {
+.oxygen-focus-mode {
   /* Hide ribbon */
   /* Hide right sidebar button */
   /* Hide status bar */
 }
-.minimal-focus-mode.is-translucent .workspace-ribbon.mod-left.is-collapsed, .minimal-focus-mode.is-translucent .workspace-ribbon.mod-left.is-collapsed:before {
+.oxygen-focus-mode.is-translucent .workspace-ribbon.mod-left.is-collapsed, .oxygen-focus-mode.is-translucent .workspace-ribbon.mod-left.is-collapsed:before {
   background-color: var(--background-primary) !important;
 }
-.minimal-focus-mode .workspace-ribbon.mod-left {
+.oxygen-focus-mode .workspace-ribbon.mod-left {
   transition: background-color 0s linear 0s;
 }
-.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed {
+.oxygen-focus-mode .workspace-ribbon.mod-left.is-collapsed {
   border-color: transparent;
   background-color: var(--background-primary);
 }
-.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed:before {
+.oxygen-focus-mode .workspace-ribbon.mod-left.is-collapsed:before {
   background-color: var(--background-primary);
   border-color: transparent;
 }
-.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed .side-dock-actions,
-.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed .side-dock-settings {
+.oxygen-focus-mode .workspace-ribbon.mod-left.is-collapsed .side-dock-actions,
+.oxygen-focus-mode .workspace-ribbon.mod-left.is-collapsed .side-dock-settings {
   opacity: 0;
   transition: opacity var(--focus-animation-duration) ease-in-out 0.1s;
 }
-.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed:hover .side-dock-actions,
-.minimal-focus-mode .workspace-ribbon.mod-left.is-collapsed:hover .side-dock-settings {
+.oxygen-focus-mode .workspace-ribbon.mod-left.is-collapsed:hover .side-dock-actions,
+.oxygen-focus-mode .workspace-ribbon.mod-left.is-collapsed:hover .side-dock-settings {
   opacity: 1;
   transition: opacity var(--focus-animation-duration) ease-in-out 0.1s;
 }
-.minimal-focus-mode.borders-title .workspace-ribbon.mod-left.is-collapsed {
+.oxygen-focus-mode.borders-title .workspace-ribbon.mod-left.is-collapsed {
   border-right: none;
 }
-.minimal-focus-mode .mod-root .sidebar-toggle-button.mod-right {
+.oxygen-focus-mode .mod-root .sidebar-toggle-button.mod-right {
   opacity: 0;
   transition: opacity var(--focus-animation-duration) ease-in-out 0.5s;
 }
-.minimal-focus-mode:not(.minimal-status-off) .status-bar {
+.oxygen-focus-mode:not(.oxygen-status-off) .status-bar {
   opacity: 0;
   transition: opacity var(--focus-animation-duration) ease-in-out;
 }
-.minimal-focus-mode .status-bar:hover {
+.oxygen-focus-mode .status-bar:hover {
   opacity: 1;
   transition: opacity var(--focus-animation-duration) ease-in-out;
 }
-.minimal-focus-mode .mod-root .workspace-tabs {
+.oxygen-focus-mode .mod-root .workspace-tabs {
   position: relative;
 }
-.minimal-focus-mode .mod-root .workspace-tabs:before:hover {
+.oxygen-focus-mode .mod-root .workspace-tabs:before:hover {
   background-color: blue;
 }
-.minimal-focus-mode .mod-root .workspace-tab-header-container {
+.oxygen-focus-mode .mod-root .workspace-tab-header-container {
   height: 0px;
   transition: all var(--focus-animation-duration) linear 0.6s;
   --tab-outline-width: 0px;
 }
-.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner,
-.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-new-tab,
-.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-tab-list {
+.oxygen-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-new-tab,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-tab-list {
   opacity: 0;
   transition: all var(--focus-animation-duration) linear 0.6s;
 }
-.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-spacer:before {
+.oxygen-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-spacer:before {
   width: 100%;
   content: " ";
   background-color: transparent;
@@ -3983,29 +3983,29 @@ body.colorful-headings .modal {
   top: 0;
   left: 0;
 }
-.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active,
-.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active::before,
-.minimal-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active::after {
+.oxygen-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active::before,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner .workspace-tab-header.is-active::after {
   transition: all var(--focus-animation-duration) linear 0.6s;
 }
-.minimal-focus-mode .mod-root .workspace-tab-header-container:hover {
+.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover {
   height: var(--header-height);
   --tab-outline-width: 1px;
   transition: all var(--focus-animation-duration) linear 0.05s;
 }
-.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .sidebar-toggle-button.mod-right,
-.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner,
-.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-new-tab,
-.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-tab-list {
+.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover .sidebar-toggle-button.mod-right,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-new-tab,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-tab-list {
   opacity: 1;
   transition: all var(--focus-animation-duration) linear 0.05s;
 }
-.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active,
-.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active::before,
-.minimal-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active::after {
+.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active::before,
+.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover .workspace-tab-header-container-inner .workspace-tab-header.is-active::after {
   transition: all var(--focus-animation-duration) linear 0.05s;
 }
-.minimal-focus-mode.mod-macos:not(.is-fullscreen) .workspace:not(.is-left-sidedock-open) .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header-inner {
+.oxygen-focus-mode.mod-macos:not(.is-fullscreen) .workspace:not(.is-left-sidedock-open) .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header-inner {
   padding-top: 30px;
 }
 
@@ -4014,14 +4014,14 @@ body.show-view-header .app-container .workspace-split.mod-root > .workspace-leaf
   transition: height var(--focus-animation-duration) linear 0.1s;
 }
 
-body.minimal-focus-mode.show-view-header .mod-top-left-space .view-header {
+body.oxygen-focus-mode.show-view-header .mod-top-left-space .view-header {
   padding-left: var(--frame-left-space);
 }
-body.minimal-focus-mode.show-view-header .mod-root .workspace-leaf .view-header {
+body.oxygen-focus-mode.show-view-header .mod-root .workspace-leaf .view-header {
   height: 0em;
   transition: all var(--focus-animation-duration) linear 0.5s;
 }
-body.minimal-focus-mode.show-view-header .view-header::after {
+body.oxygen-focus-mode.show-view-header .view-header::after {
   width: 100%;
   content: " ";
   background-color: transparent;
@@ -4030,31 +4030,31 @@ body.minimal-focus-mode.show-view-header .view-header::after {
   z-index: -9;
   top: 0;
 }
-body.minimal-focus-mode.show-view-header .view-header-nav-buttons,
-body.minimal-focus-mode.show-view-header .view-header-title-container,
-body.minimal-focus-mode.show-view-header .view-actions {
+body.oxygen-focus-mode.show-view-header .view-header-nav-buttons,
+body.oxygen-focus-mode.show-view-header .view-header-title-container,
+body.oxygen-focus-mode.show-view-header .view-actions {
   opacity: 0;
   transition: all var(--focus-animation-duration) linear 0.5s;
 }
-body.minimal-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header,
-body.minimal-focus-mode.show-view-header .mod-root .workspace-leaf .view-header:hover,
-body.minimal-focus-mode.show-view-header .mod-root .workspace-leaf .view-header:focus-within {
+body.oxygen-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header,
+body.oxygen-focus-mode.show-view-header .mod-root .workspace-leaf .view-header:hover,
+body.oxygen-focus-mode.show-view-header .mod-root .workspace-leaf .view-header:focus-within {
   height: calc(var(--header-height) + 2px);
   transition: all var(--focus-animation-duration) linear 0.1s;
 }
-body.minimal-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-header-nav-buttons,
-body.minimal-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-actions,
-body.minimal-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-header-title-container,
-body.minimal-focus-mode.show-view-header .view-header:hover .view-header-nav-buttons,
-body.minimal-focus-mode.show-view-header .view-header:hover .view-actions,
-body.minimal-focus-mode.show-view-header .view-header:hover .view-header-title-container,
-body.minimal-focus-mode.show-view-header .view-header:focus-within .view-header-nav-buttons,
-body.minimal-focus-mode.show-view-header .view-header:focus-within .view-actions,
-body.minimal-focus-mode.show-view-header .view-header:focus-within .view-header-title-container {
+body.oxygen-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-header-nav-buttons,
+body.oxygen-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-actions,
+body.oxygen-focus-mode.show-view-header .mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header .view-header-title-container,
+body.oxygen-focus-mode.show-view-header .view-header:hover .view-header-nav-buttons,
+body.oxygen-focus-mode.show-view-header .view-header:hover .view-actions,
+body.oxygen-focus-mode.show-view-header .view-header:hover .view-header-title-container,
+body.oxygen-focus-mode.show-view-header .view-header:focus-within .view-header-nav-buttons,
+body.oxygen-focus-mode.show-view-header .view-header:focus-within .view-actions,
+body.oxygen-focus-mode.show-view-header .view-header:focus-within .view-header-title-container {
   opacity: 1;
   transition: all var(--focus-animation-duration) linear 0.1s;
 }
-body.minimal-focus-mode.show-view-header .view-content {
+body.oxygen-focus-mode.show-view-header .view-content {
   height: 100%;
 }
 
@@ -4650,8 +4650,8 @@ body:not(.sidebar-color) .mod-right-split :not(.mod-top) .workspace-tab-header-c
 
 }
 
-.minimal-folding .workspace > .workspace-split:not(.mod-root) .workspace-leaf-content[data-type=markdown] .allow-fold-headings.markdown-preview-view .markdown-preview-sizer,
-.minimal-folding .workspace > .workspace-split:not(.mod-root) .workspace-leaf-content[data-type=markdown] .allow-fold-lists.markdown-preview-view .markdown-preview-sizer {
+.oxygen-folding .workspace > .workspace-split:not(.mod-root) .workspace-leaf-content[data-type=markdown] .allow-fold-headings.markdown-preview-view .markdown-preview-sizer,
+.oxygen-folding .workspace > .workspace-split:not(.mod-root) .workspace-leaf-content[data-type=markdown] .allow-fold-lists.markdown-preview-view .markdown-preview-sizer {
 	padding-left:0;
 }
 
@@ -4668,16 +4668,16 @@ body:not(.sidebar-color) .mod-right-split :not(.mod-top) .workspace-tab-header-c
 /* Main tabs */
 .theme-light,
 .theme-dark {
-  --minimal-tab-text-color: var(--tx2);
-  --minimal-tab-text-color-active: var(--tx1);
+  --oxygen-tab-text-color: var(--tx2);
+  --oxygen-tab-text-color-active: var(--tx1);
 }
 
 .workspace-tabs:not(.mod-stacked) {
-  --tab-text-color: var(--minimal-tab-text-color);
-  --tab-text-color-focused: var(--minimal-tab-text-color);
-  --tab-text-color-active: var(--minimal-tab-text-color-active);
-  --tab-text-color-focused-active: var(--minimal-tab-text-color-active);
-  --tab-text-color-focused-active-current: var(--minimal-tab-text-color-active);
+  --tab-text-color: var(--oxygen-tab-text-color);
+  --tab-text-color-focused: var(--oxygen-tab-text-color);
+  --tab-text-color-active: var(--oxygen-tab-text-color-active);
+  --tab-text-color-focused-active: var(--oxygen-tab-text-color-active);
+  --tab-text-color-focused-active-current: var(--oxygen-tab-text-color-active);
 }
 
 .tabs-plain-square .mod-root {
@@ -4744,9 +4744,9 @@ body:not(.sidebar-tabs-underline):not(.sidebar-tabs-index):not(.sidebar-tabs-squ
 }
 .tabs-modern.colorful-frame .mod-root .mod-top.workspace-tabs:not(.mod-stacked) .workspace-tab-header:hover .workspace-tab-header-inner-close-button,
 .tabs-modern.colorful-frame .mod-root .mod-top.workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active .workspace-tab-header-inner-close-button {
-  color: var(--minimal-tab-text-color-active);
+  color: var(--oxygen-tab-text-color-active);
 }
-.tabs-modern.minimal-focus-mode .mod-root .workspace-tab-header-container:hover {
+.tabs-modern.oxygen-focus-mode .mod-root .workspace-tab-header-container:hover {
   --tab-outline-width: 0px;
 }
 .tabs-modern .mod-root {
@@ -5720,10 +5720,10 @@ div[data-type=git-view] .search-input-clear-button {
 
 /* Kanban plugin */
 body.theme-dark,
-body.minimal-dark-black.theme-dark,
-body.minimal-dark-tonal.theme-dark,
-body.minimal-light-white.theme-light,
-body.minimal-light-tonal.theme-light {
+body.oxygen-dark-black.theme-dark,
+body.oxygen-dark-tonal.theme-dark,
+body.oxygen-light-white.theme-light,
+body.oxygen-light-tonal.theme-light {
   --kanban-border:0px;
 }
 
@@ -5731,7 +5731,7 @@ body:not(.is-mobile) .kanban-plugin__grow-wrap > textarea:focus {
   box-shadow: none;
 }
 
-body:not(.minimal-icons-off) .kanban-plugin svg.cross {
+body:not(.oxygen-icons-off) .kanban-plugin svg.cross {
   height: 14px;
   width: 14px;
 }
@@ -6293,7 +6293,7 @@ Other color schemes (Minimal, Atom, Things, etc.) override the Oxygen base.
 Minimal
 Original default color scheme preserved from the original Minimal theme
 */
-.theme-light.minimal-minimal-light {
+.theme-light.oxygen-minimal-light {
   --base-h: 0;
   --base-s: 0%;
   --base-l: 96%;
@@ -6319,11 +6319,11 @@ Original default color scheme preserved from the original Minimal theme
 }
 
 /* Fix right sidebar background for Minimal light theme */
-.theme-light.minimal-minimal-light .mod-right-split {
+.theme-light.oxygen-minimal-light .mod-right-split {
   --background-secondary: white;
 }
 
-.theme-dark.minimal-minimal-dark {
+.theme-dark.oxygen-minimal-dark {
   --base-h: 0;
   --base-s: 0%;
   --base-l: 15%;
@@ -6357,11 +6357,11 @@ Original default color scheme preserved from the original Minimal theme
 }
 
 /* Force Minimal theme colors with maximum specificity */
-body.theme-dark.minimal-minimal-dark,
-body.theme-dark.minimal-minimal-dark *,
-body.theme-dark.minimal-minimal-dark .setting-item,
-body.theme-dark.minimal-minimal-dark .checkbox-container,
-body.theme-dark.minimal-minimal-dark .workspace-tab-header-container {
+body.theme-dark.oxygen-minimal-dark,
+body.theme-dark.oxygen-minimal-dark *,
+body.theme-dark.oxygen-minimal-dark .setting-item,
+body.theme-dark.oxygen-minimal-dark .checkbox-container,
+body.theme-dark.oxygen-minimal-dark .workspace-tab-header-container {
   --ui1: #363636;
   --background-modifier-border: #363636;
   --background-modifier-border-hover: #404040;
@@ -6373,12 +6373,12 @@ body.theme-dark.minimal-minimal-dark .workspace-tab-header-container {
 }
 
 /* Fix right sidebar background to match main content */
-body.theme-dark.minimal-minimal-dark .mod-right-split {
+body.theme-dark.oxygen-minimal-dark .mod-right-split {
   --background-secondary: #262626;
 }
 
 /* Atom */
-.theme-dark.minimal-atom-dark {
+.theme-dark.oxygen-atom-dark {
   --color-red-rgb: 225,109,118;
   --color-orange-rgb: 209,154,102;
   --color-yellow-rgb: 206,193,103;
@@ -6397,7 +6397,7 @@ body.theme-dark.minimal-minimal-dark .mod-right-split {
   --color-pink:#e16d76;
 }
 
-.theme-light.minimal-atom-light {
+.theme-light.oxygen-atom-light {
   --color-red-rgb: 228,87,73;
   --color-orange-rgb: 183,107,2;
   --color-yellow-rgb: 193,131,2;
@@ -6416,7 +6416,7 @@ body.theme-dark.minimal-minimal-dark .mod-right-split {
   --color-pink:#e45749;
 }
 
-.theme-light.minimal-atom-light {
+.theme-light.oxygen-atom-light {
   --base-h:106;
   --base-s:0%;
   --base-l:98%;
@@ -6435,17 +6435,17 @@ body.theme-dark.minimal-minimal-dark .mod-right-split {
   --hl2:rgba(209,154,102,0.35);
 }
 
-.theme-light.minimal-atom-light.minimal-light-white {
+.theme-light.oxygen-atom-light.oxygen-light-white {
   --bg3:#eaeaeb;
 }
 
-.theme-light.minimal-atom-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-atom-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-atom-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-atom-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-atom-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-atom-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-atom-dark {
+.theme-light.oxygen-atom-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-atom-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-atom-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-atom-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-atom-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-atom-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-atom-dark {
   --base-h:220;
   --base-s:12%;
   --base-l:18%;
@@ -6465,7 +6465,7 @@ body.theme-dark.minimal-minimal-dark .mod-right-split {
   --sp1:#fff;
 }
 
-.theme-dark.minimal-atom-dark.minimal-dark-black {
+.theme-dark.oxygen-atom-dark.oxygen-dark-black {
   --base-d:5%;
   --bg3:#282c34;
   --divider-color:#282c34;
@@ -6478,7 +6478,7 @@ MIT License
 Copyright (c) Konstantin Pschera <me@kons.ch> (kons.ch)
 https://github.com/ayu-theme/ayu-colors
 */
-.theme-light.minimal-ayu-light {
+.theme-light.oxygen-ayu-light {
   --color-red-rgb: 230,80,80;
   --color-orange-rgb: 250,141,62;
   --color-yellow-rgb: 242,174,73;
@@ -6497,7 +6497,7 @@ https://github.com/ayu-theme/ayu-colors
   --color-pink:#ff7383;
 }
 
-.theme-dark.minimal-ayu-dark {
+.theme-dark.oxygen-ayu-dark {
   --color-red-rgb: 255,102,102;
   --color-orange-rgb: 250,173,102;
   --color-yellow-rgb: 255,209,55;
@@ -6516,7 +6516,7 @@ https://github.com/ayu-theme/ayu-colors
   --color-pink:#f27983;
 }
 
-.theme-light.minimal-ayu-light {
+.theme-light.oxygen-ayu-light {
   --base-h:210;
   --base-s:17%;
   --base-l:98%;
@@ -6533,13 +6533,13 @@ https://github.com/ayu-theme/ayu-colors
   --hl1:rgba(3,91,214,0.15);
 }
 
-.theme-light.minimal-ayu-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-ayu-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-ayu-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-ayu-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-ayu-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-ayu-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-ayu-dark {
+.theme-light.oxygen-ayu-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-ayu-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-ayu-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-ayu-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-ayu-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-ayu-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-ayu-dark {
   --base-h:222;
   --base-s:22%;
   --base-l:15%;
@@ -6558,7 +6558,7 @@ https://github.com/ayu-theme/ayu-colors
   --hl1:rgba(64,159,255,0.25);
 }
 
-.theme-dark.minimal-ayu-dark.minimal-dark-black {
+.theme-dark.oxygen-ayu-dark.oxygen-dark-black {
   --accent-h:40;
   --accent-s:75%;
   --accent-l:61%;
@@ -6574,7 +6574,7 @@ MIT License
 Copyright (c) 2021 Catppuccin
 https://github.com/catppuccin/catppuccin
 */
-.theme-light.minimal-catppuccin-light {
+.theme-light.oxygen-catppuccin-light {
   --color-red-rgb: 230,69,83;
   --color-orange-rgb: 254,100,12;
   --color-yellow-rgb: 223,142,29;
@@ -6593,7 +6593,7 @@ https://github.com/catppuccin/catppuccin
   --color-pink: #EA77CB;
 }
 
-.theme-dark.minimal-catppuccin-dark {
+.theme-dark.oxygen-catppuccin-dark {
   --color-red-rgb: 235,153,156;
   --color-orange-rgb: 239,160,118;
   --color-yellow-rgb: 229,200,144;
@@ -6612,7 +6612,7 @@ https://github.com/catppuccin/catppuccin
   --color-pink: #F4B9E5;
 }
 
-.theme-light.minimal-catppuccin-light {
+.theme-light.oxygen-catppuccin-light {
   --base-h: 228;
   --base-s: 20%;
   --base-l: 95%;
@@ -6632,22 +6632,22 @@ https://github.com/catppuccin/catppuccin
   --hl2: rgba(223,142,29,.3);
 }
 
-.theme-light.minimal-catppuccin-light.minimal-light-tonal {
+.theme-light.oxygen-catppuccin-light.oxygen-light-tonal {
   --bg2: #DCE0E8;
 }
 
-.theme-light.minimal-catppuccin-light.minimal-light-white {
+.theme-light.oxygen-catppuccin-light.oxygen-light-white {
   --bg3: #F0F1F5;
   --ui1: #DCE0E8;
 }
 
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-catppuccin-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-catppuccin-dark {
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-catppuccin-dark {
   --base-h: 229;
   --base-s: 19%;
   --base-l: 23%;
@@ -6668,7 +6668,7 @@ https://github.com/catppuccin/catppuccin
   --hl2: rgba(223,142,29,.4);
 }
 
-.theme-dark.minimal-catppuccin-dark.minimal-dark-black {
+.theme-dark.oxygen-catppuccin-dark.oxygen-dark-black {
   --ui1: #303446;
   --hl2: rgba(223,142,29,.5);
 }
@@ -6679,7 +6679,7 @@ MIT License
 Copyright (c) 2016 Dracula Theme
 https://github.com/dracula/dracula-theme
 */
-.theme-dark.minimal-dracula-dark {
+.theme-dark.oxygen-dracula-dark {
   --color-red-rgb: 255,85,85;
   --color-orange-rgb: 255,184,108;
   --color-yellow-rgb: 241,250,140;
@@ -6698,13 +6698,13 @@ https://github.com/dracula/dracula-theme
   --color-pink:#ff79c6;
 }
 
-.theme-light.minimal-dracula-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-dracula-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-dracula-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-dracula-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-dracula-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-dracula-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-dracula-dark {
+.theme-light.oxygen-dracula-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-dracula-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-dracula-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-dracula-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-dracula-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-dracula-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-dracula-dark {
   --base-h: 232;
   --base-s: 16%;
   --base-l: 19%;
@@ -6722,13 +6722,13 @@ https://github.com/dracula/dracula-theme
   --hl2:rgba(189, 147, 249, 0.35);
 }
 
-.theme-dark.minimal-dracula-dark.minimal-dark-black {
+.theme-dark.oxygen-dracula-dark.oxygen-dark-black {
   --ui1:#282a36;
 }
 
 /* Eink */
-.theme-light.minimal-eink-light,
-.theme-dark.minimal-eink-dark {
+.theme-light.oxygen-eink-light,
+.theme-dark.oxygen-eink-dark {
   --collapse-icon-color: var(--text-normal);
   --icon-color-active: var(--bg1);
   --icon-color-hover: var(--bg1);
@@ -6762,124 +6762,124 @@ https://github.com/dracula/dracula-theme
   --vault-profile-color: var(--tx1);
   --nav-item-color-hover: var(--bg1);
 }
-.theme-light.minimal-eink-light button:hover,
-.theme-light.minimal-eink-light ::selection,
-.theme-dark.minimal-eink-dark button:hover,
-.theme-dark.minimal-eink-dark ::selection {
+.theme-light.oxygen-eink-light button:hover,
+.theme-light.oxygen-eink-light ::selection,
+.theme-dark.oxygen-eink-dark button:hover,
+.theme-dark.oxygen-eink-dark ::selection {
   color: var(--bg1);
 }
-.theme-light.minimal-eink-light .nav-files-container,
-.theme-dark.minimal-eink-dark .nav-files-container {
+.theme-light.oxygen-eink-light .nav-files-container,
+.theme-dark.oxygen-eink-dark .nav-files-container {
   --nav-item-color-active: var(--bg1);
 }
-.theme-light.minimal-eink-light .tree-item-self:hover,
-.theme-dark.minimal-eink-dark .tree-item-self:hover {
+.theme-light.oxygen-eink-light .tree-item-self:hover,
+.theme-dark.oxygen-eink-dark .tree-item-self:hover {
   --nav-collapse-icon-color: var(--bg1);
 }
-.theme-light.minimal-eink-light.is-focused .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-icon, .theme-light.minimal-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active, .theme-light.minimal-eink-light.tabs-modern,
-.theme-dark.minimal-eink-dark.is-focused .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
-.theme-dark.minimal-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active,
-.theme-dark.minimal-eink-dark.tabs-modern {
-  --minimal-tab-text-color-active: var(--bg1);
+.theme-light.oxygen-eink-light.is-focused .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-icon, .theme-light.oxygen-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active, .theme-light.oxygen-eink-light.tabs-modern,
+.theme-dark.oxygen-eink-dark.is-focused .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
+.theme-dark.oxygen-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active,
+.theme-dark.oxygen-eink-dark.tabs-modern {
+  --oxygen-tab-text-color-active: var(--bg1);
   --tab-text-color-focused: var(--bg1);
   --tab-text-color-focused-active-current: var(--bg1);
 }
-.theme-light.minimal-eink-light .setting-hotkey,
-.theme-dark.minimal-eink-dark .setting-hotkey {
+.theme-light.oxygen-eink-light .setting-hotkey,
+.theme-dark.oxygen-eink-dark .setting-hotkey {
   background-color: transparent;
   border: 1px solid var(--tx1);
 }
-.theme-light.minimal-eink-light .suggestion-container,
-.theme-dark.minimal-eink-dark .suggestion-container {
+.theme-light.oxygen-eink-light .suggestion-container,
+.theme-dark.oxygen-eink-dark .suggestion-container {
   border-width: 3px;
 }
-.theme-light.minimal-eink-light .markdown-rendered code,
-.theme-light.minimal-eink-light .cm-s-obsidian span.cm-inline-code,
-.theme-dark.minimal-eink-dark .markdown-rendered code,
-.theme-dark.minimal-eink-dark .cm-s-obsidian span.cm-inline-code {
+.theme-light.oxygen-eink-light .markdown-rendered code,
+.theme-light.oxygen-eink-light .cm-s-obsidian span.cm-inline-code,
+.theme-dark.oxygen-eink-dark .markdown-rendered code,
+.theme-dark.oxygen-eink-dark .cm-s-obsidian span.cm-inline-code {
   font-weight: 600;
 }
-.theme-light.minimal-eink-light .tree-item-self:hover,
-.theme-light.minimal-eink-light .tree-item-self.is-active,
-.theme-dark.minimal-eink-dark .tree-item-self:hover,
-.theme-dark.minimal-eink-dark .tree-item-self.is-active {
+.theme-light.oxygen-eink-light .tree-item-self:hover,
+.theme-light.oxygen-eink-light .tree-item-self.is-active,
+.theme-dark.oxygen-eink-dark .tree-item-self:hover,
+.theme-dark.oxygen-eink-dark .tree-item-self.is-active {
   --icon-color: var(--bg1);
 }
-.theme-light.minimal-eink-light .metadata-property-icon,
-.theme-dark.minimal-eink-dark .metadata-property-icon {
+.theme-light.oxygen-eink-light .metadata-property-icon,
+.theme-dark.oxygen-eink-dark .metadata-property-icon {
   --icon-color-focused: var(--tx1);
 }
-.theme-light.minimal-eink-light .checkbox-container,
-.theme-dark.minimal-eink-dark .checkbox-container {
+.theme-light.oxygen-eink-light .checkbox-container,
+.theme-dark.oxygen-eink-dark .checkbox-container {
   background-color: var(--bg1);
   box-shadow: 0 0 0 1px var(--tx1);
   --toggle-thumb-color: var(--tx1);
 }
-.theme-light.minimal-eink-light .checkbox-container.is-enabled,
-.theme-dark.minimal-eink-dark .checkbox-container.is-enabled {
+.theme-light.oxygen-eink-light .checkbox-container.is-enabled,
+.theme-dark.oxygen-eink-dark .checkbox-container.is-enabled {
   background-color: var(--tx1);
   --toggle-thumb-color: var(--bg1);
 }
-.theme-light.minimal-eink-light.tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active, .theme-light.minimal-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active:not(:hover),
-.theme-dark.minimal-eink-dark.tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active,
-.theme-dark.minimal-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active:not(:hover) {
+.theme-light.oxygen-eink-light.tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active, .theme-light.oxygen-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active:not(:hover),
+.theme-dark.oxygen-eink-dark.tabs-modern .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active,
+.theme-dark.oxygen-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active:not(:hover) {
   background-color: var(--tx1);
 }
-.theme-light.minimal-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active, .theme-light.minimal-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header:hover, .theme-light.minimal-eink-light.is-focused.tabs-modern .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title,
-.theme-light.minimal-eink-light #calendar-container .reset-button:hover,
-.theme-light.minimal-eink-light .status-bar .plugin-sync:hover .sync-status-icon.mod-success,
-.theme-light.minimal-eink-light .status-bar .plugin-sync:hover .sync-status-icon.mod-working,
-.theme-light.minimal-eink-light .status-bar-item.mod-clickable:hover,
-.theme-light.minimal-eink-light .text-icon-button:hover,
-.theme-light.minimal-eink-light .community-item .suggestion-highlight,
-.theme-light.minimal-eink-light .cm-s-obsidian span.cm-formatting-highlight,
-.theme-light.minimal-eink-light .cm-s-obsidian span.cm-highlight,
-.theme-light.minimal-eink-light .markdown-rendered mark,
-.theme-light.minimal-eink-light .suggestion-item.is-selected,
-.theme-light.minimal-eink-light .horizontal-tab-nav-item:hover,
-.theme-light.minimal-eink-light .search-result-file-matched-text,
-.theme-light.minimal-eink-light .vertical-tab-nav-item:hover,
-.theme-light.minimal-eink-light .mod-root .workspace-tab-header-status-icon,
-.theme-light.minimal-eink-light .mod-root .workspace-tab-header:hover, .theme-light.minimal-eink-light:not(.colorful-active) .horizontal-tab-nav-item.is-active, .theme-light.minimal-eink-light:not(.colorful-active) .vertical-tab-nav-item.is-active,
-.theme-light.minimal-eink-light button.mod-cta,
-.theme-light.minimal-eink-light .search-result-file-match:hover,
-.theme-light.minimal-eink-light select:hover, .theme-light.minimal-eink-light .dropdown:hover,
-.theme-dark.minimal-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active,
-.theme-dark.minimal-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header:hover,
-.theme-dark.minimal-eink-dark.is-focused.tabs-modern .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title,
-.theme-dark.minimal-eink-dark #calendar-container .reset-button:hover,
-.theme-dark.minimal-eink-dark .status-bar .plugin-sync:hover .sync-status-icon.mod-success,
-.theme-dark.minimal-eink-dark .status-bar .plugin-sync:hover .sync-status-icon.mod-working,
-.theme-dark.minimal-eink-dark .status-bar-item.mod-clickable:hover,
-.theme-dark.minimal-eink-dark .text-icon-button:hover,
-.theme-dark.minimal-eink-dark .community-item .suggestion-highlight,
-.theme-dark.minimal-eink-dark .cm-s-obsidian span.cm-formatting-highlight,
-.theme-dark.minimal-eink-dark .cm-s-obsidian span.cm-highlight,
-.theme-dark.minimal-eink-dark .markdown-rendered mark,
-.theme-dark.minimal-eink-dark .suggestion-item.is-selected,
-.theme-dark.minimal-eink-dark .horizontal-tab-nav-item:hover,
-.theme-dark.minimal-eink-dark .search-result-file-matched-text,
-.theme-dark.minimal-eink-dark .vertical-tab-nav-item:hover,
-.theme-dark.minimal-eink-dark .mod-root .workspace-tab-header-status-icon,
-.theme-dark.minimal-eink-dark .mod-root .workspace-tab-header:hover,
-.theme-dark.minimal-eink-dark:not(.colorful-active) .horizontal-tab-nav-item.is-active,
-.theme-dark.minimal-eink-dark:not(.colorful-active) .vertical-tab-nav-item.is-active,
-.theme-dark.minimal-eink-dark button.mod-cta,
-.theme-dark.minimal-eink-dark .search-result-file-match:hover,
-.theme-dark.minimal-eink-dark select:hover,
-.theme-dark.minimal-eink-dark .dropdown:hover {
+.theme-light.oxygen-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active, .theme-light.oxygen-eink-light.labeled-nav .mod-left-split .mod-top .workspace-tab-header:hover, .theme-light.oxygen-eink-light.is-focused.tabs-modern .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title,
+.theme-light.oxygen-eink-light #calendar-container .reset-button:hover,
+.theme-light.oxygen-eink-light .status-bar .plugin-sync:hover .sync-status-icon.mod-success,
+.theme-light.oxygen-eink-light .status-bar .plugin-sync:hover .sync-status-icon.mod-working,
+.theme-light.oxygen-eink-light .status-bar-item.mod-clickable:hover,
+.theme-light.oxygen-eink-light .text-icon-button:hover,
+.theme-light.oxygen-eink-light .community-item .suggestion-highlight,
+.theme-light.oxygen-eink-light .cm-s-obsidian span.cm-formatting-highlight,
+.theme-light.oxygen-eink-light .cm-s-obsidian span.cm-highlight,
+.theme-light.oxygen-eink-light .markdown-rendered mark,
+.theme-light.oxygen-eink-light .suggestion-item.is-selected,
+.theme-light.oxygen-eink-light .horizontal-tab-nav-item:hover,
+.theme-light.oxygen-eink-light .search-result-file-matched-text,
+.theme-light.oxygen-eink-light .vertical-tab-nav-item:hover,
+.theme-light.oxygen-eink-light .mod-root .workspace-tab-header-status-icon,
+.theme-light.oxygen-eink-light .mod-root .workspace-tab-header:hover, .theme-light.oxygen-eink-light:not(.colorful-active) .horizontal-tab-nav-item.is-active, .theme-light.oxygen-eink-light:not(.colorful-active) .vertical-tab-nav-item.is-active,
+.theme-light.oxygen-eink-light button.mod-cta,
+.theme-light.oxygen-eink-light .search-result-file-match:hover,
+.theme-light.oxygen-eink-light select:hover, .theme-light.oxygen-eink-light .dropdown:hover,
+.theme-dark.oxygen-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active,
+.theme-dark.oxygen-eink-dark.labeled-nav .mod-left-split .mod-top .workspace-tab-header:hover,
+.theme-dark.oxygen-eink-dark.is-focused.tabs-modern .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-title,
+.theme-dark.oxygen-eink-dark #calendar-container .reset-button:hover,
+.theme-dark.oxygen-eink-dark .status-bar .plugin-sync:hover .sync-status-icon.mod-success,
+.theme-dark.oxygen-eink-dark .status-bar .plugin-sync:hover .sync-status-icon.mod-working,
+.theme-dark.oxygen-eink-dark .status-bar-item.mod-clickable:hover,
+.theme-dark.oxygen-eink-dark .text-icon-button:hover,
+.theme-dark.oxygen-eink-dark .community-item .suggestion-highlight,
+.theme-dark.oxygen-eink-dark .cm-s-obsidian span.cm-formatting-highlight,
+.theme-dark.oxygen-eink-dark .cm-s-obsidian span.cm-highlight,
+.theme-dark.oxygen-eink-dark .markdown-rendered mark,
+.theme-dark.oxygen-eink-dark .suggestion-item.is-selected,
+.theme-dark.oxygen-eink-dark .horizontal-tab-nav-item:hover,
+.theme-dark.oxygen-eink-dark .search-result-file-matched-text,
+.theme-dark.oxygen-eink-dark .vertical-tab-nav-item:hover,
+.theme-dark.oxygen-eink-dark .mod-root .workspace-tab-header-status-icon,
+.theme-dark.oxygen-eink-dark .mod-root .workspace-tab-header:hover,
+.theme-dark.oxygen-eink-dark:not(.colorful-active) .horizontal-tab-nav-item.is-active,
+.theme-dark.oxygen-eink-dark:not(.colorful-active) .vertical-tab-nav-item.is-active,
+.theme-dark.oxygen-eink-dark button.mod-cta,
+.theme-dark.oxygen-eink-dark .search-result-file-match:hover,
+.theme-dark.oxygen-eink-dark select:hover,
+.theme-dark.oxygen-eink-dark .dropdown:hover {
   color: var(--bg1);
 }
-.theme-light.minimal-eink-light .is-flashing,
-.theme-dark.minimal-eink-dark .is-flashing {
+.theme-light.oxygen-eink-light .is-flashing,
+.theme-dark.oxygen-eink-dark .is-flashing {
   --text-highlight-bg: #999 ;
 }
-.theme-light.minimal-eink-light #calendar-container .day:hover,
-.theme-dark.minimal-eink-dark #calendar-container .day:hover {
+.theme-light.oxygen-eink-light #calendar-container .day:hover,
+.theme-dark.oxygen-eink-dark #calendar-container .day:hover {
   --color-dot: var(--bg1);
 }
 
-.theme-light.minimal-eink-light {
+.theme-light.oxygen-eink-light {
   --base-h:0;
   --base-s:0%;
   --base-l:100%;
@@ -6903,13 +6903,13 @@ https://github.com/dracula/dracula-theme
   --background-modifier-cover: rgba(235,235,235,1);
 }
 
-.theme-light.minimal-eink-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-eink-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-eink-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-eink-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-eink-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-eink-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-eink-dark {
+.theme-light.oxygen-eink-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-eink-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-eink-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-eink-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-eink-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-eink-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-eink-dark {
   --base-h:0;
   --base-s:0%;
   --base-l:0%;
@@ -6936,20 +6936,20 @@ https://github.com/dracula/dracula-theme
   --nav-item-color-active: var(--bg1);
 }
 
-.theme-light.minimal-eink-light.minimal-light-tonal {
+.theme-light.oxygen-eink-light.oxygen-light-tonal {
   --bg3:#bbb;
   --ui1:#bbb;
   --tx3:#999;
 }
 
-.theme-dark.minimal-eink-dark.minimal-dark-tonal {
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal {
   --bg3:#444;
   --ui1:#444;
   --tx3:#999;
 }
 
-.theme-light.minimal-eink-light.minimal-light-tonal,
-.theme-dark.minimal-eink-dark.minimal-dark-tonal {
+.theme-light.oxygen-eink-light.oxygen-light-tonal,
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal {
   --hl2: var(--bg3);
   --modal-border-color: var(--ui1);
   --prompt-border-color: var(--ui1);
@@ -6959,21 +6959,21 @@ https://github.com/dracula/dracula-theme
   --icon-color-focused: var(--tx1);
   --nav-item-color-active: var(--tx1);
   --nav-item-color-hover: var(--tx1);
-  --minimal-tab-text-color-active: var(--tx1);
+  --oxygen-tab-text-color-active: var(--tx1);
 }
-.theme-light.minimal-eink-light.minimal-light-tonal .is-flashing,
-.theme-light.minimal-eink-light.minimal-light-tonal .search-result-file-matched-text,
-.theme-dark.minimal-eink-dark.minimal-dark-tonal .is-flashing,
-.theme-dark.minimal-eink-dark.minimal-dark-tonal .search-result-file-matched-text {
+.theme-light.oxygen-eink-light.oxygen-light-tonal .is-flashing,
+.theme-light.oxygen-eink-light.oxygen-light-tonal .search-result-file-matched-text,
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal .is-flashing,
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal .search-result-file-matched-text {
   background-color: var(--bg3);
   color: var(--tx1);
 }
-.theme-light.minimal-eink-light.minimal-light-tonal ::selection,
-.theme-light.minimal-eink-light.minimal-light-tonal #calendar-container .reset-button:hover, .theme-light.minimal-eink-light.minimal-light-tonal:not(.colorful-active) .vertical-tab-nav-item:hover, .theme-light.minimal-eink-light.minimal-light-tonal:not(.colorful-active) .vertical-tab-nav-item.is-active,
-.theme-dark.minimal-eink-dark.minimal-dark-tonal ::selection,
-.theme-dark.minimal-eink-dark.minimal-dark-tonal #calendar-container .reset-button:hover,
-.theme-dark.minimal-eink-dark.minimal-dark-tonal:not(.colorful-active) .vertical-tab-nav-item:hover,
-.theme-dark.minimal-eink-dark.minimal-dark-tonal:not(.colorful-active) .vertical-tab-nav-item.is-active {
+.theme-light.oxygen-eink-light.oxygen-light-tonal ::selection,
+.theme-light.oxygen-eink-light.oxygen-light-tonal #calendar-container .reset-button:hover, .theme-light.oxygen-eink-light.oxygen-light-tonal:not(.colorful-active) .vertical-tab-nav-item:hover, .theme-light.oxygen-eink-light.oxygen-light-tonal:not(.colorful-active) .vertical-tab-nav-item.is-active,
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal ::selection,
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal #calendar-container .reset-button:hover,
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal:not(.colorful-active) .vertical-tab-nav-item:hover,
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal:not(.colorful-active) .vertical-tab-nav-item.is-active {
   color: var(--tx1);
 }
 
@@ -6983,7 +6983,7 @@ MIT License
 Copyright (c) 2019 sainnhe
 https://github.com/sainnhe/everforest
 */
-.theme-light.minimal-everforest-light {
+.theme-light.oxygen-everforest-light {
   --color-red-rgb: 248,85,82;
   --color-orange-rgb: 245,125,38;
   --color-yellow-rgb: 223,160,0;
@@ -7002,7 +7002,7 @@ https://github.com/sainnhe/everforest
   --color-pink:#df69ba;
 }
 
-.theme-dark.minimal-everforest-dark {
+.theme-dark.oxygen-everforest-dark {
   --color-red-rgb: 230,126,128;
   --color-orange-rgb: 230,152,117;
   --color-yellow-rgb: 219,188,127;
@@ -7021,7 +7021,7 @@ https://github.com/sainnhe/everforest
   --color-pink:#d699b6;
 }
 
-.theme-light.minimal-everforest-light {
+.theme-light.oxygen-everforest-light {
   --base-h:44;
   --base-s:87%;
   --base-l:94%;
@@ -7041,22 +7041,22 @@ https://github.com/sainnhe/everforest
   --hl2:rgba(222,179,51,.3);
 }
 
-.theme-light.minimal-everforest-light.minimal-light-tonal {
+.theme-light.oxygen-everforest-light.oxygen-light-tonal {
   --bg2:#fdf6e3;
 }
 
-.theme-light.minimal-everforest-light.minimal-light-white {
+.theme-light.oxygen-everforest-light.oxygen-light-white {
   --bg3:#f3efda;
   --ui1:#edead5;
 }
 
-.theme-light.minimal-everforest-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-everforest-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-everforest-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-everforest-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-everforest-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-everforest-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-everforest-dark {
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-everforest-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-everforest-dark {
   --base-h:203;
   --base-s:15%;
   --base-l:23%;
@@ -7076,7 +7076,7 @@ https://github.com/sainnhe/everforest
   --hl2:rgba(147,185,96,.3);
 }
 
-.theme-dark.minimal-everforest-dark.minimal-dark-black {
+.theme-dark.oxygen-everforest-dark.oxygen-dark-black {
   --hl1:rgba(134,70,93,.4);
   --ui1:#2b3339;
 }
@@ -7087,7 +7087,7 @@ MIT License
 Copyright (c) 2023 Steph Ango
 https://stephango.com/flexoki
 */
-.theme-light.minimal-flexoki-light {
+.theme-light.oxygen-flexoki-light {
   --color-red-rgb: 175, 48, 41;
   --color-orange-rgb: 188, 82, 21;
   --color-yellow-rgb: 173, 131, 1;
@@ -7106,7 +7106,7 @@ https://stephango.com/flexoki
   --color-pink: #A02F6F;
 }
 
-.theme-dark.minimal-flexoki-dark {
+.theme-dark.oxygen-flexoki-dark {
   --color-red-rgb: 209, 77, 65;
   --color-orange-rgb: 218, 112, 44;
   --color-yellow-rgb:208, 162, 21;
@@ -7125,7 +7125,7 @@ https://stephango.com/flexoki
   --color-pink: #CE5D97;
 }
 
-.theme-light.minimal-flexoki-light {
+.theme-light.oxygen-flexoki-light {
   --base-h: 48;
   --base-s: 100%;
   --base-l: 97%;
@@ -7145,17 +7145,17 @@ https://stephango.com/flexoki
   --hl2: rgba(247,209,61,0.3);
 }
 
-.theme-light.minimal-flexoki-light.minimal-light-tonal {
+.theme-light.oxygen-flexoki-light.oxygen-light-tonal {
   --bg2: #FFFCF0;
 }
 
-.theme-light.minimal-flexoki-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-flexoki-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-flexoki-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-flexoki-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-flexoki-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-flexoki-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-flexoki-dark {
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-flexoki-dark {
   --base-h: 360;
   --base-s: 3%;
   --base-l: 6%;
@@ -7175,7 +7175,7 @@ https://stephango.com/flexoki
   --hl2: rgba(213,159,17,0.3);
 }
 
-.theme-dark.minimal-flexoki-dark.minimal-dark-black {
+.theme-dark.oxygen-flexoki-dark.oxygen-dark-black {
   --ui1: #1C1B1A;
 }
 
@@ -7184,8 +7184,8 @@ Gruvbox
 MIT License
 https://github.com/morhetz/gruvbox
 */
-.theme-dark.minimal-gruvbox-dark,
-.theme-light.minimal-gruvbox-light {
+.theme-dark.oxygen-gruvbox-dark,
+.theme-light.oxygen-gruvbox-light {
   --color-red-rgb: 204, 36, 29;
   --color-orange-rgb: 214,93,14;
   --color-yellow-rgb: 215,153,33;
@@ -7204,7 +7204,7 @@ https://github.com/morhetz/gruvbox
   --color-pink:#b16286;
 }
 
-.theme-light.minimal-gruvbox-light {
+.theme-light.oxygen-gruvbox-light {
   --base-h:49;
   --base-s:92%;
   --base-l:89%;
@@ -7224,22 +7224,22 @@ https://github.com/morhetz/gruvbox
   --hl2:rgba(215,153,33,.4);
 }
 
-.theme-light.minimal-gruvbox-light.minimal-light-tonal {
+.theme-light.oxygen-gruvbox-light.oxygen-light-tonal {
   --bg2:#fcf2c7;
 }
 
-.theme-light.minimal-gruvbox-light.minimal-light-white {
+.theme-light.oxygen-gruvbox-light.oxygen-light-white {
   --bg3:#faf5d7;
   --ui1:#f2e6bd;
 }
 
-.theme-light.minimal-gruvbox-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-gruvbox-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-gruvbox-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-gruvbox-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-gruvbox-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-gruvbox-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-gruvbox-dark {
+.theme-light.oxygen-gruvbox-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-gruvbox-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-gruvbox-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-gruvbox-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-gruvbox-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-gruvbox-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-gruvbox-dark {
   --accent-h:24;
   --accent-s:88%;
   --accent-l:45%;
@@ -7257,14 +7257,14 @@ https://github.com/morhetz/gruvbox
   --hl2:rgba(215,153,33,.4);
 }
 
-.theme-dark.minimal-gruvbox-dark.minimal-dark-black {
+.theme-dark.oxygen-gruvbox-dark.oxygen-dark-black {
   --hl1:rgba(173,149,139,0.4);
   --ui1:#282828;
 }
 
 /* macOS */
-.theme-dark.minimal-macos-dark,
-.theme-light.minimal-macos-light {
+.theme-dark.oxygen-macos-dark,
+.theme-light.oxygen-macos-light {
   --color-red-rgb: 255,59,49;
   --color-orange-rgb: 255,149,2;
   --color-yellow-rgb: 255,204,0;
@@ -7283,7 +7283,7 @@ https://github.com/morhetz/gruvbox
   --color-pink:#ff2e55;
 }
 
-.theme-light.minimal-macos-light {
+.theme-light.oxygen-macos-light {
   --base-h:106;
   --base-s:0%;
   --base-l:94%;
@@ -7300,18 +7300,18 @@ https://github.com/morhetz/gruvbox
   --hl1:#b3d7ff;
 }
 
-.theme-light.minimal-macos-light.minimal-light-tonal {
+.theme-light.oxygen-macos-light.oxygen-light-tonal {
   --bg1:#f0f0f0;
   --bg2:#f0f0f0;
 }
 
-.theme-light.minimal-macos-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-macos-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-macos-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-macos-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-macos-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-macos-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-macos-dark {
+.theme-light.oxygen-macos-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-macos-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-macos-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-macos-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-macos-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-macos-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-macos-dark {
   --base-h:106;
   --base-s:0%;
   --base-l:12%;
@@ -7333,7 +7333,7 @@ https://github.com/morhetz/gruvbox
   --sp1:#fff;
 }
 
-.theme-dark.minimal-macos-dark.minimal-dark-black {
+.theme-dark.oxygen-macos-dark.oxygen-dark-black {
   --divider-color:#1e1e1e;
   --tab-outline-color:#1e1e1e;
 }
@@ -7344,8 +7344,8 @@ MIT License
 Copyright (c) 2016-present Sven Greb <development@svengreb.de> (https://www.svengreb.de)
 https://github.com/nordtheme/nord
 */
-.theme-dark.minimal-nord-dark,
-.theme-light.minimal-nord-light {
+.theme-dark.oxygen-nord-dark,
+.theme-light.oxygen-nord-light {
   --color-red-rgb: 191,97,106;
   --color-orange-rgb: 208,138,112;
   --color-yellow-rgb: 235,203,139;
@@ -7364,7 +7364,7 @@ https://github.com/nordtheme/nord
   --color-pink:#B48EAD;
 }
 
-.theme-light.minimal-nord-light {
+.theme-light.oxygen-nord-light {
   --base-h:221;
   --base-s:27%;
   --base-l:94%;
@@ -7383,13 +7383,13 @@ https://github.com/nordtheme/nord
   --hl2:rgba(208, 135, 112, 0.35);
 }
 
-.theme-light.minimal-nord-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-nord-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-nord-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-nord-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-nord-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-nord-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-nord-dark {
+.theme-light.oxygen-nord-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-nord-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-nord-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-nord-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-nord-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-nord-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-nord-dark {
   --base-h:220;
   --base-s:16%;
   --base-l:22%;
@@ -7409,12 +7409,12 @@ https://github.com/nordtheme/nord
   --hl2:rgba(208, 135, 112, 0.35);
 }
 
-.theme-dark.minimal-nord-dark.minimal-dark-black {
+.theme-dark.oxygen-nord-dark.oxygen-dark-black {
   --ui1:#2e3440;
 }
 
 /* Sky color scheme, inspired by Notion */
-.theme-light.minimal-notion-light {
+.theme-light.oxygen-notion-light {
   --base-h:39;
   --base-s:18%;
   --base-d:96%;
@@ -7432,13 +7432,13 @@ https://github.com/nordtheme/nord
   --hl1:rgba(131,201,229,0.3);
 }
 
-.theme-light.minimal-notion-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-notion-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-notion-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-notion-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-notion-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-notion-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-notion-dark {
+.theme-light.oxygen-notion-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-notion-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-notion-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-notion-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-notion-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-notion-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-notion-dark {
   --base-h:203;
   --base-s:8%;
   --base-d:20%;
@@ -7457,7 +7457,7 @@ https://github.com/nordtheme/nord
   --hl1:rgba(57,134,164,0.3);
 }
 
-.theme-dark.minimal-notion-dark.minimal-dark-black {
+.theme-dark.oxygen-notion-dark.oxygen-dark-black {
   --base-d:5%;
   --bg3:#232729;
   --ui1:#2f3437;
@@ -7469,7 +7469,7 @@ MIT License
 Copyright (c) 2023 Rosé Pine
 https://github.com/rose-pine/rose-pine-theme
 */
-.theme-light.minimal-rose-pine-light {
+.theme-light.oxygen-rose-pine-light {
   --color-red-rgb: 180,99,122;
   --color-orange-rgb: 215,130,125;
   --color-yellow-rgb: 234,157,53;
@@ -7488,7 +7488,7 @@ https://github.com/rose-pine/rose-pine-theme
   --color-pink: #907aa9;
 }
 
-.theme-dark.minimal-rose-pine-dark {
+.theme-dark.oxygen-rose-pine-dark {
   --color-red-rgb: 234,111,146;
   --color-orange-rgb: 233,155,151;
   --color-yellow-rgb: 246,193,119;
@@ -7507,7 +7507,7 @@ https://github.com/rose-pine/rose-pine-theme
   --color-pink: #c4a7e7;
 }
 
-.theme-light.minimal-rose-pine-light {
+.theme-light.oxygen-rose-pine-light {
   --base-h: 32;
   --base-s: 57%;
   --base-l: 95%;
@@ -7526,13 +7526,13 @@ https://github.com/rose-pine/rose-pine-theme
   --hl1: rgba(191,180,181,0.35);
 }
 
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-rose-pine-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-rose-pine-dark {
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-rose-pine-dark {
   --base-h: 247;
   --base-s: 23%;
   --base-l: 15%;
@@ -7551,7 +7551,7 @@ https://github.com/rose-pine/rose-pine-theme
   --hl1: rgba(126,121,155,0.35);
 }
 
-.theme-dark.minimal-rose-pine-dark.minimal-dark-black {
+.theme-dark.oxygen-rose-pine-dark.oxygen-dark-black {
   --ui1: #21202e;
 }
 
@@ -7561,8 +7561,8 @@ MIT License
 Copyright (c) 2011 Ethan Schoonover
 https://ethanschoonover.com/solarized/
 */
-.theme-dark.minimal-solarized-dark,
-.theme-light.minimal-solarized-light {
+.theme-dark.oxygen-solarized-dark,
+.theme-light.oxygen-solarized-light {
   --color-red-rgb: 220, 50, 47;
   --color-orange-rgb: 203,77,22;
   --color-yellow-rgb: 181,137,0;
@@ -7581,7 +7581,7 @@ https://ethanschoonover.com/solarized/
   --color-pink: #d33682;
 }
 
-.theme-light.minimal-solarized-light {
+.theme-light.oxygen-solarized-light {
   --base-h: 44;
   --base-s: 87%;
   --base-l: 94%;
@@ -7602,17 +7602,17 @@ https://ethanschoonover.com/solarized/
   --hl2: rgba(203,75,22,0.3);
 }
 
-.theme-light.minimal-solarized-light.minimal-light-tonal {
+.theme-light.oxygen-solarized-light.oxygen-light-tonal {
   --bg2: #fdf6e3;
 }
 
-.theme-light.minimal-solarized-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-solarized-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-solarized-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-solarized-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-solarized-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-solarized-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-solarized-dark {
+.theme-light.oxygen-solarized-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-solarized-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-solarized-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-solarized-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-solarized-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-solarized-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-solarized-dark {
   --accent-h: 205;
   --accent-s: 70%;
   --accent-l: 48%;
@@ -7633,14 +7633,14 @@ https://ethanschoonover.com/solarized/
   --hl2: rgba(203, 75, 22, 0.35);
 }
 
-.theme-dark.minimal-solarized-dark.minimal-dark-black {
+.theme-dark.oxygen-solarized-dark.oxygen-dark-black {
   --hl1: rgba(15,81,98,0.55);
   --ui1: #002b36;
 }
 
 /* Things */
-.theme-dark.minimal-things-dark,
-.theme-light.minimal-things-light {
+.theme-dark.oxygen-things-dark,
+.theme-light.oxygen-things-light {
   --color-red-rgb: 255,48,108;
   --color-orange-rgb: 255,149,2;
   --color-yellow-rgb: 255,213,0;
@@ -7657,17 +7657,17 @@ https://ethanschoonover.com/solarized/
   --color-pink:#ff2e55;
 }
 
-.theme-light.minimal-things-light {
+.theme-light.oxygen-things-light {
   --color-blue-rgb: 27,97,194;
   --color-blue:#1b61c2;
 }
 
-.theme-dark.minimal-things-dark {
+.theme-dark.oxygen-things-dark {
   --color-blue-rgb: 77,149,247;
   --color-blue:#4d95f7;
 }
 
-.theme-light.minimal-things-light {
+.theme-light.oxygen-things-light {
   --accent-h:215;
   --accent-s:76%;
   --accent-l:43%;
@@ -7683,21 +7683,21 @@ https://ethanschoonover.com/solarized/
   --hl1:#cae2ff;
 }
 
-.theme-light.minimal-things-light.minimal-light-tonal {
+.theme-light.oxygen-things-light.oxygen-light-tonal {
   --ui1:#e6e8ec;
 }
 
-.theme-light.minimal-things-light.minimal-light-white {
+.theme-light.oxygen-things-light.oxygen-light-white {
   --bg3:#f5f6f8;
 }
 
-.theme-light.minimal-things-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-things-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-things-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-things-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-things-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-things-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-things-dark {
+.theme-light.oxygen-things-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-things-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-things-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-things-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-things-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-things-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-things-dark {
   --base-h:218;
   --base-s:9%;
   --base-l:15%;
@@ -7719,7 +7719,7 @@ https://ethanschoonover.com/solarized/
   --sp1:#fff;
 }
 
-.theme-dark.minimal-things-dark.minimal-dark-black {
+.theme-dark.oxygen-things-dark.oxygen-dark-black {
   --base-d:5%;
   --bg3:#24262a;
   --divider-color:#24262a;
@@ -8106,7 +8106,7 @@ settings:
 		type: variable-text
 		default: 0.8em
 	-
-		id: minimal-code-scroll
+		id: oxygen-code-scroll
 		title: Scroll long lines
 		description: Turns off line wrap for code
 		type: class-toggle
@@ -9045,7 +9045,7 @@ settings:
 				label: Square
 				value: checkbox-square
 	-
-		id: minimal-strike-lists
+		id: oxygen-strike-lists
 		title: Strike completed tasks
 		description: Adds strikethrough line and greyed text for completed tasks
 		type: class-toggle
@@ -9415,10 +9415,10 @@ settings:
 				label: Square
 				value: tabs-plain-square
 			-
-				label: Underline
-				value: tabs-underline
+		label: Underline
+		value: tabs-underline
 	-
-		id: minimal-tab-text-color
+		id: oxygen-tab-text-color
 		title: Tab text color
 		type: variable-themed-color
 		format: hex
@@ -9426,7 +9426,7 @@ settings:
 		default-light: '#'
 		default-dark: '#'
 	-
-		id: minimal-tab-text-color-active
+		id: oxygen-tab-text-color-active
 		title: Tab text color (active)
 		type: variable-themed-color
 		format: hex
@@ -9496,7 +9496,7 @@ settings:
 		level: 2
 		collapsed: true
 	-
-		id: minimal-unstyled-tags
+		id: oxygen-unstyled-tags
 		title: Plain tags
 		description: Tags will render as normal text, overrides settings below
 		type: class-toggle
@@ -9665,17 +9665,17 @@ settings:
 		title: Tab title visibility
 		description: Visibility of the tab title text
 		type: class-select
-		default: minimal-tab-title-hover
+		default: oxygen-tab-title-hover
 		options:
 			-
 				label: Hover only
-				value: minimal-tab-title-hover
+				value: oxygen-tab-title-hover
 			-
 				label: Hidden
-				value: minimal-tab-title-hidden
+				value: oxygen-tab-title-hidden
 			-
 				label: Visible
-				value: minimal-tab-title-visible
+				value: oxygen-tab-title-visible
 	-
 		id: file-header-font-size
 		title: Tab title font size

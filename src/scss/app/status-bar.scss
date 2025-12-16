@@ -1,13 +1,13 @@
 /* Status bar */
 
-.minimal-status-off .status-bar {
+.oxygen-status-off .status-bar {
 	--status-bar-position: static;
 	--status-bar-radius: 0;
 	--status-bar-border-width: 1px 0 0 0;
 	--status-bar-background: var(--background-secondary);
 	--status-bar-border-color: var(--ui1);
 }
-body:not(.minimal-status-off) .status-bar {
+body:not(.oxygen-status-off) .status-bar {
 	background-color: var(--background-primary);
 	--status-bar-border-width: 0;
 }

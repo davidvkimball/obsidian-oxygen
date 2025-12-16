@@ -5,7 +5,7 @@ Copyright (c) 2023 Rosé Pine
 https://github.com/rose-pine/rose-pine-theme
 */
 
-.theme-light.minimal-rose-pine-light {
+.theme-light.oxygen-rose-pine-light {
 	--color-red-rgb: 180,99,122;
 	--color-orange-rgb: 215,130,125;
 	--color-yellow-rgb: 234,157,53;
@@ -25,7 +25,7 @@ https://github.com/rose-pine/rose-pine-theme
 	--color-pink: #907aa9;
 }
 
-.theme-dark.minimal-rose-pine-dark {
+.theme-dark.oxygen-rose-pine-dark {
 	--color-red-rgb: 234,111,146;
 	--color-orange-rgb: 233,155,151;
 	--color-yellow-rgb: 246,193,119;
@@ -45,7 +45,7 @@ https://github.com/rose-pine/rose-pine-theme
 	--color-pink: #c4a7e7;
 }
 
-.theme-light.minimal-rose-pine-light {
+.theme-light.oxygen-rose-pine-light {
 	--base-h: 32;
 	--base-s: 57%;
 	--base-l: 95%;
@@ -68,13 +68,13 @@ https://github.com/rose-pine/rose-pine-theme
 
 	--hl1: rgba(191,180,181,0.35);
 }
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-rose-pine-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-rose-pine-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-rose-pine-dark {
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-rose-pine-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-rose-pine-dark {
 	--base-h: 247;
 	--base-s: 23%;
 	--base-l: 15%;
@@ -97,6 +97,6 @@ https://github.com/rose-pine/rose-pine-theme
 
 	--hl1: rgba(126,121,155,0.35);
 }
-.theme-dark.minimal-rose-pine-dark.minimal-dark-black {
+.theme-dark.oxygen-rose-pine-dark.oxygen-dark-black {
 	--ui1: #21202e;
 }

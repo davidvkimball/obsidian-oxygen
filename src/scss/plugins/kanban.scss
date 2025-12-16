@@ -1,17 +1,17 @@
 /* Kanban plugin */
 
 body.theme-dark,
-body.minimal-dark-black.theme-dark,
-body.minimal-dark-tonal.theme-dark,
-body.minimal-light-white.theme-light,
-body.minimal-light-tonal.theme-light {
+body.oxygen-dark-black.theme-dark,
+body.oxygen-dark-tonal.theme-dark,
+body.oxygen-light-white.theme-light,
+body.oxygen-light-tonal.theme-light {
 	--kanban-border:0px;
 }
 
 body:not(.is-mobile) .kanban-plugin__grow-wrap > textarea:focus {
 	box-shadow:none;
 }
-body:not(.minimal-icons-off) .kanban-plugin svg.cross {
+body:not(.oxygen-icons-off) .kanban-plugin svg.cross {
 	height:14px;
 	width:14px;
 }

@@ -1,7 +1,7 @@
 /* Eink */
 
-.theme-light.minimal-eink-light,
-.theme-dark.minimal-eink-dark {
+.theme-light.oxygen-eink-light,
+.theme-dark.oxygen-eink-dark {
 	--collapse-icon-color: var(--text-normal);
 	--icon-color-active: var(--bg1);
 	--icon-color-hover: var(--bg1);
@@ -50,7 +50,7 @@
 	&.is-focused .mod-active .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
 	&.labeled-nav .mod-left-split .mod-top .workspace-tab-header.is-active,
 	&.tabs-modern {
-		--minimal-tab-text-color-active: var(--bg1);
+		--oxygen-tab-text-color-active: var(--bg1);
 		--tab-text-color-focused: var(--bg1);
 		--tab-text-color-focused-active-current: var(--bg1);
 	}
@@ -120,7 +120,7 @@
 	}
 }
 
-.theme-light.minimal-eink-light {
+.theme-light.oxygen-eink-light {
 	--base-h:0;
 	--base-s:0%;
 	--base-l:100%;
@@ -153,13 +153,13 @@
 	--background-modifier-cover: rgba(235,235,235,1);
 }
 
-.theme-light.minimal-eink-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-eink-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-eink-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-eink-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-eink-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-eink-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-eink-dark {
+.theme-light.oxygen-eink-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-eink-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-eink-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-eink-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-eink-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-eink-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-eink-dark {
 	--base-h:0;
 	--base-s:0%;
 	--base-l:0%;
@@ -194,18 +194,18 @@
 	--nav-item-color-hover: var(--bg1);
 	--nav-item-color-active: var(--bg1);
 }
-.theme-light.minimal-eink-light.minimal-light-tonal {
+.theme-light.oxygen-eink-light.oxygen-light-tonal {
 	--bg3:#bbb;
 	--ui1:#bbb;
 	--tx3:#999;
 }
-.theme-dark.minimal-eink-dark.minimal-dark-tonal {
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal {
 	--bg3:#444;
 	--ui1:#444;
 	--tx3:#999;
 }
-.theme-light.minimal-eink-light.minimal-light-tonal,
-.theme-dark.minimal-eink-dark.minimal-dark-tonal {
+.theme-light.oxygen-eink-light.oxygen-light-tonal,
+.theme-dark.oxygen-eink-dark.oxygen-dark-tonal {
 	--hl2: var(--bg3);
 
 	--modal-border-color: var(--ui1);
@@ -216,7 +216,7 @@
 	--icon-color-focused: var(--tx1);
 	--nav-item-color-active: var(--tx1);
 	--nav-item-color-hover: var(--tx1);
-	--minimal-tab-text-color-active: var(--tx1);
+	--oxygen-tab-text-color-active: var(--tx1);
 
 	.is-flashing,
 	.search-result-file-matched-text {

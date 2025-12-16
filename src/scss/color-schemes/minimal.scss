@@ -3,7 +3,7 @@ Minimal
 Original default color scheme preserved from the original Minimal theme
 */
 
-.theme-light.minimal-minimal-light {
+.theme-light.oxygen-minimal-light {
 	--base-h: 0;
 	--base-s: 0%;
 	--base-l: 96%;
@@ -35,11 +35,11 @@ Original default color scheme preserved from the original Minimal theme
 }
 
 /* Fix right sidebar background for Minimal light theme */
-.theme-light.minimal-minimal-light .mod-right-split {
+.theme-light.oxygen-minimal-light .mod-right-split {
 	--background-secondary: white;
 }
 
-.theme-dark.minimal-minimal-dark {
+.theme-dark.oxygen-minimal-dark {
 	--base-h: 0;
 	--base-s: 0%;
 	--base-l: 15%;
@@ -80,11 +80,11 @@ Original default color scheme preserved from the original Minimal theme
 }
 
 /* Force Minimal theme colors with maximum specificity */
-body.theme-dark.minimal-minimal-dark,
-body.theme-dark.minimal-minimal-dark *,
-body.theme-dark.minimal-minimal-dark .setting-item,
-body.theme-dark.minimal-minimal-dark .checkbox-container,
-body.theme-dark.minimal-minimal-dark .workspace-tab-header-container {
+body.theme-dark.oxygen-minimal-dark,
+body.theme-dark.oxygen-minimal-dark *,
+body.theme-dark.oxygen-minimal-dark .setting-item,
+body.theme-dark.oxygen-minimal-dark .checkbox-container,
+body.theme-dark.oxygen-minimal-dark .workspace-tab-header-container {
 	--ui1: #363636;
 	--background-modifier-border: #363636;
 	--background-modifier-border-hover: #404040;
@@ -96,7 +96,7 @@ body.theme-dark.minimal-minimal-dark .workspace-tab-header-container {
 }
 
 /* Fix right sidebar background to match main content */
-body.theme-dark.minimal-minimal-dark .mod-right-split {
+body.theme-dark.oxygen-minimal-dark .mod-right-split {
 	--background-secondary: #262626;
 }
 

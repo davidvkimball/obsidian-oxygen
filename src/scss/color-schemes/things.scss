@@ -1,7 +1,7 @@
 /* Things */
 
-.theme-dark.minimal-things-dark,
-.theme-light.minimal-things-light {
+.theme-dark.oxygen-things-dark,
+.theme-light.oxygen-things-light {
 	--color-red-rgb: 255,48,108;
 	--color-orange-rgb: 255,149,2;
 	--color-yellow-rgb: 255,213,0;
@@ -19,16 +19,16 @@
 	--color-pink:#ff2e55;
 }
 
-.theme-light.minimal-things-light {
+.theme-light.oxygen-things-light {
 	--color-blue-rgb: 27,97,194;
 	--color-blue:#1b61c2;
 }
-.theme-dark.minimal-things-dark {
+.theme-dark.oxygen-things-dark {
 	--color-blue-rgb: 77,149,247;
 	--color-blue:#4d95f7;
 }
 
-.theme-light.minimal-things-light {
+.theme-light.oxygen-things-light {
 	--accent-h:215;
 	--accent-s:76%;
 	--accent-l:43%;
@@ -47,19 +47,19 @@
 
 	--hl1:#cae2ff;
 }
-.theme-light.minimal-things-light.minimal-light-tonal {
+.theme-light.oxygen-things-light.oxygen-light-tonal {
 	--ui1:#e6e8ec;
 }
-.theme-light.minimal-things-light.minimal-light-white {
+.theme-light.oxygen-things-light.oxygen-light-white {
 	--bg3:#f5f6f8;
 }
-.theme-light.minimal-things-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-things-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-things-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-things-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-things-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-things-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-things-dark {
+.theme-light.oxygen-things-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-things-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-things-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-things-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-things-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-things-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-things-dark {
 	--base-h:218;
 	--base-s:9%;
 	--base-l:15%;
@@ -88,7 +88,7 @@
 	--sp1:#fff;
 }
 
-.theme-dark.minimal-things-dark.minimal-dark-black {
+.theme-dark.oxygen-things-dark.oxygen-dark-black {
 	--base-d:5%;
 
 	--bg3:#24262a;

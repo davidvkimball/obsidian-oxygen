@@ -5,7 +5,7 @@ Copyright (c) 2019 sainnhe
 https://github.com/sainnhe/everforest
 */
 
-.theme-light.minimal-everforest-light {
+.theme-light.oxygen-everforest-light {
 	--color-red-rgb: 248,85,82;
 	--color-orange-rgb: 245,125,38;
 	--color-yellow-rgb: 223,160,0;
@@ -24,7 +24,7 @@ https://github.com/sainnhe/everforest
 	--color-purple:#df69ba;
 	--color-pink:#df69ba;
 }
-.theme-dark.minimal-everforest-dark {
+.theme-dark.oxygen-everforest-dark {
 	--color-red-rgb: 230,126,128;
 	--color-orange-rgb: 230,152,117;
 	--color-yellow-rgb: 219,188,127;
@@ -44,7 +44,7 @@ https://github.com/sainnhe/everforest
 	--color-pink:#d699b6;
 }
 
-.theme-light.minimal-everforest-light {
+.theme-light.oxygen-everforest-light {
 	--base-h:44;
 	--base-s:87%;
 	--base-l:94%;
@@ -69,20 +69,20 @@ https://github.com/sainnhe/everforest
 	--hl2:rgba(222,179,51,.3);
 }
 
-.theme-light.minimal-everforest-light.minimal-light-tonal {
+.theme-light.oxygen-everforest-light.oxygen-light-tonal {
 	--bg2:#fdf6e3;
 }
-.theme-light.minimal-everforest-light.minimal-light-white {
+.theme-light.oxygen-everforest-light.oxygen-light-white {
 	--bg3:#f3efda;
 	--ui1:#edead5;
 }
-.theme-light.minimal-everforest-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-everforest-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-everforest-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-everforest-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-everforest-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-everforest-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-everforest-dark {
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-everforest-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-everforest-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-everforest-dark {
 	--base-h:203;
 	--base-s:15%;
 	--base-l:23%;
@@ -106,7 +106,7 @@ https://github.com/sainnhe/everforest
 	--hl1:rgba(134,70,93,.5);
 	--hl2:rgba(147,185,96,.3);
 }
-.theme-dark.minimal-everforest-dark.minimal-dark-black {
+.theme-dark.oxygen-everforest-dark.oxygen-dark-black {
 	--hl1:rgba(134,70,93,.4);
 	--ui1:#2b3339;
 }

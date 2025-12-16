@@ -53,7 +53,7 @@ Oxygen light theme as the default base - ensures consistency when Style Settings
 All other light color schemes override this base
 */
 .theme-light,
-.theme-light.minimal-oxygen-light,
+.theme-light.oxygen-oxygen-light,
 body .excalidraw {
 	/* Oxygen light theme colors as the default base */
 	--base-l: 98%;
@@ -131,7 +131,7 @@ body .excalidraw {
 }
 
 /* Oxygen theme contrast support - ensure Style Settings plugin contrast adjustments work */
-.theme-light.minimal-oxygen-light.minimal-light-white {
+.theme-light.oxygen-oxygen-light.oxygen-light-white {
 	--background-primary: white;
 	--background-secondary: white;
 	--background-secondary-alt: white;
@@ -148,41 +148,41 @@ body .excalidraw {
 }
 
 /* Override mobile menu styling for Oxygen all white */
-.is-mobile.theme-light.minimal-oxygen-light.minimal-light-white .menu {
+.is-mobile.theme-light.oxygen-oxygen-light.oxygen-light-white .menu {
 	--interactive-normal: var(--bg3);  /* Use our bg3 instead of background-modifier-hover */
 }
 
 /* Force white backgrounds for all dropdowns and menus in Oxygen all white */
-.theme-light.minimal-oxygen-light.minimal-light-white .menu,
-.theme-light.minimal-oxygen-light.minimal-light-white .dropdown,
-.theme-light.minimal-oxygen-light.minimal-light-white .menu-item,
-.theme-light.minimal-oxygen-light.minimal-light-white .dropdown-item {
+.theme-light.oxygen-oxygen-light.oxygen-light-white .menu,
+.theme-light.oxygen-oxygen-light.oxygen-light-white .dropdown,
+.theme-light.oxygen-oxygen-light.oxygen-light-white .menu-item,
+.theme-light.oxygen-oxygen-light.oxygen-light-white .dropdown-item {
 	background-color: white;
 	--background-secondary: white;
 	--background-primary: white;
 	--bg2: white;
 }
 
-.theme-light.minimal-oxygen-light.minimal-light-tonal {
+.theme-light.oxygen-oxygen-light.oxygen-light-tonal {
 	--background-secondary: var(--bg1);
 	--background-primary-alt: var(--bg3);
 	--background-table-rows: var(--bg3);
 	--bg2: var(--bg1);  /* Unify sidebar */
 }
 
-.theme-light.minimal-oxygen-light.minimal-light-tonal.is-mobile {
+.theme-light.oxygen-oxygen-light.oxygen-light-tonal.is-mobile {
 	--background-modifier-form-field: var(--bg3);
 	--interactive-normal: var(--bg3);
 }
 
-.theme-dark.minimal-oxygen-dark.minimal-dark-tonal {
+.theme-dark.oxygen-oxygen-dark.oxygen-dark-tonal {
 	--ribbon-background: var(--bg1);
 	--background-secondary: var(--bg1);
 	--background-table-rows: var(--bg3);
 	--bg2: var(--bg1);  /* Unify sidebar */
 }
 
-.theme-dark.minimal-oxygen-dark.minimal-dark-black {
+.theme-dark.oxygen-oxygen-dark.oxygen-dark-black {
 	--base-d: 0%;
 	--titlebar-background: black;
 	--background-primary: black;
@@ -208,17 +208,17 @@ body .excalidraw {
 }
 
 /* High contrast support for light theme */
-.theme-light.minimal-oxygen-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-oxygen-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-oxygen-light.minimal-light-contrast.is-mobile .workspace-drawer.mod-left,
-.theme-light.minimal-oxygen-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-oxygen-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-oxygen-light.minimal-light-contrast .theme-dark {
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast.is-mobile .workspace-drawer.mod-left,
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast .theme-dark {
 	--tab-container-background: var(--bg2);
 	--ribbon-background-collapsed: var(--bg2);
 }
 
-.theme-light.minimal-oxygen-light.minimal-light-contrast {
+.theme-light.oxygen-oxygen-light.oxygen-light-contrast {
 	--workspace-background-translucent: rgba(0,0,0,0.6);
 }
 
@@ -306,12 +306,12 @@ All other color schemes override this base
 }
 
 
-.theme-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-light-contrast.oxygen-status-off .status-bar,
 
 
 
-.theme-light.minimal-light-white {
+.theme-light.oxygen-light-white {
 	--background-primary:         white;
 	--background-secondary:       white;
 	--background-secondary-alt:   white;
@@ -327,7 +327,7 @@ All other color schemes override this base
 	--background-modifier-form-field: rgba(0, 0, 0, 0.05);  /* Light form field background */
 }
 
-.theme-dark.minimal-dark-black {
+.theme-dark.oxygen-dark-black {
 	--base-d:0%;
 
 	--titlebar-background:       black;

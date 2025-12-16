@@ -5,7 +5,7 @@ Copyright (c) 2023 Steph Ango
 https://stephango.com/flexoki
 */
 
-.theme-light.minimal-flexoki-light {
+.theme-light.oxygen-flexoki-light {
 	--color-red-rgb: 175, 48, 41;
 	--color-orange-rgb: 188, 82, 21;
 	--color-yellow-rgb: 173, 131, 1;
@@ -24,7 +24,7 @@ https://stephango.com/flexoki
 	--color-purple: #5E409D;
 	--color-pink: #A02F6F;
 }
-.theme-dark.minimal-flexoki-dark {
+.theme-dark.oxygen-flexoki-dark {
 	--color-red-rgb: 209, 77, 65;
 	--color-orange-rgb: 218, 112, 44;
 	--color-yellow-rgb:208, 162, 21;
@@ -43,7 +43,7 @@ https://stephango.com/flexoki
 	--color-purple: #8B7EC8;
 	--color-pink: #CE5D97;
 }
-.theme-light.minimal-flexoki-light {
+.theme-light.oxygen-flexoki-light {
 	--base-h: 48;
 	--base-s: 100%;
 	--base-l: 97%;
@@ -67,16 +67,16 @@ https://stephango.com/flexoki
 	--hl1: rgba(187,220,206,0.3);
 	--hl2: rgba(247,209,61,0.3);
 }
-.theme-light.minimal-flexoki-light.minimal-light-tonal {
+.theme-light.oxygen-flexoki-light.oxygen-light-tonal {
 	--bg2: #FFFCF0;
 }
-.theme-light.minimal-flexoki-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-flexoki-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-flexoki-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-flexoki-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-flexoki-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-flexoki-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-flexoki-dark {
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-flexoki-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-flexoki-dark {
 	--base-h: 360;
 	--base-s: 3%;
 	--base-l: 6%;
@@ -100,6 +100,6 @@ https://stephango.com/flexoki
 	--hl1: rgba(30,95,91,0.3);
 	--hl2: rgba(213,159,17,0.3);
 }
-.theme-dark.minimal-flexoki-dark.minimal-dark-black {
+.theme-dark.oxygen-flexoki-dark.oxygen-dark-black {
 	--ui1: #1C1B1A;
 }

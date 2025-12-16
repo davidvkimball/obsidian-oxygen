@@ -9,9 +9,9 @@
 	--mono0: black;
 }
 
-.theme-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-light-contrast.is-mobile .workspace-drawer.mod-left,
+.theme-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-light-contrast.is-mobile .workspace-drawer.mod-left,
 .theme-dark,
 .theme-light {
 	--background-modifier-accent:        var(--ax3);  
@@ -109,7 +109,7 @@
 	--workspace-background-translucent:  hsla(var(--base-h),var(--base-s), var(--base-l), 0.7);
 }
 
-.theme-light.minimal-light-contrast.is-mobile .workspace-drawer.mod-left {
+.theme-light.oxygen-light-contrast.is-mobile .workspace-drawer.mod-left {
 	--raised-background:                 var(--ui1);
 	--raised-shadow: none;
 	--raised-mask-border-width: 0px;
@@ -122,11 +122,11 @@
 	}
 }
 
-.theme-light.minimal-light-contrast {
+.theme-light.oxygen-light-contrast {
 	--workspace-background-translucent:  rgba(0,0,0,0.6);
 }
 
-.theme-light.minimal-light-contrast .theme-dark {
+.theme-light.oxygen-light-contrast .theme-dark {
 	--tab-container-background:          var(--bg2);
 	--ribbon-background-collapsed:       var(--bg2);
 }
@@ -169,13 +169,13 @@
 	--modal-border-color: var(--ui2);
 }
 
-.theme-light.minimal-light-white {
+.theme-light.oxygen-light-white {
 	--background-table-rows:     var(--bg2);
 	--interactive-normal:        var(--bg3);
 	--setting-items-background:  var(--bg3);
 }
 
-.theme-light.minimal-light-tonal {
+.theme-light.oxygen-light-tonal {
 	--background-secondary:      var(--bg1);
 	--background-primary-alt:    var(--bg3);
 	--background-table-rows:     var(--bg3);
@@ -186,14 +186,14 @@
 	}
 }
 
-.theme-dark.minimal-dark-tonal {
+.theme-dark.oxygen-dark-tonal {
 	--ribbon-background:         var(--bg1);
 	--background-secondary:      var(--bg1);
 	--background-table-rows:     var(--bg3);
 	--setting-items-background:  var(--bg3);
 }
 
-.theme-dark.minimal-dark-black {
+.theme-dark.oxygen-dark-black {
 	--background-primary-alt:    var(--bg3);
 	--background-table-rows:     var(--bg3);
 	--setting-items-background:  var(--bg3);

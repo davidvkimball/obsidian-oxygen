@@ -7,8 +7,8 @@ body.window-title-off .titlebar-text {
 	background-color: transparent !important;
 }
 
-.is-hidden-frameless.theme-dark:not(.minimal-dark-black):not(.colorful-frame),
-.is-hidden-frameless.theme-light:not(.minimal-light-tonal):not(.colorful-frame):not(.minimal-light-white) {
+.is-hidden-frameless.theme-dark:not(.oxygen-dark-black):not(.colorful-frame),
+.is-hidden-frameless.theme-light:not(.oxygen-light-tonal):not(.colorful-frame):not(.oxygen-light-white) {
 	--titlebar-background: var(--bg1);
 
 	&.is-focused {
@@ -19,7 +19,7 @@ body.window-title-off .titlebar-text {
 		}
 	}
 
-	&:not(.minimal-dark-tonal):not(.minimal-light-white) {
+	&:not(.oxygen-dark-tonal):not(.oxygen-light-white) {
 		.workspace-ribbon.mod-left:not(.is-collapsed) {
 			--titlebar-background: var(--bg2);
 		}

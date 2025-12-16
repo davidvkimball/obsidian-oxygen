@@ -1,6 +1,6 @@
 /* Tags */
 
-body.minimal-unstyled-tags {
+body.oxygen-unstyled-tags {
 	--tag-background: transparent;
 	--tag-background-hover: transparent;
 	--tag-border-width: 0px;
@@ -13,7 +13,7 @@ body.minimal-unstyled-tags {
 	}
 }
 
-body:not(.minimal-unstyled-tags) {
+body:not(.oxygen-unstyled-tags) {
 	--tag-size: 0.8em;
 	--tag-padding-y: 0.2em;
 	--tag-background: transparent;

@@ -5,7 +5,7 @@ Copyright (c) 2021 Catppuccin
 https://github.com/catppuccin/catppuccin
 */
 
-.theme-light.minimal-catppuccin-light {
+.theme-light.oxygen-catppuccin-light {
 	--color-red-rgb: 230,69,83;
 	--color-orange-rgb: 254,100,12;
 	--color-yellow-rgb: 223,142,29;
@@ -24,7 +24,7 @@ https://github.com/catppuccin/catppuccin
 	--color-purple: #8938EF;
 	--color-pink: #EA77CB;
 }
-.theme-dark.minimal-catppuccin-dark {
+.theme-dark.oxygen-catppuccin-dark {
 	--color-red-rgb: 235,153,156;
 	--color-orange-rgb: 239,160,118;
 	--color-yellow-rgb: 229,200,144;
@@ -44,7 +44,7 @@ https://github.com/catppuccin/catppuccin
 	--color-pink: #F4B9E5;
 }
 
-.theme-light.minimal-catppuccin-light {
+.theme-light.oxygen-catppuccin-light {
 	--base-h: 228;
 	--base-s: 20%;
 	--base-l: 95%;
@@ -69,20 +69,20 @@ https://github.com/catppuccin/catppuccin
 	--hl2: rgba(223,142,29,.3);
 }
 
-.theme-light.minimal-catppuccin-light.minimal-light-tonal {
+.theme-light.oxygen-catppuccin-light.oxygen-light-tonal {
 	--bg2: #DCE0E8;
 }
-.theme-light.minimal-catppuccin-light.minimal-light-white {
+.theme-light.oxygen-catppuccin-light.oxygen-light-white {
 	--bg3: #F0F1F5;
 	--ui1: #DCE0E8;
 }
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-catppuccin-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-catppuccin-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-catppuccin-dark {
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-catppuccin-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-catppuccin-dark {
 	--base-h: 229;
 	--base-s: 19%;
 	--base-l: 23%;
@@ -108,7 +108,7 @@ https://github.com/catppuccin/catppuccin
 	--hl1: rgba(98,104,128,.5);
 	--hl2: rgba(223,142,29,.4);
 }
-.theme-dark.minimal-catppuccin-dark.minimal-dark-black {
+.theme-dark.oxygen-catppuccin-dark.oxygen-dark-black {
 	--ui1: #303446;
 	--hl2: rgba(223,142,29,.5);
 }

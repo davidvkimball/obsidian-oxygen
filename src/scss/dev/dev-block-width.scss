@@ -1,6 +1,6 @@
 /* Block width snippet */
 
-.minimal-dev-block-width {
+.oxygen-dev-block-width {
 
 	.mod-root .workspace-leaf-content:after {
 		display:flex;
@@ -18,7 +18,7 @@
 		pointer-events:none;
 	}
 	/* Green — Folding offset width */
-	&.minimal-readable .mod-root .view-header:after {
+	&.oxygen-readable .mod-root .view-header:after {
 		display:flex;
 		align-items:flex-end;
 		color:green;
@@ -38,7 +38,7 @@
 		position:fixed;
 		pointer-events:none;
 	}
-	&.minimal-readable-off .mod-root .view-header:after {
+	&.oxygen-readable-off .mod-root .view-header:after {
 		display:flex;
 		align-items:flex-end;
 		color:green;
@@ -75,7 +75,7 @@
 		pointer-events:none;
 	}
 	/* Orange — Wide line width*/
-	&.minimal-readable .mod-root .workspace-leaf-content:before {
+	&.oxygen-readable .mod-root .workspace-leaf-content:before {
 		display:flex;
 		align-items:flex-end;
 		content:"\00a0wide\00a0";
@@ -96,7 +96,7 @@
 		pointer-events:none;
 	} 
 	/* Blue — Normal line width */
-	&.minimal-readable .mod-root .view-content:after {
+	&.oxygen-readable .mod-root .view-content:after {
 		display:flex;
 		align-items:flex-end;
 		color:blue;

@@ -1,6 +1,6 @@
 /* Sky color scheme, inspired by Notion */
 
-.theme-light.minimal-notion-light {
+.theme-light.oxygen-notion-light {
 	--base-h:39;
 	--base-s:18%;
 	--base-d:96%;
@@ -22,13 +22,13 @@
 
 	--hl1:rgba(131,201,229,0.3);
 }
-.theme-light.minimal-notion-light.minimal-light-contrast .titlebar,
-.theme-light.minimal-notion-light.minimal-light-contrast.minimal-status-off .status-bar,
-.theme-light.minimal-notion-light.minimal-light-contrast .workspace-drawer.mod-left,
-.theme-light.minimal-notion-light.minimal-light-contrast .mod-left-split,
-.theme-light.minimal-notion-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
-.theme-light.minimal-notion-light.minimal-light-contrast .theme-dark,
-.theme-dark.minimal-notion-dark {
+.theme-light.oxygen-notion-light.oxygen-light-contrast .titlebar,
+.theme-light.oxygen-notion-light.oxygen-light-contrast.oxygen-status-off .status-bar,
+.theme-light.oxygen-notion-light.oxygen-light-contrast .workspace-drawer.mod-left,
+.theme-light.oxygen-notion-light.oxygen-light-contrast .mod-left-split,
+.theme-light.oxygen-notion-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
+.theme-light.oxygen-notion-light.oxygen-light-contrast .theme-dark,
+.theme-dark.oxygen-notion-dark {
 	--base-h:203;
 	--base-s:8%;
 	--base-d:20%;
@@ -51,7 +51,7 @@
 
 	--hl1:rgba(57,134,164,0.3);
 }
-.theme-dark.minimal-notion-dark.minimal-dark-black {
+.theme-dark.oxygen-notion-dark.oxygen-dark-black {
 	--base-d:5%;
 
 	--bg3:#232729;

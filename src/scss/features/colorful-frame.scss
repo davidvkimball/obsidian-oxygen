@@ -51,11 +51,11 @@ body {
 	--titlebar-background-focused: var(--frame-background);
 	--titlebar-text-color: var(--frame-muted-color);
 
-	--minimal-tab-text-color: var(--frame-muted-color);
+	--oxygen-tab-text-color: var(--frame-muted-color);
 
 	.workspace-tabs:not(.mod-stacked) {
-		--tab-text-color: var(--minimal-tab-text-color);
-		--tab-text-color-focused: var(--minimal-tab-text-color);
+		--tab-text-color: var(--oxygen-tab-text-color);
+		--tab-text-color-focused: var(--oxygen-tab-text-color);
 	}
 
 	.titlebar,
@@ -66,10 +66,10 @@ body {
 	}
 	.mod-root .workspace-tab-header {
 		.workspace-tab-header-inner-icon {
-			--icon-color: var(--minimal-tab-text-color-active);
-			--icon-color-hover: var(--minimal-tab-text-color-active);
-			--icon-color-active: var(--minimal-tab-text-color-active);
-			--icon-color-focused: var(--minimal-tab-text-color-active);
+			--icon-color: var(--oxygen-tab-text-color-active);
+			--icon-color-hover: var(--oxygen-tab-text-color-active);
+			--icon-color-active: var(--oxygen-tab-text-color-active);
+			--icon-color-focused: var(--oxygen-tab-text-color-active);
 
 		}
 	}
@@ -99,7 +99,7 @@ body {
 }
 
 
-.colorful-frame.is-hidden-frameless:not(.minimal-focus-mode) {
+.colorful-frame.is-hidden-frameless:not(.oxygen-focus-mode) {
 	.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
 	.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
 	.workspace-split.mod-right-split > .workspace-leaf-resize-handle {

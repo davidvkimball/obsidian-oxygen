@@ -9,7 +9,7 @@
 :root {
 	--focus-animation-duration: 0.1s;
 }
-.minimal-focus-mode {
+.oxygen-focus-mode {
 
 	&.is-translucent .workspace-ribbon.mod-left.is-collapsed,
 	&.is-translucent .workspace-ribbon.mod-left.is-collapsed:before {
@@ -51,7 +51,7 @@
 	}
 
 	/* Hide status bar */
-	&:not(.minimal-status-off) .status-bar {
+	&:not(.oxygen-status-off) .status-bar {
 		opacity: 0;
 		transition: opacity var(--focus-animation-duration) ease-in-out;
 	}
@@ -132,7 +132,7 @@
 body.show-view-header  .app-container .workspace-split.mod-root > .workspace-leaf .view-header {
 	transition: height var(--focus-animation-duration) linear 0.1s;
 }
-body.minimal-focus-mode.show-view-header {
+body.oxygen-focus-mode.show-view-header {
 	.mod-top-left-space .view-header {
 		padding-left: var(--frame-left-space);
 	}

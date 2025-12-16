@@ -333,7 +333,7 @@ settings:
 		type: variable-text
 		default: 0.8em
 	-
-		id: minimal-code-scroll
+		id: oxygen-code-scroll
 		title: Scroll long lines
 		description: Turns off line wrap for code
 		type: class-toggle
@@ -1272,7 +1272,7 @@ settings:
 				label: Square
 				value: checkbox-square
 	-
-		id: minimal-strike-lists
+		id: oxygen-strike-lists
 		title: Strike completed tasks
 		description: Adds strikethrough line and greyed text for completed tasks
 		type: class-toggle
@@ -1642,10 +1642,10 @@ settings:
 				label: Square
 				value: tabs-plain-square
 			-
-				label: Underline
-				value: tabs-underline
+		label: Underline
+		value: tabs-underline
 	-
-		id: minimal-tab-text-color
+		id: oxygen-tab-text-color
 		title: Tab text color
 		type: variable-themed-color
 		format: hex
@@ -1653,7 +1653,7 @@ settings:
 		default-light: '#'
 		default-dark: '#'
 	-
-		id: minimal-tab-text-color-active
+		id: oxygen-tab-text-color-active
 		title: Tab text color (active)
 		type: variable-themed-color
 		format: hex
@@ -1723,7 +1723,7 @@ settings:
 		level: 2
 		collapsed: true
 	-
-		id: minimal-unstyled-tags
+		id: oxygen-unstyled-tags
 		title: Plain tags
 		description: Tags will render as normal text, overrides settings below
 		type: class-toggle
@@ -1892,17 +1892,17 @@ settings:
 		title: Tab title visibility
 		description: Visibility of the tab title text
 		type: class-select
-		default: minimal-tab-title-hover
+		default: oxygen-tab-title-hover
 		options:
 			-
 				label: Hover only
-				value: minimal-tab-title-hover
+				value: oxygen-tab-title-hover
 			-
 				label: Hidden
-				value: minimal-tab-title-hidden
+				value: oxygen-tab-title-hidden
 			-
 				label: Visible
-				value: minimal-tab-title-visible
+				value: oxygen-tab-title-visible
 	-
 		id: file-header-font-size
 		title: Tab title font size

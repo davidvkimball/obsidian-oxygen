@@ -51,7 +51,7 @@ body {
 }
 
 /* With line numbers */
-.minimal-line-nums .workspace-leaf-content[data-type=markdown] {
+.oxygen-line-nums .workspace-leaf-content[data-type=markdown] {
 	--file-margins: var(--size-4-8) var(--size-4-8) var(--size-4-8) 48px;
 	&.is-rtl {
 		--file-margins: var(--size-4-8) 48px var(--size-4-8) var(--size-4-8);}
@@ -62,8 +62,8 @@ body {
 	}
 }
 
-.minimal-line-nums .mod-right-split,
-.minimal-line-nums .mod-left-split {
+.oxygen-line-nums .mod-right-split,
+.oxygen-line-nums .mod-left-split {
 	.markdown-preview-view,
 	.markdown-source-view.mod-cm6 .cm-scroller {
 		--file-margins: var(--size-4-5) var(--size-4-5) var(--size-4-5) 48px;
