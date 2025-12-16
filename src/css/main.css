@@ -1195,6 +1195,17 @@ body:not(.minimal-status-off) .status-bar {
   flex-direction: var(--tab-stacked-spine-order);
 }
 
+/* Tab animations */
+body:not(.is-phone) .workspace-tab-header-container {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+.workspace .mod-sidedock .workspace-tab-header-container,
+.workspace .mod-sidedock .workspace-tab-header,
+.workspace .mod-sidedock .workspace-tab-header div {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
 /* Title Bar */
 .view-header-title-parent,
 .view-header-title {
