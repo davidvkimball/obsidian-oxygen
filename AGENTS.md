@@ -1,33 +1,196 @@
 # AI Agent Instructions
 
-This file serves as the entry point for AI agents working on Obsidian plugin or theme development projects. The detailed instructions have been organized into a structured directory for better maintainability.
+This file serves as the **project-specific entry point** for AI agents working on this Obsidian theme project. General-purpose instructions are located in the [`.agents`](.agents/) directory.
 
-**Applicability**: Each file in `.agents` is marked with its applicability:
-- **Plugin** - Only relevant for plugin development
-- **Theme** - Only relevant for theme development  
-- **Both** - Relevant for both plugins and themes
+**Note**: The `.agents/` directory contains general-purpose guidance files for Obsidian plugin and theme development.
+
+---
+
+## Project Context
+
+<!--
+Source: Project-specific (not synced from reference repos)
+Last updated: [Maintain manually - this file is project-specific]
+Applicability: Theme
+-->
+
+This is the **Oxygen Theme** for Obsidian - a fork of the Minimal theme with a custom Oxygen color scheme as the default. Oxygen extends Minimal's excellent foundation with enhanced color scheme management and custom preset functionality.
+
+**Key features:**
+- Calm color scheme prioritizing focus
+- Polished animations with customizable speed and motion styles
+- Advanced custom presets via the Oxygen Theme Settings plugin
+- Full Style Settings integration supporting all Minimal features
+- Part of the Vault CMS project
+
+## Important Project-Specific Details
+
+- **Project Type**: Obsidian theme (fork of Minimal)
+- **Base Theme**: Based on [obsidian-minimal](https://github.com/kepano/obsidian-minimal)
+- **Companion Plugin**: [obsidian-oxygen-settings](https://github.com/davidvkimball/obsidian-oxygen-settings) - controls theme settings
+- **Status**: Active development
+
+## Maintenance Tasks
+
+- **README.md**: When asked to update documentation or when making significant changes, review and update `README.md` to ensure it accurately reflects the current state of the project, including features, installation instructions, and usage examples.
+- Keep the sample functionality simple and clear for educational purposes
+- Ensure all examples follow Obsidian best practices
+
+## Project-Specific Conventions
+
+- Code should remain simple and well-commented for educational purposes
+- Examples should demonstrate one concept clearly rather than complex integrations
+- Follow the standard Obsidian plugin structure (main.ts, manifest.json, styles.css)
+
+## Project-Specific References
+
+This project references specific plugins and themes that are relevant to its development. These are symlinked in `.ref/plugins/` or `.ref/themes/` as needed.
+
+**Current project-specific references**:
+
+- **`.ref/themes/obsidian-minimal/`** - The base theme upon which Oxygen is built
+  - Source: https://github.com/kepano/obsidian-minimal
+  - Location: Cloned to global `.ref/themes/` and symlinked in project
+  - Purpose: Reference for Minimal theme patterns, structure, and features
+
+- **`.ref/plugins/obsidian-minimal-settings/`** - The settings plugin for Minimal theme
+  - Source: https://github.com/kepano/obsidian-minimal-settings
+  - Location: Cloned to global `.ref/plugins/` and symlinked in project
+  - Purpose: Reference for Minimal's settings plugin patterns and implementation
+
+- **`.ref/plugins/obsidian-oxygen-settings/`** - The companion plugin that controls this theme
+  - Source: Local project at `C:\Users\david\Development\obsidian-oxygen-settings`
+  - Location: Symlinked directly to working copy (local development)
+  - Purpose: Active development reference for theme settings integration
+
+- **`.ref/plugins/obsidian-ui-tweaker/`** - UI Tweaker plugin reference
+  - Source: Local project at `C:\Users\david\Development\obsidian-ui-tweaker`
+  - Location: Symlinked directly to working copy (local development)
+  - Purpose: Reference for UI customization patterns and integration
+
+**Note**: The 6 core Obsidian projects (obsidian-api, obsidian-sample-plugin, obsidian-developer-docs, obsidian-plugin-docs, obsidian-sample-theme, eslint-plugin) are always relevant and should be in every project's `.ref` folder. Only project-specific plugins/themes are documented above.
+
+## Overrides (Optional)
+
+None currently. This project follows the general `.agents` guidance.
+
+## Key Files and Their Purposes
+
+- `manifest.json` - Theme metadata and configuration
+- `theme.css` - Compiled theme CSS (distribution file)
+- `Oxygen.css` - Unminified theme CSS (development file)
+- `src/scss/` - SCSS source files organized by component
+- `src/css/` - Compiled CSS output files
+- `Gruntfile.js` - Build configuration for SCSS compilation
+- `package.json` - Node.js dependencies and build scripts
+- `version-bump.mjs` - Script for version management
+- `versions.json` - Version compatibility mapping
+- `README.md` - Project documentation and usage instructions
+
+## Enhanced Borders Feature
+
+The Enhanced Borders feature (`src/scss/features/borders.scss`) provides a sophisticated border system for the workspace with three modes:
+
+### Border Modes
+
+1. **Enhanced (Default)**: `body:not(.borders-on)` - The default behavior when neither `borders-on` nor `borders-none` is present
+   - Rounded corners on main content area (`workspace-tab-container`)
+   - Top, left, and right borders (no bottom border)
+   - Background colors match sidebar for seamless appearance
+   - Resize handles hidden by default, show on hover
+
+2. **Default/On**: `body.borders-on` - Obsidian's default border behavior (not yet implemented in current version)
+
+3. **None**: `body.borders-none` - No borders at all (set via CSS variables)
+
+### Feature Organization
+
+The Enhanced Borders feature is organized into logical groups:
+
+#### Group 1: Foundation (Lines 1-30)
+- CSS variable setup for `borders-none` mode
+- CSS variable setup for `borders-on` detection
+- Foundation for all border modes
+
+#### Group 2: Core Container Borders (Lines 32-123)
+- **2A**: Border reset on `workspace-tab-container` (prevents double borders)
+- **2B**: Enhanced border styling (rounded corners, top/left/right borders)
+- **2C**: Remove borders from split elements (workspace-split, sidebars, ribbon)
+- **2D**: Remove borders from leaf elements (workspace-leaf, workspace-leaf-content)
+- **2E**: Resize handle styling (hidden by default, accent color on hover)
+
+**Critical Note**: Group 2F (universal selector removing borders from all descendants) was removed because it was too aggressive and broke checkboxes and tag pills. **Never use universal selectors like `*:not(...)` that remove box-shadows or borders from all descendants.**
+
+#### Group 3: macOS-Specific Fixes (Lines 125-155)
+- Remove top border on macOS (title bar integration)
+- Title bar positioning and z-index fixes
+- Right sidebar toggle button background fix
+
+#### Group 4: Background Color Matching (Lines 157-222)
+- CSS variable for sidebar background (`--enhanced-border-sidebar-bg`)
+- Tab header container background matching
+- Workspace-split background matching
+- Right sidebar background matching (to match left sidebar)
+- macOS-specific background adjustments
+
+#### Group 5: Tab Positioning and Styling (Not yet implemented)
+- Tab container positioning adjustments
+- Active/inactive tab border styling
+- Tab curve and margin adjustments
+- Borders-on and borders-none reset rules
+
+### Key Implementation Details
+
+1. **Border-radius inheritance**: Child elements inherit border-radius from `workspace-tab-container` to ensure rounded corners work properly
+
+2. **Overflow visible**: Changed from `overflow: hidden` to `overflow: visible` to prevent clipping of metadata elements (checkboxes, pills, etc.) while still allowing border-radius to work
+
+3. **Background color matching**: The feature uses CSS variables (`--enhanced-border-sidebar-bg`, `--enhanced-border-right-sidebar-bg`) to capture and restore background colors before theme overrides apply
+
+4. **macOS title bar integration**: Special handling for macOS frameless windows where the title bar is integrated into the tab area
+
+5. **Colorful frame compatibility**: All background color rules exclude `.colorful-frame` to let the theme handle it
+
+### Important Warnings
+
+- **Never use universal selectors** (`*:not(...)`) that remove box-shadows or borders from all descendants - this breaks checkboxes and tag pills
+- **Always test after adding border rules** - border rules can easily create double-border effects or break visual elements
+- **Respect overflow: visible** - Changing to `overflow: hidden` will clip metadata elements
+- **Test on macOS** - macOS has special title bar integration that requires specific handling
+
+## Development Notes
+
+- This theme is a fork of Minimal, so when Minimal updates, consider syncing relevant improvements
+- The companion plugin (obsidian-oxygen-settings) is developed alongside this theme
+- SCSS files are organized by component (app, color-schemes, components, content, features, plugins, etc.)
+- Build process uses Grunt to compile SCSS to CSS
+- The `.agents` folder structure is designed to be reusable across projects
+- When syncing updates from reference repos, only general `.agents` files are updated; `project-context.md` is preserved
+
+---
 
 ## Quick Start
 
-**All agent instructions are located in the [`.agents`](.agents/) directory.**
+**All general-purpose agent instructions are located in the [`.agents`](.agents/) directory**.
 
-**Quick Commands**: See [quick-reference.md](.agents/quick-reference.md#quick-commands) for one-word commands like `build`, `sync`, `release ready?`, `summarize`, etc. **AI Agents: Execute these commands automatically when users type them** (detailed execution instructions are in the Help sections below).
-
-**New to this project?** Start here:
-
-**All agent instructions are located in the [`.agents`](.agents/) directory.**
+**Quick Commands**: See [quick-reference.md](.agents/quick-reference.md#quick-commands) for one-word commands like `build`, `sync`, `release ready?`, `summarize`, `bump the version`, etc. **AI Agents: Execute these commands automatically when users type them** (detailed execution instructions are in the Help sections below).
 
 **New to this project?** Start here:
+
 0. **Set up reference materials**: Check if `.ref` folder exists and has symlinks. If not, run the setup script:
-   - **Windows**: `scripts\setup-ref-links.bat` or `.\scripts\setup-ref-links.ps1`
+   - **Windows**: `scripts\setup-ref-links.bat`
    - **macOS/Linux**: `./scripts/setup-ref-links.sh`
    - The script will automatically create `../.ref/obsidian-dev/` (if needed), clone the 6 core Obsidian projects (or update them if they already exist), and create symlinks
-1. Read [project-context.md](.agents/project-context.md) for project-specific information and overrides
-2. Read [project-overview.md](.agents/project-overview.md) to understand the structure
-3. Check [environment.md](.agents/environment.md) for setup requirements
-4. Review [common-tasks.md](.agents/common-tasks.md) for quick code snippets
-5. See [code-patterns.md](.agents/code-patterns.md) for complete examples
-6. Bookmark [quick-reference.md](.agents/quick-reference.md) for common commands
+
+1. Read the **Project Context** section above for project-specific information and overrides
+
+3. Read [project-overview.md](.agents/project-overview.md) to understand the structure
+
+4. Check [environment.md](.agents/environment.md) for setup requirements
+
+5. Bookmark [quick-reference.md](.agents/quick-reference.md) for common commands
+
+7. Bookmark [quick-reference.md](.agents/quick-reference.md) for common commands
 
 **Note**: For complex projects, see `.agents/.context/` directory (optional advanced feature).
 
@@ -46,7 +209,7 @@ This file serves as the entry point for AI agents working on Obsidian plugin or 
 
 **When triggered:**
 1. Check if `.ref/obsidian-api` exists (note: this may be a symlink pointing to a central location)
-2. If missing, run setup script: `.\scripts\setup-ref-links.ps1` (Windows) or `./scripts/setup-ref-links.sh` (Unix)
+2. If missing, run setup script: `scripts\setup-ref-links.bat` (Windows) or `./scripts/setup-ref-links.sh` (Unix)
 3. If it exists but git commands fail, check if it's a symlink and navigate to the actual target location
 4. Then proceed with the API/documentation lookup
 
@@ -75,7 +238,7 @@ This file serves as the entry point for AI agents working on Obsidian plugin or 
 2. **Determine setup**: Check if `.ref` contains symlinks (see [sync-procedure.md](.agents/sync-procedure.md#step-1-determine-your-ref-setup) for how to check). If symlinks, note the target location (usually `..\.ref\obsidian-dev`).
 3. **Check for updates** (read-only, safe):
    - **For core Obsidian projects**: Check `.ref/` root (all 6: obsidian-api, obsidian-sample-plugin, obsidian-developer-docs, obsidian-plugin-docs, obsidian-sample-theme, eslint-plugin)
-   - **For project-specific repos**: Check `.ref/plugins/` or `.ref/themes/` (only if documented in `project-context.md`)
+   - **For project-specific repos**: Check `.ref/plugins/` or `.ref/themes/` (only if documented in this `AGENTS.md`)
 4. **Use read-only git commands** (from actual target location if using symlinks):
    ```bash
    # If using symlinks, navigate to central location first (usually ..\.ref\obsidian-dev)
@@ -135,7 +298,7 @@ This file serves as the entry point for AI agents working on Obsidian plugin or 
      - For themes: Run `cd ../.ref/obsidian-dev/themes && git clone <URL> <name>` → Creates `../.ref/obsidian-dev/themes/<name>/` (the actual repo)
      - For other projects: Run `cd ../.ref/obsidian-dev && git clone <URL> <name>` → Creates `../.ref/obsidian-dev/<name>/` (the actual repo)
    - **Execute symlink creation**: Create symlink at `.ref/plugins/<name>/` (or `.ref/themes/<name>/` or `.ref/<name>/`) pointing to the global location
-   - **Document if project-specific**: Document in `project-context.md` if it's project-specific
+   - **Document if project-specific**: Document in this `AGENTS.md` if it's project-specific
    
    **IMPORTANT**: Clone the repo directly into the target folder (e.g., `../.ref/obsidian-dev/plugins/plugin-name/`), NOT into a `.ref` subfolder. The repo folder name should match the project name.
    
@@ -143,7 +306,7 @@ This file serves as the entry point for AI agents working on Obsidian plugin or 
    - **Verify path exists**: Check that the local path exists
    - **Execute symlink creation**: Create symlink directly in project's `.ref/` folder pointing to the local project (e.g., `../my-other-plugin`)
    - **Do NOT** clone to global `.ref/obsidian-dev/` - this is project-specific
-   - Document in `project-context.md` if relevant
+   - Document in this `AGENTS.md` if relevant
 
 4. **Verify**: Check that the symlink was created and works (test by listing directory or reading a file)
 
@@ -151,49 +314,70 @@ This file serves as the entry point for AI agents working on Obsidian plugin or 
 
 ---
 
-### Option 3: Start a New Plugin or Theme Project
+### Option 3: Bump the Version
 
-**Present this option when**: User wants to create a new Obsidian plugin or theme.
+**Present this option when**: User says "bump the version", "bump version", or similar - they want to increment the version number.
+
+**Instructions for AI agent** (execute automatically, don't just show commands):
+1. **Parse the command**: Extract the version increment type from user input
+   - If no type specified → Default to `patch` (bumps by 0.0.1)
+   - If user specifies `patch`, `minor`, or `major` → Use that type
+   - If user specifies an exact version (e.g., "1.2.3") → Use that version
+   
+2. **Execute version bump**:
+   - Run `npm version <type>` where `<type>` is one of:
+     - `patch` (default) - bumps patch version: 1.0.0 → 1.0.1
+     - `minor` - bumps minor version: 1.0.0 → 1.1.0
+     - `major` - bumps major version: 1.0.0 → 2.0.0
+     - Or exact version: `1.2.3` (sets to that version)
+   - The `npm version` command automatically:
+     - Updates `package.json` version
+     - Runs the `version` script in `package.json` (which updates `manifest.json` and `versions.json` via `version-bump.mjs`)
+     - Stages `manifest.json` and `versions.json` for commit
+   
+3. **Verify**: Check that both `package.json` and `manifest.json` have the new version
+
+**Examples**:
+- `bump the version` → Runs `npm version patch` (default: 0.0.1 increment)
+- `bump version minor` → Runs `npm version minor`
+- `bump version major` → Runs `npm version major`
+- `bump version 1.2.3` → Runs `npm version 1.2.3`
+
+**Key files**: [versioning-releases.md](.agents/versioning-releases.md), `package.json`, `manifest.json`, `version-bump.mjs`
+
+---
+
+### Option 4: Start a New Theme Project
+
+**Present this option when**: User wants to create a new Obsidian theme.
 
 **Instructions for AI agent** - Follow this funnel:
 
-1. **Initial question**: "What kind of project are you wanting to make?"
-   - If **Plugin** → Go to Plugin Funnel
-   - If **Theme** → Go to Theme Funnel
-
-2. **Plugin Funnel** - Ask these questions in order:
-   - "What functionality do you want your plugin to provide?" (core purpose)
-   - "Will it need user settings or configuration?" → If yes, point to [commands-settings.md](.agents/commands-settings.md)
-   - "What will it interact with?" (vault files, editor, UI components, workspace)
-   - "Do you need any external API integrations?" → If yes, review [security-privacy.md](.agents/security-privacy.md) for guidelines
-   - "Will it work on mobile, or desktop-only?" → Point to [mobile.md](.agents/mobile.md) and `isDesktopOnly` in [manifest.md](.agents/manifest.md)
-
-3. **Theme Funnel** - Ask these questions in order:
+1. **Theme Funnel** - Ask these questions in order:
    - "What visual style are you aiming for?" (color scheme, typography, layout)
    - "Will it support both light and dark modes?" → Point to CSS variable usage
    - "Are there specific UI elements you want to customize?" (editor, sidebar, status bar, etc.)
    - "Do you want to include theme snippets?" → Point to file structure in [file-conventions.md](.agents/file-conventions.md)
 
-4. **After gathering answers**, guide them to:
+2. **After gathering answers**, guide them to:
    - [project-overview.md](.agents/project-overview.md) - Project structure
    - [environment.md](.agents/environment.md) - Setup and tooling
    - [file-conventions.md](.agents/file-conventions.md) - File organization
-   - [common-tasks.md](.agents/common-tasks.md) - Code examples
    - [references.md](.agents/references.md) - Official documentation links
-   - **Set up `.ref` folder**: Run the setup script (`scripts/setup-ref-links.bat`, `.ps1`, or `.sh`) to configure reference materials
+   - **Set up `.ref` folder**: Run the setup script (`scripts/setup-ref-links.bat` or `.sh`) to configure reference materials
 
-**Key files**: [project-overview.md](.agents/project-overview.md), [common-tasks.md](.agents/common-tasks.md), [references.md](.agents/references.md), [ref-instructions.md](.agents/ref-instructions.md)
+**Key files**: [project-overview.md](.agents/project-overview.md), [references.md](.agents/references.md), [ref-instructions.md](.agents/ref-instructions.md)
 
 ## Static vs. Project-Specific Files
 
-**General `.agents` files** (most files in this directory):
+**General `.agents` files** (most files in the `.agents/` directory):
 - Are synced from reference repos (Sample Plugin, API, etc.)
-- Should remain static and not be edited directly
+- Should remain static and not be edited directly in theme projects
 - Provide general-purpose guidance for all Obsidian plugins/themes
 - Can be updated by syncing from reference repositories
 
 **Project-specific files**:
-- **[project-context.md](.agents/project-context.md)** - Simple, recommended approach for most projects
+- **This `AGENTS.md` file** - Contains project-specific information and overrides (replaces the old `project-context.md`)
   - Contains project overview, specific details, maintenance tasks, and conventions
   - Can override general `.agents` guidance when project-specific needs differ
   - Is preserved when syncing updates from reference repos
@@ -211,15 +395,16 @@ This documentation is organized into topic-based files in the `.agents/` directo
 
 **Key concepts**:
 - **General files**: Synced from official Obsidian repos, provide standard guidance
-- **Project-specific files**: `project-context.md` (and optional `.context/` directory) contain project-specific information
+- **Project-specific files**: This `AGENTS.md` file (and optional `.agents/.context/` directory) contain project-specific information
 - **Precedence**: Project-specific files override general guidance when conflicts exist
 - **`.ref` folder**: Contains symlinks to reference materials (not actual files). See [ref-instructions.md](.agents/ref-instructions.md) for details.
+- **`.agents/` folder**: Contains general-purpose guidance files for Obsidian plugin and theme development
 
 **Quick Links by Task**:
 - **Starting a new project** → [project-overview.md](.agents/project-overview.md), [environment.md](.agents/environment.md), [file-conventions.md](.agents/file-conventions.md)
-- **Making code changes** → [build-workflow.md](.agents/build-workflow.md) (run build after changes!), [common-tasks.md](.agents/common-tasks.md), [code-patterns.md](.agents/code-patterns.md)
-- **Preparing for release** → [release-readiness.md](.agents/release-readiness.md) (comprehensive checklist), [versioning-releases.md](.agents/versioning-releases.md), [testing.md](.agents/testing.md)
-- **Troubleshooting** → [troubleshooting.md](.agents/troubleshooting.md), [common-pitfalls.md](.agents/common-pitfalls.md), [build-workflow.md](.agents/build-workflow.md)
+- **Making code changes** → [build-workflow.md](.agents/build-workflow.md) (run build after changes if using build tools!)
+- **Preparing for release** → [versioning-releases.md](.agents/versioning-releases.md), [testing.md](.agents/testing.md)
+- **Troubleshooting** → [troubleshooting.md](.agents/troubleshooting.md), [build-workflow.md](.agents/build-workflow.md)
 - **Quick reference** → [quick-reference.md](.agents/quick-reference.md) (one-page cheat sheet)
 
 ## Navigation
@@ -228,24 +413,21 @@ This documentation is organized into topic-based files in the `.agents/` directo
 - **Starting a new project** → See Quick Start above
 - **Need to understand project structure** → [project-overview.md](.agents/project-overview.md)
 - **Setting up development environment** → [environment.md](.agents/environment.md)
-- **Looking for code examples** → [common-tasks.md](.agents/common-tasks.md) (quick) or [code-patterns.md](.agents/code-patterns.md) (comprehensive)
-- **Troubleshooting issues** → [troubleshooting.md](.agents/troubleshooting.md) or [common-pitfalls.md](.agents/common-pitfalls.md)
+- **Troubleshooting issues** → [troubleshooting.md](.agents/troubleshooting.md)
 - **Need a quick command reference** → [quick-reference.md](.agents/quick-reference.md)
 - **Working with `.ref` folder** → [ref-instructions.md](.agents/ref-instructions.md)
 
 ### Project-Specific
-- **[project-context.md](.agents/project-context.md)** - Project-specific information and overrides (simple, recommended)
-- **`.context/` directory** - Optional project-specific structure for complex projects (advanced)
+- **This `AGENTS.md` file** - Project-specific information and overrides (simple, recommended)
+- **`.agents/.context/` directory** - Optional project-specific structure for complex projects (advanced)
 
 ### Core Development
-- **[project-overview.md](.agents/project-overview.md)** - Project structure, entry points, and artifacts (Plugin/Theme)
-- **[environment.md](.agents/environment.md)** - Development environment and tooling (Plugin/Theme)
-- **[file-conventions.md](.agents/file-conventions.md)** - File organization and folder structure (Plugin/Theme)
-- **[coding-conventions.md](.agents/coding-conventions.md)** - Code standards and organization (Plugin)
+- **[project-overview.md](.agents/project-overview.md)** - Project structure, entry points, and artifacts (Theme)
+- **[environment.md](.agents/environment.md)** - Development environment and tooling (Theme)
+- **[file-conventions.md](.agents/file-conventions.md)** - File organization and folder structure (Theme)
 
 ### Configuration
-- **[manifest.md](.agents/manifest.md)** - `manifest.json` rules and requirements (Plugin/Theme)
-- **[commands-settings.md](.agents/commands-settings.md)** - Commands and settings patterns (Plugin)
+- **[manifest.md](.agents/manifest.md)** - `manifest.json` rules and requirements (Theme)
 - **[versioning-releases.md](.agents/versioning-releases.md)** - Versioning and GitHub release workflow (Both)
 
 ### Best Practices
@@ -255,12 +437,8 @@ This documentation is organized into topic-based files in the `.agents/` directo
 - **[mobile.md](.agents/mobile.md)** - Mobile compatibility considerations (Both)
 
 ### Development Workflow
-- **[build-workflow.md](.agents/build-workflow.md)** - **CRITICAL**: Build commands to run after changes (Plugin/Theme)
-- **[testing.md](.agents/testing.md)** - Testing and manual installation procedures (Plugin/Theme)
-- **[release-readiness.md](.agents/release-readiness.md)** - Comprehensive release readiness checklist (Plugin)
-- **[common-tasks.md](.agents/common-tasks.md)** - Code examples and common patterns - expanded with settings, modals, views, status bar, ribbon icons (Plugin/Theme)
-- **[code-patterns.md](.agents/code-patterns.md)** - Comprehensive code patterns for settings tabs, modals, views, file operations, workspace events (Plugin)
-- **[common-pitfalls.md](.agents/common-pitfalls.md)** - Common mistakes and gotchas to avoid (Plugin)
+- **[build-workflow.md](.agents/build-workflow.md)** - Build commands to run after changes (if using build tools) (Theme)
+- **[testing.md](.agents/testing.md)** - Testing and manual installation procedures (Theme)
 - **[troubleshooting.md](.agents/troubleshooting.md)** - Common issues, error messages, and debugging techniques (Both)
 - **[quick-reference.md](.agents/quick-reference.md)** - One-page cheat sheet for common tasks and commands (Both)
 - **[agent-dos-donts.md](.agents/agent-dos-donts.md)** - Specific do's and don'ts for AI agents (Both)
@@ -296,6 +474,16 @@ The `.ref` folder contains **symlinks** to reference materials (not actual files
 
 See [ref-instructions.md](.agents/ref-instructions.md) for complete details.
 
+## Important: .agents Folder
+
+The `.agents/` directory contains general-purpose guidance files for Obsidian plugin and theme development. This directory structure provides:
+
+- **Reusable guidance**: General `.agents` files provide standard guidance for all Obsidian plugins/themes
+- **Project-specific content**: This `AGENTS.md` file remains project-specific and contains project-specific information
+- **Easy maintenance**: Files can be updated by syncing from reference repositories
+
+**Note**: The `.agents/` folder may be hidden by default in some file explorers, but it exists in the project root.
+
 ## Source Attribution
 
 Each file in `.agents` includes a header comment with:
@@ -307,7 +495,7 @@ Each file in `.agents` includes a header comment with:
 
 ## Updating Content
 
-Content in this directory is based on:
+Content in the `.agents/` directory is based on:
 - **Obsidian API** (`.ref/obsidian-api/obsidian.d.ts`) - **Authoritative source** for all API information
 - Obsidian Sample Plugin repository - Implementation patterns and best practices
 - Obsidian Sample Theme repository - Theme patterns
@@ -322,7 +510,7 @@ Check the source attribution in each file header for update frequency guidance. 
 
 ## General Purpose / Reusable
 
-This `.agents` directory structure and content is designed to be **general-purpose and reusable** across Obsidian plugin and theme projects. The content is based on official Obsidian repositories and documentation, not project-specific code. You can:
+The `.agents` directory structure and content is designed to be **general-purpose and reusable** across Obsidian plugin and theme projects. The content is based on official Obsidian repositories and documentation, not project-specific code. You can:
 
 - Copy this structure to other Obsidian projects
 - Use it as a template for new projects
@@ -330,8 +518,8 @@ This `.agents` directory structure and content is designed to be **general-purpo
 - Adapt it for your specific needs
 
 The only project-specific content is in:
-- `project-context.md` - Project-specific information and overrides (maintained by developer)
-- `.context/` directory - Optional project-specific structure for complex projects (if it exists)
+- This `AGENTS.md` file - Project-specific information and overrides (maintained by developer)
+- `.agents/.context/` directory - Optional project-specific structure for complex projects (if it exists)
 - `ref-instructions.md` - OS-agnostic setup instructions that may need path adjustments
 
 Everything else syncs from official Obsidian sources.
@@ -339,19 +527,21 @@ Everything else syncs from official Obsidian sources.
 ## Troubleshooting
 
 **If `.ref` folder is missing or empty**:
-- Run the setup script: `scripts\setup-ref-links.bat` (Windows), `.\scripts\setup-ref-links.ps1` (PowerShell), or `./scripts/setup-ref-links.sh` (macOS/Linux)
+- Run the setup script: `scripts\setup-ref-links.bat` (Windows) or `./scripts/setup-ref-links.sh` (macOS/Linux)
 - The script will automatically set everything up
 
+**If `.agents` folder is missing**:
+- The `.agents/` folder should exist in the project root
+- If it's missing, it may need to be created or restored from the project template
+
 **If symlinks are broken**:
-- Re-run the setup script - it will recreate the symlinks
+- Re-run the appropriate setup script - it will recreate the symlinks
 
 **If you can't find a reference**:
 - Check [ref-instructions.md](.agents/ref-instructions.md) for organization
-- Check `project-context.md` for project-specific references
+- Check this `AGENTS.md` file for project-specific references
 - Use `list_dir` or `glob_file_search` to search `.ref/` folder
 
-**If build fails**:
+**If build fails** (if using build tools):
 - See [build-workflow.md](.agents/build-workflow.md) for build commands
 - See [troubleshooting.md](.agents/troubleshooting.md) for common issues
-- See [common-pitfalls.md](.agents/common-pitfalls.md) for common mistakes
-

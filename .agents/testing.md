@@ -1,23 +1,10 @@
 <!--
-Source: Based on Obsidian Sample Plugin and Sample Theme
+Source: Based on Obsidian Sample Theme
 Last synced: See sync-status.json for authoritative sync dates
-Update frequency: Check Obsidian Sample Plugin and Sample Theme repos for updates
-Applicability: Plugin / Theme
+Update frequency: Check Obsidian Sample Theme repo for updates
 -->
 
 # Testing
-
-## Plugins
-
-- Manual install for testing: copy `main.js`, `manifest.json`, `styles.css` (if any) to:
-  ```
-  <Vault>/.obsidian/plugins/<plugin-id>/
-  ```
-- Reload Obsidian and enable the plugin in **Settings → Community plugins**.
-
-**Platform testing**: Before release, test on all applicable platforms (Windows, macOS, Linux, Android, iOS). See [release-readiness.md](release-readiness.md) for the complete testing checklist.
-
-## Themes
 
 - Manual install for testing: copy `manifest.json` and `theme.css` to:
   ```

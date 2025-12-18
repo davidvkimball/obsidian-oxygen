@@ -2,7 +2,6 @@
 Source: Project-specific workflow
 Last synced: See sync-status.json for authoritative sync dates
 Update frequency: Update as workflow evolves
-Applicability: Both
 -->
 
 # Summarize Commands

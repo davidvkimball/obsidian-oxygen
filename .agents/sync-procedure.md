@@ -2,7 +2,6 @@
 Source: Project-specific procedure
 Last synced: See sync-status.json for authoritative sync dates
 Update frequency: Update as sync process evolves
-Applicability: Both
 -->
 
 # Sync Procedure: Keeping .agents Up to Date

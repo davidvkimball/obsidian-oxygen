@@ -2,7 +2,6 @@
 Source: Project-specific quick reference
 Last synced: See sync-status.json for authoritative sync dates
 Update frequency: Update as needed
-Applicability: Both
 -->
 
 # Quick Sync Guide

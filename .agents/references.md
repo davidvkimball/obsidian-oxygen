@@ -2,7 +2,6 @@
 Source: Obsidian official documentation and resources
 Last synced: See sync-status.json for authoritative sync dates
 Update frequency: Check periodically for new resources
-Applicability: Both
 -->
 
 # References

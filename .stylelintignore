@@ -1,0 +1,6 @@
+node_modules/**
+*.min.css
+dist/**
+build/**
+scripts/**
+theme.css

@@ -1,52 +1,137 @@
-name: Bug report
-description: "Report a bug with Minimal"
+name: Bug Report
+description: File a bug report to help us improve
+title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to fill out this bug report!
+        Thank you for taking the time to report a bug! Please fill out the information below to help us address the issue effectively.
+        
+        **Before reporting, please:**
+        - Check if the issue has already been reported
+        - Make sure you're using the latest version
+        - Try to reproduce the issue with the default Obsidian theme
+        - Try to reproduce with snippets and plugins disabled
+
   - type: dropdown
-    id: default-present
+    id: default-theme-check
     attributes:
       label: Is the bug present when using the default Obsidian theme?
-      description: Try using the default theme to check if the bug is still present
+      description: This helps identify if the issue is theme-related
       options:
-        - "Yes"
-        - "No"
+        - Yes, the bug also appears with the default theme
+        - No, the bug only appears with this theme
+        - Not tested / Unsure
     validations:
       required: true
+
   - type: dropdown
-    id: plugin-present
+    id: isolation-check
     attributes:
       label: Is the bug present when snippets and plugins are disabled?
-      description: Try disabling plugins and snippets that could be causing a conflict
+      description: This helps isolate the issue from other customizations
       options:
-        - "Yes"
-        - "No"
+        - Yes, confirmed with snippets and plugins disabled
+        - No, requires snippets or plugins to reproduce
+        - Not tested / Unsure
     validations:
       required: true
-  - type: input 
+
+  - type: input
     id: version
     attributes:
-      label: Minimal theme version
-      description: What version of Minimal theme are you using? Can be found by going to `Appearance > Manage`. Make sure you have updated to the latest version of the theme. Please note that only reports for Minimal 6.0+ are accepted. Versions 5.3 and below are no longer supported.
-      placeholder: e.g. 6.0.0
+      label: Theme Version
+      description: What version of the theme are you using? (Check manifest.json or Settings → Appearance → Themes)
+      placeholder: "e.g., 1.0.0"
     validations:
       required: true
-  - type: textarea
-    id: description
+
+  - type: input
+    id: obsidian-version
     attributes:
-      label: Describe the bug
-      description: Provide a description of the bug and steps to reproduce. If applicable, add screenshots to help explain your problem.
-      placeholder: 
+      label: Obsidian Version
+      description: What version of Obsidian are you using?
+      placeholder: "e.g., 1.5.0"
     validations:
       required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe the bug in detail...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear description of what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: A clear description of what actually happened
+    validations:
+      required: true
+
   - type: textarea
     id: debug-info
     attributes:
-      label: Debug info
-      description: Copy and paste your debug info below. It can be accessed in Obsidian with Ctrl/Cmd-P, enter `Show debug info`, and select `Copy to clipboard`
-      placeholder: 
+      label: Debug Information
+      description: |
+        Please provide debug information from the Developer Console:
+        1. Open Settings → Advanced → Developer Tools
+        2. Go to the Console tab
+        3. Copy any error messages or warnings related to CSS or styling
+        4. Paste them here
+      placeholder: Paste console errors/warnings here...
     validations:
       required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain the problem
+      placeholder: Drag and drop screenshots here or paste image URLs...
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, information about the problem here
+      placeholder: Any other relevant information...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues to make sure this bug hasn't been reported before
+          required: true
+        - label: I have tested with the latest version of the theme
+          required: true
+        - label: I have tested with the default Obsidian theme
+          required: false
+        - label: I have tested with snippets and plugins disabled
+          required: false

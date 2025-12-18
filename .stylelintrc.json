@@ -1,0 +1,58 @@
+{
+	"extends": [
+		"stylelint-config-recommended"
+	],
+	"plugins": [
+		"stylelint-scss",
+		"stylelint-no-unsupported-browser-features"
+	],
+	"rules": {
+		"plugin/no-unsupported-browser-features": [
+			true,
+			{
+				"browsers": [
+					"last 10 Chrome versions",
+					"last 3 iOS versions"
+				],
+				"ignore": [
+					"css-masks",
+					"css-selection"
+				],
+				"ignorePartialSupport": true
+			}
+		],
+		"at-rule-no-unknown": [
+			true,
+			{
+				"ignoreAtRules": [
+					"use",
+					"import",
+					"forward",
+					"mixin",
+					"include",
+					"function",
+					"return",
+					"if",
+					"else",
+					"each",
+					"for",
+					"while",
+					"extend",
+					"warn",
+					"error",
+					"debug",
+					"at-root",
+					"content"
+				]
+			}
+		]
+	},
+	"overrides": [
+		{
+			"files": [
+				"**/*.scss"
+			],
+			"customSyntax": "postcss-scss"
+		}
+	]
+}
