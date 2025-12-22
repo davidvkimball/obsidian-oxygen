@@ -2796,13 +2796,6 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-container > * {
   border-radius: inherit;
 }
 
-/* Compensate for borders making content narrower and shifted */
-/* Use clip-path to clip content inward by 1px on all sides to account for borders */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf-content,
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf.mod-active {
-  clip-path: inset(1px);
-}
-
 /* Remove any borders from child elements and workspace-split that might create extra lines */
 /* CRITICAL: Remove borders from ALL elements inside the container AND sidebars to prevent double lines */
 body:not(.borders-on) .workspace .mod-root .workspace-split,
