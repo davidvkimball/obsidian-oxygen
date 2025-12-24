@@ -8,13 +8,22 @@
  * 2. Complex themes: SCSS in src/scss/ (with build tools like Grunt)
  */
 
-import { spawn } from 'child_process';
+import { spawn, execSync } from 'child_process';
 import { existsSync, statSync, readFileSync } from 'fs';
 import { join } from 'path';
 import process from 'process';
 
 const args = process.argv.slice(2);
 const hasFix = args.includes('--fix');
+
+// Detect which package manager to use
+let usePnpm = false;
+try {
+	execSync('pnpm --version', { stdio: 'ignore', shell: true });
+	usePnpm = true;
+} catch (error) {
+	usePnpm = false;
+}
 
 // Detect theme structure
 const hasThemeCss = existsSync('theme.css');
@@ -99,12 +108,12 @@ if (needsScssPlugin) {
 		
 		if (!scssPluginInstalled) {
 			console.error('Missing: stylelint-scss package');
-			console.error('  Install it: npm install --save-dev stylelint-scss@^5.0.0\n');
+			console.error('  Install it: pnpm add -D stylelint-scss@^5.0.0\n');
 		}
 		
 		if (!postcssScssInstalled) {
 			console.error('Missing: postcss-scss package (required for SCSS syntax parsing)');
-			console.error('  Install it: npm install --save-dev postcss-scss@^4.0.0\n');
+			console.error('  Install it: pnpm add -D postcss-scss@^4.0.0\n');
 		}
 		
 		if (!scssPluginConfigured || !customSyntaxConfigured) {
@@ -128,16 +137,18 @@ if (needsScssPlugin) {
 			}]
 		}, null, 2));
 		console.error('');
-		console.error('After installing and configuring, run: npm run lint\n');
+		console.error('After installing and configuring, run: pnpm run lint\n');
 		process.exit(1);
 	}
 }
 
 // Build stylelint command
 const stylelintArgs = ['stylelint', ...filesToLint, ...args];
+const command = usePnpm ? 'pnpm' : 'npx';
+const commandArgs = usePnpm ? ['exec', ...stylelintArgs] : stylelintArgs;
 
 // Run Stylelint
-const stylelint = spawn('npx', stylelintArgs, {
+const stylelint = spawn(command, commandArgs, {
 	stdio: 'inherit',
 	shell: true
 });

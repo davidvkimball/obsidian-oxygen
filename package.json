@@ -1,9 +1,13 @@
 {
 	"name": "oxygen",
 	"version": "0.1.9",
-	"dependencies": {
-		"dotenv": "^10.0.0",
-		"sass": "^1.83.0"
+	"type": "module",
+	"scripts": {
+		"preinstall": "node scripts/npm-proxy.mjs",
+		"lint": "node scripts/lint-wrapper.mjs",
+		"lint:fix": "node scripts/lint-wrapper.mjs --fix",
+		"version": "node version-bump.mjs && git add manifest.json versions.json",
+		"upgrade": "node scripts/upgrade.mjs"
 	},
 	"devDependencies": {
 		"grunt": "^1.5.3",
@@ -19,8 +23,9 @@
 		"stylelint-scss": "^5.0.0",
 		"postcss-scss": "^4.0.0"
 	},
-	"scripts": {
-		"lint": "node scripts/lint-wrapper.mjs",
-		"lint:fix": "node scripts/lint-wrapper.mjs --fix"
-	}
+	"dependencies": {
+		"dotenv": "^10.0.0",
+		"sass": "^1.83.0"
+	},
+	"packageManager": "pnpm@10.20.0"
 }
