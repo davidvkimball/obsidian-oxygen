@@ -1,6 +1,6 @@
 {
 	"name": "oxygen",
-	"version": "0.1.9",
+	"version": "0.2.0",
 	"type": "module",
 	"scripts": {
 		"preinstall": "node scripts/npm-proxy.mjs",
@@ -27,5 +27,6 @@
 		"dotenv": "^10.0.0",
 		"sass": "^1.83.0"
 	},
-	"packageManager": "pnpm@10.20.0"
+	"packageManager": "pnpm@10.20.0",
+	"license": "MIT"
 }

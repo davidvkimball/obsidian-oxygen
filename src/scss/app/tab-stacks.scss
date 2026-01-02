@@ -21,10 +21,9 @@
 }
 
 /* Tab animations */
-body:not(.is-phone) .workspace-tab-header-container {
-	transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-}
-
+/* NOTE: Removed transition from main workspace tab headers to prevent lag when opening new tabs */
+/* Transitions on tab containers cause layout recalculations when tabs are created */
+/* Only apply transitions to sidebar tabs where performance impact is less noticeable */
 .workspace .mod-sidedock {
 	.workspace-tab-header-container,
 	.workspace-tab-header,

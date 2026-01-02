@@ -80,7 +80,8 @@ body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-spl
 /* Workspace animations */
 /* NOTE: Transitions removed from workspace/app-container/workspace-split to prevent drag lag */
 /* These transitions were causing severe performance issues during file drag operations */
-body:not(.is-mobile) {
+/* Performance: Only apply animation when animations are enabled (not off) */
+body:not(.is-mobile):not(.animations-off):not(.disable-animations) {
 	.mod-sidedock .workspace-leaf:not([style*="display: none"]) {
 		animation: workspaceLeafIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
 	}

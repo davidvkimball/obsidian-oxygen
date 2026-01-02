@@ -5,7 +5,7 @@ body.borders-none {
 	--tab-outline-width: 0px;
 }
 
-body.borders-none .mod-root .workspace-tab-header-container:is(div, :hover) {
+body.borders-none .mod-root .workspace-tab-header-container:hover {
 	--tab-outline-width: 0px;
 }
 
@@ -25,30 +25,20 @@ body:not(.borders-on) {
 	--tab-outline-width: 0px;
 }
 
-body:not(.borders-on) .mod-root .workspace-tab-header-container:is(div, :hover) {
+body:not(.borders-on) .mod-root .workspace-tab-header-container:hover {
 	--tab-outline-width: 0px;
 }
 
 /* CRITICAL: Disable default borders on workspace-tab-container BEFORE applying enhanced border */
 /* This prevents the double border effect */
+/* Performance: Combined into single rule to reduce selector evaluation */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
 	border: none !important;
-	border-top: none !important;
-	border-bottom: none !important;
-	border-left: none !important;
-	border-right: none !important;
-	border-radius: 0 !important;
-}
-
-/* Now apply the enhanced border styling */
-/* CRITICAL: Changed overflow: hidden to overflow: visible to prevent clipping of metadata elements */
-/* Border-radius will still work - content may extend slightly beyond corners but that's acceptable */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
 	border-top: 1px solid var(--background-modifier-border) !important;
 	border-left: 1px solid var(--background-modifier-border) !important;
 	border-right: 1px solid var(--background-modifier-border) !important;
 	border-bottom: none !important;
-	border-radius: var(--radius-m) var(--radius-m) var(--radius-m) var(--radius-m) !important; /* All corners rounded */
+	border-radius: var(--radius-m) !important; /* All corners rounded - simplified from 4 values */
 	margin: 0;
 	overflow: visible; /* Changed from hidden to prevent clipping of checkboxes, pills, etc. */
 	position: relative;

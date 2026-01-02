@@ -1236,10 +1236,9 @@ body:not(.oxygen-status-off) .status-bar {
 }
 
 /* Tab animations */
-body:not(.is-phone) .workspace-tab-header-container {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-}
-
+/* NOTE: Removed transition from main workspace tab headers to prevent lag when opening new tabs */
+/* Transitions on tab containers cause layout recalculations when tabs are created */
+/* Only apply transitions to sidebar tabs where performance impact is less noticeable */
 .workspace .mod-sidedock .workspace-tab-header-container,
 .workspace .mod-sidedock .workspace-tab-header,
 .workspace .mod-sidedock .workspace-tab-header div {
@@ -1412,7 +1411,8 @@ body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-spl
 /* Workspace animations */
 /* NOTE: Transitions removed from workspace/app-container/workspace-split to prevent drag lag */
 /* These transitions were causing severe performance issues during file drag operations */
-body:not(.is-mobile) .mod-sidedock .workspace-leaf:not([style*="display: none"]) {
+/* Performance: Only apply animation when animations are enabled (not off) */
+body:not(.is-mobile):not(.animations-off):not(.disable-animations) .mod-sidedock .workspace-leaf:not([style*="display: none"]) {
   animation: workspaceLeafIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
 }
 
@@ -1497,11 +1497,11 @@ select,
   align-self: center;
 }
 
-.workspace {
-  /* Icon fade effects - exclude Editing Toolbar elements (they have their own animations) */
-}
 .workspace svg.svg-icon {
   transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+.workspace {
+  /* Icon fade effects - exclude Editing Toolbar elements (they have their own animations) */
 }
 @starting-style {
   .workspace .clickable-icon:not(.workspace-ribbon > .sidebar-toggle-button > .clickable-icon):not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]):not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) .subitem *):not(#editingToolbarModalBar.editingToolbarDefaultAesthetic *):not(#editingToolbarModalBar.editingToolbarFlex *) svg.svg-icon {
@@ -2222,7 +2222,7 @@ body,
   from {
     opacity: 0;
     transform: scale(0.95);
-    filter: blur(4px);
+    /* Removed filter: blur(4px) for performance - blur filters are extremely expensive */
   }
 }
 @keyframes modalIn {
@@ -2497,9 +2497,6 @@ body {
   --table-drag-padding: var(--table-drag-space) 0;
   --table-wrapper-width: min(fit-content, 100%);
   --bases-cards-embed-padding: 0 12px;
-  --bases-header-padding-end: var(--size-4-2);
-  --bases-header-padding-start: var(--size-4-2);
-  /* Place drag handles inside the cell when width is 100% */
 }
 .table-100 .bases-view[data-view-type=table] {
   --bases-embed-border-width: 0;
@@ -2510,6 +2507,11 @@ body {
   margin-top: 8px;
   height: var(--table-header-size);
   inset-inline-start: calc(100% - var(--table-drag-handle-size) - 4px) !important;
+}
+.table-100 {
+  --bases-header-padding-end: var(--size-4-2);
+  --bases-header-padding-start: var(--size-4-2);
+  /* Place drag handles inside the cell when width is 100% */
 }
 .table-100 .markdown-source-view.mod-cm6, .table-100.markdown-source-view.mod-cm6 {
   --table-drag-handle-background-active: transparent;
@@ -2617,11 +2619,6 @@ body {
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content,
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
   /* Tables */
-  /* Images */
-  /* External images */
-  /* Charts */
-  /* Maps */
-  /* Iframes */
 }
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content .cm-table-widget,
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(table),
@@ -2675,6 +2672,10 @@ body {
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer .dataview.dataview-error-box {
   margin-inline: var(--table-margin);
 }
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+  /* Images */
+}
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > .image-embed,
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer > .image-embed {
   padding-top: 0.25rem;
@@ -2693,10 +2694,18 @@ body {
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(.image-embed) img {
   max-width: var(--img-max-width);
 }
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+  /* External images */
+}
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > img,
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer > img {
   max-width: var(--img-line-width);
   margin-inline-start: var(--img-margin-start) !important;
+}
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+  /* Charts */
 }
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(> .block-language-dataviewjs canvas, > .block-language-chart),
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(> .block-language-dataviewjs canvas, > .block-language-chart) {
@@ -2706,6 +2715,10 @@ body {
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(> .block-language-dataviewjs canvas, > .block-language-chart) canvas,
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(> .block-language-dataviewjs canvas, > .block-language-chart) canvas {
   max-width: var(--chart-max-width);
+}
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+  /* Maps */
 }
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(.bases-view[data-view-type=map]),
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(> .block-language-leaflet),
@@ -2721,6 +2734,10 @@ body {
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(.bases-view[data-view-type=map]) iframe,
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(> .block-language-leaflet) iframe {
   max-width: var(--map-max-width);
+}
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+  /* Iframes */
 }
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(> iframe),
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(> .cm-html-embed),
@@ -2743,7 +2760,7 @@ body.borders-none {
   --tab-outline-width: 0px;
 }
 
-body.borders-none .mod-root .workspace-tab-header-container:is(div, :hover) {
+body.borders-none .mod-root .workspace-tab-header-container:hover {
   --tab-outline-width: 0px;
 }
 
@@ -2761,30 +2778,20 @@ body:not(.borders-on) {
   --tab-outline-width: 0px;
 }
 
-body:not(.borders-on) .mod-root .workspace-tab-header-container:is(div, :hover) {
+body:not(.borders-on) .mod-root .workspace-tab-header-container:hover {
   --tab-outline-width: 0px;
 }
 
 /* CRITICAL: Disable default borders on workspace-tab-container BEFORE applying enhanced border */
 /* This prevents the double border effect */
+/* Performance: Combined into single rule to reduce selector evaluation */
 body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
   border: none !important;
-  border-top: none !important;
-  border-bottom: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-radius: 0 !important;
-}
-
-/* Now apply the enhanced border styling */
-/* CRITICAL: Changed overflow: hidden to overflow: visible to prevent clipping of metadata elements */
-/* Border-radius will still work - content may extend slightly beyond corners but that's acceptable */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
   border-top: 1px solid var(--background-modifier-border) !important;
   border-left: 1px solid var(--background-modifier-border) !important;
   border-right: 1px solid var(--background-modifier-border) !important;
   border-bottom: none !important;
-  border-radius: var(--radius-m) var(--radius-m) var(--radius-m) var(--radius-m) !important; /* All corners rounded */
+  border-radius: var(--radius-m) !important; /* All corners rounded - simplified from 4 values */
   margin: 0;
   overflow: visible; /* Changed from hidden to prevent clipping of checkboxes, pills, etc. */
   position: relative;
@@ -3125,12 +3132,6 @@ body {
   box-shadow: 0 4px 6px 0px rgba(0, 0, 0, 0.05), 0 1px 3px 1px rgba(0, 0, 0, 0.025);
   transition: box-shadow 0.15s linear;
 }
-.cards table.dataview tbody > tr > td {
-  /* Paragraphs */
-  /* Links */
-  /* Buttons */
-  /* Lists */
-}
 .cards table.dataview tbody > tr > td:first-child {
   font-weight: var(--bold-weight);
   border: none;
@@ -3145,6 +3146,9 @@ body {
   font-size: calc(var(--table-text-size) * 0.9);
   color: var(--text-muted);
 }
+.cards table.dataview tbody > tr > td {
+  /* Paragraphs */
+}
 .cards table.dataview tbody > tr > td > * {
   padding: calc(var(--cards-padding) / 3) 0;
 }
@@ -3154,8 +3158,14 @@ body {
   width: calc(100% - var(--cards-padding));
   margin: 0 calc(var(--cards-padding) / 2);
 }
+.cards table.dataview tbody > tr > td {
+  /* Links */
+}
 .cards table.dataview tbody > tr > td a {
   text-decoration: none;
+}
+.cards table.dataview tbody > tr > td {
+  /* Buttons */
 }
 .cards table.dataview tbody > tr > td > button {
   width: 100%;
@@ -3163,6 +3173,9 @@ body {
 }
 .cards table.dataview tbody > tr > td:last-child > button {
   margin-bottom: calc(var(--cards-padding) / 6);
+}
+.cards table.dataview tbody > tr > td {
+  /* Lists */
 }
 .cards table.dataview tbody > tr > td > ul {
   width: 100%;
@@ -3905,13 +3918,11 @@ body.colorful-headings .modal {
   --focus-animation-duration: 0.1s;
 }
 
-.oxygen-focus-mode {
-  /* Hide ribbon */
-  /* Hide right sidebar button */
-  /* Hide status bar */
-}
 .oxygen-focus-mode.is-translucent .workspace-ribbon.mod-left.is-collapsed, .oxygen-focus-mode.is-translucent .workspace-ribbon.mod-left.is-collapsed:before {
   background-color: var(--background-primary) !important;
+}
+.oxygen-focus-mode {
+  /* Hide ribbon */
 }
 .oxygen-focus-mode .workspace-ribbon.mod-left {
   transition: background-color 0s linear 0s;
@@ -3937,9 +3948,15 @@ body.colorful-headings .modal {
 .oxygen-focus-mode.borders-title .workspace-ribbon.mod-left.is-collapsed {
   border-right: none;
 }
+.oxygen-focus-mode {
+  /* Hide right sidebar button */
+}
 .oxygen-focus-mode .mod-root .sidebar-toggle-button.mod-right {
   opacity: 0;
   transition: opacity var(--focus-animation-duration) ease-in-out 0.5s;
+}
+.oxygen-focus-mode {
+  /* Hide status bar */
 }
 .oxygen-focus-mode:not(.oxygen-status-off) .status-bar {
   opacity: 0;
@@ -4484,14 +4501,16 @@ https://github.com/sponsors/kepano
 
 .labeled-nav {
   --labeled-nav-top-margin: var(--header-height);
-  /* refactor this using a new variable for border above labeled nav 
-  in different conditions e.g. OSes and colorful frame */
 }
 .labeled-nav.is-translucent .mod-left-split .mod-top .workspace-tab-header-container .workspace-tab-header-container-inner {
   background-color: transparent;
 }
 .labeled-nav.is-hidden-frameless:not(.is-fullscreen) .mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-container {
   padding-left: 0;
+}
+.labeled-nav {
+  /* refactor this using a new variable for border above labeled nav 
+  in different conditions e.g. OSes and colorful frame */
 }
 .labeled-nav.mod-macos .mod-left-split .mod-top .workspace-tab-header-container:before, .labeled-nav.mod-macos.is-hidden-frameless:not(.is-fullscreen) .mod-left-split .mod-top .workspace-tab-header-container:before {
   -webkit-app-region: drag;
@@ -5175,7 +5194,6 @@ input.prompt-input:focus-visible {
 
 .is-mobile {
   /* Mobile publish */
-  /* Phone */
 }
 .is-mobile .mod-publish .modal-content {
   display: unset;
@@ -5201,6 +5219,9 @@ input.prompt-input:focus-visible {
 .is-mobile .modal.mod-publish .modal-content .publish-sections-container {
   margin-right: 0;
   padding-right: 0;
+}
+.is-mobile {
+  /* Phone */
 }
 @media (max-width: 400pt) {
   .is-mobile .publish-section-header,

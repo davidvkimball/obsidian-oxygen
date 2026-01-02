@@ -53,6 +53,11 @@ This project references specific plugins and themes that are relevant to its dev
   - Location: Cloned to global `.ref/themes/` and symlinked in project
   - Purpose: Reference for Minimal theme patterns, structure, and features
 
+- **`.ref/themes/obsidian-baseline/`** - Baseline theme reference
+  - Source: https://github.com/aaaaalexis/obsidian-baseline
+  - Location: Cloned to global `.ref/obsidian-dev/themes/` and symlinked in project
+  - Purpose: Reference for animation effects and feature ideas (Baseline inspired Oxygen's animations)
+
 - **`.ref/plugins/obsidian-minimal-settings/`** - The settings plugin for Minimal theme
   - Source: https://github.com/kepano/obsidian-minimal-settings
   - Location: Cloned to global `.ref/plugins/` and symlinked in project
