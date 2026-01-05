@@ -1,6 +1,6 @@
 {
 	"name": "oxygen",
-	"version": "0.2.0",
+	"version": "0.2.2",
 	"type": "module",
 	"scripts": {
 		"preinstall": "node scripts/npm-proxy.mjs",
