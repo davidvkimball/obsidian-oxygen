@@ -909,6 +909,16 @@ body {
   border: 0;
 }
 
+/* Custom folder icon - Lucide folder icon replacement */
+/* Based on Baseline theme's approach */
+/* Only apply when not using default icon and not managed by Iconic plugin */
+body:not(.use-default-folder-icon) {
+  /* Iconic plugin compatibility: exclude items managed by Iconic */
+}
+body:not(.use-default-folder-icon) .lucide-folder-closed:not(.iconic-icon) path[d="M2 10h20"] {
+  display: none;
+}
+
 .metadata-container {
   --input-height: calc(var(--font-adaptive-small) * 2.2);
 }

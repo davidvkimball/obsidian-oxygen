@@ -73,6 +73,11 @@ This project references specific plugins and themes that are relevant to its dev
   - Location: Symlinked directly to working copy (local development)
   - Purpose: Reference for UI customization patterns and integration
 
+- **`.ref/plugins/obsidian-iconic/`** - Iconic plugin reference
+  - Source: Local project at `C:\Users\david\Development\obsidian-iconic`
+  - Location: Symlinked directly to working copy (local development)
+  - Purpose: Reference for icon customization patterns and to ensure theme's folder icon replacement doesn't interfere with Iconic's customizations
+
 **Note**: The 6 core Obsidian projects (obsidian-api, obsidian-sample-plugin, obsidian-developer-docs, obsidian-plugin-docs, obsidian-sample-theme, eslint-plugin) are always relevant and should be in every project's `.ref` folder. Only project-specific plugins/themes are documented above.
 
 ## Overrides (Optional)

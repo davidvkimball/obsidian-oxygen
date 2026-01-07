@@ -1,0 +1,12 @@
+/* Custom folder icon - Lucide folder icon replacement */
+/* Based on Baseline theme's approach */
+/* Only apply when not using default icon and not managed by Iconic plugin */
+body:not(.use-default-folder-icon) {
+	/* Iconic plugin compatibility: exclude items managed by Iconic */
+	.lucide-folder-closed:not(.iconic-icon) {
+		path[d="M2 10h20"] {
+			display: none;
+		}
+	}
+}
+
