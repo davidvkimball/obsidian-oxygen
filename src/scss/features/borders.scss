@@ -20,19 +20,19 @@ body.borders-none .mod-root .workspace-tab-header-container:hover {
 /* CRITICAL: Disable default Obsidian borders by setting CSS variables to 0 */
 /* This is how borders-none works - it sets these variables which Obsidian uses for borders */
 /* NOTE: --divider-width might affect tab dividers - REMOVED to test if it's breaking divider logic */
-body:not(.borders-on) {
+body:not(.borders-on):not(.borders-none) {
 	/* --divider-width: 0px; REMOVED - might be breaking tab divider logic */
 	--tab-outline-width: 0px;
 }
 
-body:not(.borders-on) .mod-root .workspace-tab-header-container:hover {
+body:not(.borders-on):not(.borders-none) .mod-root .workspace-tab-header-container:hover {
 	--tab-outline-width: 0px;
 }
 
 /* CRITICAL: Disable default borders on workspace-tab-container BEFORE applying enhanced border */
 /* This prevents the double border effect */
 /* Performance: Combined into single rule to reduce selector evaluation */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-container {
 	border: none !important;
 	border-top: 1px solid var(--background-modifier-border) !important;
 	border-left: 1px solid var(--background-modifier-border) !important;
@@ -46,17 +46,17 @@ body:not(.borders-on) .workspace .mod-root .workspace-tab-container {
 }
 
 /* Ensure child elements respect the border-radius */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container > * {
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-container > * {
 	border-radius: inherit;
 }
 
 /* Remove any borders from child elements and workspace-split that might create extra lines */
 /* CRITICAL: Remove borders from ALL elements inside the container AND sidebars to prevent double lines */
-body:not(.borders-on) .workspace .mod-root .workspace-split,
-body:not(.borders-on) .workspace .mod-root .workspace-split.mod-root,
-body:not(.borders-on) .workspace .mod-left-split,
-body:not(.borders-on) .workspace .mod-right-split,
-body:not(.borders-on) .workspace .mod-sidedock {
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-split,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-split.mod-root,
+body:not(.borders-on):not(.borders-none) .workspace .mod-left-split,
+body:not(.borders-on):not(.borders-none) .workspace .mod-right-split,
+body:not(.borders-on):not(.borders-none) .workspace .mod-sidedock {
 	border-left: none !important;
 	border-right: none !important;
 	border-top: none !important;
@@ -66,15 +66,15 @@ body:not(.borders-on) .workspace .mod-sidedock {
 /* Hide workspace-ribbon border-right in Enhanced mode */
 /* Obsidian's base CSS uses border-right: var(--divider-width) solid var(--divider-color) */
 /* Enhanced mode should hide this border to match the clean appearance */
-body:not(.borders-on) .workspace-ribbon {
+body:not(.borders-on):not(.borders-none) .workspace-ribbon {
 	border-right: none !important;
 }
 
 /* Remove borders from workspace-leaf and workspace-leaf-content - these are likely causing the double line */
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf,
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf-content,
-body:not(.borders-on) .workspace .mod-root .workspace-leaf,
-body:not(.borders-on) .workspace .mod-root .workspace-leaf-content {
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-container .workspace-leaf,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-container .workspace-leaf-content,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-leaf,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-leaf-content {
 	border-left: none !important;
 	border-right: none !important;
 	border-top: none !important;
@@ -89,11 +89,11 @@ body:not(.borders-on) .workspace .mod-root .workspace-leaf-content {
 /* This prevents visible lines while still allowing sidebar resizing */
 /* Mimic Default mode's behavior: invisible by default, accent color on hover */
 /* Target it in all possible locations */
-body:not(.borders-on) .workspace-leaf-resize-handle,
-body:not(.borders-on) .workspace .workspace-leaf-resize-handle,
-body:not(.borders-on) .workspace .mod-root .workspace-leaf-resize-handle,
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf-resize-handle,
-body:not(.borders-on) hr.workspace-leaf-resize-handle {
+body:not(.borders-on):not(.borders-none) .workspace-leaf-resize-handle,
+body:not(.borders-on):not(.borders-none) .workspace .workspace-leaf-resize-handle,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-leaf-resize-handle,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-container .workspace-leaf-resize-handle,
+body:not(.borders-on):not(.borders-none) hr.workspace-leaf-resize-handle {
 	opacity: 0 !important;
 	border: none !important;
 	background: none !important;
@@ -101,13 +101,13 @@ body:not(.borders-on) hr.workspace-leaf-resize-handle {
 }
 
 /* Show resize handle on hover with accent color - matches Default mode behavior */
-body:not(.borders-on) .workspace-leaf-resize-handle:hover,
-body:not(.borders-on) .workspace .workspace-leaf-resize-handle:hover,
-body:not(.borders-on) .workspace .mod-root .workspace-leaf-resize-handle:hover,
-body:not(.borders-on) .workspace .mod-root .workspace-tab-container .workspace-leaf-resize-handle:hover,
-body:not(.borders-on) hr.workspace-leaf-resize-handle:hover,
-body:not(.borders-on) .workspace-leaf:hover .workspace-leaf-resize-handle,
-body:not(.borders-on) .workspace .workspace-leaf:hover .workspace-leaf-resize-handle {
+body:not(.borders-on):not(.borders-none) .workspace-leaf-resize-handle:hover,
+body:not(.borders-on):not(.borders-none) .workspace .workspace-leaf-resize-handle:hover,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-leaf-resize-handle:hover,
+body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-container .workspace-leaf-resize-handle:hover,
+body:not(.borders-on):not(.borders-none) hr.workspace-leaf-resize-handle:hover,
+body:not(.borders-on):not(.borders-none) .workspace-leaf:hover .workspace-leaf-resize-handle,
+body:not(.borders-on):not(.borders-none) .workspace .workspace-leaf:hover .workspace-leaf-resize-handle {
 	opacity: 1 !important;
 	background-color: var(--interactive-accent) !important;
 }
@@ -117,7 +117,7 @@ body:not(.borders-on) .workspace .workspace-leaf:hover .workspace-leaf-resize-ha
 /* The title bar is absolutely positioned relative to workspace, not this container */
 /* Keep rounded corners on all sides for visual consistency */
 /* CRITICAL: Changed overflow to visible to prevent clipping (border-radius still works) */
-body:not(.borders-on).mod-macos .workspace .mod-root .workspace-tab-container {
+body:not(.borders-on):not(.borders-none).mod-macos .workspace .mod-root .workspace-tab-container {
 	overflow: visible !important; /* Changed from hidden to prevent clipping */
 	border-top: none !important; /* Remove top border to preserve title bar integration */
 	border-radius: var(--radius-m) var(--radius-m) var(--radius-m) var(--radius-m) !important; /* Round all corners */
@@ -125,30 +125,33 @@ body:not(.borders-on).mod-macos .workspace .mod-root .workspace-tab-container {
 }
 
 /* Ensure title bar itself is never affected by enhanced borders on macOS */
-body:not(.borders-on).mod-macos.is-hidden-frameless .titlebar,
-body:not(.borders-on).mod-macos.is-hidden-frameless .titlebar-inner,
-body:not(.borders-on).mod-macos.is-hidden-frameless .titlebar-text {
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .titlebar,
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .titlebar-inner,
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .titlebar-text {
 	position: absolute !important; /* Preserve title bar positioning */
 	z-index: 9999 !important; /* Ensure title bar is always on top */
 	pointer-events: none !important; /* Allow clicks to pass through to window controls */
 }
 
-body:not(.borders-on).mod-macos.is-hidden-frameless .titlebar-button-container {
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .titlebar-button-container {
 	pointer-events: auto !important; /* Re-enable clicks on window controls */
 	z-index: 10000 !important; /* Window controls above title text */
 }
 
 /* Fix right sidebar toggle button background color on macOS when enhanced borders are enabled */
 /* Override the tab-container-background that's incorrectly applied to the toggle button */
-body:not(.borders-on).mod-macos.is-hidden-frameless:not(.is-popout-window) .sidebar-toggle-button.mod-right {
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless:not(.is-popout-window) .sidebar-toggle-button.mod-right {
 	background-color: var(--background-secondary) !important; /* Match sidebar background instead of tab container */
 }
 
 /* Match the left sidebar background color behind the tabs */
 /* Set a CSS variable at workspace level to capture --background-secondary before any overrides */
 /* Only apply when borders-on is NOT present */
-body:not(.borders-on) .workspace {
+body:not(.borders-on):not(.borders-none) .workspace {
 	--enhanced-border-sidebar-bg: var(--background-secondary);
+	--ribbon-background: var(--enhanced-border-sidebar-bg) !important;
+	--titlebar-background: var(--enhanced-border-sidebar-bg) !important;
+	--titlebar-background-focused: var(--enhanced-border-sidebar-bg) !important;
 }
 
 /* Apply the background to main content tab header container (always, not just when right sidebar is open) */
@@ -158,28 +161,28 @@ body:not(.borders-on) .workspace {
 /* We want it to use --background-secondary (bg2) instead, matching the sidebar */
 /* Apply to both main content and right sidebar */
 /* Only apply when borders-on is NOT present */
-body:not(.borders-on):not(.colorful-frame) .workspace .mod-root .workspace-tabs.mod-top,
-body:not(.borders-on):not(.colorful-frame) .workspace .mod-sidedock.mod-right-split .workspace-tabs.mod-top {
+body:not(.borders-on):not(.borders-none):not(.colorful-frame) .workspace .mod-root .workspace-tabs.mod-top,
+body:not(.borders-on):not(.borders-none):not(.colorful-frame) .workspace .mod-sidedock.mod-right-split .workspace-tabs.mod-top {
 	--tab-container-background: var(--enhanced-border-sidebar-bg) !important;
 }
 
-body:not(.borders-on):not(.colorful-frame) .workspace .mod-root .workspace-tab-header-container,
-body:not(.borders-on):not(.colorful-frame) .workspace .mod-sidedock.mod-right-split .workspace-tab-header-container {
+body:not(.borders-on):not(.borders-none):not(.colorful-frame) .workspace .mod-root .workspace-tab-header-container,
+body:not(.borders-on):not(.borders-none):not(.colorful-frame) .workspace .mod-sidedock.mod-right-split .workspace-tab-header-container {
 	background-color: var(--enhanced-border-sidebar-bg) !important;
 }
 
-body:not(.borders-on):not(.colorful-frame) .workspace .mod-root .workspace-tab-header-container {
+body:not(.borders-on):not(.borders-none):not(.colorful-frame) .workspace .mod-root .workspace-tab-header-container {
 	border-top-left-radius: var(--radius-m);
 	border-top-right-radius: var(--radius-m);
 }
 
 /* macOS-specific: Apply background color but keep top corners flat to preserve title bar integration */
 /* The title bar is absolutely positioned within this area, so we must not interfere with positioning */
-body:not(.borders-on):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tabs.mod-top {
+body:not(.borders-on):not(.borders-none):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tabs.mod-top {
 	--tab-container-background: var(--enhanced-border-sidebar-bg) !important; /* Match sidebar background */
 }
 
-body:not(.borders-on):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tab-header-container {
+body:not(.borders-on):not(.borders-none):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tab-header-container {
 	background-color: var(--enhanced-border-sidebar-bg) !important; /* Match sidebar background */
 	border-top-left-radius: 0 !important; /* Keep top flat for title bar */
 	border-top-right-radius: 0 !important; /* Keep top flat for title bar */
@@ -189,12 +192,12 @@ body:not(.borders-on):not(.colorful-frame).mod-macos.is-hidden-frameless .worksp
 
 /* Override the workspace-split.mod-root background to match sidebar color */
 /* The theme sets it to --background-primary, but we want --background-secondary for seamless appearance */
-body:not(.borders-on):not(.colorful-frame) .workspace .workspace-split.mod-root {
+body:not(.borders-on):not(.borders-none):not(.colorful-frame) .workspace .workspace-split.mod-root {
 	background-color: var(--enhanced-border-sidebar-bg) !important;
 }
 
 /* macOS-specific: Match workspace split background to sidebar to prevent bleed-through at rounded corners */
-body:not(.borders-on):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .workspace-split.mod-root {
+body:not(.borders-on):not(.borders-none):not(.colorful-frame).mod-macos.is-hidden-frameless .workspace .workspace-split.mod-root {
 	background-color: var(--enhanced-border-sidebar-bg) !important; /* Match sidebar to prevent corner bleed */
 }
 
@@ -202,12 +205,12 @@ body:not(.borders-on):not(.colorful-frame).mod-macos.is-hidden-frameless .worksp
 /* When enhanced borders are active, make right sidebar match left sidebar color */
 /* The theme rule is: body:not(.sidebar-color) .mod-right-split { --background-secondary: var(--background-primary); } */
 /* Capture the original --background-secondary at workspace level before the override applies */
-body:not(.borders-on):not(.sidebar-color) .workspace {
+body:not(.borders-on):not(.borders-none):not(.sidebar-color) .workspace {
 	--enhanced-border-right-sidebar-bg: var(--background-secondary);
 }
 
 /* Override the theme's override to restore the original --background-secondary value */
-body:not(.borders-on):not(.sidebar-color) .mod-right-split {
+body:not(.borders-on):not(.borders-none):not(.sidebar-color) .mod-right-split {
 	--background-secondary: var(--enhanced-border-right-sidebar-bg) !important;
 }
 
