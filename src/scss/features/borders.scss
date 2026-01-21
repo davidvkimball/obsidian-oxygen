@@ -112,14 +112,15 @@ body:not(.borders-on):not(.borders-none) .workspace .workspace-leaf:hover .works
 	background-color: var(--interactive-accent) !important;
 }
 
-/* macOS-specific fixes: Remove top border */
-/* On macOS frameless windows, the title bar is integrated into the tab area, so we can't have a top border */
+/* macOS frameless-specific fixes: Keep top border but prevent clipping */
+/* On macOS frameless windows, the title bar is integrated, but we can prevent clipping with z-index */
+/* Keep the border like Windows/Linux but ensure title bar appears above it */
 /* The title bar is absolutely positioned relative to workspace, not this container */
 /* Keep rounded corners on all sides for visual consistency */
 /* CRITICAL: Changed overflow to visible to prevent clipping (border-radius still works) */
-body:not(.borders-on):not(.borders-none).mod-macos .workspace .mod-root .workspace-tab-container {
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tab-container {
 	overflow: visible !important; /* Changed from hidden to prevent clipping */
-	border-top: none !important; /* Remove top border to preserve title bar integration */
+	border-top: 1px solid var(--background-modifier-border) !important; /* Keep border but ensure tab header covers it */
 	border-radius: var(--radius-m) var(--radius-m) var(--radius-m) var(--radius-m) !important; /* Round all corners */
 	position: relative !important; /* Keep relative for proper rendering, title bar is positioned relative to workspace */
 }
@@ -228,11 +229,18 @@ body:not(.borders-on):not(.borders-none) .workspace .mod-root .workspace-tab-hea
 	z-index: 1;
 }
 
-/* macOS-specific: match the default spacing */
-body:not(.borders-on):not(.borders-none).mod-macos .workspace .mod-root .workspace-tab-header-container-inner {
-	margin-bottom: 0 !important;
-	position: static !important;
-	z-index: auto !important;
+/* macOS frameless-specific: Ensure tab header covers the container border */
+/* With border restored to container, make tab header appear above it */
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tab-header-container-inner {
+	margin-bottom: -3px !important; /* Extra overlap to cover the border */
+	position: relative !important;
+	z-index: 10 !important; /* Ensure tab header appears above the border */
+}
+
+/* macOS frameless-specific: Ensure active tab covers the border completely */
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-tab-header.is-active {
+	position: relative !important;
+	z-index: 11 !important; /* Active tab above everything */
 }
 
 /* Apply vertical positioning to icon and close button only (not title) to prevent shifting */
@@ -305,6 +313,24 @@ body:not(.borders-on):not(.borders-none) .workspace-tab-header-container .worksp
 body:not(.borders-on):not(.borders-none) .workspace-tab-header-container .workspace-tab-header::before {
 	left: calc(var(--tab-curve) * -2);
 	clip-path: inset(calc(50% - 1px) calc(var(--tab-curve) * -1) 0 70%);
+}
+
+/* macOS frameless-specific: Adjust tab curve clip-paths for better border alignment */
+/* Move the curves up and adjust clipping to reduce jank */
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .workspace-tab-header-container .workspace-tab-header::after {
+	right: calc(var(--tab-curve) * -2);
+	clip-path: inset(calc(50% - 2px) 80% 0 calc(var(--tab-curve) * -1));
+}
+
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .workspace-tab-header-container .workspace-tab-header::before {
+	left: calc(var(--tab-curve) * -2);
+	clip-path: inset(calc(50% - 2px) calc(var(--tab-curve) * -1) 0 80%);
+}
+
+/* macOS frameless-specific: Push main content down slightly for perfect alignment */
+/* This moves the content border down to align with the adjusted tab curves */
+body:not(.borders-on):not(.borders-none).mod-macos.is-hidden-frameless .workspace .mod-root .workspace-leaf.mod-active {
+	margin-top: 1px !important;
 }
 
 /* Make sure the tab header container doesn't interfere and allows proper positioning */
