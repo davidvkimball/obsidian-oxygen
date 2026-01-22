@@ -5,11 +5,11 @@ description: Project-specific architecture, maintenance tasks, and unique conven
 
 # Project Context
 
-This skill provides the unique context and architectural details for the **Obsidian Sample Plugin Plus** repository.
+This skill provides the unique context and architectural details for the **Obsidian Sample Theme Plus** repository.
 
 ## Purpose
 
-To provide guidance on project-specific structures and tasks that differ from general Obsidian development patterns.
+To provide guidance on project-specific structures and tasks that differ from general Obsidian theme development patterns.
 
 ## When to Use
 
@@ -20,8 +20,8 @@ Load this skill when:
 
 ## Project Overview
 
-- **Architecture**: Organized structure with main code in `src/main.ts` and settings in `src/settings.ts`.
-- **Reference Management**: Uses a `.ref` folder with symlinks to centralized Obsidian repositories for API and documentation.
+- **Architecture**: Single `theme.css` file in the root directory.
+- **Reference Management**: Uses a `.ref` folder with symlinks to centralized Obsidian repositories for documentation.
 
 ## Maintenance Tasks
 
@@ -30,5 +30,5 @@ Load this skill when:
 
 ## Project-Specific Conventions
 
-- **Organized Source**: Prefer keeping logic separated into files within `src/` rather than bloating `main.ts`.
-- **Ref Symlinks**: Always use the `.ref/` path when looking up API documentation to ensure parity with the central reference store.
+- **Clean CSS**: Maintain organized CSS sections for different UI elements (Editor, UI, Sidebar, etc.).
+- **Variables**: Favor using Obsidian's internal CSS variables for better compatibility across updates.

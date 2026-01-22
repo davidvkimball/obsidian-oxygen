@@ -12,8 +12,8 @@ This document provides a comprehensive checklist to verify your theme is ready f
 
 ## Quick Reference
 
-- **Developer Policies**: https://docs.obsidian.md/Developer+policies
-- **Theme Guidelines**: https://docs.obsidian.md/Themes/Releasing/Theme+guidelines
+- **Developer Policies**: [Developer Policies](https://docs.obsidian.md/Developer+policies)
+- **Theme Guidelines**: [Theme Guidelines](https://docs.obsidian.md/Themes/Releasing/Theme+guidelines)
 - **Release Process**: See [versioning-releases.md](versioning-releases.md)
 
 ## Automated Checks (AI Can Verify)
@@ -112,7 +112,7 @@ These checks require user input or confirmation:
 
 ### Developer Policies Adherence
 
-- [ ] **Read Developer Policies**: User confirms they have read https://docs.obsidian.md/Developer+policies
+- [ ] **Read Developer Policies**: User confirms they have read [Developer Policies](https://docs.obsidian.md/Developer+policies)
 - [ ] **No prohibited features**:
   - [ ] No tracking or analytics
   - [ ] No remote code execution
@@ -124,7 +124,7 @@ These checks require user input or confirmation:
 
 ### Theme Guidelines Adherence
 
-- [ ] **Read Theme Guidelines**: User confirms they have read https://docs.obsidian.md/Themes/Releasing/Theme+guidelines
+- [ ] **Read Theme Guidelines**: User confirms they have read [Theme Guidelines](https://docs.obsidian.md/Themes/Releasing/Theme+guidelines)
 - [ ] **CSS organization**: CSS is well-organized (logical structure, comments where helpful)
 - [ ] **Browser compatibility**: CSS features are compatible with Obsidian's browser targets
 - [ ] **Performance**: Theme doesn't cause significant performance issues

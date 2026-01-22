@@ -11,18 +11,18 @@ Update frequency: Check Obsidian Sample Theme repo for updates
 - **SCSS themes**: Use Sass/SCSS compiler (e.g., `sass`, `node-sass`, or build tools like Vite).
 - No TypeScript or bundler required for basic themes.
 
-### Simple Theme Setup
+## Simple Theme Setup
 
 No build tools needed - just edit `theme.css` directly.
 
-### SCSS Theme Setup
+## SCSS Theme Setup
 
 ```bash
 npm install -D sass
 npm run build  # Compile SCSS to CSS
 ```
 
-### Theme Build Tools (Optional)
+## Theme Build Tools (Optional)
 
 Simple themes with just CSS don't need build tools. More complex themes might use Grunt, npm scripts, or other build tools for tasks like SCSS compilation, minification, or preprocessing:
 
@@ -36,7 +36,7 @@ npm run build
 
 Only use build commands if your theme has a `Gruntfile.js`, `package.json` with build scripts, or other build configuration files.
 
-### Linting (Optional)
+## Linting (Optional)
 
 - Use `stylelint` for CSS/SCSS linting: `npm install -D stylelint`
 - Configure stylelint for Obsidian theme conventions

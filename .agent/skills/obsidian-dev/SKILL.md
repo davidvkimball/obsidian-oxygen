@@ -1,35 +1,78 @@
 ---
 name: obsidian-dev
-description: Logic patterns, lifecycle management, and core development rules for Obsidian plugins. Load when editing src/main.ts, implementing new features, or handling plugin lifecycle events.
+description: CSS/SCSS development patterns, styling conventions, and theme-specific coding rules. Load when working with theme.css, SCSS variables, or CSS selectors.
 ---
 
-# Obsidian Development Skill
+# Obsidian Theme Development Skill
 
-This skill provides patterns and rules for developing Obsidian plugins, focusing on core logic and lifecycle management.
+This skill provides patterns and rules for developing Obsidian themes, focusing on CSS/SCSS development, styling conventions, and theme-specific coding practices.
 
 ## Purpose
 
-To ensure consistent implementation of plugin features, proper resource management, and adherence to Obsidian's development patterns.
+To ensure consistent theme development, proper CSS organization, and adherence to Obsidian's theming patterns and CSS variable usage.
 
 ## When to Use
 
 Load this skill when:
-- Implementing or modifying the `main.ts` entry point.
-- Creating new plugin features or logic patterns.
-- Managing the plugin lifecycle (`onload`, `onunload`).
-- Implementing commands or settings.
+- Writing or modifying CSS/SCSS for `theme.css`
+- Working with Obsidian's CSS variables and theming system
+- Implementing responsive design or dark/light mode support
+- Debugging CSS layout or styling issues
+- Following CSS/SCSS coding conventions
 
 ## Core Rules
 
-- **Use "properties" instead of "frontmatter"**: Always refer to YAML metadata as "properties" in UI, comments, and documentation.
-- **Capitalize "Markdown"**: Always treat "Markdown" as a proper noun.
-- **Resource Cleanup**: Ensure all event listeners and resources are properly cleaned up in `onunload`.
-- **Async Safety**: Most Obsidian API operations are asynchronous; use `await` appropriately.
+- **Use Obsidian CSS Variables**: Always prefer Obsidian's built-in CSS variables (like `--background-primary`, `--text-normal`) over hardcoded colors/values for better compatibility.
+- **Follow BEM Methodology**: Use Block-Element-Modifier naming convention for CSS classes to avoid conflicts and improve maintainability.
+- **Mobile-First**: Consider mobile layouts and use responsive design patterns.
+- **Dark/Light Mode Support**: Always test themes in both light and dark modes.
+- **Performance**: Minimize CSS complexity and avoid expensive selectors.
 
 ## Bundled Resources
 
-- `references/agent-dos-donts.md`: Critical do's and don'ts for development.
-- `references/code-patterns.md`: Reusable code snippets and architectural patterns.
-- `references/coding-conventions.md`: Style guides and naming conventions.
-- `references/commands-settings.md`: Guidance for implementing commands and settings tabs.
-- `references/common-tasks.md`: Quick reference for frequent implementation tasks.
+- `references/agent-dos-donts.md`: Critical do's and don'ts for theme development.
+- `references/project-overview.md`: Theme project structure and organization.
+- `references/environment.md`: Development environment setup for themes.
+
+## Theme Development Best Practices
+
+### CSS Organization
+- Group related styles together (Editor, UI, Sidebar, etc.)
+- Use comments to separate major sections
+- Keep specificity low to allow for easy customization
+
+### Obsidian CSS Variables
+```css
+/* Always use Obsidian's variables */
+.theme-dark {
+  --my-accent: var(--interactive-accent);
+  background-color: var(--background-primary);
+  color: var(--text-normal);
+}
+```
+
+### Responsive Design
+```css
+/* Mobile-first approach */
+.my-component {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .my-component {
+    width: 50%;
+  }
+}
+```
+
+### Dark/Light Mode Support
+```css
+/* Automatic dark/light mode support */
+.theme-dark .my-element {
+  background: var(--background-primary);
+}
+
+.theme-light .my-element {
+  background: var(--background-secondary);
+}
+```

@@ -27,3 +27,5 @@ Update frequency: Review periodically for AI agent-specific guidance
 - **File structure**: Never have both `theme.css` as source AND `src/scss/` - choose one pattern. Simple themes should use `theme.css` directly. Complex themes should use `src/scss/` and compile to `theme.css`. See [file-conventions.md](file-conventions.md) for structure.
 - **Git operations**: Never automatically commit, push, or perform any git operations. All git operations must be left to the user.
 - **Git updates**: When checking for updates to repos in `.ref`, you can use read-only commands like `git fetch` and `git log` to check what's new, but **never automatically pull** - always ask the user first. See [ref-instructions.md](ref-instructions.md) for how to check for updates.
+
+
