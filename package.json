@@ -17,11 +17,12 @@
 		"grunt-contrib-sass": "~2.0.0",
 		"grunt-contrib-watch": "~1.1.0",
 		"grunt-env": "~1.0.1",
+		"obsidian-dev-skills": "^1.0.3",
+		"postcss-scss": "^4.0.0",
 		"stylelint": "^15.11.0",
 		"stylelint-config-recommended": "^13.0.0",
 		"stylelint-no-unsupported-browser-features": "^7.0.0",
-		"stylelint-scss": "^5.0.0",
-		"postcss-scss": "^4.0.0"
+		"stylelint-scss": "^5.0.0"
 	},
 	"dependencies": {
 		"dotenv": "^10.0.0",

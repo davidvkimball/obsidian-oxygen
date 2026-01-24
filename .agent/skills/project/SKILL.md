@@ -1,34 +1,33 @@
 ---
 name: project
-description: Project-specific architecture, maintenance tasks, and unique conventions for this repository. Load when performing project-wide maintenance or working with the core architecture.
+description: Project-specific architecture, maintenance tasks, and unique conventions for the Oxygen Theme.
 ---
 
-# Project Context
+# Oxygen Theme Project Skill
 
-This skill provides the unique context and architectural details for the **Obsidian Sample Theme Plus** repository.
+Oxygen is a modular, high-performance theme for Obsidian with deep customization capabilities. It is designed for visual clarity and provides extensive Style Settings support.
 
-## Purpose
+## Core Architecture
 
-To provide guidance on project-specific structures and tasks that differ from general Obsidian theme development patterns.
-
-## When to Use
-
-Load this skill when:
-- Understanding the repository's unique architecture.
-- Performing recurring maintenance tasks.
-- Following project-specific coding conventions.
-
-## Project Overview
-
-- **Architecture**: Single `theme.css` file in the root directory.
-- **Reference Management**: Uses a `.ref` folder with symlinks to centralized Obsidian repositories for documentation.
-
-## Maintenance Tasks
-
-- **Sync References**: Run the setup scripts (`scripts/setup-ref-links.*`) to update symlinks to the 6 core Obsidian projects.
-- **Update Skills**: Use `node scripts/update-agents.mjs "Description"` after syncing or updating reference materials.
+- **Modular CSS**: Separated into `theme.css` (primary) and `Oxygen.css` (modular components).
+- **Variable-First Design**: Heavily dependent on CSS variables for customization, allowing for deep integration with the Oxygen Settings plugin.
+- **Build System**: Uses `Gruntfile.cjs` for managing CSS compilation or asset tasks.
 
 ## Project-Specific Conventions
 
-- **Clean CSS**: Maintain organized CSS sections for different UI elements (Editor, UI, Sidebar, etc.).
-- **Variables**: Favor using Obsidian's internal CSS variables for better compatibility across updates.
+- **Visual Clarity**: Prioritizes typography and spatial organization.
+- **Scaleable Components**: All CSS components should follow modular patterns for easier maintenance.
+- **Style Settings**: Designed to be the source of truth for "vibrant" and "premium" aesthetics as described in the master design principles.
+
+## Key Files
+
+- `theme.css`: The primary theme file containing core layout and basic styling.
+- `Oxygen.css`: Large modular CSS payload containing advanced components and visual enhancements.
+- `manifest.json`: Theme identification and version management.
+- `Gruntfile.cjs`: Automation tasks for theme development.
+
+## Maintenance Tasks
+
+- **Variable Drift**: Monitor Obsidian's internal CSS variable updates and adjust theme overrides accordingly.
+- **Mobile Audit**: Test the modular components (Oxygen.css) across various device sizes.
+- **Build Check**: Ensure Grunt tasks remain functional for bundling/minifying theme assets.
