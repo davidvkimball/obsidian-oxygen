@@ -90,5 +90,13 @@ body:not(.is-mobile):not(.animations-off):not(.disable-animations) {
 /* Performance optimization: isolate file explorer to prevent repaints during drag */
 .nav-files-container {
 	contain: layout style paint;
+
+	/* Limit transitions inside file explorer to prevent lag during drag operations */
+	.clickable-icon {
+		transition: background-color var(--anim-duration-fast) !important;
+	}
+	svg.svg-icon {
+		transition: color var(--anim-duration-fast) !important;
+	}
 }
 

@@ -3,7 +3,10 @@ button:not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^
 .clickable-icon:not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^="editingToolbarCommandsubItem"]),
 select,
 .dropdown {
-	transition: var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-fast);
+	transition: background-color var(--anim-duration-fast),
+	            color var(--anim-duration-moderate) var(--anim-motion-baseline),
+	            opacity var(--anim-duration-moderate) var(--anim-motion-baseline),
+	            box-shadow var(--anim-duration-moderate) var(--anim-motion-baseline);
 }
 
 /* Editing Toolbar submenu items - no animations, but add delay before hiding */
@@ -77,7 +80,10 @@ select,
 
 .workspace {
 	svg.svg-icon {
-		transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+		transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline),
+		            filter var(--anim-duration-moderate) var(--anim-motion-baseline),
+		            scale var(--anim-duration-moderate) var(--anim-motion-baseline),
+		            color var(--anim-duration-moderate) var(--anim-motion-baseline);
 	}
 
 	/* Icon fade effects - exclude Editing Toolbar elements (they have their own animations) */

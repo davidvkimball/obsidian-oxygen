@@ -82,7 +82,7 @@ body .excalidraw {
 	--hl2: rgba(255, 225, 0, 0.5);  /* Yellow highlight */
 
 	/* Text on accent - depends on accent lightness */
-	--sp1: white;
+	--sp1: var(--text-on-accent);
 
 	/* Oxygen light theme overrides */
 	--titlebar-background: var(--bg-tab);
@@ -257,7 +257,7 @@ All other color schemes override this base
 	--hl2: rgba(255, 177, 80, 0.3);  /* Yellow highlight */
 
 	/* Text on accent - white works for most dark mode accents (55% lightness) */
-	--sp1: white;
+	--sp1: var(--text-on-accent);
 
 	/* Oxygen theme overrides */
 	--titlebar-background: var(--bg-tab);
@@ -423,7 +423,7 @@ The mapping follows this hierarchy:
 	--text-highlight-bg: var(--hl1);
 	--text-highlight-bg-active: var(--hl2);
 	--text-selection: var(--hl1);
-	--text-on-accent: var(--sp1);
+	/* --text-on-accent: var(--sp1); */
 
 	/* Interactive Colors - Map Oxygen variables to Obsidian native */
 	--interactive-normal: var(--ui1);

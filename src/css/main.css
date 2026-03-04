@@ -206,7 +206,7 @@ body .excalidraw {
   --hl1: hsla(var(--accent-h), 50%, calc(var(--base-l) - 20%), 30%);
   --hl2: rgba(255, 225, 0, 0.5); /* Yellow highlight */
   /* Text on accent - depends on accent lightness */
-  --sp1: white;
+  --sp1: var(--text-on-accent);
   /* Oxygen light theme overrides */
   --titlebar-background: var(--bg-tab);
   --titlebar-background-focused: var(--bg-tab);
@@ -372,7 +372,7 @@ All other color schemes override this base
   --hl1: hsla(var(--accent-h), 50%, 40%, 30%);
   --hl2: rgba(255, 177, 80, 0.3); /* Yellow highlight */
   /* Text on accent - white works for most dark mode accents (55% lightness) */
-  --sp1: white;
+  --sp1: var(--text-on-accent);
   /* Oxygen theme overrides */
   --titlebar-background: var(--bg-tab);
   --titlebar-background-focused: var(--bg-tab);
@@ -518,7 +518,7 @@ The mapping follows this hierarchy:
   --text-highlight-bg: var(--hl1);
   --text-highlight-bg-active: var(--hl2);
   --text-selection: var(--hl1);
-  --text-on-accent: var(--sp1);
+  /* --text-on-accent: var(--sp1); */
   /* Interactive Colors - Map Oxygen variables to Obsidian native */
   --interactive-normal: var(--ui1);
   --interactive-hover: var(--ui2);
@@ -626,7 +626,7 @@ The CSS cascade ensures this works correctly:
   --text-italic: var(--tx1);
   --text-muted: var(--tx2);
   --text-normal: var(--tx1);
-  --text-on-accent: var(--sp1);
+  /* --text-on-accent:                    var(--sp1); */
   --text-selection: var(--hl1);
   --text-formatting: var(--tx3);
   --title-color-inactive: var(--tx2);
@@ -636,7 +636,7 @@ The CSS cascade ensures this works correctly:
   --titlebar-text-color-focused: var(--tx1);
   --vault-profile-color: var(--tx1);
   --vault-profile-color-hover: var(--tx1);
-  --workspace-background-translucent: hsla(var(--base-h),var(--base-s), var(--base-l), 0.7);
+  --workspace-background-translucent: hsla(var(--base-h), var(--base-s), var(--base-l), 0.7);
 }
 
 .theme-light.oxygen-light-contrast.is-mobile .workspace-drawer.mod-left {
@@ -651,7 +651,7 @@ The CSS cascade ensures this works correctly:
 }
 
 .theme-light.oxygen-light-contrast {
-  --workspace-background-translucent: rgba(0,0,0,0.6);
+  --workspace-background-translucent: rgba(0, 0, 0, 0.6);
 }
 
 .theme-light.oxygen-light-contrast .theme-dark {
@@ -661,13 +661,13 @@ The CSS cascade ensures this works correctly:
 
 .theme-light {
   --interactive-normal: var(--bg1);
-  --interactive-accent-rgb:220, 220, 220;
-  --active-line-bg: rgba(0,0,0,0.035);
-  --background-modifier-cover:hsla(var(--base-h),calc(var(--base-s) - 70%),calc(var(--base-l) - 20%),0.5);
+  --interactive-accent-rgb: 220, 220, 220;
+  --active-line-bg: rgba(0, 0, 0, 0.035);
+  --background-modifier-cover: hsla(var(--base-h), calc(var(--base-s) - 70%), calc(var(--base-l) - 20%), 0.5);
   --text-highlight-bg-active: rgba(0, 0, 0, 0.1);
   /* Errors */
-  --background-modifier-error: rgba(255,0,0,0.14);
-  --background-modifier-error-hover: rgba(255,0,0,0.08);
+  --background-modifier-error: rgba(255, 0, 0, 0.14);
+  --background-modifier-error-hover: rgba(255, 0, 0, 0.08);
   /* Shadows */
   --shadow-color: rgba(0, 0, 0, 0.1);
   --btn-shadow-color: rgba(0, 0, 0, 0.05);
@@ -676,12 +676,12 @@ The CSS cascade ensures this works correctly:
 .theme-dark {
   --interactive-normal: var(--bg3);
   --interactive-accent-rgb: 66, 66, 66;
-  --active-line-bg: rgba(255,255,255,0.04);
-  --background-modifier-cover: hsla(var(--base-h),var(--base-s), calc(var(--base-l) - 12%), 0.5);
+  --active-line-bg: rgba(255, 255, 255, 0.04);
+  --background-modifier-cover: hsla(var(--base-h), var(--base-s), calc(var(--base-l) - 12%), 0.5);
   --text-highlight-bg-active: rgba(255, 255, 255, 0.1);
   /* Errors */
-  --background-modifier-error: rgba(255,20,20,0.12);
-  --background-modifier-error-hover: rgba(255,20,20,0.18);
+  --background-modifier-error: rgba(255, 20, 20, 0.12);
+  --background-modifier-error-hover: rgba(255, 20, 20, 0.18);
   /* Shadows */
   --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
   --shadow-color: rgba(0, 0, 0, 0.3);
@@ -718,9 +718,9 @@ The CSS cascade ensures this works correctly:
   --background-table-rows: var(--bg3);
   --setting-items-background: var(--bg3);
   --modal-border: var(--ui2);
-  --active-line-bg: rgba(255,255,255,0.085);
+  --active-line-bg: rgba(255, 255, 255, 0.085);
   --background-modifier-form-field: var(--bg3);
-  --background-modifier-cover:hsla(var(--base-h),var(--base-s),calc(var(--base-d) + 8%),0.7);
+  --background-modifier-cover: hsla(var(--base-h), var(--base-s), calc(var(--base-d) + 8%), 0.7);
   --background-modifier-box-shadow: rgba(0, 0, 0, 1);
 }
 
@@ -1389,6 +1389,13 @@ body:not(.is-mobile):not(.animations-off):not(.disable-animations) .mod-sidedock
 /* Performance optimization: isolate file explorer to prevent repaints during drag */
 .nav-files-container {
   contain: layout style paint;
+  /* Limit transitions inside file explorer to prevent lag during drag operations */
+}
+.nav-files-container .clickable-icon {
+  transition: background-color var(--anim-duration-fast) !important;
+}
+.nav-files-container svg.svg-icon {
+  transition: color var(--anim-duration-fast) !important;
 }
 
 /* Components */
@@ -1397,7 +1404,7 @@ button:not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^
 .clickable-icon:not(:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]),
 select,
 .dropdown {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-fast);
+  transition: background-color var(--anim-duration-fast), color var(--anim-duration-moderate) var(--anim-motion-baseline), opacity var(--anim-duration-moderate) var(--anim-motion-baseline), box-shadow var(--anim-duration-moderate) var(--anim-motion-baseline);
 }
 
 /* Editing Toolbar submenu items - no animations, but add delay before hiding */
@@ -1468,7 +1475,7 @@ select,
 }
 
 .workspace svg.svg-icon {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+  transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline), filter var(--anim-duration-moderate) var(--anim-motion-baseline), scale var(--anim-duration-moderate) var(--anim-motion-baseline), color var(--anim-duration-moderate) var(--anim-motion-baseline);
 }
 .workspace {
   /* Icon fade effects - exclude Editing Toolbar elements (they have their own animations) */
