@@ -15,4 +15,9 @@ body:not(.full-file-names) {
 		text-overflow: ellipsis;
 		overflow: hidden;
 	}
+
+	.tree-item-self.is-being-renamed .tree-item-inner {
+		text-overflow: clip;
+		overflow: hidden;
+	}
 }

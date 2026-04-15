@@ -4090,11 +4090,18 @@ body.oxygen-focus-mode.show-view-header .view-content {
 .full-width-media .markdown-preview-view video {
   width: 100%;
 }
+.full-width-media .image-embed:not([width]) .image-wrapper {
+  width: 100%;
+}
 
 .markdown-source-view video,
 .markdown-source-view img:not(.emoji),
 .markdown-rendered video,
 .markdown-rendered img:not(.emoji) {
+  border-radius: var(--image-radius);
+}
+
+body:not(.is-mobile) div.image-embed:focus-within .image-wrapper::after {
   border-radius: var(--image-radius);
 }
 
@@ -4938,6 +4945,10 @@ body:not(.full-file-names) .tree-item-self {
 }
 body:not(.full-file-names) .tree-item-inner {
   text-overflow: ellipsis;
+  overflow: hidden;
+}
+body:not(.full-file-names) .tree-item-self.is-being-renamed .tree-item-inner {
+  text-overflow: clip;
   overflow: hidden;
 }
 
