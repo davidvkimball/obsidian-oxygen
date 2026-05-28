@@ -21,29 +21,27 @@ For general features and documentation, see [minimal.guide](https://minimal.guid
 
 ### Community Themes Search
 
-1. In Obsidian, go to Settings > Appearance.
+1. In Obsidian, go to Settings → Appearance.
 2. Select "Manage" and search for "Oxygen" and select "Install and use."
 
 **Install the Companion Plugin** (Highly Recommended)
 
-The Oxygen Theme Settings plugin is also not yet in Community Plugins. Install via BRAT:
+1. In Obsidian, go to Settings → Community plugins → Browse.
+2. Search for **"Oxygen Theme Settings"** and select Install, then Enable.
 
-1. Install the [BRAT](https://github.com/TfTHacker/obsidian42-brat) plugin from Community Plugins
-2. Open BRAT settings (Settings → BRAT)
-3. Click "Add Beta plugin" and enter: `https://github.com/davidvkimball/obsidian-oxygen-settings`
-4. Enable the plugin in Settings → Community Plugins
+Or use this direct link from inside Obsidian: [obsidian://show-plugin?id=oxygen-settings](obsidian://show-plugin?id=oxygen-settings).
 
 ### Manual
 
 1. Download the latest release from the [Releases page](https://github.com/davidvkimball/obsidian-oxygen/releases) and navigate to your Obsidian vault's `.obsidian/themes/` directory.
 2. Create a new folder called "Oxygen" and ensure `manifest.json` and `theme.css` are in it.
-3. In Obsidian, go to **Settings > Appearance** and then enable "Oxygen."
+3. In Obsidian, go to **Settings → Appearance** and then enable "Oxygen."
 
 **Install the Companion Plugin** (Highly Recommended)
 
-1. Download the latest release from the Oxygen Theme Settings [Releases page](https://github.com/davidvkimball/obsidian-oxygen-settings) and navigate to your Obsidian vault's `.obsidian/plugins/` directory.
+1. Download the latest release from the Oxygen Theme Settings [Releases page](https://github.com/davidvkimball/obsidian-oxygen-settings/releases) and navigate to your Obsidian vault's `.obsidian/plugins/` directory.
 2. Create a new folder `oxygen-settings` and ensure `manifest.json`, `main.js`, and `styles.css` are in there.
-3. Enable the plugin in Settings → Community Plugins
+3. Enable the plugin in Settings → Community plugins.
 
 ## Companion Plugins
 
@@ -54,7 +52,7 @@ For general features like focus mode, image grids, helper classes, alternate che
 
 ## Color Schemes
 
-Oxygen offers the same color schemes as Minimal, with Oxygen as the default instead. Switch between schemes using [Oxygen Theme Settings](https://github.com/david/obsidian-oxygen-settings).
+Oxygen offers the same color schemes as Minimal, with Oxygen as the default instead. Switch between schemes using [Oxygen Theme Settings](https://github.com/davidvkimball/obsidian-oxygen-settings).
 
 **Built-in schemes:** Oxygen (default), Minimal (original), Atom, Ayu, Catppuccin, Dracula, Eink, Everforest, Flexoki, Gruvbox, macOS, Nord, Rose Pine, Sky, Solarized, and Things.
 
@@ -77,7 +75,7 @@ Oxygen includes smooth, polished animations throughout the interface to enhance 
 - **Entrance effects**: Workspace panes, modals, and menus fade in with subtle scale and blur effects
 - **Smooth transitions**: Sidebars, tabs, ribbons, and focus mode elements transition smoothly between states
 - **Customizable speed**: Choose between normal, fast, or disabled animations via Style Settings
-- **Motion styles**: Two easing curves available—refined (default) for subtle elegance, or playful for a bouncier feel
+- **Motion styles**: Two easing curves available: refined (default) for subtle elegance, or playful for a bouncier feel
 - **Accessibility**: Automatically respects your system's `prefers-reduced-motion` setting
 
 These are based off of the animations found in the [Baseline](https://github.com/aaaaalexis/obsidian-baseline) theme.
