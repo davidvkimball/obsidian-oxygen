@@ -97,9 +97,6 @@ body {
 	opacity:0;
 	transition:opacity 200ms;
 	padding:4px 4px 4px 9px;
-	svg {
-		margin:0 !important;
-	}
 }
 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .edit-block-button {
 	width:30px !important;
@@ -115,6 +112,7 @@ body {
 	color:var(--text-muted);
 }
 .markdown-source-view.mod-cm6 .edit-block-button svg {
+	margin:0 !important;
 	opacity:1;
 }
 .markdown-source-view.mod-cm6 .edit-block-button:hover svg {

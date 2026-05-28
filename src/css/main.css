@@ -871,9 +871,6 @@ body {
   transition: opacity 200ms;
   padding: 4px 4px 4px 9px;
 }
-.markdown-source-view.mod-cm6 .edit-block-button svg {
-  margin: 0 !important;
-}
 
 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .edit-block-button {
   width: 30px !important;
@@ -892,6 +889,7 @@ body {
 }
 
 .markdown-source-view.mod-cm6 .edit-block-button svg {
+  margin: 0 !important;
   opacity: 1;
 }
 
@@ -1066,7 +1064,6 @@ body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .
   border-top-right-radius: var(--radius-m);
   padding: 0;
   position: absolute;
-  border-right: 0px;
   margin: 0;
   width: auto;
   height: 44px;
@@ -2616,15 +2613,11 @@ body {
   width: var(--table-wrapper-width);
 }
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > .bases-embed,
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(.block-language-base),
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(.bases-embed),
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > :has(> .block-language-dataview table),
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > :has(> .block-language-dataviewjs table),
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(:is(.block-language-base, .bases-embed)),
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > :has(> :is(.block-language-dataview, .block-language-dataviewjs) table),
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer > .bases-embed,
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(.block-language-base),
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(.bases-embed),
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > :has(> .block-language-dataview table),
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > :has(> .block-language-dataviewjs table) {
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(:is(.block-language-base, .bases-embed)),
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > :has(> :is(.block-language-dataview, .block-language-dataviewjs) table) {
   width: var(--container-dataview-table-width);
   max-width: var(--container-table-max-width);
 }
@@ -2698,35 +2691,27 @@ body {
   /* Maps */
 }
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(.bases-view[data-view-type=map]),
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(> .block-language-leaflet),
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(.bases-view[data-view-type=map]),
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(> .block-language-leaflet) {
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(.bases-view[data-view-type=map]) {
   width: var(--container-map-width);
   max-width: var(--container-map-max-width);
   --bases-header-padding-end: var(--map-header-padding);
   --bases-header-padding-start: var(--map-header-padding);
 }
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(.bases-view[data-view-type=map]) iframe,
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(> .block-language-leaflet) iframe,
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(.bases-view[data-view-type=map]) iframe,
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(> .block-language-leaflet) iframe {
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(.bases-view[data-view-type=map]) iframe {
   max-width: var(--map-max-width);
 }
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content,
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
   /* Iframes */
 }
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(> iframe),
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(> .cm-html-embed),
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(> iframe),
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(> .cm-html-embed) {
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(> :is(iframe, .cm-html-embed)),
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(> :is(iframe, .cm-html-embed)) {
   width: var(--container-iframe-width);
   max-width: var(--container-iframe-max-width);
 }
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(> iframe) iframe,
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content div:has(> .cm-html-embed) iframe,
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(> iframe) iframe,
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer div:has(> .cm-html-embed) iframe {
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content > div:has(> :is(iframe, .cm-html-embed)) iframe,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(> :is(iframe, .cm-html-embed)) iframe {
   max-width: var(--iframe-max-width);
 }
 
@@ -3513,7 +3498,6 @@ input[data-task="<"]:checked,
 li[data-task="<"] > input:checked,
 li[data-task="<"] > p > input:checked {
   color: var(--text-faint);
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z' clip-rule='evenodd' /%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd' /%3E%3C/svg%3E");
 }
 
@@ -4368,10 +4352,6 @@ body {
   --image-grid-fit: contain;
 }
 
-.img-grid-ratio {
-  --image-grid-fit: contain;
-}
-
 .img-grid .image-embed.is-loaded {
   line-height: 0;
   display: flex;
@@ -4388,12 +4368,7 @@ body {
 .img-grid .markdown-preview-section > div:has(img) .image-embed ~ br {
   display: none;
 }
-.img-grid .markdown-preview-section div:has(> .image-embed ~ .image-embed),
-.img-grid .markdown-preview-section p:has(> .image-embed ~ .image-embed),
-.img-grid .markdown-preview-section div:has(> img ~ img),
-.img-grid .markdown-preview-section p:has(> .image-embed ~ img),
-.img-grid .markdown-preview-section p:has(> img ~ .image-embed),
-.img-grid .markdown-preview-section p:has(> img ~ img) {
+.img-grid .markdown-preview-section :is(div, p):has(> :is(.image-embed, img) ~ :is(.image-embed, img)) {
   display: grid;
   margin-block-start: var(--img-grid-gap);
   margin-block-end: var(--img-grid-gap);
@@ -4401,21 +4376,11 @@ body {
   grid-row-gap: 0;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 }
-.img-grid .markdown-preview-section div:has(> .image-embed ~ .image-embed) > img,
-.img-grid .markdown-preview-section p:has(> .image-embed ~ .image-embed) > img,
-.img-grid .markdown-preview-section div:has(> img ~ img) > img,
-.img-grid .markdown-preview-section p:has(> .image-embed ~ img) > img,
-.img-grid .markdown-preview-section p:has(> img ~ .image-embed) > img,
-.img-grid .markdown-preview-section p:has(> img ~ img) > img {
+.img-grid .markdown-preview-section :is(div, p):has(> :is(.image-embed, img) ~ :is(.image-embed, img)) > img {
   object-fit: var(--image-grid-fit);
   align-self: stretch;
 }
-.img-grid .markdown-preview-section div:has(> .image-embed ~ .image-embed) > .internal-embed img,
-.img-grid .markdown-preview-section p:has(> .image-embed ~ .image-embed) > .internal-embed img,
-.img-grid .markdown-preview-section div:has(> img ~ img) > .internal-embed img,
-.img-grid .markdown-preview-section p:has(> .image-embed ~ img) > .internal-embed img,
-.img-grid .markdown-preview-section p:has(> img ~ .image-embed) > .internal-embed img,
-.img-grid .markdown-preview-section p:has(> img ~ img) > .internal-embed img {
+.img-grid .markdown-preview-section :is(div, p):has(> :is(.image-embed, img) ~ :is(.image-embed, img)) > .internal-embed img {
   object-fit: var(--image-grid-fit);
   align-self: center;
 }
@@ -5381,9 +5346,6 @@ body {
 #calendar-container .active .dot {
   fill: var(--calendar-dot-active);
 }
-#calendar-container .active .task {
-  stroke: var(--text-faint);
-}
 
 /* Charts */
 .block-language-chart canvas,
@@ -5840,7 +5802,6 @@ body .kanban-plugin__lane-setting-wrapper > div:last-child {
 }
 body .kanban-plugin.something-is-dragging {
   cursor: grabbing;
-  cursor: -webkit-grabbing;
 }
 body .kanban-plugin__item.is-dragging {
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--text-selection);
@@ -5930,161 +5891,6 @@ body .kanban-plugin__markdown-preview-view ul, body .kanban-plugin__markdown-pre
 body .cm-heading-marker {
   cursor: var(--cursor);
   padding-left: 10px;
-}
-
-/* Leaflet plugin */
-.theme-light {
-  --leaflet-buttons:var(--bg1);
-  --leaflet-borders:rgba(0,0,0,0.1);
-}
-
-.theme-dark {
-  --leaflet-buttons:var(--bg2);
-  --leaflet-borders:rgba(255,255,255,0.1);
-}
-
-.leaflet-container {
-  --image-radius:0;
-}
-
-.leaflet-top {
-  transition: top 0.1s linear;
-}
-
-body .leaflet-container {
-  background-color: var(--background-secondary);
-  font-family: var(--font-interface);
-}
-
-.leaflet-control-attribution {
-  display: none;
-}
-
-.leaflet-popup-content {
-  margin: 10px;
-}
-
-.block-language-leaflet {
-  border-radius: var(--radius-m);
-  overflow: hidden;
-  border: var(--border-width) solid var(--background-modifier-border);
-}
-
-.map-wide .block-language-leaflet {
-  border-radius: var(--radius-l);
-}
-
-.map-max .block-language-leaflet {
-  border-radius: var(--radius-xl);
-}
-
-.workspace-leaf-content[data-type=obsidian-leaflet-map-view] .block-language-leaflet {
-  border-radius: 0;
-  border: none;
-}
-
-.map-100 .block-language-leaflet {
-  border-radius: 0px;
-  border-left: none;
-  border-right: none;
-}
-
-/* Checkbox */
-.block-language-leaflet .leaflet-control-expandable-list .input-container .input-item > input {
-  appearance: none;
-}
-
-/* Buttons */
-body .block-language-leaflet .leaflet-bar.disabled > a {
-  background-color: transparent;
-  opacity: 0.3;
-}
-
-body .leaflet-touch .leaflet-bar a:first-child {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
-body .leaflet-touch .leaflet-bar a:last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-body .leaflet-control-layers-toggle {
-  border-radius: 4px;
-}
-
-body .leaflet-control-layers-toggle,
-body .leaflet-control-layers-expanded,
-body .block-language-leaflet .leaflet-control-has-actions .control-actions.expanded,
-body .block-language-leaflet .leaflet-control-expandable,
-body .block-language-leaflet .leaflet-distance-control,
-body .leaflet-bar,
-body .leaflet-bar a {
-  background-color: var(--leaflet-buttons);
-  color: var(--text-muted);
-  border: none;
-  user-select: none;
-}
-
-body .leaflet-bar a.leaflet-disabled,
-body .leaflet-bar a.leaflet-disabled:hover {
-  background-color: var(--leaflet-buttons);
-  color: var(--text-faint);
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-body .leaflet-control a {
-  cursor: var(--cursor);
-  color: var(--text-normal);
-}
-
-body .leaflet-bar a:hover {
-  background-color: var(--background-modifier-hover);
-  color: var(--text-normal);
-  border: none;
-}
-
-body .leaflet-touch .leaflet-control-layers {
-  background-color: var(--leaflet-buttons);
-}
-
-body .leaflet-touch .leaflet-control-layers,
-body .leaflet-touch .leaflet-bar {
-  border-radius: 5px;
-  box-shadow: 2px 0 8px 0px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--ui1);
-}
-
-body .block-language-leaflet .leaflet-control-has-actions .control-actions {
-  box-shadow: 0;
-  border: 1px solid var(--ui1);
-}
-
-body .leaflet-control-expandable-list .leaflet-bar {
-  box-shadow: none;
-  border-radius: 0;
-}
-
-body .block-language-leaflet .leaflet-distance-control {
-  padding: 4px 10px;
-  height: auto;
-  cursor: var(--cursor) !important;
-}
-
-body .block-language-leaflet .leaflet-marker-link-popup > .leaflet-popup-content-wrapper > * {
-  font-size: var(--font-adaptive-small);
-  font-family: var(--font-interface);
-}
-
-body .block-language-leaflet .leaflet-marker-link-popup > .leaflet-popup-content-wrapper {
-  padding: 4px 10px !important;
-}
-
-.leaflet-marker-icon svg path {
-  stroke: var(--background-primary);
-  stroke-width: 18px;
 }
 
 /* Sortable plugin */
