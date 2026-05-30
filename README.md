@@ -21,27 +21,25 @@ For general features and documentation, see [minimal.guide](https://minimal.guid
 
 ### Community Themes Search
 
-1. In Obsidian, go to Settings → Appearance.
+1. In Obsidian, go to Settings > Appearance.
 2. Select "Manage" and search for "Oxygen" and select "Install and use."
 
 **Install the Companion Plugin** (Highly Recommended)
 
-1. In Obsidian, go to Settings → Community plugins → Browse.
-2. Search for **"Oxygen Theme Settings"** and select Install, then Enable.
-
-Or use this direct link from inside Obsidian: [obsidian://show-plugin?id=oxygen-settings](obsidian://show-plugin?id=oxygen-settings).
+1. In Obsidian, go to Settings > Community plugins (enable it if you haven't already).
+2. Search for [Oxygen Theme Settings](https://obsidian.md/plugins?id=oxygen-settings) and click Install and then Enable.
 
 ### Manual
 
 1. Download the latest release from the [Releases page](https://github.com/davidvkimball/obsidian-oxygen/releases) and navigate to your Obsidian vault's `.obsidian/themes/` directory.
 2. Create a new folder called "Oxygen" and ensure `manifest.json` and `theme.css` are in it.
-3. In Obsidian, go to **Settings → Appearance** and then enable "Oxygen."
+3. In Obsidian, go to **Settings > Appearance** and then enable "Oxygen."
 
 **Install the Companion Plugin** (Highly Recommended)
 
 1. Download the latest release from the Oxygen Theme Settings [Releases page](https://github.com/davidvkimball/obsidian-oxygen-settings/releases) and navigate to your Obsidian vault's `.obsidian/plugins/` directory.
 2. Create a new folder `oxygen-settings` and ensure `manifest.json`, `main.js`, and `styles.css` are in there.
-3. Enable the plugin in Settings → Community plugins.
+3. Enable the plugin in Settings > Community plugins.
 
 ## Companion Plugins
 
