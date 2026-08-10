@@ -29,3 +29,32 @@
 body:not(.is-mobile) div.image-embed:focus-within .image-wrapper::after {
 	border-radius: var(--image-radius);
 }
+
+/* Video embeds (Obsidian-native YouTube via releases.obsidian.md, plus
+   youtube.com / vimeo iframes) are wrapped in an .image-embed and sized like an
+   image (fit-content width + a fixed height), which squishes the 16:9 player.
+   Force them back to a responsive 16:9. transition: none stops the animation
+   feature from visibly tweening the resize. This lives in the theme so the rule
+   is in the cascade before the embed first paints, which avoids a load-order
+   flash. */
+.image-embed:has(> .image-wrapper > iframe[src*="releases.obsidian.md/youtube"]),
+.image-embed:has(> .image-wrapper > iframe[src*="youtube.com/embed"]),
+.image-embed:has(> .image-wrapper > iframe[src*="youtube-nocookie.com"]),
+.image-embed:has(> .image-wrapper > iframe[src*="player.vimeo.com"]),
+.image-embed:has(> .image-wrapper > iframe[src*="vimeo.com"]) {
+	width: 100%;
+	display: block;
+	transition: none !important;
+
+	.image-wrapper {
+		width: 100%;
+		transition: none !important;
+	}
+
+	iframe {
+		width: 100% !important;
+		height: auto !important;
+		aspect-ratio: 16 / 9 !important;
+		transition: none !important;
+	}
+}

@@ -40,6 +40,15 @@ body {
     }
   }
 
+  /* In Live Preview a lone image embed normally renders inline; the display:
+     flex above turns it into a block, which makes CodeMirror reserve an empty
+     line (one line-height) above the image. Grids only form in reading view
+     (.markdown-preview-section below), so keep source-view image embeds inline
+     to avoid that phantom space. */
+  .markdown-source-view .image-embed.is-loaded {
+    display: inline-flex;
+  }
+
   .markdown-preview-section {
     > div:has(img) {
       p:empty,

@@ -4129,6 +4129,41 @@ body:not(.is-mobile) div.image-embed:focus-within .image-wrapper::after {
   border-radius: var(--image-radius);
 }
 
+/* Video embeds (Obsidian-native YouTube via releases.obsidian.md, plus
+   youtube.com / vimeo iframes) are wrapped in an .image-embed and sized like an
+   image (fit-content width + a fixed height), which squishes the 16:9 player.
+   Force them back to a responsive 16:9. transition: none stops the animation
+   feature from visibly tweening the resize. This lives in the theme so the rule
+   is in the cascade before the embed first paints, which avoids a load-order
+   flash. */
+.image-embed:has(> .image-wrapper > iframe[src*="releases.obsidian.md/youtube"]),
+.image-embed:has(> .image-wrapper > iframe[src*="youtube.com/embed"]),
+.image-embed:has(> .image-wrapper > iframe[src*="youtube-nocookie.com"]),
+.image-embed:has(> .image-wrapper > iframe[src*="player.vimeo.com"]),
+.image-embed:has(> .image-wrapper > iframe[src*="vimeo.com"]) {
+  width: 100%;
+  display: block;
+  transition: none !important;
+}
+.image-embed:has(> .image-wrapper > iframe[src*="releases.obsidian.md/youtube"]) .image-wrapper,
+.image-embed:has(> .image-wrapper > iframe[src*="youtube.com/embed"]) .image-wrapper,
+.image-embed:has(> .image-wrapper > iframe[src*="youtube-nocookie.com"]) .image-wrapper,
+.image-embed:has(> .image-wrapper > iframe[src*="player.vimeo.com"]) .image-wrapper,
+.image-embed:has(> .image-wrapper > iframe[src*="vimeo.com"]) .image-wrapper {
+  width: 100%;
+  transition: none !important;
+}
+.image-embed:has(> .image-wrapper > iframe[src*="releases.obsidian.md/youtube"]) iframe,
+.image-embed:has(> .image-wrapper > iframe[src*="youtube.com/embed"]) iframe,
+.image-embed:has(> .image-wrapper > iframe[src*="youtube-nocookie.com"]) iframe,
+.image-embed:has(> .image-wrapper > iframe[src*="player.vimeo.com"]) iframe,
+.image-embed:has(> .image-wrapper > iframe[src*="vimeo.com"]) iframe {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16/9 !important;
+  transition: none !important;
+}
+
 .tabular {
   font-variant-numeric: tabular-nums;
 }
@@ -4402,6 +4437,16 @@ body {
 }
 .img-grid .image-embed.is-loaded img:active {
   background-color: transparent;
+}
+.img-grid {
+  /* In Live Preview a lone image embed normally renders inline; the display:
+     flex above turns it into a block, which makes CodeMirror reserve an empty
+     line (one line-height) above the image. Grids only form in reading view
+     (.markdown-preview-section below), so keep source-view image embeds inline
+     to avoid that phantom space. */
+}
+.img-grid .markdown-source-view .image-embed.is-loaded {
+  display: inline-flex;
 }
 .img-grid .markdown-preview-section > div:has(img) p:empty,
 .img-grid .markdown-preview-section > div:has(img) img ~ br,
