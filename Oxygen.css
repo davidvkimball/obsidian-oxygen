@@ -377,6 +377,7 @@ body .excalidraw {
 .theme-light.oxygen-oxygen-light.oxygen-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.oxygen-oxygen-light.oxygen-light-contrast .theme-dark {
   --tab-container-background: var(--bg2);
+  --sidebar-tab-container-background: var(--bg2);
   --ribbon-background-collapsed: var(--bg2);
 }
 
@@ -696,6 +697,7 @@ The CSS cascade ensures this works correctly:
 
 .theme-light.oxygen-light-contrast .theme-dark {
   --tab-container-background: var(--bg2);
+  --sidebar-tab-container-background: var(--bg2);
   --ribbon-background-collapsed: var(--bg2);
 }
 
@@ -901,8 +903,10 @@ body {
   color: var(--text-muted);
 }
 
-/* Code execution blocks, e.g. Dataview */
-.markdown-source-view.mod-cm6 .edit-block-button {
+/* Code execution blocks, e.g. Dataview. Obsidian 1.15 moved this button into an
+   .embed-actions bar (class .embed-action) that it shows and styles itself, so
+   these older rules skip it; otherwise opacity: 0 keeps it invisible. */
+.markdown-source-view.mod-cm6 .edit-block-button:not(.embed-action) {
   cursor: var(--cursor);
   color: var(--text-faint);
   background-color: var(--background-primary);
@@ -923,17 +927,17 @@ body {
   padding: 4px;
 }
 
-.markdown-source-view.mod-cm6 .edit-block-button:hover {
+.markdown-source-view.mod-cm6 .edit-block-button:not(.embed-action):hover {
   background-color: var(--background-primary);
   color: var(--text-muted);
 }
 
-.markdown-source-view.mod-cm6 .edit-block-button svg {
+.markdown-source-view.mod-cm6 .edit-block-button:not(.embed-action) svg {
   margin: 0 !important;
   opacity: 1;
 }
 
-.markdown-source-view.mod-cm6 .edit-block-button:hover svg {
+.markdown-source-view.mod-cm6 .edit-block-button:not(.embed-action):hover svg {
   opacity: 1;
 }
 
@@ -1347,6 +1351,8 @@ body.is-focused {
 
 .is-hidden-frameless:not(.colorful-frame) .mod-left-split .mod-top .workspace-tab-header-container {
   --tab-container-background: var(--background-secondary);
+  /* Obsidian 1.15+ colors sidebar tab headers with this one instead */
+  --sidebar-tab-container-background: var(--background-secondary);
 }
 
 .mod-root .workspace-tab-header-status-icon {
@@ -2630,6 +2636,22 @@ body {
    Obsidian installer 1.1.9 or above. However it means the
    code no longer requires Contextual Typography plugin.
 */
+/* Obsidian 1.15 shows an image whose source is being edited in a tooltip that
+   sits outside .cm-content, so the image rules below don't reach it. It then
+   took the full editor width and kept shrinking as CodeMirror repositioned it.
+   Size the tooltip itself to the text column it is anchored to: as an absolutely
+   positioned box its percentage width resolves against the editor, so it stays
+   put, where a percentage on the image would resolve against the tooltip and
+   feed back into its own size. That matches the image exactly at the default
+   image width; the wider image options show it at text width while editing. */
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-image-reveal-tooltip {
+  width: var(--line-width);
+}
+
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-image-reveal-tooltip .image-embed {
+  max-width: 100%;
+}
+
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer > .cm-content,
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
   /* Tables */
@@ -4331,6 +4353,7 @@ body:not(.is-mobile) div.image-embed:focus-within .image-wrapper::after {
 }
 .theme-dark .print-preview img,
 .theme-dark .markdown-source-view img:hover,
+.theme-dark .markdown-source-view .cm-image-reveal-tooltip img,
 .theme-dark .markdown-preview-view img:hover {
   opacity: 1;
   transition: opacity 0.25s linear;
@@ -4621,6 +4644,7 @@ body:not(.links-ext-on) {
 
 body:not(.sidebar-color) .mod-right-split {
   --background-secondary: var(--background-primary);
+  --sidebar-tab-container-background: var(--background-primary);
 }
 body:not(.sidebar-color) .mod-right-split :not(.mod-top) .workspace-tab-header-container {
   --tab-container-background: var(--background-primary);

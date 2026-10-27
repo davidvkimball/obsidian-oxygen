@@ -88,8 +88,10 @@ body {
 	color:var(--text-muted);
 }
 
-/* Code execution blocks, e.g. Dataview */
-.markdown-source-view.mod-cm6 .edit-block-button {
+/* Code execution blocks, e.g. Dataview. Obsidian 1.15 moved this button into an
+   .embed-actions bar (class .embed-action) that it shows and styles itself, so
+   these older rules skip it; otherwise opacity: 0 keeps it invisible. */
+.markdown-source-view.mod-cm6 .edit-block-button:not(.embed-action) {
 	cursor:var(--cursor);
 	color:var(--text-faint);
 	background-color:var(--background-primary);
@@ -107,15 +109,15 @@ body {
 	margin-inline-start:0 !important;
 	padding:4px
 }
-.markdown-source-view.mod-cm6 .edit-block-button:hover {
+.markdown-source-view.mod-cm6 .edit-block-button:not(.embed-action):hover {
 	background-color:var(--background-primary);
 	color:var(--text-muted);
 }
-.markdown-source-view.mod-cm6 .edit-block-button svg {
+.markdown-source-view.mod-cm6 .edit-block-button:not(.embed-action) svg {
 	margin:0 !important;
 	opacity:1;
 }
-.markdown-source-view.mod-cm6 .edit-block-button:hover svg {
+.markdown-source-view.mod-cm6 .edit-block-button:not(.embed-action):hover svg {
 	opacity:1;
 }
 .markdown-source-view.mod-cm6 .cm-embed-block {

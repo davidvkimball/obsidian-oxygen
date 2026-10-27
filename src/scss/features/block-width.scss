@@ -325,6 +325,21 @@ body {
    code no longer requires Contextual Typography plugin.
 */
 
+/* Obsidian 1.15 shows an image whose source is being edited in a tooltip that
+   sits outside .cm-content, so the image rules below don't reach it. It then
+   took the full editor width and kept shrinking as CodeMirror repositioned it.
+   Size the tooltip itself to the text column it is anchored to: as an absolutely
+   positioned box its percentage width resolves against the editor, so it stays
+   put, where a percentage on the image would resolve against the tooltip and
+   feed back into its own size. That matches the image exactly at the default
+   image width; the wider image options show it at text width while editing. */
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-image-reveal-tooltip {
+	width: var(--line-width);
+}
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-image-reveal-tooltip .image-embed {
+	max-width: 100%;
+}
+
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-contentContainer.cm-contentContainer>.cm-content,
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
 
